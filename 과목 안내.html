@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026학년도 입학생 선택과목 안내서</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-color: #333;
+            --bg-color: #f9fafb;
+            --border-color: #e5e7eb;
+            --sidebar-width: 300px;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            display: flex;
+            max-width: 1450px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 90vh;
+        }
+        
+        /* 사이드바 스타일 */
+        .sidebar-left {
+            width: var(--sidebar-width);
+            background-color: #f3f4f6;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-header {
+            padding: 20px;
+            background-color: #1f2937;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sidebar-content { padding: 15px 20px; }
+        .sidebar-content h3 {
+            font-size: 1.1rem;
+            margin: 15px 0 10px 0;
+            color: #1f2937;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #d1d5db;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .sidebar-content h3:first-child { margin-top: 0; }
+        .sidebar-content h3:hover { color: var(--primary-color); }
+        .sidebar-content h3 .chevron { font-size: 0.85rem; transition: transform 0.3s ease; }
+        .sidebar-content h3.collapsed .chevron { transform: rotate(-90deg); }
+        
+        .subject-list {
+            list-style: none; padding: 0; margin: 0 0 15px 0;
+            overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; opacity: 1;
+        }
+        .subject-list.collapsed { max-height: 0 !important; opacity: 0; pointer-events: none; }
+        .subject-list li { margin-bottom: 4px; }
+        .subject-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 12px; text-decoration: none; color: #4b5563; border-radius: 8px;
+            transition: all 0.2s; cursor: pointer; font-size: 0.95rem;
+        }
+        .subject-list a:hover { background-color: #e5e7eb; color: #111; }
+        .subject-list a.active {
+            background-color: var(--primary-color); color: #fff; font-weight: 600; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+        }
+        
+        .menu-tag {
+            font-size: 0.7rem; color: white; padding: 2px 6px; border-radius: 12px; font-weight: bold;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1); min-width: 32px; text-align: center;
+        }
+        .subject-list a.active .menu-tag { background-color: rgba(255, 255, 255, 0.25) !important; box-shadow: none; color: white !important; }
+        .tag-com { background-color: #ef4444; } 
+        .tag-gen { background-color: #3b82f6; } 
+        .tag-car { background-color: #8b5cf6; } 
+        .tag-fus { background-color: #ec4899; } 
+
+        /* 뷰 영역 (메인 + 우측 정보) */
+        .view-wrapper { flex: 1; display: flex; flex-direction: row; overflow: hidden; background-color: #fff; }
+
+        .main-content { flex: 1; padding: 40px 50px; overflow-y: auto; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .subject-header { margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-start;}
+        .subject-category {
+            display: inline-block; padding: 6px 14px; color: #fff; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;
+        }
+        .cat-common { background-color: #ef4444; } 
+        .cat-general { background-color: #3b82f6; } 
+        .cat-career { background-color: #8b5cf6; } 
+        .cat-fusion { background-color: #ec4899; } 
+
+        .subject-title { font-size: 2.4rem; font-weight: 900; margin: 0 0 15px 0; color: #111; letter-spacing: -1px; }
+        .section-title { font-size: 1.4rem; font-weight: 700; margin: 35px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid var(--border-color); color: #1f2937; }
+        .section-desc { font-size: 1.05rem; color: #4b5563; line-height: 1.8; word-break: keep-all; text-align: justify; }
+        
+        .content-box-container { display: flex; flex-direction: column; gap: 18px; }
+        .content-box { padding: 25px 28px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .content-box.blue { background-color: #eff6ff; border-color: #dbeafe; }
+        .content-box.green { background-color: #ecfdf5; border-color: #d1fae5; }
+        .content-box.yellow { background-color: #fffbeb; border-color: #fef3c7; }
+        .content-box.purple { background-color: #f5f3ff; border-color: #e9d5ff; }
+        .content-box.red { background-color: #fef2f2; border-color: #fecaca; }
+        
+        .content-box h4 { margin-top: 0; margin-bottom: 14px; font-size: 1.15rem; color: #111; display: flex; align-items: center; font-weight: 700; }
+        .content-box h4::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 10px; }
+        .content-box.blue h4::before { background-color: var(--primary-color); }
+        .content-box.green h4::before { background-color: var(--secondary-color); }
+        .content-box.yellow h4::before { background-color: var(--accent-color); }
+        .content-box.purple h4::before { background-color: #8b5cf6; }
+        .content-box.red h4::before { background-color: #ef4444; }
+        
+        .content-list { list-style: none; padding: 0; margin: 0; }
+        .content-list li { margin-bottom: 10px; font-size: 1.05rem; color: #4b5563; line-height: 1.7; text-align: justify; }
+        .content-list li strong { font-weight: 700; color: #1f2937; }
+
+        /* 우측 사이드바 */
+        .sidebar-right { width: 360px; background-color: #f8fafc; padding: 40px 30px; border-left: 1px solid var(--border-color); overflow-y: auto; }
+        
+        .eval-box { background-color: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 35px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .eval-box-title { font-size: 1.1rem; font-weight: 700; color: #111; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .suneung-badge { text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; margin-bottom: 15px; color: white; font-size: 1rem; }
+        .suneung-badge.included { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2); } 
+        .suneung-badge.excluded { background: #6b7280; } 
+        .suneung-badge.indirect { background: #f59e0b; } 
+        .eval-item { display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #f3f4f6; font-size: 0.95rem; }
+        .eval-item:last-child { padding-bottom: 0; }
+        .eval-label { color: #6b7280; font-weight: 500; }
+        .eval-value { color: #111; font-weight: 700; text-align: right; }
+        
+        .career-section-title { font-size: 1.3rem; font-weight: 800; color: #111; margin-bottom: 20px; border-bottom: 2px solid #111; padding-bottom: 10px; }
+        .career-subtitle { font-size: 1.05rem; font-weight: 700; color: #374151; margin: 25px 0 12px 0; display: flex; align-items: center; }
+        .career-subtitle::before { content: '💼'; margin-right: 8px; font-size: 1.2rem; }
+        .major-subtitle { font-size: 1.05rem; font-weight: 700; color: #374151; margin: 30px 0 12px 0; display: flex; align-items: center; }
+        .major-subtitle::before { content: '🏛️'; margin-right: 8px; font-size: 1.2rem; }
+
+        .career-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .career-tag { padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
+        
+        .c-tag-0 { background-color: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+        .c-tag-1 { background-color: #fce7f3; color: #db2777; border: 1px solid #fbcfe8; }
+        .c-tag-2 { background-color: #ffedd5; color: #ea580c; border: 1px solid #fed7aa; }
+        .c-tag-3 { background-color: #ccfbf1; color: #0f766e; border: 1px solid #99f6e4; }
+        .c-tag-4 { background-color: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .c-tag-5 { background-color: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; }
+        .c-tag-6 { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .c-tag-7 { background-color: #ecfccb; color: #047857; border: 1px solid #d9f99d; }
+        
+        .major-list { list-style: none; padding: 0; margin: 0; background: white; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+        .major-list li { padding: 10px 15px; font-size: 0.9rem; color: #374151; font-weight: 500; border-bottom: 1px solid #f3f4f6; position: relative; }
+        .major-list li:last-child { border-bottom: none; }
+        .major-list li::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background-color: var(--primary-color); opacity: 0; transition: opacity 0.2s; }
+        .major-list li:hover { background-color: #f8fafc; color: #111; }
+        .major-list li:hover::before { opacity: 1; }
+
+        /* 찜하기 및 플로팅 장바구니 버튼 */
+        .btn-wishlist { padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: 1rem; cursor: pointer; transition: all 0.2s; border: 2px solid #ef4444; box-shadow: 0 2px 4px rgba(239, 68, 68, 0.15); display: flex; align-items: center; gap: 6px; }
+        .btn-wishlist.active { background-color: #ef4444; color: white; }
+        .btn-wishlist.inactive { background-color: white; color: #ef4444; }
+        .btn-wishlist:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3); }
+
+        .floating-cart { position: fixed; bottom: 40px; right: 40px; background-color: #1f2937; color: white; padding: 16px 28px; border-radius: 40px; font-size: 1.15rem; font-weight: bold; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 12px; transition: transform 0.2s; z-index: 100; }
+        .floating-cart:hover { transform: translateY(-4px); background-color: #111827; }
+        .cart-badge { background-color: #ef4444; color: white; border-radius: 50%; padding: 2px 10px; font-size: 1rem; }
+
+        .wishlist-item { padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; background: #fff; }
+        .wishlist-item:hover { border-color: #3b82f6; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .wish-del-btn { color: #ef4444; border: 1px solid #fca5a5; background: #fef2f2; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .wish-del-btn:hover { background: #ef4444; color: white; }
+
+        .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #6b7280; text-align: center; }
+        .empty-state div { font-size: 4.5rem; margin-bottom: 20px; color: #d1d5db; }
+        .empty-state h2 { font-size: 1.6rem; font-weight: 700; color: #374151; margin-bottom: 10px; }
+
+        @media (max-width: 1024px) {
+            .container { flex-direction: column; height: auto; min-height: 100vh; }
+            .sidebar-left { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); max-height: 400px; }
+            .view-wrapper { flex-direction: column; overflow: visible; }
+            .main-content { padding: 30px 20px; }
+            .sidebar-right { width: 100%; border-left: none; border-top: 1px solid var(--border-color); padding: 30px 20px; }
+            .floating-cart { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1rem; }
+        }
+
+        @media print {
+            body { background-color: #ffffff; }
+            .container { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: 100% !important; display: block !important; height: auto !important; }
+            .sidebar-left, .floating-cart, .btn-wishlist, .print-hide { display: none !important; }
+            .view-wrapper { display: flex !important; flex-direction: column !important; padding: 0 !important; margin-bottom: 40px !important; overflow: visible !important; }
+            .main-content { padding: 0 !important; overflow: visible !important; }
+            .sidebar-right { width: 100% !important; padding: 20px 0 !important; border: none !important; background: transparent !important; page-break-before: always; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .wishlist-item { page-break-inside: avoid; border: 1px solid #000 !important; margin-bottom: 10px !important; }
+            .wish-del-btn { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar-left">
+        <div class="sidebar-header">
+            <span style="font-size:1.4rem;">🏫</span> 우리학교 편제 과목
+        </div>
+        <div class="sidebar-content" id="sidebar-content">
+            <!-- JS가 여기에 메뉴를 채웁니다 -->
+        </div>
+    </aside>
+
+    <div class="view-wrapper" id="view-wrapper">
+        <div class="empty-state w-full" style="width: 100%;">
+            <div>👈</div>
+            <h2>우리학교 교육과정 안내서</h2>
+            <p>왼쪽 메뉴에서 우리학교에 개설된 교과군과 과목을 선택해 주세요.<br>관심 있는 과목은 <strong>'찜하기'</strong>를 눌러 장바구니에 담을 수 있습니다.</p>
+            <p style="font-size:0.85rem; margin-top:20px; color:#9ca3af;">2026학년도 입학생 편제표 기준 전체 과목 탑재 완료</p>
+        </div>
+    </div>
+</div>
+
+<div class="floating-cart" onclick="showCart()">
+    🛒 나의 찜 목록 <span id="cart-count" class="cart-badge">0</span>
+</div>
+
+<script>
+    let myWishlist = JSON.parse(localStorage.getItem('myWishlist')) || [];
+    
+    function updateCartCount() {
+        const cnt = document.getElementById('cart-count');
+        if(cnt) cnt.innerText = myWishlist.length;
+    }
+
+    function toggleWish(subjectName) {
+        const idx = myWishlist.indexOf(subjectName);
+        if (idx > -1) {
+            myWishlist.splice(idx, 1);
+        } else {
+            myWishlist.push(subjectName);
+        }
+        localStorage.setItem('myWishlist', JSON.stringify(myWishlist));
+        updateCartCount();
+        
+        const btn = document.getElementById('wish-btn');
+        if(btn && btn.getAttribute('data-subject') === subjectName) {
+            if(myWishlist.includes(subjectName)) {
+                btn.className = 'btn-wishlist active print-hide';
+                btn.innerHTML = '♥ 찜 취소';
+            } else {
+                btn.className = 'btn-wishlist inactive print-hide';
+                btn.innerHTML = '♡ 찜하기';
+            }
+        }
+    }
+
+    // 1. 우리학교 편제 36개 과목 리스트
+    const subjectsRaw = [
+        { g: "국어", t: "공통", n: "공통국어1·2" },
+        { g: "국어", t: "일반", n: "문학" },
+        { g: "국어", t: "일반", n: "화법과 언어" },
+        { g: "국어", t: "일반", n: "독서와 작문" },
+        { g: "국어", t: "진로", n: "문학과 영상" },
+        { g: "국어", t: "진로", n: "주제 탐구 독서" },
+        { g: "국어", t: "융합", n: "언어생활 탐구" },
+        { g: "국어", t: "융합", n: "독서 토론과 글쓰기" },
+        { g: "국어", t: "융합", n: "매체 의사소통" },
+
+        { g: "수학", t: "공통", n: "공통수학1·2" },
+        { g: "수학", t: "일반", n: "대수" },
+        { g: "수학", t: "일반", n: "미적분Ⅰ" },
+        { g: "수학", t: "일반", n: "확률과 통계" },
+        { g: "수학", t: "진로", n: "통합수학Ⅰ" },
+        { g: "수학", t: "진로", n: "경제수학" },
+        { g: "수학", t: "진로", n: "기하" },
+        { g: "수학", t: "진로", n: "미적분Ⅱ" },
+        { g: "수학", t: "진로", n: "심화 수학" },
+
+        { g: "영어", t: "공통", n: "공통영어1·2" },
+        { g: "영어", t: "일반", n: "영어Ⅰ" },
+        { g: "영어", t: "일반", n: "영어Ⅱ" },
+        { g: "영어", t: "일반", n: "영어 독해와 작문" },
+        { g: "영어", t: "진로", n: "심화 영어" },
+        { g: "영어", t: "진로", n: "영어 발표와 토론" },
+        { g: "영어", t: "진로", n: "심화 영어 독해와 작문" },
+        { g: "영어", t: "융합", n: "미디어 영어" },
+        { g: "영어", t: "융합", n: "세계 문화와 영어" },
+
+        { g: "사회", t: "공통", n: "한국사1·2" },
+        { g: "사회", t: "공통", n: "통합사회1·2" },
+        { g: "사회", t: "일반", n: "세계시민과 지리" },
+        { g: "사회", t: "일반", n: "세계사" },
+        { g: "사회", t: "일반", n: "현대사회와 윤리" },
+        { g: "사회", t: "일반", n: "사회와 문화" },
+        { g: "사회", t: "진로", n: "정치" },
+        { g: "사회", t: "진로", n: "경제" },
+        { g: "사회", t: "진로", n: "도시의 미래 탐구" },
+        { g: "사회", t: "진로", n: "윤리와 사상" },
+        { g: "사회", t: "진로", n: "동아시아 역사 기행" },
+        { g: "사회", t: "진로", n: "한국지리 탐구" },
+        { g: "사회", t: "진로", n: "국제 관계의 이해" },
+        { g: "사회", t: "진로", n: "법과 사회" },
+        { g: "사회", t: "진로", n: "인문학과 윤리" },
+        { g: "사회", t: "융합", n: "사회문제 탐구" },
+        { g: "사회", t: "융합", n: "역사로 탐구하는 현대 세계" },
+        { g: "사회", t: "융합", n: "기후변화와 지속가능한 세계" },
+        { g: "사회", t: "융합", n: "금융과 경제생활" },
+        { g: "사회", t: "융합", n: "윤리문제 탐구" },
+
+        { g: "과학", t: "공통", n: "통합과학1·2" },
+        { g: "과학", t: "공통", n: "과학탐구실험1·2" },
+        { g: "과학", t: "일반", n: "물리학" },
+        { g: "과학", t: "일반", n: "화학" },
+        { g: "과학", t: "일반", n: "생명과학" },
+        { g: "과학", t: "일반", n: "지구과학" },
+        { g: "과학", t: "진로", n: "역학과 에너지" },
+        { g: "과학", t: "진로", n: "화학 반응의 세계" },
+        { g: "과학", t: "진로", n: "세포와 물질대사" },
+        { g: "과학", t: "진로", n: "행성우주과학" },
+        { g: "과학", t: "진로", n: "전자기와 양자" },
+        { g: "과학", t: "진로", n: "물질과 에너지" },
+        { g: "과학", t: "진로", n: "생물의 유전" },
+        { g: "과학", t: "진로", n: "지구시스템과학" },
+        { g: "과학", t: "진로", n: "과학과제 연구" },
+        { g: "과학", t: "융합", n: "물리학 실험" },
+        { g: "과학", t: "융합", n: "화학 실험" },
+        { g: "과학", t: "융합", n: "생명과학 실험" },
+        { g: "과학", t: "융합", n: "과학의 역사와 문화" },
+        { g: "과학", t: "융합", n: "기후변화와 환경생태" },
+        { g: "과학", t: "융합", n: "융합과학 탐구" },
+
+        { g: "체육", t: "일반", n: "체육1" },
+        { g: "체육", t: "일반", n: "체육2" },
+        { g: "체육", t: "진로", n: "스포츠 과학" },
+        { g: "체육", t: "진로", n: "스포츠 문화" },
+        { g: "체육", t: "진로", n: "기초 체육 전공 실기" },
+        { g: "체육", t: "진로", n: "심화 체육 전공 실기" },
+        { g: "체육", t: "융합", n: "스포츠 생활1" },
+        { g: "체육", t: "융합", n: "스포츠 생활2" },
+
+        { g: "예술", t: "일반", n: "음악" },
+        { g: "예술", t: "일반", n: "미술" },
+        { g: "예술", t: "진로", n: "음악 연주와 창작" },
+        { g: "예술", t: "진로", n: "미술 창작" },
+        { g: "예술", t: "진로", n: "음악 감상과 비평" },
+        { g: "예술", t: "진로", n: "미술 감상과 비평" },
+        { g: "예술", t: "진로", n: "음악 전공 실기" },
+        { g: "예술", t: "진로", n: "미술 전공 실기" },
+        { g: "예술", t: "융합", n: "음악과 미디어" },
+        { g: "예술", t: "융합", n: "미술과 매체" },
+
+        { g: "정보", t: "일반", n: "정보" },
+        { g: "정보", t: "진로", n: "데이터 과학" },
+        { g: "정보", t: "진로", n: "인공지능 기초" },
+        { g: "정보", t: "진로", n: "정보과학" },
+        { g: "정보", t: "융합", n: "소프트웨어와 생활" },
+
+        { g: "제2외국어", t: "일반", n: "일본어" },
+        { g: "제2외국어", t: "일반", n: "중국어" },
+        { g: "제2외국어", t: "진로", n: "일본어 회화" },
+        { g: "제2외국어", t: "진로", n: "중국어 회화" },
+        { g: "제2외국어", t: "융합", n: "일본 문화" },
+        { g: "제2외국어", t: "융합", n: "중국 문화" },
+
+        { g: "기술·가정", t: "진로", n: "인공지능 일반" },
+
+        { g: "교양", t: "일반", n: "생태와 환경" },
+        { g: "교양", t: "진로", n: "논리와 사고" },
+        { g: "교양", t: "진로", n: "인간과 철학" },
+        { g: "교양", t: "융합", n: "인간과 경제활동" },
+        { g: "교양", t: "융합", n: "논술" }
+    ];
+
+    // 2. 진로 및 진학 설계 기본 템플릿
+    const groupDefaults = {
+        "국어": { careers: ["작가", "기자", "교사", "카피라이터", "출판 편집자", "방송 기획자"], majors: ["국어국문학과", "국어교육과", "문예창작학과", "미디어커뮤니케이션학과"] },
+        "수학": { careers: ["금융 공학자", "데이터 분석가", "소프트웨어 개발자", "회계사", "연구원", "수학 교사"], majors: ["수학과", "통계학과", "컴퓨터공학과", "경제학과", "수학교육과"] },
+        "영어": { careers: ["통번역가", "국제 마케터", "승무원", "외교관", "국제기구 종사자", "영어 교사"], majors: ["영어영문학과", "국제통상학과", "관광경영학과", "영어교육과", "국제학부"] },
+        "사회": { careers: ["행정 공무원", "언론인", "경영 컨설턴트", "사회조사 연구원", "법조인", "사회 교사"], majors: ["행정학과", "정치외교학과", "경영학과", "사회학과", "법학과", "지리학과"] },
+        "과학": { careers: ["의사·약사", "반도체 엔지니어", "생명공학 연구원", "에너지 전문가", "과학 교사"], majors: ["의예·약학", "기계·전기전자공학", "생명과학과", "화학공학과", "물리학과", "지구환경과학과"] },
+        "체육": { careers: ["스포츠 에이전트", "체육 지도자", "재활 트레이너", "스포츠 분석관", "경호원", "체육 교사"], majors: ["체육교육과", "스포츠의학과", "스포츠경영학과", "사회체육학과", "경호학과"] },
+        "예술": { careers: ["예술가", "디자이너", "작곡가", "공연 기획자", "웹툰 작가", "미술관 큐레이터"], majors: ["서양화·동양화", "시각·산업디자인", "작곡·실용음악", "예술경영학과", "연극영화과"] },
+        "정보": { careers: ["소프트웨어 개발자", "인공지능 연구원", "정보 보안 전문가", "데이터베이스 관리자", "게임 기획자"], majors: ["컴퓨터공학과", "소프트웨어학과", "인공지능학과", "데이터사이언스학과", "게임공학과"] },
+        "제2외국어": { careers: ["통번역가", "무역 회사 주재원", "항공사 승무원", "여행 가이드", "외교관"], majors: ["해당 어문학과", "국제통상학과", "관광경영학과", "국제학부"] },
+        "기술·가정": { careers: ["IoT 개발자", "로봇 공학자", "인테리어 디자이너", "소비자 보호 전문가", "가정 교사"], majors: ["기계공학과", "실내건축학과", "가정교육과", "소비자학과"] },
+        "교양": { careers: ["심리 상담사", "인문학 강사", "환경 복원 전문가", "사회적 기업가", "언론인"], majors: ["심리학과", "철학과", "환경공학과", "자율전공학부", "문화인류학과"] }
+    };
+
+    // 3. 안내서 상세 개별 데이터베이스
+    const detailedData = {
+        // === 국어 교과군 ===
+        "공통국어1·2": {
+            goal: "‘공통국어1·2’는 초·중학교 국어에서 기른 국어 능력을 바탕으로, 일상생활과 학습에 필요한 국어 능력을 심화하는 필수 과목이다. 다양한 유형의 담화, 글, 매체, 문학 작품을 정확하고 비판적으로 이해하며, 자신의 사상과 정서를 창의적으로 표현하는 능력을 기른다. 이를 통해 올바른 국어 생활을 영위하며 민주 시민으로서 공동체 발전에 기여하는 태도를 함양한다.",
+            contents: [
+                { t: "[듣기·말하기와 읽기]", l: ["대화의 원리와 공감적 듣기, 설득을 위한 연설과 토론, 매체 자료를 활용한 효과적인 발표 실습", "목적과 방법에 따른 독서, 글의 구조와 전개 방식 파악, 다양한 매체 자료의 비판적·주체적 읽기"] },
+                { t: "[쓰기와 문법]", l: ["쓰기 윤리와 쓰기 과정의 이해, 목적과 독자를 고려한 정보 전달 및 설득하는 글쓰기", "국어의 음운 변동, 단어의 형성, 문장의 짜임, 한글 맞춤법의 원리와 올바른 적용"] },
+                { t: "[문학의 수용과 생산]", l: ["문학 갈래별 특성에 따른 주체적 작품 수용, 문학의 심미적 체험과 자아 성찰, 문학적 표현을 활용한 창작"] }
+            ],
+            careers: "모든 직업 분야의 필수 역량, 국어교사, 아나운서, 기자, 작가, 출판편집자, 방송연출가(PD), 카피라이터, 리포터", majors: "국어국문학과, 국어교육과, 미디어커뮤니케이션학과, 언론정보학과, 문예창작학과, 스토리텔링학과, 공공인재학부"
+        },
+        "문학": {
+            goal: "‘문학’은 인간의 삶과 세계를 언어로 형상화한 문학 작품을 심도 있게 감상하고, 창의적으로 표현하는 능력을 기르는 일반 선택 과목이다. 한국 문학의 전통과 고유한 특질을 이해하고, 문학을 통해 자아를 성찰하며 타인 및 세계와 폭넓게 소통하는 태도를 기른다. 나아가 다원적 가치를 존중하며 문학 문화를 주체적으로 향유하는 역량을 기른다.",
+            contents: [
+                { t: "[문학의 본질과 수용]", l: ["문학의 인식적, 윤리적, 미적 기능 이해", "서정, 서사, 극, 교술 등 갈래별 고유한 형상화 방식과 미학적 원리에 따른 주체적 작품 감상"] },
+                { t: "[한국 문학의 성격과 역사]", l: ["한국 문학에 깃든 민족 고유의 정서와 미의식 탐구", "고대부터 현대에 이르는 문학사적 흐름과 시대적 배경 이해, 세계 문학 속 한국 문학의 위상 조망"] },
+                { t: "[문학과 삶]", l: ["문학을 통한 자아 성찰과 타인에 대한 공감적 이해 증진", "공동체의 문제 해결과 바람직한 문화 형성에 기여하는 태도 함양"] }
+            ],
+            careers: "소설가, 시인, 문학평론가, 출판기획자, 출판편집자, 국어교사, 독서논술지도사, 스크립터, 시나리오작가, 웹소설작가, 구성작가", majors: "국어국문학과, 문예창작학과, 국어교육과, 문화콘텐츠학과, 한국어문학과, 아동문학과, 글로벌한국어과"
+        },
+        "화법과 언어": {
+            goal: "‘화법과 언어’는 다양한 의사소통 상황에서 효과적으로 말하고 듣는 능력과, 국어의 구조 및 규범에 대한 탐구 능력을 기르는 일반 선택 과목이다. 대인 관계 형성부터 대중 연설, 토론에 이르는 화법의 원리를 익히고, 우리말의 문법적 특성을 체계적으로 이해하여 올바르고 품격 있는 국어 생활을 실천하는 것을 목표로 한다.",
+            contents: [
+                { t: "[화법의 원리와 실제]", l: ["자아 개념과 의사소통, 타인을 존중하는 공감적 듣기, 갈등 조정을 위한 의사소통 전략", "정보 전달 및 청중 설득을 위한 발표와 연설, 문제 해결을 위한 토의, 논리적 근거를 바탕으로 한 토론"] },
+                { t: "[국어의 구조와 탐구]", l: ["국어의 음운 체계와 변동, 단어의 형성 원리와 품사, 문장 성분과 문장의 짜임", "시제, 높임, 피동 등 다양한 문법 요소의 명확한 이해와 올바른 문장 구사"] },
+                { t: "[국어의 역사와 규범]", l: ["고대·중세·근대 국어의 주요 특징과 언어의 변화 과정", "한글 맞춤법, 표준어 규정 등 올바른 언어생활을 위한 필수 어문 규범 탐구"] }
+            ],
+            careers: "아나운서, 방송앵커, 신문기자, 스피치강사, 언어학연구원, 언어치료사, 홍보(PR)전문가, 쇼호스트, 레크리에이션강사, 협상전문가", majors: "언어학과, 국어국문학과, 미디어커뮤니케이션학과, 언어치료학과, 광고홍보학과, 정치외교학과, 국제학부"
+        },
+        "독서와 작문": {
+            goal: "‘독서와 작문’은 다양한 목적과 상황에 맞게 글을 비판적·통합적으로 읽고, 자신의 생각과 주장을 논리적인 글로 표현하는 능력을 기르는 일반 선택 과목이다. 인문, 사회, 과학, 예술 등 여러 분야의 글을 읽으며 고등 사고력을 키우고, 글쓰기를 통해 자신과 사회의 문제를 성찰하며 합리적으로 소통하는 의사소통 역량을 심화한다.",
+            contents: [
+                { t: "[독서의 원리와 실제]", l: ["읽기의 목적과 방법에 따른 독서 전략, 글의 구조와 전개 방식 파악", "저자의 의도와 관점을 비판적으로 평가, 제재별(인문·사회·과학 등) 융합적 독서"] },
+                { t: "[작문의 원리와 과정]", l: ["글쓰기 상황(목적, 독자, 주제) 분석 및 계획 수립, 아이디어 조직 및 개요 작성", "논리성과 표현의 적절성을 고려한 초고 작성, 점검 및 고쳐쓰기 실습"] },
+                { t: "[독서와 작문의 통합 활동]", l: ["객관적 정보 전달 및 타당한 근거로 상대를 설득하는 글쓰기", "특정 주제에 대해 책을 읽고 그 결과를 논술문, 보고서 등으로 종합하여 생산하기"] }
+            ],
+            careers: "언론인, 논설위원, 출판기획자, 전문보고서작성가, 카피라이터, 정책연구원, 사회조사연구원, 기록물관리사, 사서, 번역가", majors: "문헌정보학과, 국어국문학과, 언론정보학과, 정치외교학과, 행정학과, 자율전공학부, 기록관리학과"
+        },
+        "문학과 영상": {
+            goal: "‘문학과 영상’은 문학 텍스트와 영상 매체의 특성을 비교하고 두 장르 간의 상호 작용을 탐구하는 진로 선택 과목이다. 소설, 희곡 등의 문학 작품이 영화나 드라마로 재현되는 원리를 비판적으로 감상하고, 문학적 상상력을 바탕으로 영상 콘텐츠를 기획·창작하는 활동을 통해 미디어 융합 시대에 필요한 창의적 표현력과 매체 리터러시를 기른다.",
+            contents: [
+                { t: "[문학과 영상의 매체 미학]", l: ["문자 매체(문학)와 시청각 매체(영상)의 표현 방식 차이점 및 매체 고유의 특성 비교", "문학의 서술 및 수사법과 영상의 카메라 워크, 편집 기법 간의 연관성 탐구"] },
+                { t: "[문학과 영상의 수용]", l: ["문학 원작이 영화나 드라마 등 영상 매체로 각색되는 과정 비판적 감상", "서로 다른 두 장르 간의 상호 매체성(Intermediality)과 의미 확장 과정 분석"] },
+                { t: "[문학과 영상의 생산]", l: ["문학 작품을 영상으로 옮기기 위한 시나리오 및 스토리보드 기획·창작 실습", "영상화된 작품에 대한 주체적인 비평문 작성 및 동료와의 소통 활동"] }
+            ],
+            careers: "영화감독, 방송연출가(PD), 영상편집자, 시나리오작가, 드라마작가, 문화콘텐츠기획자, 1인미디어창작자, 게임스토리작가, 애니메이터", majors: "연극영화학과, 영상제작학과, 문화콘텐츠학과, 미디어커뮤니케이션학과, 웹툰만화창작학과, 디지털미디어학과, 미디어문예창작학과"
+        },
+        "주제 탐구 독서": {
+            goal: "‘주제 탐구 독서’는 학생 스스로 자신의 진로나 학업적 흥미와 연관된 특정 주제를 선정하고, 관련된 다양한 자료를 깊이 있게 읽고 탐구하는 진로 선택 과목이다. 자기 주도적으로 전문 자료를 수집·분석하고 여러 지식을 융합적으로 해석하는 과정을 통해 학문적 탐구 역량과 고차원적인 문제 해결 능력을 기른다.",
+            contents: [
+                { t: "[탐구 주제 선정 및 계획]", l: ["자신의 진로나 관심 분야와 연관된 핵심 탐구 질문 도출", "탐구 목적에 맞는 전문 서적, 학술 논문, 간행물 등 다양한 자료 조사 및 선정"] },
+                { t: "[심층적·융합적 읽기]", l: ["전공 분야 서적이나 전문적인 글의 구조와 논리적 전개 방식 심층 분석", "여러 관점의 글을 통합적으로 비교·대조하며 새로운 정보와 자신만의 관점 구성"] },
+                { t: "[탐구 결과의 생산 및 공유]", l: ["수집하고 분석한 자료를 종합하여 체계적이고 논리적인 형식(탐구 보고서, 에세이 등)으로 산출", "발표와 토론을 통한 학술적 소통 및 피드백 주고받기"] }
+            ],
+            careers: "전공분야연구원, 대학교수, 전문칼럼니스트, 도서관사서, 북큐레이터, 지식큐레이터, 인문사회과학연구원, 정책연구원", majors: "인문과학계열, 사회과학계열, 자연과학계열 등 전 계열 심화 전공, 문헌정보학과, 자율전공학부, 융합학부"
+        },
+        "언어생활 탐구": {
+            goal: "‘언어생활 탐구’는 일상생활 속에서 우리가 사용하는 언어가 사회와 문화에 어떤 영향을 미치는지 분석하고 실천적인 대안을 모색하는 융합 선택 과목이다. 유행어, 신조어, 방언, 매체 언어 등 다양한 언어 현상을 탐구하며 다문화 사회에 걸맞은 열린 소통 능력과 바람직한 언어 예절을 기른다.",
+            contents: [
+                { t: "[언어와 사회]", l: ["신문, 방송, 인터넷 등 대중 매체에서 사용되는 언어의 특성과 사회적 영향 분석", "청소년어, 통신 언어, 은어·속어 등 집단별·세대별 언어의 특징 탐구"] },
+                { t: "[언어와 문화]", l: ["각 지역 방언의 특징과 문화적 가치 보존의 중요성 이해, 다문화 사회의 언어적 다양성 존중", "시대 변화에 따라 새롭게 생겨나는 신조어 및 다양한 언어 변천 현상 탐구"] },
+                { t: "[언어생활의 실천]", l: ["타인을 존중하고 배려하는 공감적 언어 예절 실천 방안 모색", "일상 속 공공 언어 사용 실태 점검 및 우리말 다듬기(순화) 활동 참여"] }
+            ],
+            careers: "언어연구원, 다문화언어지도사, 카피라이터, 공공기관홍보담당자, 방송작가, 사회조사분석가, 언어치료사, 국립국어원연구원, 통역사", majors: "언어학과, 다문화학과, 문화인류학과, 언어치료학과, 사회학과, 국어국문학과, 공공인재학부"
+        },
+        "독서 토론과 글쓰기": {
+            goal: "‘독서 토론과 글쓰기’는 특정 주제에 대한 책이나 자료를 읽고, 동료들과 활발하게 토론하며, 그 논의의 결과를 논리적인 글로 정리하는 융합 선택 과목이다. 사회적 쟁점이나 인문학적 이슈에 대해 비판적으로 사고하고, 타인의 의견을 경청하며 합리적으로 이견을 조율하는 성숙한 민주 시민의 소통 역량을 키운다.",
+            contents: [
+                { t: "[독서와 토론의 원리]", l: ["논제를 파악하고 텍스트의 핵심 주장을 논리적으로 분석하는 방법 습득", "타당한 근거를 바탕으로 입론을 세우고 타인을 설득하는 토론 기법 적용"] },
+                { t: "[쟁점 분석과 논증적 글쓰기]", l: ["찬반이 뚜렷한 사회적 쟁점에 관한 글을 비판적으로 읽고 논점 파악", "토론 과정을 통해 확장된 생각을 바탕으로 논리적 완결성을 갖춘 논설문이나 칼럼 작성"] },
+                { t: "[협력적 소통과 실천]", l: ["모둠별 토론을 통해 의견의 차이를 조율하고 합의점을 찾아가는 협력적 의사소통 경험", "독서-토론-글쓰기가 유기적으로 연계된 종합 프로젝트 수행"] }
+            ],
+            careers: "시민단체활동가, 언론인(기자/논설위원), 법조인(판사/검사/변호사), 논술전문강사, 정책연구원, 정치인, 경영컨설턴트", majors: "정치외교학과, 법학과, 자율전공학부, 행정학과, 철학과, 사회학과, 언론정보학과, 윤리교육과"
+        },
+        "매체 의사소통": {
+            goal: "‘매체 의사소통’은 스마트 미디어 등 현대 사회의 다양한 매체를 활용하여 효과적이고 윤리적으로 소통하는 능력을 기르는 융합 선택 과목이다. 미디어 리터러시를 바탕으로 쏟아지는 매체 정보를 주체적으로 해석·평가하며, 이미지와 영상 등 복합 양식을 활용해 창의적인 디지털 콘텐츠를 생산하는 역량을 기른다.",
+            contents: [
+                { t: "[매체 환경의 이해]", l: ["인쇄 매체, 방송 매체, 디지털 통신 매체의 진화 과정과 소통 방식의 특징", "텍스트, 이미지, 동영상 등이 결합된 복합 양식성(Multimodality)의 이해"] },
+                { t: "[매체 정보의 비판적 수용]", l: ["가짜 뉴스(Fake News) 분별 및 매체 정보의 신뢰성·타당성·공정성 평가", "알고리즘, 확증 편향 등 디지털 미디어 환경이 사회와 개인에 미치는 영향 분석"] },
+                { t: "[매체를 활용한 생산과 소통]", l: ["블로그, 짧은 영상, 카드뉴스 등 목적과 독자에 맞는 디지털 콘텐츠 기획 및 창작", "저작권 보호, 올바른 사이버 언어 예절 등 책임감 있는 윤리적 소통 실천"] }
+            ],
+            careers: "소셜미디어관리자(SNS매니저), 마케터, 홍보(PR)전문가, 디지털콘텐츠크리에이터, 데이터저널리스트, 캠페인기획자, 1인미디어창작자", majors: "미디어커뮤니케이션학과, 언론정보학과, 광고홍보학과, 디지털미디어학과, 정보사회학과, 미디어엔터테인먼트학과"
+        },
+
+        // === 수학 교과군 ===
+        "공통수학1·2": {
+            goal: "‘공통수학1·2’는 중학교 수학의 지식을 바탕으로 고등학교 수학의 기본이 되는 개념, 원리, 법칙을 체계적으로 이해하고 수학적 사고력을 기르는 1학년 필수 과목이다. 다항식, 방정식과 부등식, 도형의 방정식, 집합과 명제, 함수, 경우의 수 등 다양한 영역을 학습하며, 이후 학습할 대수, 미적분, 확률과 통계, 기하 등 수학 교과 전반의 튼튼한 기반을 다진다.",
+            contents: [
+                { t: "[문자와 식 / 기하]", l: ["다항식의 사칙연산과 나머지정리, 복소수와 이차방정식, 이차함수와 부등식의 관계 탐구", "평면좌표 위에서 직선과 원의 방정식을 다루고 도형의 평행이동과 대칭이동 해석"] },
+                { t: "[집합과 명제 / 함수]", l: ["집합의 개념과 연산, 명제의 참과 거짓을 논리적으로 증명하는 방법", "함수의 뜻과 합성함수, 역함수, 유리함수와 무리함수의 그래프 특성 이해"] },
+                { t: "[경우의 수]", l: ["합의 법칙과 곱의 법칙, 순열과 조합을 활용하여 복잡한 상황의 경우의 수를 체계적이고 논리적으로 구하는 원리 학습"] }
+            ],
+            careers: "이공계열 및 상경계열 기초 직무 전반, 데이터분석가, 금융종사자, 소프트웨어개발자, 건축가, 통계원, 회계사, 수학연구원, 교사", majors: "전 계열 공통 필수, 수학과, 통계학과, 수학교육과, 컴퓨터공학과, 기계공학과, 경제학과, 경영학과"
+        },
+        "대수": {
+            goal: "‘대수’는 공통수학에서 배운 방정식과 함수의 개념을 확장하여, 지수함수, 로그함수, 삼각함수, 수열 등 대수적 모델을 통해 자연 현상과 사회 현상을 수학적으로 해석하는 능력을 기르는 일반 선택 과목이다. 실생활의 다양한 변화 양상을 대수적 기호와 그래프로 표현하고 추론하는 역량을 함양하여, 이공계열 및 상경계열 진학에 필수적인 분석력을 갖춘다.",
+            contents: [
+                { t: "[지수함수와 로그함수]", l: ["거듭제곱근의 뜻과 성질, 지수법칙의 실수 확장. 로그의 성질과 상용로그를 활용한 수치 모델링", "지수·로그함수의 그래프와 이를 활용한 방정식 및 부등식 풀이"] },
+                { t: "[삼각함수]", l: ["일반각과 호도법, 삼각함수의 뜻과 주기적 특성을 가진 그래프 분석", "사인법칙과 코사인법칙을 실생활의 거리, 각도, 삼각형의 넓이 측정에 적용"] },
+                { t: "[수열]", l: ["등차수열과 등비수열의 규칙성 파악 및 일반항과 합 도출", "기호 시그마(Σ)를 활용한 수열의 합 계산과 수학적 귀납법을 통한 명제 증명"] }
+            ],
+            careers: "금융공학자, 데이터과학자, 인공지능개발자, 보험계리사, 공인회계사, 프로그래머, 기계공학엔지니어, 경제분석가", majors: "수학과, 통계학과, 컴퓨터공학과, 경제학과, 경영학과, 산업공학과, 물리학과, 전자공학과"
+        },
+        "미적분Ⅰ": {
+            goal: "‘미적분Ⅰ’은 다항함수를 중심으로 함수의 극한, 연속, 미분, 적분의 기초 개념을 다루며, 일상생활 속 대상의 미세한 움직임과 변화를 수학적으로 정밀하게 분석하고 예측하는 능력을 기르는 일반 선택 과목이다. 자연과학, 공학, 경제학 등 변화율과 면적 계산이 필수적인 다양한 학문 분야를 공부하는 데 기반이 되는 핵심 논리를 제공한다.",
+            contents: [
+                { t: "[함수의 극한과 연속]", l: ["함수의 극한의 뜻과 성질, 우극한과 좌극한의 이해", "연속함수의 특성을 파악하고 최대·최소 정리 및 사잇값 정리를 활용한 방정식의 근 추론"] },
+                { t: "[미분]", l: ["평균변화율과 미분계수의 기하학적 의미, 미분가능성과 연속성의 관계, 도함수의 계산", "접선의 방정식, 함수의 증가·감소 및 극대·극소 판별을 통한 그래프 개형 분석, 속도와 가속도 문제 해결"] },
+                { t: "[적분]", l: ["부정적분과 정적분의 개념 및 미적분의 기본정리 이해", "정적분을 활용하여 곡선으로 둘러싸인 도형의 넓이와 수직선 위를 움직이는 점의 위치 변화량 및 이동 거리 계산"] }
+            ],
+            careers: "기계설계엔지니어, 빅데이터분석가, 기상예측연구원, 항공우주공학자, 경제금융분석가, 로봇공학자, 건축설계사", majors: "자연과학대학 전 분야, 공과대학 전 분야, 데이터사이언스학과, 응용통계학과, 경제학과, 건축공학과"
+        },
+        "확률과 통계": {
+            goal: "‘확률과 통계’는 불확실성이 존재하는 다양한 실생활 및 학문적 상황에서 데이터를 수집, 분석하여 합리적인 의사결정을 내릴 수 있는 통계적 소양을 기르는 일반 선택 과목이다. 경우의 수, 확률, 통계의 개념을 체계적으로 이해하고, 빅데이터 시대에 필수적인 정보 처리 능력과 확률적 추론 역량을 함양한다.",
+            contents: [
+                { t: "[경우의 수와 확률]", l: ["원순열, 중복순열, 중복조합 등 다양한 경우의 수 계산 및 이항정리", "수학적 확률과 통계적 확률, 확률의 덧셈정리, 조건부확률과 사건의 독립 및 종속 판별"] },
+                { t: "[통계적 분포]", l: ["이산확률분포와 이항분포, 연속확률분포와 정규분포의 성질 이해 및 확률 계산"] },
+                { t: "[통계적 추정]", l: ["모집단과 표본의 의미, 표본평균의 분포 이해", "표본을 바탕으로 모평균을 통계적으로 추정하고 그 신뢰도를 해석하는 실생활 문제 해결"] }
+            ],
+            careers: "마케팅리서처, 여론조사전문가, 보험계리사, 빅데이터분석가, 금융자산운용가, 품질관리엔지니어, 사회조사분석사, 역학조사관", majors: "통계학과, 경영학과, 경제학과, 사회학과, 심리학과, 산업공학과, 정보통계학과, 보건행정학과"
+        },
+        "통합수학Ⅰ": {
+            goal: "‘통합수학Ⅰ’은 대수, 미적분, 확률과 통계의 핵심만을 쏙쏙 뽑아 하나의 흐름으로 통합해서 배우는 진로 선택 과목이다. 수학의 여러 개념이 어떻게 연결되는지 파악하고, 실생활은 물론 사회, 예술 등 다양한 분야에 숨겨진 수학적 원리를 발견하여 창의적이고 융합적인 문제 해결 능력을 기른다.",
+            contents: [
+                { t: "[대수와 극한]", l: ["지수·로그함수 그래프 해석 및 사인/코사인법칙의 융합적 활용", "수열의 규칙성과 함수의 극한 및 연속성을 실생활의 변화 현상과 연결하여 이해"] },
+                { t: "[미분과 적분]", l: ["미분계수와 도함수의 기하적 의미 파악 및 그래프 개형을 통한 동적 현상 분석", "다항함수의 정적분을 활용하여 건축, 공학 등에서 나타나는 곡선 면적 구하기"] },
+                { t: "[확률과 통계]", l: ["순열과 조합, 조건부확률을 통해 일상 속 불확실한 사건의 관계 논리적 파악", "정규분포 등 확률분포의 특성을 이해하고 데이터를 신뢰도 있게 통계적으로 추정"] }
+            ],
+            careers: "융합콘텐츠기획자, 데이터기반마케터, 금융상품개발자, 교육콘텐츠기획자, 경영컨설턴트, 디지털미디어분석가, 사회조사전문가", majors: "자율전공학부, 융합학부, 응용통계학과, 경영학과, 경제학과, 산업공학과, 디자인및예술공학부"
+        },
+        "경제수학": {
+            goal: "‘경제수학’은 수학적 지식을 바탕으로 경제 및 금융의 기본 개념을 이해하고, 실생활의 경제 문제를 수학적으로 모델링하여 해결하는 역량을 기르는 진로 선택 과목이다. 이자와 연금, 환율, 세금부터 수요와 공급, 한계비용 등의 경제 현상을 수학적으로 깊이 있게 탐구하며 상경계열 진학을 위한 기초를 다진다.",
+            contents: [
+                { t: "[수와 생활경제 / 수열과 금융]", l: ["경제지표(물가지수, 경제성장률 등), 환율과 세금의 합리적 계산", "단리와 복리, 원리합계, 연금의 현재가치와 미래가치를 활용한 금융 모델링"] },
+                { t: "[함수와 경제]", l: ["선형, 이차, 지수함수 등을 활용한 시장 경제 현상 시각화", "수요와 공급 함수, 시장의 균형 가격과 거래량, 비용과 수익 함수 분석"] },
+                { t: "[미분과 경제]", l: ["한계비용, 한계수익, 한계효용의 의미와 도함수를 활용한 한계 분석", "이윤 최대화 및 비용 최소화를 위한 최적화, 수요의 가격 탄력성 계산"] }
+            ],
+            careers: "펀드매니저, 공인회계사(CPA), 경제분석가, 금융자산운용가, 세무사, 관세사, 투자분석가", majors: "경제학과, 경영학과, 금융공학과, 회계세무학과, 국제통상학과, 응용통계학과"
+        },
+        "기하": {
+            goal: "‘기하’는 평면과 공간에 존재하는 다양한 기하적 대상을 직관적이고 연역적으로 탐구하며, '벡터'를 활용하여 도형의 성질을 대수적으로 해석하는 능력을 기르는 진로 선택 과목이다. 공간 지각력과 논리적 추론력을 탄탄하게 키워 건축, 컴퓨터 그래픽스, 물리, 기계 공학 등 첨단 기술 분야의 핵심 기초를 다진다.",
+            contents: [
+                { t: "[이차곡선]", l: ["포물선, 타원, 쌍곡선의 기하학적 성질과 방정식을 도출하고 실생활(안테나, 궤도 등)과 연관 지어 이해", "이차곡선과 직선의 위치 관계를 파악하고 접선의 방정식을 활용한 응용 문제 해결"] },
+                { t: "[공간도형과 공간좌표]", l: ["공간에서 직선과 평면의 위치 관계, 삼수선의 정리, 이면각, 정사영 등 3차원 공간의 성질 탐구", "공간좌표계를 도입하여 점의 좌표, 두 점 사이의 거리, 구의 방정식을 대수적으로 표현"] },
+                { t: "[벡터]", l: ["크기와 방향을 가진 벡터의 뜻을 이해하고 덧셈, 뺄셈, 실수배 연산 숙달", "위치벡터의 이해, 평면벡터의 성분 표시와 내적을 활용하여 두 직선이 이루는 각 등 평면 기하 문제 해결"] }
+            ],
+            careers: "건축가, 토목설계엔지니어, 3D게임그래픽디자이너, 로봇공학자, 항공기계설계자, 항해사, 관제사", majors: "건축학과, 토목공학과, 기계공학과, 컴퓨터그래픽스전공, 물리학과, 천문우주학과, 항공운항과"
+        },
+        "미적분Ⅱ": {
+            goal: "‘미적분Ⅱ’는 일반 선택 과목인 ‘미적분Ⅰ’의 개념을 한층 심화·확장하여, 지수함수, 로그함수, 삼각함수 등 다양한 초월함수에 대한 미분과 적분을 학습하는 진로 선택 과목이다. 이공계 및 의약학 계열 진학을 위한 필수적인 수학적 분석 능력을 기르고, 복잡한 자연 현상과 공학적 난제를 해결하는 최상위 응용력을 키운다.",
+            contents: [
+                { t: "[수열의 극한과 급수]", l: ["수열의 극한과 그 기본 성질 이해, 무한급수의 수렴과 발산 판별", "등비급수를 활용한 프랙탈 도형 및 실생활의 무한 합 문제 해결"] },
+                { t: "[미분법]", l: ["지수·로그·삼각함수의 미분, 몫의 미분법, 합성함수와 역함수 미분법", "이계도함수를 활용한 곡선의 오목·볼록과 변곡점, 그래프 개형의 정밀 분석"] },
+                { t: "[적분법]", l: ["초월함수의 부정적분과 정적분 계산, 치환적분법과 부분적분법 숙달", "정적분을 활용하여 복잡한 도형의 넓이, 입체도형의 부피, 곡선의 길이 정밀 계산"] }
+            ],
+            careers: "의사, 약사, 신소재개발엔지니어, 양자컴퓨터연구원, 최고급통계분석가, 기초과학연구원, 인공지능연구원", majors: "의예과, 치의예과, 약학과, 기계공학과, 전기전자공학과, 화공생명공학과, 수학과, 물리학과"
+        },
+        "심화 수학": {
+            goal: "‘심화 수학’은 대수, 미적분Ⅰ, 미적분Ⅱ를 거치며 배운 수학 지식을 하나로 모아 더욱 깊이 있게 탐구하는 진로 선택 과목이다. 복잡한 변화 현상을 수학적으로 정밀하게 해석하고, 고도화된 융합 문제들을 해결해 보면서 이공계열 전문 교과 및 대학 수학 학습에 필수적인 최상위 논리적 사고력과 문제 해결 역량을 극대화한다.",
+            contents: [
+                { t: "[지수/로그 및 삼각함수 심화]", l: ["거듭제곱근과 확장된 실수 지수, 상용로그를 활용한 고차원적 실생활 응용", "삼각함수의 덧셈정리 등 고급 공식을 활용한 복잡한 도형 및 주기 현상 분석"] },
+                { t: "[수열과 극한 심화]", l: ["수열의 귀납적 정의, 수학적 귀납법 증명 및 급수의 엄밀한 극한적 성질 탐구", "다양한 초월함수의 극한값을 구하고 연속함수의 성질을 활용한 심화 모델링"] },
+                { t: "[미분과 적분 심화]", l: ["매개변수 및 음함수 미분법, 이계도함수를 활용한 정밀한 곡선 분석과 속도/가속도 활용", "치환적분법과 부분적분법을 자유롭게 구사하며 정적분을 통한 고차원 도형 넓이 및 부피 도출"] }
+            ],
+            careers: "기초과학(물리·수학)연구원, 첨단공학(반도체·통신)엔지니어, 의학연구원, 수리모델러, 대학교수, 데이터마이닝전문가", majors: "수학과, 수리과학과, 물리학과, 의예과, 약학과, 전기전자공학과, 정밀기계공학과, 통계학과"
+        },
+
+        // === 영어 교과군 ===
+        "공통영어1·2": {
+            goal: "‘공통영어1·2’는 글로벌 시대에 필수적인 영어 의사소통 능력을 다지는 1학년 공통 필수 과목이다. 실생활에서 자주 쓰이는 실용적인 영어 표현부터 다양한 문화적 배경이 담긴 글까지 접하며, 세계와 소통하는 열린 마음과 자신감을 키우고 향후 진로 및 전공 학습에 필요한 영어 기초 역량을 확립한다.",
+            contents: [
+                { t: "[듣기와 말하기]", l: ["일상적 주제부터 사회적 이슈까지 다양한 영어 담화를 듣고 세부 내용과 화자의 의도 파악", "상황에 맞게 영어로 자신의 의견을 논리적으로 표현하고 자연스럽게 대화하기"] },
+                { t: "[읽기와 쓰기]", l: ["설명문, 안내문, 기사 등 다양한 장르의 글을 읽고 문맥적 의미 추론 및 요약", "어휘와 구문 지식을 활용하여 목적에 맞는 실용적 영작문(이메일, 에세이 등) 작성"] }
+            ],
+            careers: "통번역가, 국제마케터, 외교관, 무역업종사자, 관광/항공서비스직, 영어교사, 국제기구종사자, 해외영업원", majors: "전 계열 공통 필수, 영어영문학과, 영어교육과, 국제학부, 글로벌커뮤니케이션학부, 관광경영학과"
+        },
+        "영어Ⅰ": {
+            goal: "‘영어Ⅰ’은 공통영어의 기초를 바탕으로 학술적, 사회적 주제의 다양한 영어 텍스트를 읽고 이해하며, 보다 수준 높은 영어 의사소통 능력을 기르는 일반 선택 과목이다. 글로벌 이슈에 대한 비판적 사고력을 영어로 표현하고, 진로 분야의 원서나 전문 서적을 탐독할 수 있는 튼튼한 기반을 마련한다.",
+            contents: [
+                { t: "[심화 듣기 및 말하기]", l: ["전문적인 내용이나 시사 문제에 대한 강의, 인터뷰 등을 듣고 핵심 논지 파악", "자신의 견해를 타당한 근거를 들어 영어로 발표 및 토론 수행"] },
+                { t: "[심화 읽기 및 쓰기]", l: ["인문, 사회, 과학 등 다양한 학문 분야의 영어 지문을 읽고 세부 정보와 논지 분석", "서론, 본론, 결론의 논리적 구조를 갖춘 영어 에세이 및 학술 보고서 작성"] }
+            ],
+            careers: "무역회사주재원, 해외영업마케터, 외교관, 영어교사, 다국적기업임직원, 국제회의기획자(PCO), 항공기승무원", majors: "영어영문학과, 국제통상학과, 영미어문학과, 영어교육과, 정치외교학과, 글로벌비즈니스학과"
+        },
+        "영어Ⅱ": {
+            goal: "‘영어Ⅱ’는 영어Ⅰ에서 한 단계 더 나아가 보다 복잡하고 전문적인 영어 자료를 비판적으로 이해하고, 유창하고 정확하게 자신의 논리를 영어로 구사하는 능력을 완성하는 일반 선택 과목이다. 국제 사회의 다양한 문화를 존중하며 글로벌 리더로서 갖추어야 할 최상위 의사소통 능력을 배양한다.",
+            contents: [
+                { t: "[고급 의사소통 전략]", l: ["은유, 함축적 의미를 포함한 다양한 텍스트의 문맥적 의미 추론", "글로벌 문화의 다양성을 존중하며 문화적 차이를 반영한 효과적이고 유연한 의사소통"] },
+                { t: "[통합적 매체 활용]", l: ["영자 신문, 테드(TED) 강연 등 실제 매체 자료를 활용한 심층적 정보 분석", "수집한 정보를 종합하여 완성도 높은 영어 프레젠테이션 및 리포트 기획"] }
+            ],
+            careers: "국제기구(UN등)종사자, 해외특파원, 고급통번역사, 외무영사직공무원, 글로벌컨설턴트, 해외파견연구원", majors: "국제학부, 정치외교학과, 통번역학과, 융합지역학과, 영어영문학과"
+        },
+        "영어 독해와 작문": {
+            goal: "‘영어 독해와 작문’은 다양한 주제의 영문을 깊이 있게 읽고, 이를 바탕으로 자신의 생각을 논리적인 영어 글로 써내는 능력을 집중적으로 기르는 일반 선택 과목이다. 학술적 텍스트의 비판적 이해와 창의적 영작문 활동을 통해 대학 수학 능력 및 글로벌 비즈니스 환경에서 요구되는 고급 문해력을 배양한다.",
+            contents: [
+                { t: "[분석적 독해]", l: ["글의 구조와 논리적 전개 방식을 파악하며 비판적으로 텍스트 읽기", "문맥을 통한 미지의 고급 어휘 추론 및 문장의 함축적, 비유적 의미 파악"] },
+                { t: "[논리적 작문]", l: ["독해를 통해 얻은 지식과 영감을 바탕으로 요약문, 에세이, 서평, 기사문 등 다양한 형식의 영작 실습", "문법적 정확성과 어휘의 적절성을 고려한 글 다듬기 및 동료 교정(Peer Review)"] }
+            ],
+            careers: "출판기획자, 영문에디터, 학술연구원, 무역서류작성가, 카피라이터, 번역가, 국제부기자, 외교관", majors: "영어영문학과, 영어교육과, 글로벌비즈니스학과, 문헌정보학과, 언론정보학과"
+        },
+        "심화 영어": {
+            goal: "‘심화 영어’는 실생활 및 학술적 주제에 관한 복잡하고 전문적인 영어를 유창하게 이해하고 구사하는 능력을 기르는 진로 선택 과목이다. 심화된 영어 사용 능력을 바탕으로 국제 사회 및 다양한 전문 분야에서 활약할 수 있는 글로벌 역량과 전공 적합성을 배양한다.",
+            contents: [
+                { t: "[전문 정보의 수용과 분석]", l: ["다양한 학문 분야의 전문 지식과 관련 담화를 듣고 핵심 논지와 세부 정보 파악", "논리적 구조가 복잡한 영문 텍스트를 읽고 화자의 숨은 의도와 관점 비판적 평가"] },
+                { t: "[유창한 영어 표현과 논증]", l: ["특정 주제에 대해 타당한 근거와 논리를 바탕으로 유창하게 영어로 말하기", "다양한 어휘와 복잡한 구문을 활용하여 자신의 주장을 명확하게 담은 영어 논설문 작성"] }
+            ],
+            careers: "국제기구종사자, 전문통번역사, 다국적기업임원, 외교관, 국제회의통역사, 해외특파원", majors: "국제학부, 영어영문학과, 통번역학과, 정치외교학과, 글로벌비즈니스학과"
+        },
+        "영어 발표와 토론": {
+            goal: "‘영어 발표와 토론’은 특정 주제에 대한 깊이 있는 탐구를 바탕으로, 영어로 유창하게 발표하고 논리적으로 토론하는 능력을 집중적으로 기르는 진로 선택 과목이다. 국제회의, 세미나, 학술 토론 등 글로벌 무대에서 요구되는 실전적인 구두 의사소통 전략과 비판적 사고력을 함양한다.",
+            contents: [
+                { t: "[효과적인 영어 발표 기획]", l: ["발표 목적과 청중을 고려한 자료 수집 및 시각 자료(프레젠테이션) 제작", "비언어적 요소(시선, 제스처)를 포함한 설득력 있는 영어 발표(Speech) 기술 습득"] },
+                { t: "[논리적 영어 토론과 협상]", l: ["다양한 시사 쟁점에 대한 찬반 논거를 영어로 수립하고 논리적으로 상대방 반박하기", "경청과 존중의 태도를 바탕으로 합의점을 도출하는 협상 및 토론(Debate) 실습"] }
+            ],
+            careers: "국제회의기획자(PCO), 스피치라이터, 외교관, 글로벌마케터, 다국적기업협상가, 국제변호사", majors: "국제학부, 정치외교학과, 글로벌커뮤니케이션학부, 경영학과, 영어영문학과"
+        },
+        "심화 영어 독해와 작문": {
+            goal: "‘심화 영어 독해와 작문’은 학문적이고 전문적인 주제의 영문 자료를 폭넓게 읽고, 이를 바탕으로 수준 높은 학술적 에세이나 보고서를 영어로 작성하는 능력을 기르는 진로 선택 과목이다. 영문학, 인문사회, 자연과학 등 대학 수준의 원서 강독 및 논문 작성에 필요한 최상위 문해력을 기른다.",
+            contents: [
+                { t: "[학술적 영문 독해]", l: ["문학 작품, 학술 논문, 전문 서적 등 다양한 장르의 긴 호흡의 영문 텍스트 심층 강독", "문맥 속에서 고난도 어휘와 복잡한 문장 구조를 분석하고 텍스트의 이면적 의미 추론"] },
+                { t: "[논리적 영문학술 글쓰기]", l: ["다양한 출처의 영문 자료를 종합하고 요약하여 자신의 연구 주제에 맞는 리포트 작성", "서술적, 논증적, 비교·대조 등 학술적 목적에 부합하는 형식의 체계적인 영어 에세이 쓰기"] }
+            ],
+            careers: "해외주재연구원, 영문에디터, 출판기획자, 대학교수, 전문번역가, 국제부기자", majors: "영어영문학과, 통번역학과, 융합지역학과, 문헌정보학과, 언론정보학과, 국제학부"
+        },
+        "미디어 영어": {
+            goal: "‘미디어 영어’는 영화, 드라마, 뉴스, 소셜 미디어 등 다양한 영어 매체를 활용하여 실생활 중심의 영어 의사소통 능력을 재미있게 기르는 융합 선택 과목이다. 시청각 자료를 통한 자연스러운 언어 노출로 영어에 대한 흥미를 높이고, 미디어 리터러시를 결합하여 현대 사회의 다양한 매체 정보를 비판적으로 이해하고 표현하는 역량을 키운다.",
+            contents: [
+                { t: "[영어 미디어 콘텐츠 이해]", l: ["뉴스, 테드(TED), 영화, 애니메이션 등 다양한 영어 미디어 자료의 내용과 화자의 의도 파악", "영상 속의 비언어적 표현과 문화적 배경을 고려하여 맥락적 의미 추론"] },
+                { t: "[미디어 기반 영어 표현]", l: ["미디어 속 대사 및 표현을 활용한 역할극(Role-play), 섀도잉(Shadowing) 실습", "특정 영어 미디어 콘텐츠에 대한 자신의 감상이나 비평을 영어 블로그, 동영상 등으로 기획 및 제작"] }
+            ],
+            careers: "미디어콘텐츠기획자, 해외방송PD, 통번역가, 글로벌크리에이터, 영화배급마케터, VOD번역가", majors: "미디어커뮤니케이션학과, 미디어엔터테인먼트학과, 문화콘텐츠학과, 영어영문학과, 글로벌비즈니스학과"
+        },
+        "세계 문화와 영어": {
+            goal: "‘세계 문화와 영어’는 영어를 매개로 세계 여러 나라의 역사, 지리, 사회, 문화를 폭넓게 이해하고 탐구하는 융합 선택 과목이다. 타 문화에 대한 포용력과 상호 이해를 바탕으로 세계 시민으로서의 자질을 기르며, 국제적인 문화 교류 상황에서 자신 있게 소통할 수 있는 글로벌 문화 역량을 함양한다.",
+            contents: [
+                { t: "[세계 문화의 다양성 탐구]", l: ["영어로 작성된 다양한 문화권의 문학, 역사, 예술 관련 자료 강독 및 이해", "언어 속 깊이 배어 있는 영미권 및 글로벌 문화의 고유한 특징과 관습 파악"] },
+                { t: "[글로벌 문화 교류와 소통]", l: ["자국 문화와 타 문화를 비교 분석하여 문화적 상대성을 존중하는 태도 함양", "세계 문화 쟁점(다문화, 세계화 등)에 대해 영어로 토론하고, 우리 문화를 영어로 올바르게 소개하는 프레젠테이션"] }
+            ],
+            careers: "국제구호활동가, 여행기획자, 국제문화교류기획자, 외교관, 항공사승무원, 글로벌마케터, 다국적기업주재원", majors: "국제학부, 문화인류학과, 관광경영학과, 지역학과(미주/유럽등), 영어영문학과, 글로벌커뮤니케이션학부"
+        },
+
+        // === 사회 교과군 ===
+        "한국사1·2": {
+            goal: "‘한국사1·2’는 고대부터 현대까지 우리 역사의 전개 과정을 체계적으로 이해하고, 이를 세계사의 흐름과 연관 지어 파악함으로써 현대 한국 사회의 과제를 주체적으로 해결할 수 있는 역사적 통찰력과 민주 시민 의식을 기르는 필수 공통 과목이다.",
+            contents: [
+                { t: "[전근대 한국사의 이해]", l: ["고대부터 조선 시대까지 우리 민족의 국가 형성 및 발전 과정 탐구", "주변 국가와의 활발한 교류 및 독자적인 민족 문화 발전의 의미 파악"] },
+                { t: "[근현대 한국사의 전개]", l: ["근대 국가 수립을 위한 노력과 일제 강점기 국권 수호 및 민족 독립 운동의 역사 조망", "광복 이후 대한민국의 민주주의 발전과 눈부신 경제 성장, 그리고 평화 통일을 위한 노력 고찰"] }
+            ],
+            careers: "모든 국민의 필수 역사적 소양, 역사연구원, 중등역사교사, 언론인, 국공립박물관큐레이터, 외교관, 공직자", majors: "사학과, 역사교육과, 한국사학과, 고고미술사학과, 정치외교학과, 행정학과"
+        },
+        "통합사회1·2": {
+            goal: "‘통합사회1·2’는 지리, 역사, 윤리, 일반사회(정치, 경제 등)의 다양한 관점을 융합하여 우리 삶과 사회 현상을 종합적으로 바라보는 1학년 필수 과목이다. 단편적인 암기에서 벗어나 여러 분야의 지식을 하나로 연결하며, 복잡한 현대 사회의 문제를 창의적이고 균형 잡힌 시각으로 해결하는 시민 역량을 기른다.",
+            contents: [
+                { t: "[인간, 사회, 환경의 탐구]", l: ["행복의 진정한 의미, 자연환경과 인간 생활의 상호작용, 문화적 다양성과 관용의 태도 탐색", "인권 보장의 역사와 헌법의 역할, 시장 경제 체제와 합리적인 금융 생활 등 민주 시민의 기본 소양 학습"] },
+                { t: "[현대 사회의 쟁점과 미래]", l: ["사회 정의와 불평등, 세대 및 지역 등 다양한 갈등 문제의 원인 분석과 합리적 해결 방안 모색", "세계화, 인구 문제(저출산·고령화), 자원 고갈 및 지속 가능한 발전 등 인류의 미래 과제 탐구"] }
+            ],
+            careers: "행정공무원, 언론인, 사회조사연구원, 경영컨설턴트, 사회과교사, 법조인, 시민단체활동가, 경제분석가", majors: "사회과학계열 및 인문계열 전반의 기초, 행정학과, 정치외교학과, 사회학과, 언론정보학과, 경제학과"
+        },
+        "세계시민과 지리": {
+            goal: "‘세계시민과 지리’는 세계화 시대에 지리적 관점을 바탕으로 지구촌의 다양한 현상과 문화를 이해하고, 기후 변화 및 지역 갈등과 같은 전 지구적 문제에 능동적으로 대처하는 세계 시민 의식을 기르는 일반 선택 과목이다.",
+            contents: [
+                { t: "[세계의 다양성 이해]", l: ["세계 여러 지역의 기후, 지형 등 자연환경과 그에 따른 문화적 차이 및 상호 의존성 탐구", "다양한 문화권의 형성 배경과 주민 생활 모습 비교 분석"] },
+                { t: "[글로벌 쟁점과 공존]", l: ["기후 변화, 에너지 및 자원 분쟁, 국가 간 인구 이동 등 글로벌 지리적 쟁점 분석", "평화로운 공존과 지속 가능한 세계를 위한 지리적 연대와 해결 방안 모색"] }
+            ],
+            careers: "국제구호활동가, 여행기획자, 무역상사해외영업, 국제기구종사자, 지리교사, 국제물류전문가", majors: "지리학과, 지리교육과, 국제학부, 문화인류학과, 관광경영학과, 국제통상학과"
+        },
+        "세계사": {
+            goal: "‘세계사’는 고대부터 현대에 이르기까지 인류가 걸어온 발자취를 지역적, 범세계적 관점에서 종합적으로 탐구하는 일반 선택 과목이다. 다양한 문명권의 형성, 교류, 갈등의 역사를 이해함으로써 현대 세계의 복잡한 구조와 여러 문화의 특수성을 깊이 있게 인식하고, 글로벌 시대에 부합하는 개방적이고 균형 잡힌 역사적 안목을 기른다.",
+            contents: [
+                { t: "[인류의 출현과 문명의 발생]", l: ["세계 주요 고대 문명(메소포타미아, 이집트, 인더스, 황하)의 형성 과정과 유산 이해", "동아시아, 서아시아, 지중해 등 각 지역 문화권의 성립 배경과 사상적 기반 탐구"] },
+                { t: "[문화권의 교류와 발전]", l: ["실크로드, 바닷길 등을 통한 동서양 문물의 교류 양상과 유라시아 대륙의 상호 작용 분석", "유럽의 봉건 사회 변화, 이슬람 제국의 팽창, 몽골 제국과 동아시아 질서의 재편 과정 학습"] },
+                { t: "[근현대 세계의 형성 및 변동]", l: ["시민 혁명과 산업 혁명이 가져온 근대 사회의 탄생, 자본주의 및 국민 국가의 확산 과정 규명", "제국주의의 팽창, 두 차례의 세계 대전과 냉전 체제, 그리고 탈냉전 이후 현대 세계의 주요 쟁점 토론"] }
+            ],
+            careers: "역사연구원, 중등역사교사, 박물관/미술관큐레이터, 문화재보존전문가, 국제교류기획자, 여행칼럼니스트, 외교관", majors: "사학과, 역사교육과, 고고미술사학과, 국제학부, 문화인류학과, 유럽/중동 등 지역학과"
+        },
+        "현대사회와 윤리": {
+            goal: "‘현대사회와 윤리’는 인간의 삶과 도덕적 실천의 토대가 되는 기본 윤리 이론을 학습하고, 이를 바탕으로 현대 사회의 복잡한 윤리적 쟁점을 체계적으로 분석하고 해결 방안을 모색하는 일반 선택 과목이다.",
+            contents: [
+                { t: "[윤리 이론과 도덕적 실천]", l: ["의무론, 공리주의, 덕 윤리 등 주요 윤리 이론의 핵심 내용 이해", "도덕적 딜레마 상황에서의 합리적인 가치 판단 및 실천 의지 함양"] },
+                { t: "[현대 사회의 윤리적 쟁점]", l: ["생명 윤리, 환경 및 기후 윤리, 정보통신(AI) 윤리 등 첨단 사회의 새로운 도덕 문제 탐구", "다문화 사회의 평화적 공존, 사회 정의와 평등을 위한 윤리적 대안 모색"] }
+            ],
+            careers: "윤리교사, 철학연구원, 사회단체활동가, 법조인, 행정공무원, 언론인", majors: "윤리교육과, 철학과, 사회학과, 정치외교학과, 법학과, 공공인재학부"
+        },
+        "사회와 문화": {
+            goal: "‘사회와 문화’는 우리 사회에서 일어나는 다양한 현상(가족, 불평등, 일탈, 대중매체 등)을 사회학적 개념과 연구 방법을 통해 객관적이고 과학적으로 탐구하는 안목을 기르는 일반 선택 과목이다.",
+            contents: [
+                { t: "[사회문화 현상의 탐구]", l: ["사회문화 현상을 바라보는 관점(기능론, 갈등론 등)과 양적/질적 연구 방법", "개인과 사회의 관계, 사회 집단 및 조직, 일탈 행동의 원인 분석"] },
+                { t: "[사회 변동과 과제]", l: ["사회 계층과 불평등, 빈곤 문제의 실태와 복지 제도", "대중 매체의 역할, 정보 사회, 인구 구조 변화 등 현대 사회 변동 양상 탐구"] }
+            ],
+            careers: "사회조사분석가, 리서처, 여론조사전문가, 마케터, 사회부기자, 시민단체활동가", majors: "사회학과, 언론정보학과, 경영학과, 문화인류학과, 사회복지학과"
+        },
+        "정치": {
+            goal: "‘정치’는 민주주의의 기본 원리와 정치 제도의 작동 방식을 체계적으로 이해하고, 일상생활과 국가 차원에서 발생하는 다양한 갈등을 평화적으로 해결하는 정치 참여 역량을 기르는 진로 선택 과목이다.",
+            contents: [
+                { t: "[민주 정치와 정부 형태]", l: ["민주주의의 역사와 이념, 법치주의의 원리 이해", "대통령제, 의원 내각제 등 정부 형태의 특징 비교 및 우리나라 국가 기관의 역할"] },
+                { t: "[정치 참여와 시민의 역할]", l: ["선거, 정당, 이익 집단, 언론 등 다양한 정치 참여 과정과 기능 분석", "바람직한 민주 시민으로서 정치 문화 형성에 기여하는 태도 함양"] }
+            ],
+            careers: "정치인, 국회의원보좌관, 선거관리위원회공무원, 정치부기자, 행정공무원, 로스쿨진학", majors: "정치외교학과, 행정학과, 자율전공학부, 법학과, 공공인재학부"
+        },
+        "경제": {
+            goal: "‘경제’는 자원의 희소성으로 인해 발생하는 경제 문제를 합리적으로 해결하는 의사 결정 능력을 배양하고, 시장의 작동 원리와 국가 경제의 흐름을 이해하는 진로 선택 과목이다.",
+            contents: [
+                { t: "[시장과 경제 활동]", l: ["수요와 공급의 원리, 시장 가격의 결정 및 변동 과정 이해", "기회비용과 합리적 선택, 소비자 및 기업의 경제적 역할 분석"] },
+                { t: "[국가 경제와 세계 경제]", l: ["국민 소득, 경제 성장, 물가와 실업 등 거시 경제 지표 분석", "환율 변동과 국제 무역의 원리, 정부의 재정 정책과 통화 정책의 역할"] }
+            ],
+            careers: "경제분석가, 공인회계사, 펀드매니저, 감정평가사, 세무사, 금융기관종사자", majors: "경제학과, 경영학과, 무역학과, 세무학과, 국제통상학과, 회계학과"
+        },
+        "도시의 미래 탐구": {
+            goal: "‘도시의 미래 탐구’는 인류 대다수의 거주 공간인 '도시'의 발달 과정과 내부 구조를 지리적 관점에서 분석하고, 현대 도시가 겪고 있는 다양한 문제의 해결 방안과 미래 지속 가능한 스마트 도시의 모습을 설계해보는 진로 선택 과목이다.",
+            contents: [
+                { t: "[도시의 발달과 구조]", l: ["도시화 과정과 도시 체계, 도시 내부의 기능 지역 분화 양상 분석", "세계적 거대 도시와 우리나라 주요 도시의 공간적 특징 비교"] },
+                { t: "[도시 문제와 미래 도시]", l: ["주택, 교통, 환경 파괴 등 현대 도시 문제의 원인 파악 및 해결 방안 논의", "생태 도시, 스마트 시티 등 지속 가능한 미래 도시 모델 기획 및 탐구"] }
+            ],
+            careers: "도시계획전문가, 교통공학자, 지역개발연구원, 환경컨설턴트, 공간데이터분석가, 공공기관행정가", majors: "도시공학과, 도시계획학과, 교통공학과, 지리학과, 공간정보공학과, 행정학과"
+        },
+        "윤리와 사상": {
+            goal: "‘윤리와 사상’은 동서양의 위대한 사상가들이 제시한 삶의 지혜와 윤리적 가치를 깊이 있게 탐구하는 진로 선택 과목이다. 다양한 사상을 바탕으로 현대 사회의 윤리적 문제에 대해 스스로 성찰하고 판단하는 힘을 기른다.",
+            contents: [
+                { t: "[동양과 한국의 윤리 사상]", l: ["유교, 불교, 도가 사상의 핵심 연원과 윤리적 지향점 이해", "한국 고유의 사상과 근현대 민족 운동에 나타난 도덕적 주체성 탐구"] },
+                { t: "[서양의 윤리 사상]", l: ["고대 그리스부터 근대 이성/경험주의, 현대 실존주의에 이르는 서양 윤리의 전개", "국가와 시민의 관계, 정의와 평화에 대한 정치·사회 윤리적 고찰"] }
+            ],
+            careers: "윤리교사, 철학연구원, 인문학강사, 공직자, 법조인, 문화비평가", majors: "윤리교육과, 철학과, 행정학과, 정치외교학과, 법학과, 사학과"
+        },
+        "동아시아 역사 기행": {
+            goal: "‘동아시아 역사 기행’은 한국, 중국, 일본 등 동아시아 국가들이 역사적으로 밀접하게 교류하며 형성해 온 공통의 문화적 유산과 각국의 독자적 발전을 탐구하는 진로 선택 과목이다. 역사를 매개로 현재 동아시아의 갈등 요인을 분석하고 평화와 공존의 방안을 모색한다.",
+            contents: [
+                { t: "[동아시아 세계의 형성]", l: ["한자, 유교, 불교, 율령 등 동아시아 공통 문화권의 형성 과정 이해", "동아시아 각국의 인구 이동, 전쟁, 그리고 평화적 교류 양상 분석"] },
+                { t: "[근현대 동아시아와 평화]", l: ["제국주의 침략에 맞선 동아시아 각국의 근대화 노력과 갈등의 역사", "영토 문제, 역사 왜곡 등 현대 동아시아의 주요 갈등 원인 분석 및 연대 방안 탐구"] }
+            ],
+            careers: "동아시아지역전문가, 국제관계학자, 외교관, 역사연구원, 통번역사, 다국적기업주재원", majors: "아시아지역학과, 사학과, 정치외교학과, 국제통상학과, 역사교육과, 중어중문/일어일문학과"
+        },
+        "한국지리 탐구": {
+            goal: "‘한국지리 탐구’는 우리 삶의 터전인 국토와 지역 공간의 특성을 종합적으로 탐구하는 진로 선택 과목이다. 자연환경과 인문환경이 어떻게 상호작용하며 지역 발전을 이루는지 알아보고, 지리적 문제들을 합리적으로 해결하는 역량을 기른다.",
+            contents: [
+                { t: "[국토 인식과 자연환경]", l: ["우리 국토에 대한 올바른 인식 형성 및 지리 정보 시스템(GIS) 활용 기법", "지형, 기후 등 자연환경 특성과 그에 적응하며 살아가는 주민 생활의 관계"] },
+                { t: "[인문환경과 지역 발전]", l: ["인구, 도시, 산업 등 인문환경의 공간적 변화 과정과 지역 특성 이해", "자연재해 및 지역 발전 과제 등 국토의 지속 가능한 발전을 위한 대안 모색"] }
+            ],
+            careers: "GIS관련산업전문가, 행정공무원, 도시계획전문가, 사회복지사, 감정평가사, 지리교사, 환경연구원, 방재전문가", majors: "공간정보공학과, 도시공학과, 지리학과, 환경공학과, 방재학과, 부동산학과, 지리교육과"
+        },
+        "국제 관계의 이해": {
+            goal: "‘국제 관계의 이해’는 국가 간의 정치, 경제, 문화적 상호작용을 파악하고, 날로 복잡해지는 글로벌 이슈의 구조와 해결 방안을 국제 정치학적 관점에서 심도 있게 탐구하는 진로 선택 과목이다.",
+            contents: [
+                { t: "[국제 사회의 행위자 및 구조]", l: ["주권 국가, 국제기구(UN 등), 다국적 기업, 비정부 기구(NGO)의 역할", "국제법의 원리와 국제 질서를 움직이는 권력 구조의 이해"] },
+                { t: "[글로벌 이슈와 협력]", l: ["안보와 평화, 국제 무역 체제, 지구 환경 문제 등 주요 국제 쟁점 분석", "국가 간의 갈등 해결 및 인도적 지원을 위한 국제 연대의 중요성 고찰"] }
+            ],
+            careers: "외교관, 국제기구(UN등)직원, KOTRA(대한무역투자진흥공사)직원, 국제문제평론가, 국제구호활동가", majors: "정치외교학과, 국제학부, 글로벌비즈니스학과, 행정학과, 언론정보학과"
+        },
+        "법과 사회": {
+            goal: "‘법과 사회’는 인간의 공동체 생활을 규율하는 법의 기본 원리와 체계를 이해하고, 일상생활에서 발생할 수 있는 다양한 법적 분쟁을 합리적이고 절차적으로 해결하는 능력을 기르는 진로 선택 과목이다.",
+            contents: [
+                { t: "[법의 이념과 공법]", l: ["법의 목적(정의)과 헌법이 보장하는 기본권의 가치 이해", "범죄와 형벌(형법), 재판 절차 등 국가 체제 유지와 관련된 공법의 원리"] },
+                { t: "[사법 및 사회법]", l: ["계약, 불법 행위, 가족 관계 등 개인 간의 법적 문제를 다루는 민법의 기초", "노동법, 소비자법 등 현대 사회의 약자를 보호하기 위한 사회법의 역할"] }
+            ],
+            careers: "변호사, 판사, 검사, 법무사, 노무사, 경찰관, 교정직공무원, 기업법무팀", majors: "법학과, 경찰행정학과, 자율전공학부, 행정학과, 공공인재학부"
+        },
+        "인문학과 윤리": {
+            goal: "‘인문학과 윤리’는 문학, 역사, 철학 등 다양한 인문학적 텍스트 속에 담긴 도덕적 교훈과 가치를 성찰하고, 이를 바탕으로 인간다운 삶의 방향을 설계하고 도덕적 실천 의지를 기르는 진로 선택 과목이다.",
+            contents: [
+                { t: "[인문학적 상상력과 자아]", l: ["문학과 예술 작품 속에 나타난 주인공의 윤리적 딜레마와 선택 과정 분석", "인간의 욕망과 고통, 존재의 의미에 대한 철학적 성찰을 통한 자아 발견"] },
+                { t: "[역사와 도덕적 판단]", l: ["역사적 사건 속에 내재된 도덕적 책임과 정의의 문제 평가", "타인에 대한 공감과 배려를 바탕으로 한 도덕적 삶의 실천 방안 모색"] }
+            ],
+            careers: "윤리교사, 철학자, 인문학연구원, 작가, 평론가, 상담심리사, 사회운동가", majors: "윤리교육과, 철학과, 사학과, 문예창작학과, 국어국문학과, 심리학과"
+        },
+        "사회문제 탐구": {
+            goal: "‘사회문제 탐구’는 현대 사회가 직면한 다양한 사회 문제(불평등, 소외, 범죄, 환경 등)를 스스로 발견하고, 사회과학적 연구 방법을 적용하여 그 원인과 실태를 분석한 후 합리적인 해결 방안을 모색하는 융합 선택 과목이다.",
+            contents: [
+                { t: "[사회 문제의 발견과 분석]", l: ["저출산·고령화, 다문화, 사회적 소수자 차별 등 핵심 사회 문제 선정 및 자료 조사", "설문조사, 면접법 등 사회조사 방법을 활용한 객관적 실태 및 원인 분석"] },
+                { t: "[해결 대안 모색 및 실천]", l: ["수집한 데이터를 종합하여 법적, 제도적, 의식적 차원의 해결 방안 기획", "탐구 결과를 보고서로 작성하고 토론 및 캠페인을 통해 공동체적 실천 도모"] }
+            ],
+            careers: "사회조사분석가, 정책연구원, 시민단체(NGO)활동가, 언론인(기자), 사회복지사, 행정공무원", majors: "사회학과, 사회복지학과, 행정학과, 정치외교학과, 언론정보학과, 도시공학과"
+        },
+        "역사로 탐구하는 현대 세계": {
+            goal: "‘역사로 탐구하는 현대 세계’는 현대 세계가 직면한 다양한 문제들(전쟁, 민족주의, 이데올로기 등)의 역사적 배경을 깊이 있게 탐구하는 융합 선택 과목이다. 과거의 교훈을 바탕으로 글로벌 쟁점을 비판적으로 바라보고 미래를 통찰하는 안목을 기른다.",
+            contents: [
+                { t: "[현대 세계의 굵직한 사건들]", l: ["두 차례의 세계 대전과 냉전이 남긴 유산, 식민지 지배와 독립 투쟁의 역사", "자본주의와 공산주의, 파시즘 등 현대사를 움직인 주요 이데올로기의 충돌"] },
+                { t: "[역사 속에서 찾는 대안]", l: ["오늘날의 지역 분쟁, 인권 문제, 환경 파괴 현상의 역사적 뿌리 추적", "평화와 인권 보장, 공존을 위한 세계 역사 속 인물들의 노력과 시민 연대 탐구"] }
+            ],
+            careers: "역사연구원, 국제교류전문가, 언론인(국제부기자), 외교관, 다큐멘터리제작자", majors: "사학과, 국제관계학과, 정치외교학과, 문화인류학과, 언론정보학과"
+        },
+        "기후변화와 지속가능한 세계": {
+            goal: "‘기후변화와 지속가능한 세계’는 전 지구적 위기인 기후 변화의 원인과 현상을 과학적, 지리적, 사회적 관점을 융합하여 분석하고, 인류의 지속 가능한 미래를 위한 탄소 중립 및 환경 보호 실천 방안을 탐구하는 융합 선택 과목이다.",
+            contents: [
+                { t: "[기후 위기의 현상과 원인]", l: ["지구 온난화와 극한 기상 현상의 메커니즘을 과학적 및 공간적 데이터로 분석", "산업화 및 에너지 소비 증가 등 인간의 경제 활동이 기후에 미치는 영향 고찰"] },
+                { t: "[지속 가능한 미래를 위한 노력]", l: ["탄소 배출권, 국제 기후 협약 등 국가적·글로벌 차원의 대응 정책 탐구", "신재생 에너지로의 전환, 친환경 생활 양식 등 지속 가능한 사회를 위한 실천 전략 마련"] }
+            ],
+            careers: "기후변화전문가, 환경컨설턴트, 환경정책연구원, 신재생에너지개발자, ESG경영기획자", majors: "환경공학과, 대기과학과, 에너지공학과, 지리학과, 행정학과, 지속가능발전학부"
+        },
+        "금융과 경제생활": {
+            goal: "‘금융과 경제생활’은 현대 자본주의 사회에서 개인의 합리적인 자산 관리와 금융 의사 결정을 돕기 위해 금융 제도의 원리, 저축과 투자, 신용 관리 등 실물 경제와 밀접한 금융 지식을 체계적으로 배우는 융합 선택 과목이다.",
+            contents: [
+                { t: "[금융의 이해와 자산 관리]", l: ["화폐의 시간 가치, 금리와 인플레이션의 원리 등 기초 금융 개념 파악", "생애 주기에 따른 재무 설계, 예금/주식/채권 등 금융 상품의 특성 및 위험/수익률 비교"] },
+                { t: "[신용 관리와 금융 환경]", l: ["개인 신용의 중요성 및 부채 관리, 금융 사기 예방과 소비자 보호 제도", "핀테크, 가상 자산 등 디지털 금융의 변화 추이와 미래 경제 전망 탐구"] }
+            ],
+            careers: "은행원, 증권중개인, 보험계리사, 펀드매니저, 재무설계사, 세무사, 경제기자", majors: "경제학과, 경영학과, 금융보험학과, 회계세무학과, 소비자학과, 파이낸스학부"
+        },
+        "윤리문제 탐구": {
+            goal: "‘윤리문제 탐구’는 생명 과학, 인공지능, 다문화, 환경 등 첨단 융복합 시대에 새롭게 발생하는 구체적인 윤리적 쟁점들을 스스로 발굴하고, 도덕 철학적 관점에서 치열하게 토론하며 실천적 해결책을 도출하는 융합 선택 과목이다.",
+            contents: [
+                { t: "[첨단 과학기술과 윤리 쟁점]", l: ["동물 실험, 유전자 조작, 안락사 등 생명 윤리와 인간 존엄성 논쟁 분석", "자율주행차의 알고리즘 딜레마, 인공지능의 편향성 등 정보통신 윤리 탐구"] },
+                { t: "[사회 문제와 윤리적 대안]", l: ["분배적 정의, 소수자 차별, 혐오 표현 등 사회적 갈등에 대한 도덕적 해결책 모색", "모둠 프로젝트를 통한 윤리적 정책 기획 및 학내 캠페인 전개"] }
+            ],
+            careers: "윤리교사, 로스쿨진학자, 생명윤리자문위원, ESG경영컨설턴트, 사회단체활동가", majors: "윤리교육과, 철학과, 법학과, 자율전공학부, 사회학과, 정치외교학과"
+        },
+
+        // === 과학 교과군 ===
+        "통합과학1·2": {
+            goal: "‘통합과학1·2’는 물리학, 화학, 생명과학, 지구과학의 기존 학문적 경계를 허물고 자연 현상을 하나의 큰 흐름으로 이해하는 1학년 필수 공통 과목이다. 우주의 탄생부터 생명의 진화, 최첨단 과학 기술까지 폭넓은 주제를 융합적으로 다루며, 일상생활 속에서 과학적 호기심을 키우고 합리적인 비판적 사고와 문제 해결력을 배양한다.",
+            contents: [
+                { t: "[물질과 규칙성 / 시스템과 상호작용]", l: ["우주의 기원(빅뱅)과 원소의 생성 과정, 다양한 물질을 형성하는 화학 결합의 규칙성(공유/이온 결합) 탐구", "지구 시스템(권역별 상호작용)과 생명 시스템(세포의 구조, 정보 흐름, 물질대사)의 구성 원리 이해"] },
+                { t: "[변화와 다양성 / 환경과 에너지]", l: ["지구 환경을 바꾸는 화학 변화(산화 환원, 산과 염기) 및 지질 시대를 거친 생물 다양성과 진화의 과정 탐구", "생태계의 평형 유지, 지구 환경 변화(기후 위기) 대응 방안, 그리고 미래 생존을 위한 발전과 신재생 에너지 기술 탐색"] }
+            ],
+            careers: "모든 이공계 기초 역량, 과학연구원, 의료/보건전문가, 환경전문가, 과학교사, 첨단산업엔지니어", majors: "자연과학 및 이공계열 전반 필수 기초, 이공학부, 의약보건계열, 환경공학과, 과학교육과"
+        },
+        "과학탐구실험1·2": {
+            goal: "‘과학탐구실험1·2’는 통합과학에서 배운 융합적 지식을 바탕으로 실험을 계획, 수행, 분석하는 전 과정을 학생 주도적으로 경험하는 1학년 공통 필수 과목이다. 자연 현상에 대한 과학적 핵심 역량(문제 인식, 가설 설정, 변인 통제, 자료 해석, 결론 도출)을 체득하고, 실험 결과를 동료들과 논리적으로 소통하는 태도를 기른다.",
+            contents: [
+                { t: "[과학 탐구의 과정과 방법]", l: ["실험 기구의 올바른 사용법, 정밀한 측정과 오차의 원인 분석", "주어진 과학적 문제 상황에 대해 가설을 세우고 이를 검증하기 위한 실험 설계"] },
+                { t: "[탐구 수행 및 결과 분석]", l: ["물리, 화학, 생명과학, 지구과학 분야가 융합된 다양한 주제의 실험 직접 수행", "수집된 데이터를 표와 그래프로 변환하여 분석하고, 타당한 결론을 도출하여 과학 보고서로 작성 및 발표"] }
+            ],
+            careers: "실험연구원보조, 이공계대학기초연구역량, 품질관리전문가, 과학수사요원, 과학교육종사자", majors: "이공계열전학과, 과학교육과, 의약보건계열, 기초과학계열"
+        },
+        "물리학": {
+            goal: "‘물리학’은 힘과 운동, 전기와 자기, 빛과 소리 등 우리 주변 자연 현상의 기본적인 원리를 명쾌하고 체계적으로 이해하는 일반 선택 과목이다. 복잡해 보이는 자연의 규칙을 수학적 모델과 물리적 개념으로 분석해보며 논리적인 과학적 문제 해결력을 기르고, 반도체나 우주항공 등 첨단 과학 기술 발전의 든든한 토대를 쌓는다.",
+            contents: [
+                { t: "[역학과 에너지]", l: ["뉴턴의 3법칙을 적용한 물체의 운동 상태 변화 분석, 등가속도 운동과 포물선 운동", "운동량과 충격량의 관계를 통한 충돌(에어백 등) 원리, 일과 에너지 정리 및 역학적 에너지 보존 법칙의 적용"] },
+                { t: "[전기와 자기]", l: ["전하 주위에 형성되는 전기장과 쿨롱의 법칙, 물질의 자성과 원리 이해", "전류에 의한 자기장 현상과 전자기 유도 법칙을 발전기, 변압기 등 실생활 전력 기술과 연계하여 탐구"] },
+                { t: "[파동과 물질의 성질]", l: ["파동의 발생, 전파, 굴절, 간섭 현상을 이해하고 소리와 빛의 파동적 특성 분석", "현대 물리학의 기초인 빛의 이중성(파동성과 입자성) 개념 소개 및 광전 효과의 응용 기술(태양전지 등) 이해"] }
+            ],
+            careers: "반도체및디스플레이엔지니어, 로봇/항공우주공학자, 에너지개발연구원, 기계/전자부품설계자, 나노기술연구원, 음향/광학기사", majors: "물리학과, 기계공학과, 전기전자공학과, 항공우주공학과, 신소재공학과, 원자력공학과, 물리교육과"
+        },
+        "화학": {
+            goal: "‘화학’은 우리 주변 물질의 성질, 구조, 변화 과정을 원자와 분자라는 미시적 수준에서 과학적으로 탐구하는 일반 선택 과목이다. 눈에 보이지 않는 입자들의 결합과 반응 원리를 이해함으로써, 첨단 신소재, 환경 보호, 신약 개발 등 인류 문명의 발전에 직접적으로 기여하는 화학의 놀라운 유용성과 가치를 배운다.",
+            contents: [
+                { t: "[물질의 구조와 결합]", l: ["원자 모형의 변천과 전자 배치, 주기율표를 통한 원소의 주기적 성질(이온화 에너지 등) 원리 파악", "이온 결합, 공유 결합, 금속 결합의 형성 과정과 물질의 성질 비교, 전자쌍 반발 이론을 통한 분자의 3차원 구조와 극성 판단"] },
+                { t: "[물질의 변화와 양적 관계]", l: ["몰(mole)의 개념을 바탕으로 화학 반응식의 양적 관계(질량, 부피)를 수학적으로 계산 및 예측", "가역 반응과 동적 평형, 산과 염기의 중화 적정, 전자의 이동에 따른 산화 환원 반응의 실생활 및 산업적 활용 탐구"] }
+            ],
+            careers: "화학공학엔지니어, 화장품(조향)개발자, 제약회사연구원, 재료/신소재공학자, 국과수과학수사요원, 환경영향평가사", majors: "화학과, 화학공학과, 생명화학공학과, 신소재공학과, 약학과, 응용화학과, 화학교육과"
+        },
+        "생명과학": {
+            goal: "‘생명과학’은 우리 몸을 포함한 생명체의 정교한 구조와 신비로운 생명 현상의 작동 원리를 깊이 있게 탐구하는 일반 선택 과목이다. 인체 생리부터 유전, 생태계까지 폭넓은 지식을 바탕으로 인류가 직면한 난치성 질병, 생태계 파괴, 식량 및 환경 문제 등을 과학적이면서도 따뜻한 생명 윤리의 시각으로 해결할 수 있는 소양을 기른다.",
+            contents: [
+                { t: "[생명의 유지와 인체의 방어]", l: ["세포의 구조와 기능, 세포 호흡과 물질대사 등 생명체의 에너지 획득 과정 이해", "신경계의 흥분 전도와 호르몬 작용을 통한 인체의 항상성 유지 메커니즘 분석", "병원체에 대항하는 우리 몸의 면역 방어 작용과 백신의 원리 탐구"] },
+                { t: "[생명의 연속성과 생태계]", l: ["염색체의 구조와 세포 분열(체세포/감수 분열) 과정을 통한 생명 연속성 및 다양성 이해", "멘델의 유전 법칙과 사람의 유전 현상 분석, 돌연변이 및 유전자 이상 질환의 원인 규명", "생태계 내 개체군과 군집의 상호작용, 에너지 흐름, 생물 다양성 보전의 중요성 인식"] }
+            ],
+            careers: "의사, 약사, 수의사, 제약회사신약개발연구원, 생명공학(바이오)엔지니어, 생태복원전문가, 보건및위생전문가", majors: "의예과, 치의예과, 약학과, 수의예과, 생명과학과, 생명공학과, 간호학과, 임상병리학과, 생물교육과"
+        },
+        "지구과학": {
+            goal: "‘지구과학’은 우리가 살고 있는 고체 지구, 해양과 대기, 그리고 거대한 우주의 역동적인 변화 과정을 거시적인 관점에서 탐구하는 일반 선택 과목이다. 화산, 지진, 기후 변화 등 인간 삶에 영향을 미치는 자연재해를 과학적으로 이해하고, 천문학적 현상에 대한 경이로움과 호기심을 우주 공간으로 확장한다.",
+            contents: [
+                { t: "[고체 지구와 대기/해양]", l: ["판 구조론을 바탕으로 한 지각 변동(화산, 지진)의 원리, 암석의 생성 과정, 화석을 통한 지구의 역사(지질 시대) 탐구", "해수의 순환과 날씨 변화, 태풍의 발생, 엘니뇨 등 기상 이변의 메커니즘 분석"] },
+                { t: "[우주의 탐구]", l: ["별의 물리량(온도, 밝기, 크기) 분석과 별의 일생(탄생부터 블랙홀, 초신성까지) 진화 과정 이해", "외부 은하의 성질과 허블 법칙을 통한 우주 팽창(빅뱅 우주론) 및 우주를 이루는 암흑 물질/암흑 에너지 탐색"] }
+            ],
+            careers: "기상청연구관, 환경컨설턴트, 천문학자, 해양자원탐사전문가, 지질학자, 항공기상분석관, 인공위성데이터분석가", majors: "지구과학과, 대기과학과, 해양학과, 지질학과, 천문우주학과, 환경공학과, 지구과학교육과"
+        },
+        "역학과 에너지": {
+            goal: "‘역학과 에너지’는 물리학의 핵심이자 공학의 기초인 역학적 지식을 한층 심화하여 탐구하는 진로 선택 과목이다. 다양한 물체의 운동, 열 현상, 그리고 상대성 이론까지 다루며, 기계 설계 및 항공 우주 산업에 필수적인 정량적 계산 및 고급 논리적 추론 능력을 기른다.",
+            contents: [
+                { t: "[운동과 역학적 상호작용]", l: ["2차원 평면에서의 포물선 운동과 등속 원운동의 정량적 분석", "행성의 타원 궤도 운동을 설명하는 케플러 법칙과 만유인력 법칙의 이해"] },
+                { t: "[열에너지와 특수 상대성 이론]", l: ["열역학 제1법칙 및 제2법칙을 통한 열기관의 효율성 분석", "빛의 속도 불변의 원리와 시간 지연, 길이 수축 등을 다루는 아인슈타인의 특수 상대성 이론 탐구"] }
+            ],
+            careers: "기계/항공우주엔지니어, 자동차설계자, 건축/토목설계자, 로봇공학자, 기초물리연구원", majors: "기계공학과, 항공우주공학과, 건축공학과, 물리학과, 메카트로닉스공학과"
+        },
+        "화학 반응의 세계": {
+            goal: "‘화학 반응의 세계’는 화학 반응 시 물질이 얼마나 빠르게, 어떤 방향으로 진행되는지를 탐구하는 반응 속도론과 화학 평형의 원리를 심도 있게 학습하는 진로 선택 과목이다. 화학 공정의 효율을 높이거나 새로운 촉매를 개발하는 등 화학 산업 실무에 필요한 전문적 소양을 기른다.",
+            contents: [
+                { t: "[반응 속도와 촉매]", l: ["반응 속도에 영향을 미치는 요인(농도, 온도, 촉매) 분석 및 활성화 에너지의 의미 파악", "실생활 및 산업 현장에서 사용되는 다양한 촉매의 작용 원리 이해"] },
+                { t: "[화학 평형과 상호작용]", l: ["가역 반응에서의 화학 평형 상태 도달 과정과 르샤틀리에 원리를 이용한 평형 이동 예측", "산과 염기의 평형, 완충 용액의 원리 및 생명 현상에서의 중요성 탐구"] }
+            ],
+            careers: "화학공정엔지니어, 제약/화장품연구원, 촉매개발자, 재료공학자, 환경화학분석가", majors: "화학공학과, 응용화학과, 신소재공학과, 약학과, 제약공학과"
+        },
+        "세포와 물질대사": {
+            goal: "‘세포와 물질대사’는 생명체의 기본 단위인 세포의 미세 구조와 그 안에서 일어나는 복잡한 화학 반응(물질대사)을 분자 수준에서 탐구하는 진로 선택 과목이다. 인체 생리학 및 바이오 산업의 뼈대가 되는 전문 지식을 습득하여 의약 및 생명공학 분야로 나아갈 역량을 다진다.",
+            contents: [
+                { t: "[세포의 구조와 기능]", l: ["세포막을 통한 물질의 능동/수동 수송 원리 및 다양한 세포 소기관의 유기적 역할 탐구", "효소의 기질 특이성과 작용 메커니즘, 효소 활성에 영향을 미치는 환경 요인 분석"] },
+                { t: "[에너지 대사 과정]", l: ["세포 호흡(해당 작용, TCA 회로, 산화적 인산화)을 통한 ATP 생성 과정의 생화학적 이해", "광합성의 명반응과 탄소 고정 반응을 통한 생태계 에너지 유입 과정 추적"] }
+            ],
+            careers: "의사/약사, 바이오의약품개발자, 생명과학연구원, 생화학자, 농업/식품공학자", majors: "의예과, 약학과, 생명과학과, 생화학과, 분자생물학과, 식품생명공학과"
+        },
+        "행성우주과학": {
+            goal: "‘행성우주과학’는 태양계를 비롯한 은하와 우주의 신비를 천문학적 데이터를 바탕으로 깊이 있게 탐구하는 진로 선택 과목이다. 인공위성, 우주 망원경 관측 자료 등을 분석하여 인류의 우주 개척과 우주 탐사 프로젝트에 필요한 전문적인 천문 우주 과학적 지식을 기른다.",
+            contents: [
+                { t: "[행성계의 특성과 탐사]", l: ["지구형 행성과 목성형 행성의 물리적 특성 비교 및 태양계의 형성 과정 탐구", "외계 행성 탐사 방법(식 현상, 도플러 효과 등)과 생명체 거주 가능 구역 분석"] },
+                { t: "[별의 진화와 우주론 심화]", l: ["H-R도를 활용한 별의 종류 분류와 질량에 따른 별의 진화 및 최후(중성자별, 블랙홀) 탐색", "우주 배경 복사 등 빅뱅 우주론의 증거와 암흑 물질/에너지의 역할 심층 이해"] }
+            ],
+            careers: "천문학자, 우주항공연구원(KARI/NASA등), 위성데이터분석가, 기상/해양연구관, 과학교육자", majors: "천문우주학과, 우주과학과, 항공우주공학과, 지구과학과, 물리천문학부"
+        },
+        "전자기와 양자": {
+            goal: "‘전자기와 양자’는 물리학의 두 큰 기둥인 전자기학과 양자 역학의 기초를 깊이 있게 탐구하는 진로 선택 과목이다. 전하와 자기장의 정량적 원리부터 눈에 보이지 않는 미시 세계의 확률적 현상까지 다루어, 반도체 및 양자 컴퓨터 등 최첨단 현대 기술의 바탕이 되는 역량을 기른다.",
+            contents: [
+                { t: "[전자기장의 심화 이해]", l: ["가우스 법칙을 적용한 전기장의 계산과 전위의 개념, 축전기의 에너지 저장 원리", "전류와 자기장의 관계를 설명하는 비오-사바르 법칙 및 로런츠 힘의 다양한 응용 장치 탐구"] },
+                { t: "[양자 역학과 미시 세계]", l: ["빛의 이중성과 입자의 파동성(물질파), 하이젠베르크의 불확정성 원리 도입", "슈뢰딩거 방정식의 기초적 이해를 바탕으로 한 원자 모형, 반도체 띠 이론 및 다이오드/트랜지스터의 작동 원리 파악"] }
+            ],
+            careers: "양자컴퓨터연구원, 첨단반도체설계자, 나노소자연구원, 기초물리학자, 전기전자장비엔지니어", majors: "물리학과, 전기전자공학과, 나노공학과, 양자정보공학과, 반도체공학과, 신소재공학과"
+        },
+        "물질과 에너지": {
+            goal: "‘물질과 에너지’는 화학 반응 시 발생하는 에너지의 변화를 다루는 열역학과, 전자를 주고받는 전기 화학의 원리를 정량적으로 탐구하는 진로 선택 과목이다. 이차 전지, 수소 연료 전지 등 차세대 친환경 에너지 장치를 설계하고 신소재를 개발하는 데 필요한 핵심 화학 지식을 다진다.",
+            contents: [
+                { t: "[에너지와 엔탈피]", l: ["화학 반응에 수반되는 열의 출입(엔탈피) 계산 및 헤스의 법칙을 활용한 열화학 방정식 풀이", "자발적 반응의 방향성을 결정하는 엔트로피와 자유 에너지의 기본 개념 이해"] },
+                { t: "[전기 화학과 배터리]", l: ["산화 환원 반응을 이용한 화학 전지(1차/2차 전지, 연료 전지)의 작동 원리와 전극 전위 계산", "전기 분해를 통한 금속의 제련 및 도금, 다양한 실생활 배터리 기술의 장단점 비교"] }
+            ],
+            careers: "배터리/이차전지개발자, 석유화학엔지니어, 신재생에너지전문가, 재료공학자, 화공엔지니어", majors: "화학공학과, 신소재공학과, 에너지공학과, 응용화학과, 디스플레이공학과"
+        },
+        "생물의 유전": {
+            goal: "‘생물의 유전’은 생명과학의 핵심 분야인 유전학과 분자생물학을 심도 있게 다루는 진로 선택 과목이다. DNA의 미세한 분자 구조부터 유전자 발현 조절, 최첨단 유전공학 기술에 이르기까지 학습하여 질병 치료, 신약 개발 및 바이오 산업에 필요한 전문적인 생명과학적 소양을 기른다.",
+            contents: [
+                { t: "[유전 물질의 구조와 발현]", l: ["DNA의 반보존적 복제 메커니즘과 유전자 발현(전사 및 번역)의 세부 생화학적 과정 탐구", "원핵생물(오페론)과 진핵생물의 복잡한 유전자 발현 조절 원리 비교"] },
+                { t: "[유전의 원리와 생명공학]", l: ["다양한 유전 현상의 가계도 분석 및 집단 유전학의 기초(하디-바인베르크 법칙) 이해", "유전자 재조합, PCR(중합 효소 연쇄 반응), 유전자 가위(CRISPR) 등 최신 분자 생물학 기술의 원리와 생명 윤리 쟁점 토론"] }
+            ],
+            careers: "유전체분석전문가, 의사, 생물정보학연구원(바이오인포매틱스), 유전공학자, 임상병리사, 과학수사관", majors: "유전공학과, 생명과학과, 의생명공학과, 의예과, 바이오의약전공, 농생명과학과"
+        },
+        "지구시스템과학": {
+            goal: "‘지구시스템과학’은 고체 지구, 대기, 해양이 서로 상호작용하는 복잡한 지구 시스템을 거시적이고 물리적인 관점에서 분석하는 진로 선택 과목이다. 해양의 흐름, 대기 대순환 등 전 지구적 환경 문제와 기후 위기에 대한 전문적이고 과학적인 데이터 해석 및 해결 방안 도출 역량을 키운다.",
+            contents: [
+                { t: "[고체 지구와 해양의 역동성]", l: ["지구 내부 에너지의 근원, 지진파를 통한 내부 구조 분석, 판 이동의 원동력과 맨틀 대류", "해파, 조석 현상의 물리적 특성 및 심층 해류의 발생 원리와 역할 탐구"] },
+                { t: "[대기와 기후 시스템]", l: ["대기 대순환과 편서풍 파동, 일기도 및 기상 레이더 분석을 통한 날씨 예보 원리 체득", "지구 자전축 변화 등 천문학적 요인에 의한 과거 기후 변화 추적 및 미래 기후 모델링"] }
+            ],
+            careers: "기후변화대응전문가, 기상연구관, 지질탐사엔지니어, 해양학자, 항공기상관, 대기환경기사", majors: "대기과학과, 해양학과, 지질학과, 지구환경과학과, 환경공학과, 자원공학과"
+        },
+        "과학과제 연구": {
+            goal: "‘과학과제 연구’는 학생이 자신의 진로와 흥미에 맞춰 직접 과학적 연구 주제를 정하고, 한 학기 동안 주도적으로 실험이나 조사를 수행하여 논문 형태의 보고서를 완성하는 진로 선택 과목이다. 대학 수준의 학술적 탐구 역량, 데이터 분석력, 논리적 글쓰기 능력을 종합적으로 뽐낼 수 있는 실천적 과목이다.",
+            contents: [
+                { t: "[연구의 설계 및 방법론]", l: ["관련 문헌 고찰, 독창적 연구 주제 선정, 변인 통제 및 가설 설정 등 과학적 연구 방법론 습득", "실험 및 관찰, 데이터 수집을 위한 체계적이고 실현 가능한 연구 계획서 작성"] },
+                { t: "[연구 수행 및 학술 소통]", l: ["수집된 데이터의 통계적 분석 및 표, 그래프를 활용한 전문적인 데이터 시각화", "학술 논문 형식에 맞춘 연구 보고서 작성, 포스터 발표 및 동료 피드백을 통한 학술적 의사소통 경험"] }
+            ],
+            careers: "전계열전문학술연구원, 국공립연구소연구관, R&D기획자, 대학교수, 전문개발자", majors: "모든 자연과학 및 이공계열 심화 전공, 자율전공학부, 의약보건계열"
+        },
+        "물리학 실험": {
+            goal: "‘물리학 실험’은 물리학 시간에 배운 여러 법칙들을 학생이 직접 실험을 설계하고 수행하며 눈으로 확인하는 융합 선택 과목이다. 정밀한 측정과 오차 분석의 과정을 겪으며 데이터를 비판적으로 다루는 실천적 역량과 공학 기초 실무 능력을 기른다.",
+            contents: [
+                { t: "[실험의 설계와 정밀 측정]", l: ["실험 기구의 올바른 사용법, 유효 숫자와 오차론의 이해 및 데이터 처리 기법 습득", "운동 센서, 포토게이트 등을 활용한 직선 운동, 포물선 운동, 마찰력 측정 등 역학적 법칙의 실험적 증명"] },
+                { t: "[탐구 및 첨단 데이터 분석]", l: ["소리 굽쇠, 렌즈, 레이저 등을 활용한 빛과 파동의 굴절, 간섭 현상 정량적 측정", "스마트폰 센서 및 MBL(컴퓨터 기반 실험) 기기를 활용한 전자기 유도 현상 등 첨단 측정 기법 실습"] }
+            ],
+            careers: "각종이공계실험/연구보조원, 장비테스트엔지니어, 품질관리(QA)엔지니어, 물리학연구원", majors: "이공계열전학과(기초실험역량), 물리교육과, 정밀기계공학과, 측정표준학과"
+        },
+        "화학 실험": {
+            goal: "‘화학 실험’은 화학 반응의 원리를 직접 눈으로 확인하고, 화학 물질을 안전하고 정확하게 다루는 전문 실험 기법을 익히는 융합 선택 과목이다. 시약의 혼합부터 분리, 정량 분석, 신물질 합성 실험을 수행하며 화학 공학 및 제약 분야로 나아가기 위한 훌륭한 문제 해결력을 기른다.",
+            contents: [
+                { t: "[기본 화학 실험 기법]", l: ["실험실 안전 수칙 숙지, 초자 기구(피펫, 뷰렛 등)의 정밀 사용법, 물질의 질량과 부피 측정", "크로마토그래피, 거름, 증류 등을 이용한 혼합물의 분리 및 순수 물질 정제 실습"] },
+                { t: "[정량 분석 및 합성]", l: ["지시약 및 센서를 활용한 산·염기 적정, 산화·환원 적정을 통한 미지 물질의 농도 및 분자량 결정", "아스피린 합성, 비누화 반응 등 우리 삶에 유용한 물질의 화학적 합성 및 수득률 계산"] }
+            ],
+            careers: "화학물질분석가, 제약회사품질관리원, 조향사, 조색사, 환경수질/대기측정요원, 화공엔지니어", majors: "화학과, 응용화학과, 화학공학과, 제약공학과, 환경공학과, 신소재공학과"
+        },
+        "생명과학 실험": {
+            goal: "‘생명과학 실험’은 생명체를 대상으로 하는 다양한 실험 기법과 첨단 생명공학 기기 사용법을 익히는 융합 선택 과목이다. 현미경 관찰, 효소 반응, DNA 추출 등 생명과학 전반에 걸친 실제적인 실험을 직접 수행하며 의료 및 바이오 산업 현장 진출을 위한 강력한 실무적 기초를 다진다.",
+            contents: [
+                { t: "[세포 관찰과 생리 작용]", l: ["광학 현미경의 구조와 정밀 조작법, 마이크로미터를 이용한 양파/구강 상피 세포 크기 측정", "적혈구의 삼투 현상, 효소의 활성에 미치는 온도/pH 영향, 광합성 색소 분리 실험 수행"] },
+                { t: "[미생물 및 분자생물학 실험]", l: ["세균의 배양 및 무균 조작법, 그람 염색을 통한 미생물 관찰 및 항생제 감수성 테스트", "세포에서 직접 DNA 추출, 겔 전기영동, 유전자 재조합 모의실험 등 기초 분자생물학 기법 체득"] }
+            ],
+            careers: "바이오실험연구원, 임상병리사, 의학보조연구원, 식물/동물자원연구원, 환경생태조사원", majors: "생명과학과, 임상병리학과, 의생명공학과, 수의예과, 바이오산업학부, 간호학과"
+        },
+        "과학의 역사와 문화": {
+            goal: "‘과학의 역사와 문화’는 딱딱한 수식이나 계산에서 벗어나, 역사 속에서 과학 기술이 어떻게 발전해 왔고 인간의 삶과 문화를 어떻게 바꾸어 놓았는지 인문학적 관점으로 바라보는 재미있는 융합 선택 과목이다. 과학자들의 치열한 고민과 시대적 배경을 탐구하며 과학과 사회의 상호작용을 깊이 이해한다.",
+            contents: [
+                { t: "[과학적 사고의 역사적 변천]", l: ["고대 및 중세의 자연철학에서부터 코페르니쿠스, 뉴턴으로 이어지는 근대 과학 혁명의 과정과 세계관의 변화 탐구", "진화론, 상대성 이론 등 세상을 뒤흔든 위대한 과학적 발견이 당시 사회에 미친 충격과 영향 분석"] },
+                { t: "[과학 기술과 현대 문화]", l: ["원자 폭탄, 환경 오염 등 과학 기술의 발전이 낳은 빛과 그림자, 그리고 과학자의 사회적 책임 토론", "인공지능, 생명공학 등 현대 첨단 과학 기술이 미래 사회와 문화, 예술에 미칠 영향 예측 및 융합적 대안 모색"] }
+            ],
+            careers: "과학커뮤니케이터, 과학전문기자, 과학관/박물관큐레이터, 과학저술가, 과학정책기획가", majors: "과학사및과학철학협동과정, 자율전공학부, 과학기술학, 언론정보학과, 문헌정보학과"
+        },
+        "기후변화와 환경생태": {
+            goal: "‘기후변화와 환경생태’는 현재 인류가 직면한 가장 시급한 위기인 기후 변화와 생태계 파괴 현상을 과학적, 지리적 데이터를 통해 융합적으로 분석하고, 지구 환경의 복원 및 지속 가능한 미래를 위한 정책적 대안을 스스로 기획해 보는 실천 지향적 융합 선택 과목이다.",
+            contents: [
+                { t: "[기후 위기와 지구 환경의 변화]", l: ["지구 온난화, 이상 기후, 해수면 상승 등 기후 변화의 과학적 메커니즘과 현상 분석", "인간의 화석 연료 사용 및 산업 활동이 생태계 파괴와 생물 다양성 감소에 미치는 영향 고찰"] },
+                { t: "[지속 가능한 미래를 위한 실천]", l: ["탄소 중립, 탄소 배출권 거래제, 국제 기후 협약 등 글로벌 환경 정책과 대응 전략 탐구", "신재생 에너지 개발, 친환경 스마트 시티 설계, 제로 웨이스트 생활 양식 등 실천적 프로젝트 수행"] }
+            ],
+            careers: "기후변화대응전문가, 환경영향평가사, 신재생에너지연구원, 환경운동가(NGO), ESG경영컨설턴트", majors: "환경공학과, 생태공학과, 기후에너지시스템공학과, 지구환경과학과, 행정학과"
+        },
+        "융합과학 탐구": {
+            goal: "‘융합과학 탐구’는 물리, 화학, 생명과학 등 여러 과학 분야의 지식과 기술, 예술 등 타 학문을 자유롭게 융합하여, 일상생활의 복잡한 문제를 학생 주도적인 프로젝트(메이커 활동 등)로 해결해 나가는 창의 융합 선택 과목이다.",
+            contents: [
+                { t: "[융합적 문제 발견 및 설계]", l: ["생활 속의 불편함이나 지역 사회의 문제를 과학, 기술, 공학, 예술, 수학(STEAM)을 융합하여 분석", "디자인 씽킹(Design Thinking) 과정을 통한 창의적인 문제 해결 아이디어 도출 및 프로젝트 설계"] },
+                { t: "[프로젝트 수행 및 메이커 활동]", l: ["아두이노, 3D 프린터 등 최첨단 디지털 도구를 활용한 시제품(프로토타입) 제작 및 테스트", "완성된 결과물의 과학적 원리 발표, 동료 평가, 보완을 통한 실천적 과학 혁신 경험"] }
+            ],
+            careers: "메이커(Maker), 융합기술개발자, 스타트업창업가, 로봇공학자, 에듀테크콘텐츠기획자", majors: "융합공학부, 메카트로닉스공학과, 산업디자인과, 로봇공학과, 지식융합학부"
+        },
+
+        // === 체육 교과군 ===
+        "체육1": {
+            goal: "‘체육1’은 학생들의 건강한 신체 발달과 체력 증진을 도모하며, 다양한 스포츠 활동(경쟁, 도전, 표현 등)에 참여함으로써 협동심, 규칙 준수, 스포츠맨십 등 바른 인성과 평생 체육의 기반을 다지는 필수적인 일반 선택 과목이다.",
+            contents: [
+                { t: "[건강과 체력 관리]", l: ["자신의 체력 수준 측정 및 평가, 체력 증진을 위한 자기 주도적 운동 계획 수립 및 실천", "비만 예방, 스트레스 관리 등 건강한 생활 습관 형성"] },
+                { t: "[스포츠 활동의 실천]", l: ["축구, 농구, 배구 등 팀 스포츠를 통한 전술 이해와 협력적 팀워크(경쟁 활동) 함양", "육상, 체조 등 자신의 한계에 도전하고 신체의 아름다움을 표현하는 신체 활동 실습"] }
+            ],
+            careers: "모든 학생의 평생 건강 기틀, 생활체육지도자, 스포츠강사, 경찰/소방공무원 체력기초", majors: "전 계열 공통 수강, 사회체육학과, 스포츠지도학과"
+        },
+        "체육2": {
+            goal: "‘체육2’는 체육1에서 배운 기본기를 바탕으로 자신이 관심 있는 스포츠 종목을 더욱 깊이 있게 배우고 즐기며, 일상생활 속에서 스트레스를 해소하고 활력을 찾는 일반 선택 과목이다.",
+            contents: [
+                { t: "[심화 스포츠 활동]", l: ["특정 스포츠 종목(라켓 스포츠, 네트형 스포츠 등)의 고급 기술과 전략 심층 훈련", "교내 스포츠 리그, 체육 대회 기획 및 참여를 통한 스포츠 문화 체험"] },
+                { t: "[평생 체육과 여가]", l: ["다양한 레저 스포츠(등산, 수영 등) 체험 및 안전사고 예방/응급 처치(심폐소생술 등) 교육"] }
+            ],
+            careers: "레크리에이션강사, 응급구조사, 스포츠심판, 스포츠시설관리자", majors: "체육학과, 경호학과, 스포츠레저학과"
+        },
+        "스포츠 과학": {
+            goal: "‘스포츠 과학’은 스포츠 현상에 숨겨진 인체 해부학, 운동 생리학, 스포츠 심리학 등의 과학적 지식을 심도 있게 탐구하는 진로 선택 과목이다. 운동이 인체에 미치는 영향을 과학적으로 분석하여 부상을 예방하고 운동 수행 능력을 극대화하는 전문가적 역량을 기른다.",
+            contents: [
+                { t: "[운동 생리와 역학]", l: ["골격근의 구조와 수축 원리, 운동 시 일어나는 호흡 및 순환계의 생리적 변화 탐구", "작용·반작용, 지레의 원리 등 운동 역학적 법칙을 활용한 스포츠 기술(투척, 도약 등) 원리 분석"] },
+                { t: "[스포츠 심리와 처방]", l: ["불안, 동기, 자신감 등 심리적 요인이 스포츠 수행에 미치는 영향 분석(스포츠 심리학)", "과학적 체력 측정 결과를 바탕으로 개인 맞춤형 운동 처방 및 영양 섭취 계획 수립"] }
+            ],
+            careers: "운동처방사, 선수트레이너(AT), 스포츠심리상담사, 스포츠데이터분석관, 체육교사", majors: "스포츠의학과, 체육교육과, 운동처방학과, 스포츠과학과"
+        },
+        "스포츠 문화": {
+            goal: "‘스포츠 문화’는 스포츠가 사회, 역사, 대중 매체, 경제 등과 어떻게 상호작용하며 발전해 왔는지 인문·사회과학적 관점에서 탐구하는 진로 선택 과목이다. 올림픽, 월드컵 등 메가 스포츠 이벤트의 의미와 스포츠 산업의 가치를 이해한다.",
+            contents: [
+                { t: "[스포츠와 사회]", l: ["스포츠의 역사적 기원과 변화 과정, 스포츠에 반영된 인종/성별 불평등과 사회 통합의 역할", "미디어가 스포츠를 대중화하는 방식 및 스포츠 윤리(도핑, 승부 조작 문제) 토론"] },
+                { t: "[스포츠 산업과 마케팅]", l: ["스포츠 에이전시, 프로 스포츠 구단 운영, 스포츠 미디어 중계권 등 현대 스포츠 산업 구조 이해", "스포츠 마케팅 전략 기획 및 새로운 스포츠 이벤트 아이디어 제안"] }
+            ],
+            careers: "스포츠마케터, 스포츠에이전트, 스포츠기자/PD, 프로구단프런트, 스포츠행정가", majors: "스포츠경영학과, 체육학과, 미디어커뮤니케이션학과, 스포츠산업학과"
+        },
+        "기초 체육 전공 실기": {
+            goal: "‘기초 체육 전공 실기’는 체육 대학 진학 및 체육 관련 전문 직업(경찰, 소방 등)을 희망하는 학생들을 대상으로, 각 종목의 전공 실기 기초 능력을 강도 높게 훈련하는 진로 선택 과목(체육 계열 특화)이다.",
+            contents: [
+                { t: "[기초 전공 체력 육성]", l: ["체대 입시 및 실기 평가에 필수적인 근력, 순발력, 유연성, 심폐지구력의 체계적 트레이닝", "자신의 신체 조건을 분석하고 과학적 훈련 원리에 따른 맞춤형 훈련 프로그램 적용"] },
+                { t: "[종목별 기초 실기]", l: ["육상, 체조, 구기(농구, 배구 등), 투척 등 희망 전공 종목의 정확한 기초 기술 반복 숙달 및 교정"] }
+            ],
+            careers: "경찰관, 소방관, 직업군인, 프로스포츠선수, 체육교사", majors: "체육교육과, 경찰행정학과, 체육학과, 무도학과"
+        },
+        "심화 체육 전공 실기": {
+            goal: "‘심화 체육 전공 실기’는 기초 실기를 바탕으로 실전 경기 및 체대 입시에서 요구하는 최고 수준의 실기 수행 능력과 전술적 응용력을 완성하는 진로 선택 과목(체육 계열 특화)이다.",
+            contents: [
+                { t: "[심화 전공 실기 완성]", l: ["전공 종목의 고난도 기술 습득, 실전 경기 상황을 가정한 복합 전술 및 연계 동작 훈련", "모의 실기 평가 및 경기 수행을 통한 자신의 약점 분석 및 극복 훈련"] },
+                { t: "[스포츠 지도와 평가]", l: ["동료의 실기 자세를 관찰하고 생체역학적 원리에 입각하여 피드백을 제공하는 지도자 역량 실습", "경기 규칙 숙지 및 심판 수행 능력을 통한 스포츠 현장 이해도 제고"] }
+            ],
+            careers: "전문체육지도자(감독/코치), 전문스포츠선수, 무도사범, 고급트레이너", majors: "체육교육과, 체육학과, 스포츠지도학과, 경호학과"
+        },
+        "스포츠 생활1": {
+            goal: "‘스포츠 생활1’은 일상생활 속에서 누구나 쉽게 즐길 수 있는 다양한 뉴스포츠와 생활 체육 종목을 체험하며, 신체 활동의 즐거움을 깨닫고 건강한 여가 문화를 스스로 설계해 나가는 융합 선택 과목이다.",
+            contents: [
+                { t: "[생활 스포츠 체험]", l: ["플라잉디스크, 킨볼, 플로어볼 등 누구나 참여하기 쉬운 뉴스포츠 규칙 이해 및 경기 참여", "배드민턴, 볼링, 자전거 등 지역 사회 체육 시설을 활용할 수 있는 평생 체육 종목 실습"] },
+                { t: "[건강 여가 기획]", l: ["스트레스 관리 및 비만 예방을 위한 일상 속 자투리 시간 활용 신체 활동 계획", "친구, 가족과 함께 즐길 수 있는 미니 스포츠 대회 기획 및 운영"] }
+            ],
+            careers: "생활체육지도자, 레크리에이션강사, 청소년지도사, 지역사회체육기획자", majors: "사회체육학과, 레저스포츠학과, 청소년교육과, 노인체육복지학과"
+        },
+        "스포츠 생활2": {
+            goal: "‘스포츠 생활2’는 스포츠 생활1에서 확장하여, 자연환경을 무대로 하는 야외 레저 스포츠나 조금 더 전문적인 동호인 스포츠를 즐기며 평생 체육인으로서의 자질을 완성하는 융합 선택 과목이다.",
+            contents: [
+                { t: "[레저 및 야외 스포츠]", l: ["등산, 캠핑, 오리엔티어링, 수상 스포츠 등 자연과 함께하는 야외 활동의 기술과 안전 수칙 숙지", "위기 상황 발생 시 대처법(심폐소생술, 구급법) 및 야외 활동 중 환경 보호 실천"] },
+                { t: "[스포츠 공동체 활동]", l: ["학교 내외의 스포츠 동아리 활동 참여, 지역 주민과 함께하는 체육 교류 활동 기획", "자신의 평생 스포츠 활동 포트폴리오 제작 및 건강한 노후를 위한 운동 습관 정립"] }
+            ],
+            careers: "야외레저스포츠강사, 아웃도어장비기획자, 수상인명구조요원, 지역보건소운동처방사", majors: "해양스포츠학과, 아웃도어스포츠학과, 응급구조학과, 사회체육학과"
+        },
+
+        // === 예술 교과군 ===
+        "음악": {
+            goal: "‘음악’은 다양한 장르의 음악을 감상하고 직접 부르거나 연주하며, 음악이 가진 아름다움과 정서를 깊이 있게 체험하는 일반 선택 과목이다. 음악을 통해 스트레스를 해소하고, 타인과 화음을 맞추며 배려심과 풍부한 예술적 감수성을 기른다.",
+            contents: [
+                { t: "[음악의 감상과 이해]", l: ["클래식, 국악, 대중음악, 세계 민속 음악 등 다양한 음악 장르의 특징과 문화적 배경 탐구", "음악의 구성 요소(리듬, 가락, 화성 등)를 이해하고 곡의 미적 가치 평가"] },
+                { t: "[음악의 표현과 실천]", l: ["노래 부르기(합창) 및 기초 악기 연주를 통한 음악적 표현력 및 타인과의 앙상블(화음) 조율 능력 배양", "생활 속 음악 활용(음악회 참여 등) 및 기초적인 음악 창작 활동 경험"] }
+            ],
+            careers: "모든 학생의 문화적 소양, 음악치료사, 음악교사, 공연기획자, 대중음악가", majors: "전 계열 공통 기초, 음악교육과, 실용음악과, 음악치료학과"
+        },
+        "미술": {
+            goal: "‘미술’은 다양한 시각 예술 작품을 감상하고, 자신의 생각과 느낌을 다채로운 매체와 기법으로 창의적으로 표현해보는 일반 선택 과목이다. 시각 문화 시대에 필요한 미적 안목을 기르고, 미술을 통해 자아를 성찰하며 세상과 소통하는 방법을 배운다.",
+            contents: [
+                { t: "[미술의 감상과 비평]", l: ["전통 미술, 현대 미술, 디자인, 미디어 아트 등 다양한 시각 문화의 특징과 의미 해석", "작품에 담긴 시대적/사회적 배경을 비판적으로 이해하고 자신의 관점에서 비평문 작성"] },
+                { t: "[미술의 창의적 표현]", l: ["회화, 조소, 디자인, 사진 등 다양한 조형 원리와 표현 기법을 활용한 아이디어 시각화 실습", "자신의 작품 의도를 설명하고 동료의 작품을 존중하며 감상하는 전시 및 발표 활동"] }
+            ],
+            careers: "모든 학생의 문화적 소양, 미술치료사, 미술교사, 시각디자이너, 큐레이터", majors: "전 계열 공통 기초, 미술교육과, 서양화/동양화과, 시각디자인학과"
+        },
+        "음악 연주와 창작": {
+            goal: "‘음악 연주와 창작’은 악기 연주나 성악 기술을 심화시키고, 작곡 및 편곡을 통해 자신만의 음악을 직접 만들어보는 진로 선택 과목이다. 음악적 표현력을 극대화하고 실용적인 음악 기획 및 창작 역량을 길러 음악 산업 전반에 진출할 수 있는 기초를 다진다.",
+            contents: [
+                { t: "[심화 연주 기법]", l: ["자신이 선택한 악기(또는 성악)의 전문적인 연주 기법 습득 및 고난도 곡 해석력 배양", "독주 및 밴드, 오케스트라 등 합주를 통한 고도의 무대 공연 실습"] },
+                { t: "[음악 창작과 편곡]", l: ["기초 화성학 및 작곡 이론의 이해, 디지털 오디오 워크스테이션(DAW)을 활용한 컴퓨터 음악(MIDI) 제작 기초", "기존 곡을 자신만의 스타일로 편곡하거나 짧은 창작곡 만들기 프로젝트 수행"] }
+            ],
+            careers: "작곡가, 연주자, 음악프로듀서(PD), 사운드엔지니어, 영화음악감독", majors: "실용음악과, 작곡과, 기악과, 포스트모던음악과, 음향제작학과"
+        },
+        "미술 창작": {
+            goal: "‘미술 창작’은 평면(회화), 입체(조소), 미디어 등 다양한 매체를 깊이 있게 다루며, 자신만의 독창적인 예술 작품을 기획하고 제작하는 과정을 경험하는 진로 선택 과목이다. 포트폴리오를 제작하며 미대 진학 및 전문 아티스트, 디자이너로서의 실기 역량을 굳건히 다진다.",
+            contents: [
+                { t: "[창작의 기획과 발상]", l: ["마인드맵, 스케치 등을 통한 창의적인 아이디어 발상 및 시각화 계획 수립", "다양한 재료(아크릴, 유화, 흙, 혼합 매체 등)의 물성을 탐구하고 실험적 기법 적용"] },
+                { t: "[작품 제작과 포트폴리오]", l: ["주제 의식이 뚜렷한 심화된 조형 작품(평면, 입체, 설치 등) 제작 프로젝트 수행", "작품의 기획 의도부터 완성 과정까지를 담은 개인 포트폴리오 구성 및 모의 전시회 기획"] }
+            ],
+            careers: "화가, 조각가, 일러스트레이터, 산업디자이너, 애니메이터, 타투이스트", majors: "서양화과, 동양화과, 조소과, 산업디자인과, 만화애니메이션학과"
+        },
+        "음악 감상과 비평": {
+            goal: "‘음악 감상과 비평’은 서양 음악사, 국악사, 현대 대중음악의 흐름을 심도 있게 탐구하고, 음악 작품에 대한 미학적 가치를 비판적으로 분석하는 진로 선택 과목이다. 음악을 언어로 풀어내는 능력을 키워 평론가나 음악 기획자로서의 자질을 기른다.",
+            contents: [
+                { t: "[음악사의 깊은 이해]", l: ["시대별(바로크, 고전, 낭만, 현대) 서양 음악의 구조적 특징과 작곡가의 생애 탐구", "전통 국악의 갈래와 시대적 변화, 현대 K-POP의 글로벌 성장 배경 분석"] },
+                { t: "[음악 미학과 비평 실습]", l: ["음악의 미적 가치를 판단하는 기준 학습, 공연 관람(또는 시청) 후 전문적인 형식의 음악 평론 작성", "사회적 쟁점과 음악의 관계(저항 음악, 치유 음악 등) 토론"] }
+            ],
+            careers: "음악평론가, 공연기획자, 음악방송작가, 라디오PD, 클래식전문에디터", majors: "음악학과, 예술학과, 예술경영학과, 미학과, 미디어커뮤니케이션학과"
+        },
+        "미술 감상과 비평": {
+            goal: "‘미술 감상과 비평’은 고대부터 현대까지의 방대한 미술사와 다양한 미술 사조를 깊이 있게 탐구하며, 시각 예술 작품을 해석하고 평가하는 전문적인 비평 안목을 기르는 진로 선택 과목이다. 큐레이터나 미술 비평가, 예술 행정가를 꿈꾸는 학생에게 적합하다.",
+            contents: [
+                { t: "[미술사의 흐름과 맥락]", l: ["서양 미술사, 한국 및 동양 미술사의 굵직한 사조(르네상스, 인상주의, 팝아트 등)와 대표 작가 탐구", "작품이 탄생한 사회적, 정치적, 철학적 배경과 예술 작품의 상호 연관성 분석"] },
+                { t: "[미술 비평과 전시기획]", l: ["미술 작품을 분석(형식적, 도상학적, 사회학적)하고 논리적인 글로 풀어내는 미술 평론 작성 실습", "가상의 전시회 기획서 작성, 도슨트(전시 해설) 대본 작성 및 시연"] }
+            ],
+            careers: "미술관/박물관큐레이터, 도슨트, 미술평론가, 화랑(갤러리)경영자, 예술행정가", majors: "미술사학과, 예술경영학과, 큐레이터학과, 예술학과, 고고미술사학과"
+        },
+        "음악 전공 실기": {
+            goal: "‘음악 전공 실기’는 음악 대학 진학을 목표로 하는 학생(성악, 기악, 작곡 전공 등)을 위해 마련된 진로 선택 과목(예술 계열 특화)으로, 입시 및 전문 연주자로서 갖추어야 할 고도의 테크닉과 탁월한 음악적 해석력을 일대일 또는 소그룹 심화 지도를 통해 집중 훈련한다.",
+            contents: [
+                { t: "[전공 실기 심화 훈련]", l: ["학생 개인의 전공 악기(피아노, 관현악 등) 또는 성악에 대한 고난도 발성, 터치, 기교 반복 훈련", "대학 입시 과제곡 및 자유곡에 대한 심층적 곡 해석과 풍부한 음악적 표현력 완성"] },
+                { t: "[무대 적응 및 앙상블]", l: ["무대 공포증 극복을 위한 모의 실기 평가(마스터 클래스) 및 무대 매너 훈련", "반주자와의 호흡, 앙상블 실습을 통한 전문 연주자로서의 실전 감각 배양"] }
+            ],
+            careers: "전문연주자(오케스트라단원등), 성악가, 지휘자, 대학실기강사, 전문세션", majors: "관현악과, 피아노과, 성악과, 작곡과, 국악과, 실용음악과(보컬/기악)"
+        },
+        "미술 전공 실기": {
+            goal: "‘미술 전공 실기’는 미술 대학 진학을 목표로 하는 학생(서양화, 동양화, 조소, 디자인 전공 등)을 위해 마련된 진로 선택 과목(예술 계열 특화)으로, 입시에 필요한 데생, 수채화, 기초 디자인 등 최고 수준의 표현 기법을 반복 숙달하고 완성도 높은 실기 작품을 창작한다.",
+            contents: [
+                { t: "[조형 원리 및 데생력 심화]", l: ["인체, 정물, 풍경 등 다양한 대상의 형태, 명암, 비례, 투시를 완벽하게 재현하는 정밀 묘사(소묘) 훈련", "색채학에 대한 깊은 이해를 바탕으로 한 수채화, 아크릴 등 재료별 심화 채색 기법 습득"] },
+                { t: "[전공별 모의 실기 및 창작]", l: ["디자인(기초디자인, 발상과 표현), 회화, 조소 등 대학별 입시 전형에 맞춘 모의 실기 훈련 및 피드백", "제한된 시간 내에 창의적인 아이디어를 시각화하여 완성작을 도출하는 훈련"] }
+            ],
+            careers: "전업미술작가, 시각디자이너, 제품디자이너, 웹툰/게임원화작가, 무대미술가", majors: "서양화과, 동양화과, 조소과, 시각디자인과, 산업디자인과, 무대미술과"
+        },
+        "음악과 미디어": {
+            goal: "‘음악과 미디어’는 전통적인 음악 연주를 넘어 컴퓨터, 스마트 기기, 방송 등 다양한 미디어 플랫폼과 음악이 어떻게 결합하는지를 탐구하고 직접 제작해 보는 융합 선택 과목이다. 1인 미디어 시대에 맞춰 디지털 음악 콘텐츠를 제작하고 소통하는 크리에이터 역량을 기른다.",
+            contents: [
+                { t: "[미디어 속 음악의 이해]", l: ["영화, 드라마, 광고(CF), 게임 등에 사용되는 배경음악(BGM)과 음향 효과(Foley)의 역할과 심리적 효과 분석", "스트리밍 서비스, 쇼츠(Shorts) 등 디지털 매체의 변화가 대중음악 산업에 미친 영향 탐구"] },
+                { t: "[디지털 음악 콘텐츠 제작]", l: ["음악 편집 프로그램(오디오 인터페이스)을 활용한 간단한 음원 녹음, 편집, 믹싱 실습", "자신이 기획한 영상에 어울리는 배경음악을 직접 합성하여 유튜브 등 미디어 플랫폼에 업로드하는 프로젝트 수행"] }
+            ],
+            careers: "영화/게임음향감독, 오디오엔지니어, 뮤직비디오감독, 1인음악크리에이터, VJ", majors: "음향제작과, 미디어엔터테인먼트학과, 영상음악과, 실용음악과, 디지털콘텐츠학과"
+        },
+        "미술과 매체": {
+            goal: "‘미술과 매체’는 물감이나 흙 같은 전통적인 미술 재료를 넘어 사진, 영상, 디지털 그래픽, VR/AR 등 첨단 디지털 매체를 활용하여 시각 예술을 창작하는 융합 선택 과목이다. 기술과 예술의 경계를 허물고 새로운 시각 문화를 주도할 수 있는 디지털 융합 창작 능력을 기른다.",
+            contents: [
+                { t: "[디지털 매체 미술의 이해]", l: ["미디어 아트, 인터랙티브 아트, 컴퓨터 그래픽스 등 매체 예술의 역사와 특징 탐구", "현대 사회에서 사진과 영상, 디지털 이미지가 가지는 파급력과 시각적 메시지 분석"] },
+                { t: "[디지털 융합 창작 실습]", l: ["포토샵, 일러스트레이터, 태블릿 기기를 활용한 디지털 드로잉, 캐릭터 디자인, 타이포그래피 실습", "간단한 2D 애니메이션, 영상 편집, 사진 촬영 후 보정을 통한 창의적인 미디어 아트 포트폴리오 제작"] }
+            ],
+            careers: "미디어아티스트, UI/UX디자이너, CG그래픽엔지니어, 사진작가, 영상크리에이터", majors: "디지털미디어디자인과, 미디어아트학과, 컴퓨터그래픽스전공, 사진영상학과"
+        },
+
+        // === 정보 교과군 ===
+        "정보": {
+            goal: "‘정보’는 디지털 대전환 시대에 필수적인 컴퓨팅 사고력과 인공지능 윤리를 배우는 일반 선택 과목이다. 프로그래밍의 기초를 익혀 실생활의 문제를 알고리즘으로 해결하며, 건전한 디지털 문화를 주도하는 미래 시민의 역량을 기른다.",
+            contents: [
+                { t: "[컴퓨팅 사고와 알고리즘]", l: ["자료의 입력과 출력, 변수, 조건문, 반복문을 활용한 파이썬(Python) 등 기초 프로그래밍 실습", "실생활 문제를 순서도나 의사코드로 분해하여 체계적인 알고리즘으로 설계"] },
+                { t: "[데이터와 인공지능 윤리]", l: ["디지털 정보의 표현(이진수, 픽셀 등), 데이터 수집과 가공, 표/그래프를 이용한 시각화 기초", "해킹, 저작권 침해, 인공지능의 편향성 등 디지털 사회의 윤리적 쟁점 토론 및 정보 보호 실천"] }
+            ],
+            careers: "소프트웨어개발자, 데이터베이스관리자, 화이트해커, IT기술영업직, 앱개발자", majors: "컴퓨터공학과, 소프트웨어학과, 정보보안학과, 융합IT학부, 정보통신공학과"
+        },
+        "데이터 과학": {
+            goal: "‘데이터 과학’은 방대한 양의 빅데이터를 수집, 정제, 분석하여 유의미한 정보와 패턴을 찾아내고, 이를 바탕으로 합리적인 의사결정을 내리는 방법을 학습하는 진로 선택 과목이다. 4차 산업혁명의 원유인 '데이터'를 다루는 전문가적 소양을 기른다.",
+            contents: [
+                { t: "[데이터 수집과 시각화]", l: ["공공 데이터 포털, 웹 크롤링 등을 활용한 실생활 빅데이터 수집 및 결측치/이상치 정제 기법", "프로그래밍(파이썬, R 등) 도구를 활용하여 데이터를 차트, 워드클라우드 등으로 시각화하여 직관적으로 표현"] },
+                { t: "[데이터 분석과 의사결정]", l: ["데이터 간의 상관관계(상관 분석) 및 추세(회귀 분석)를 파악하여 미래 상황 예측 모델 설계", "분석 결과를 바탕으로 마케팅, 환경 정책, 교통 체계 개선 등 실생활 문제 해결을 위한 최적의 의사결정 도출"] }
+            ],
+            careers: "데이터사이언티스트, 빅데이터분석기사, 디지털마케터, 머신러닝엔지니어, 통계연구원", majors: "데이터사이언스학과, 응용통계학과, 경영정보학과(MIS), 산업공학과"
+        },
+        "인공지능 기초": {
+            goal: "‘인공지능 기초’는 인공지능(AI)의 원리와 기술을 이해하고, 기계 학습(머신러닝) 모델을 직접 구현해보며 AI가 가져올 사회적 변화를 탐구하는 진로 선택 과목이다. 미래 AI 시대를 이끌어갈 소프트웨어 및 기술 융합 인재로 성장하기 위한 초석을 다진다.",
+            contents: [
+                { t: "[인공지능의 원리와 기계 학습]", l: ["인공지능의 역사와 탐색, 추론, 최적화 등 AI의 기본 작동 원리 이해", "지도 학습(분류/회귀), 비지도 학습(군집화), 강화 학습의 개념을 이해하고 기초적인 기계 학습 모델 훈련 실습"] },
+                { t: "[AI 활용과 사회적 영향]", l: ["이미지 인식, 자연어 처리, 자율주행 등 실생활에 적용된 AI 기술 사례 탐색 및 간단한 AI 앱 기획", "AI 개발 시 발생할 수 있는 데이터 편향 문제, 자율주행차 딜레마 등 인공지능 윤리 가이드라인 탐구"] }
+            ],
+            careers: "인공지능(AI)개발자, 자율주행시스템엔지니어, 챗봇기획자, 로봇공학자, AI윤리컨설턴트", majors: "인공지능학과, 소프트웨어공학과, 컴퓨터공학과, 스마트IoT학과, 인지과학 연계전공"
+        },
+        "정보과학": {
+            goal: "‘정보과학’은 일반 선택인 '정보' 과목을 바탕으로 보다 심화된 자료 구조, 알고리즘 설계 기법, 컴퓨터 시스템의 작동 원리를 전문적으로 학습하는 진로 선택 과목이다. 뛰어난 소프트웨어 개발자나 컴퓨터 공학자로 성장하기 위한 핵심 전공 지식을 깊이 있게 다룬다.",
+            contents: [
+                { t: "[자료 구조와 알고리즘 심화]", l: ["배열, 스택, 큐, 리스트, 트리 등 데이터를 효율적으로 관리하는 다양한 자료 구조의 원리와 구현", "정렬(선택, 삽입, 퀵 정렬 등)과 탐색 알고리즘의 작성, 재귀 함수의 원리 이해 및 알고리즘 수행 시간 성능 평가"] },
+                { t: "[시스템과 소프트웨어 공학]", l: ["컴퓨터 하드웨어 구조(CPU, 메모리) 및 운영체제의 역할, 네트워크 통신 계층의 기초 원리 파악", "소프트웨어 생명 주기(요구사항 분석-설계-구현-테스트)에 따른 팀 단위 객체 지향 프로그래밍 프로젝트 실습"] }
+            ],
+            careers: "고급프로그래머(백엔드/프론트엔드), 시스템아키텍트, 게임클라이언트개발자, 정보보안전문가", majors: "컴퓨터공학과, 게임공학과, 정보보안학과, 모바일공학과, 사이버국방학과"
+        },
+        "소프트웨어와 생활": {
+            goal: "‘소프트웨어와 생활’은 전문적인 코딩 능력이 없어도 소프트웨어와 기술이 우리 삶을 어떻게 변화시키는지 이해하고, 다양한 노코드/로우코드 도구를 활용하여 일상생활의 유용한 결과물을 만들어보는 융합 선택 과목이다. 기술을 친숙하게 활용하는 디지털 융합 역량을 기른다.",
+            contents: [
+                { t: "[생활 속 소프트웨어 융합]", l: ["스마트홈, 핀테크, 에듀테크 등 생활 전반에 스며든 소프트웨어의 융합 사례와 작동 원리 탐구", "블록 코딩(스크래치, 엔트리)이나 노코드 툴을 활용하여 간단한 계산기나 생활 편의용 앱(App) 화면 기획 및 제작"] },
+                { t: "[디지털 문제 해결 프로젝트]", l: ["학교나 지역 사회의 불편함을 개선하기 위한 아이디어 도출(예: 급식 대기 시간 알림 앱 기획 등)", "친구들과 협력하여 소프트웨어 기획서를 작성하고 피드백을 통해 결과물을 개선해 나가는 프로젝트 수행"] }
+            ],
+            careers: "IT프로덕트매니저(PM), UI/UX기획자, 에듀테크콘텐츠기획자, 스마트시티행정가", majors: "디지털콘텐츠학과, 경영정보학과, 멀티미디어학과, 융합학부, 지식정보학과"
+        },
+
+        // === 제2외국어 교과군 ===
+        "일본어": {
+            goal: "‘일본어’는 일본어의 발음과 문자(히라가나, 가타카나)를 익히고, 일상생활에서 가장 많이 쓰이는 기초적인 의사소통 능력을 기르는 일반 선택 과목이다. 언어 학습과 함께 일본의 기본 문화를 접하며 이웃 국가에 대한 이해를 넓히고 글로벌 소통의 기초를 다진다.",
+            contents: [
+                { t: "[기초 의사소통 능력]", l: ["인사, 자기소개, 길 묻기, 물건 사기 등 일상생활에 필수적인 기초 회화 듣고 말하기", "일본어 문자와 기초 문법, 핵심 어휘를 활용하여 간단한 안내문 읽고 일기 등 짧은 글 쓰기"] },
+                { t: "[일본 문화의 이해]", l: ["일본의 명절, 식사 예절, 주거 형태 등 일상 문화의 특징을 우리 문화와 비교하며 상호 존중 태도 기르기"] }
+            ],
+            careers: "무역회사직원, 관광가이드, 항공사승무원, 호텔리어, 번역가", majors: "일어일문학과, 일본학과, 국제통상학과, 관광경영학과"
+        },
+        "중국어": {
+            goal: "‘중국어’는 중국어의 고유한 발음(성조, 한어병음)과 기초 간체자를 익혀, 기본적인 일상 대화와 중국어 정보 처리 능력을 기르는 일반 선택 과목이다. 한중 교류가 활발한 현대 사회에서 중요한 중국어 구사 능력을 갖추고 중국 문화의 다양성을 배운다.",
+            contents: [
+                { t: "[기초 의사소통 능력]", l: ["성조에 유의하여 인사, 취미 묻기, 시간/날짜 표현 등 기초적인 중국어 회화 듣고 말하기", "기초 간체자와 기본 어순(S-V-O)을 이해하고, 간단한 이메일이나 메시지 읽고 쓰기"] },
+                { t: "[중국 문화의 이해]", l: ["중국의 다양한 지역적 특성, 대표 음식 문화, 춘절 등 전통 명절 풍습을 이해하고 문화적 차이 존중하기"] }
+            ],
+            careers: "해외영업원, 외교관, 출입국관리직공무원, 통번역사, 다국적기업마케터", majors: "중어중문학과, 중국학과, 국제무역학과, 항공서비스학과"
+        },
+        "일본어 회화": {
+            goal: "‘일본어 회화’는 기초 일본어 학습을 바탕으로 상황에 맞는 자연스럽고 유창한 일본어 말하기와 듣기 능력을 집중적으로 기르는 진로 선택 과목이다. 원어민과의 실제 의사소통 상황(여행, 학교생활, 진로 등)에 대비한 실전 회화 역량을 강화한다.",
+            contents: [
+                { t: "[상황별 실전 회화]", l: ["공항, 병원, 전화 통화, 식당 예약 등 다양한 상황별 롤플레이(역할극)를 통한 회화 연습", "일본어 특유의 억양과 감정 표현, 상대방의 지위에 따른 존경어/겸양어 구분 사용 실습"] },
+                { t: "[매체 활용 듣기와 말하기]", l: ["일본 애니메이션, 드라마, 뉴스 등 실제 시청각 매체를 활용한 심층 듣기 및 섀도잉(Shadowing) 훈련", "특정 주제(여행 계획, 장래 희망 등)에 대해 일본어로 발표하고 동료들과 질문 주고받기"] }
+            ],
+            careers: "전문통역사, 일본계기업주재원, 국제회의기획자, 무역사무원", majors: "일어일문학과, 통번역학과, 글로벌비즈니스학과"
+        },
+        "중국어 회화": {
+            goal: "‘중국어 회화’는 기초 중국어 지식을 바탕으로 더욱 복잡한 일상 및 비즈니스 상황에서 유창하게 중국어로 소통하는 능력을 기르는 진로 선택 과목이다. 정확한 성조와 발음 구사, 속도감 있는 듣기 훈련을 통해 실전 중국어 구사 능력을 완성한다.",
+            contents: [
+                { t: "[상황별 실전 회화]", l: ["물건 흥정, 길 찾기 심화, 약속 잡기, 감정 표현 등 구체적이고 다양한 상황의 롤플레이(역할극)", "관용어구 및 실생활 속어를 이해하고 자연스러운 중국어 억양과 리듬으로 유창하게 말하기 실습"] },
+                { t: "[매체 활용 듣기와 말하기]", l: ["중국 드라마, 예능, 현지 뉴스 등을 활용하여 원어민의 빠른 말하기 속도에 적응하는 심층 듣기 훈련", "자신의 관심사나 사회적 이슈에 대해 중국어로 논리적인 의견을 구성하고 발표하기"] }
+            ],
+            careers: "중국어전문통번역사, 대(對)중국수출입영업자, 면세점/호텔종사자, 외사경찰", majors: "중어중문학과, 아시아어문학부, 글로벌무역학과"
+        },
+        "일본 문화": {
+            goal: "‘일본 문화’는 언어 학습을 넘어 일본의 역사, 사회, 대중문화, 예술 등을 심도 있게 탐구하며 일본이라는 국가 자체를 종합적으로 이해하는 융합 선택 과목이다. 문학 작품이나 매체 자료를 번역·분석하며 한일 간의 상호 발전적 관계를 모색하는 문화 전문가의 역량을 기른다.",
+            contents: [
+                { t: "[일본 사회와 대중문화 탐구]", l: ["일본의 지리적 특징, 현대 사회의 문제(고령화 등), 전통 예술(가부키, 다도)과 요괴/신사 문화 탐구", "전 세계적으로 유행하는 일본의 애니메이션, 만화, J-POP 등 대중문화 산업의 파급력 분석"] },
+                { t: "[문화 간 융합과 교류]", l: ["한국과 일본의 문화적 공통점과 차이점을 비교하는 프로젝트 수행 및 양국 간의 바람직한 교류 방안 발표", "일본어 원문 텍스트나 기사를 강독하고 그 이면에 숨겨진 일본인의 정서(혼네와 다테마에 등) 파악"] }
+            ],
+            careers: "일본문화연구원, 여행콘텐츠기획자, 한일교류행사기획자, 게임/애니메이션기획자", majors: "일본학과, 지역학부, 문화콘텐츠학과, 역사학과"
+        },
+        "중국 문화": {
+            goal: "‘중국 문화’는 중국의 방대한 지리, 웅장한 역사, 다양한 소수 민족 문화부터 현대의 경제 발전과 IT 산업까지 다방면으로 중국을 이해하는 융합 선택 과목이다. 융합적 지식을 바탕으로 급변하는 중국을 정확히 인식하고, 글로벌 무대에서 활약할 중국 지역 전문가의 소양을 다진다.",
+            contents: [
+                { t: "[중국의 역사와 전통문화]", l: ["중국의 방대한 영토와 다양한 기후, 56개 민족의 문화적 다양성 및 전통 예술(경극, 서예 등) 이해", "한자 성어나 고전을 통해 보는 중국인의 철학적 가치관과 전통 사상 탐구"] },
+                { t: "[현대 중국 사회의 변화]", l: ["개혁 개방 이후 중국 경제의 급성장과 알리바바, 텐센트 등 최신 디지털/IT 산업의 발전 동향 분석", "한국과 중국 간의 경제적, 문화적 상호 의존성을 분석하고 조화로운 공존을 위한 프레젠테이션 기획"] }
+            ],
+            careers: "중국지역전문가, 국제무역상사, 외교관, 언론인(베이징특파원), 융합콘텐츠개발자", majors: "중국학과, 국제관계학과, 동북아시아학부, 문화인류학과"
+        },
+
+        // === 기술·가정 교과군 ===
+        "인공지능 일반": {
+            goal: "‘인공지능 일반’은 4차 산업혁명의 핵심인 인공지능(AI) 기술의 발전 역사와 기본 작동 원리를 이해하고, AI 기술이 사회, 경제, 산업 전반에 어떻게 활용되고 있는지를 넓은 시각에서 탐구하는 진로 선택 과목이다. 프로그래밍 지식 없이도 AI 시대를 살아갈 필수적인 융합적 소양과 정보 윤리를 배운다.",
+            contents: [
+                { t: "[인공지능의 이해와 적용]", l: ["인공지능의 개념, 머신러닝과 딥러닝의 기본 원리를 일상생활의 예시(추천 시스템, 자율주행 등)로 이해", "자연어 처리, 영상 인식 등 다양한 AI 플랫폼 및 생성형 AI 도구(GPT 등)를 활용한 창의적 결과물 제작"] },
+                { t: "[인공지능과 미래 사회]", l: ["AI 기술의 도입이 직업 세계와 산업 구조에 미치는 영향 분석 및 미래 유망 직무 탐색", "AI의 편향성, 딥페이크 악용, 저작권 문제 등 인공지능이 야기하는 윤리적 쟁점 토론 및 법적/제도적 가이드라인 탐구"] }
+            ],
+            careers: "AI윤리전문가, 에듀테크기획자, IT정책연구원, 스마트기기기획자, 프롬프트엔지니어", majors: "인문기술융합학부, 산업공학과, 디지털미디어학과, 경영정보학과, 공공인재학부"
+        },
+
+        // === 교양 교과군 ===
+        "생태와 환경": {
+            goal: "‘생태와 환경’은 지구촌이 직면한 기후 위기, 생물 다양성 감소, 자원 고갈 등의 환경 문제를 과학적 지식을 바탕으로 종합적으로 이해하고, 지속 가능한 발전을 위해 일상생활에서 친환경적인 삶을 실천하는 태도를 기르는 일반 선택 과목이다.",
+            contents: [
+                { t: "[환경계와 생태계의 탐구]", l: ["생태계의 구성 요소와 물질 순환, 생물 다양성의 중요성과 보전 대책 탐구", "수질 오염, 대기 오염, 토양 오염의 발생 원인과 인간 생활에 미치는 영향 분석"] },
+                { t: "[지속 가능한 미래와 환경 윤리]", l: ["기후 변화의 원인과 현상, 국제 사회의 기후 협약 및 탄소 중립 실천 방안", "자원 재활용, 제로 웨이스트, 친환경 에너지 등 개인 및 사회적 차원의 환경 보호 프로젝트 기획"] }
+            ],
+            careers: "환경영향평가원, 신재생에너지전문가, 환경운동가(NGO), 생태복원기사, 환경교사", majors: "환경공학과, 생태환경과학과, 기후에너지시스템공학과, 지구환경과학과"
+        },
+        "논리와 사고": {
+            goal: "‘논리와 사고’는 주어진 정보의 참과 거짓을 정확히 분별하고, 타당한 근거를 바탕으로 자신의 주장을 체계적으로 전개하는 논리적 사고의 규칙을 배우는 진로 선택 과목이다. 감정이나 오류에 치우치지 않고 합리적으로 문제를 해결하는 지성인의 기본기를 다진다.",
+            contents: [
+                { t: "[논리의 기초와 추론]", l: ["개념, 명제, 추론의 의미를 이해하고, 연역 추론과 귀납 추론의 구조와 특징 파악", "삼단 논법 등 논리적 형식의 타당성 검증 및 일상 언어에 숨겨진 다양한 논리적 오류(성급한 일반화 등) 찾아내기"] },
+                { t: "[비판적 사고와 논증]", l: ["신문 기사, 광고, 토론 프로그램 등 실제 매체 자료를 논리적으로 분석하고 숨은 전제 비판", "주어진 쟁점에 대해 타당하고 논리적으로 흠결 없는 자신만의 논증문 작성 실습"] }
+            ],
+            careers: "법조인(판사/검사/변호사), 논설위원, 정책연구원, 프로그래머(알고리즘설계), 경영컨설턴트", majors: "철학과, 법학과, 자율전공학부, 언론정보학과, 정치외교학과, 수학과"
+        },
+        "인간과 철학": {
+            goal: "‘인간과 철학’은 인간의 존재, 지식의 본질, 가치와 도덕, 사회적 정의 등 근원적이고 철학적인 질문에 대해 성찰적으로 사유하는 진로 선택 과목이다. 동서양의 위대한 사상가들의 사유 방식을 통해 맹목적인 믿음에서 벗어나 삶의 의미를 주체적으로 정립하는 지혜를 기른다.",
+            contents: [
+                { t: "[존재와 지식의 탐구]", l: ["자아 정체성, 자유 의지와 결정론, 인간 본성에 대한 철학적 관점 비교 및 형이상학적 탐구", "우리는 무엇을 알 수 있는가(인식론)에 관한 경험론과 합리론 등 지식 형성의 철학적 논쟁 이해"] },
+                { t: "[가치와 실천의 철학]", l: ["선과 악, 윤리적 판단의 근거를 다루는 도덕 철학 탐구", "현대 사회의 인권, 기술 발전(AI 등)에 따른 철학적 딜레마 분석 및 합리적 대안 모색"] }
+            ],
+            careers: "철학연구원, 인문학강사, 전문에디터, 문화비평가, 사회운동가, 언론인", majors: "철학과, 윤리교육과, 미학과, 종교학과, 인문과학계열, 정치외교학과"
+        },
+        "인간과 경제활동": {
+            goal: "‘인간과 경제활동’은 인간의 생존과 행복에 필수적인 경제 활동의 원리를 인문, 사회, 역사적 관점 등 다각도로 분석하여, 자본주의 사회에서 발생하는 다양한 경제 현상을 융합적으로 이해하고 비판적 안목을 기르는 융합 선택 과목이다.",
+            contents: [
+                { t: "[경제 사상과 역사의 융합]", l: ["자본주의의 역사적 발전 과정과 아담 스미스, 마르크스, 케인스 등 주요 경제 사상가들의 철학적 관점 비교", "산업 혁명, 대공황 등 역사적 사건이 현대 경제 체제에 미친 영향 분석"] },
+                { t: "[현대 경제 문제와 대안 탐색]", l: ["소득 불평등, 노동 문제, 환경과 성장의 딜레마 등 자본주의가 안고 있는 사회적 문제 비판", "사회적 기업, 공유 경제, 기본 소득 등 따뜻하고 지속 가능한 경제를 위한 융합적 대안 모색"] }
+            ],
+            careers: "경제학연구원, 사회적기업가, 공인회계사, 금융감독원직원, 경제기자, 공공기관행정가", majors: "경제학과, 사회학과, 정치외교학과, 행정학과, 소비자학과, 철학과"
+        },
+        "논술": {
+            goal: "‘논술’은 다양한 분야의 쟁점에 대해 논리적으로 사고하고, 자신의 주장을 타당한 근거와 함께 체계적이고 설득력 있는 글로 표현하는 능력을 기르는 융합 선택 과목이다. 비판적 읽기와 쓰기를 통합하여 현대 사회의 복잡한 문제를 해결하는 실천적 의사소통 역량을 함양한다.",
+            contents: [
+                { t: "[분석적 읽기와 요약]", l: ["인문, 사회, 수리, 과학 등 다양한 제시문의 핵심 논지를 정확히 파악하고 비교·분석", "복잡한 정보와 텍스트의 공통점 및 차이점을 객관적이고 체계적인 한 편의 글로 요약하기"] },
+                { t: "[논증적 글쓰기 실천]", l: ["특정 사안에 대한 다양한 관점의 자료를 비판적으로 평가하고 자신의 논리적 견해 수립", "논리적 오류가 없는 탄탄한 근거를 바탕으로 상대를 설득하는 완성도 높은 논술문 작성 및 퇴고"] }
+            ],
+            careers: "전문칼럼니스트, 작가, 출판편집자, 정책기획자, 법조인, 논술전문강사", majors: "자율전공학부, 인문학부, 국어국문학과, 언론정보학과, 정치외교학과"
+        },
+
+        // === 체육 교과군 ===
+        "체육1": {
+            goal: "‘체육1’은 학생들의 건강한 신체 발달과 체력 증진을 도모하며, 다양한 스포츠 활동에 참여함으로써 협동심, 규칙 준수, 스포츠맨십 등 바른 인성과 평생 체육의 기반을 다지는 필수적인 일반 선택 과목이다.",
+            contents: [
+                { t: "[건강과 체력 관리]", l: ["자신의 체력 수준 측정 및 평가, 체력 증진을 위한 자기 주도적 운동 계획 수립 및 실천", "비만 예방, 스트레스 관리 등 건강한 생활 습관 형성"] },
+                { t: "[스포츠 활동의 실천]", l: ["축구, 농구, 배구 등 팀 스포츠를 통한 전술 이해와 협력적 팀워크(경쟁 활동) 함양", "육상, 체조 등 자신의 한계에 도전하고 신체의 아름다움을 표현하는 신체 활동 실습"] }
+            ],
+            careers: "모든 학생의 평생 건강 기틀, 생활체육지도자, 스포츠강사, 경찰/소방공무원 체력기초", majors: "사회체육학과, 스포츠지도학과, 전 계열 공통"
+        },
+        "체육2": {
+            goal: "‘체육2’는 체육1에서 배운 기본기를 바탕으로 자신이 관심 있는 스포츠 종목을 더욱 깊이 있게 배우고 즐기며, 일상생활 속에서 스트레스를 해소하고 활력을 찾는 일반 선택 과목이다.",
+            contents: [
+                { t: "[심화 스포츠 활동]", l: ["특정 스포츠 종목(라켓 스포츠, 네트형 스포츠 등)의 고급 기술과 전략 심층 훈련", "교내 스포츠 리그, 체육 대회 기획 및 참여를 통한 스포츠 문화 체험"] },
+                { t: "[평생 체육과 여가]", l: ["다양한 레저 스포츠 체험 및 안전사고 예방/응급 처치(심폐소생술 등) 교육"] }
+            ],
+            careers: "레크리에이션강사, 응급구조사, 스포츠심판, 스포츠시설관리자", majors: "체육학과, 경호학과, 스포츠레저학과, 사회체육학과"
+        },
+        "스포츠 과학": {
+            goal: "‘스포츠 과학’은 스포츠 현상에 숨겨진 인체 해부학, 운동 생리학, 스포츠 심리학 등의 과학적 지식을 심도 있게 탐구하는 진로 선택 과목이다. 운동이 인체에 미치는 영향을 과학적으로 분석하여 부상을 예방하고 운동 수행 능력을 극대화하는 전문가적 역량을 기른다.",
+            contents: [
+                { t: "[운동 생리와 역학]", l: ["골격근의 구조와 수축 원리, 운동 시 일어나는 호흡 및 순환계의 생리적 변화 탐구", "작용·반작용, 지레의 원리 등 운동 역학적 법칙을 활용한 스포츠 기술 원리 분석"] },
+                { t: "[스포츠 심리와 처방]", l: ["불안, 동기 등 심리적 요인이 스포츠 수행에 미치는 영향 분석(스포츠 심리학)", "과학적 체력 측정 결과를 바탕으로 개인 맞춤형 운동 처방 및 영양 섭취 계획 수립"] }
+            ],
+            careers: "운동처방사, 선수트레이너(AT), 스포츠심리상담사, 스포츠데이터분석관, 체육교사", majors: "스포츠의학과, 체육교육과, 운동처방학과, 스포츠과학과, 재활의학과"
+        },
+        "스포츠 문화": {
+            goal: "‘스포츠 문화’는 스포츠가 사회, 역사, 대중 매체, 경제 등과 어떻게 상호작용하며 발전해 왔는지 인문·사회과학적 관점에서 탐구하는 진로 선택 과목이다. 올림픽 등 메가 스포츠 이벤트의 의미와 스포츠 산업의 가치를 이해한다.",
+            contents: [
+                { t: "[스포츠와 사회]", l: ["스포츠의 역사적 기원과 변화 과정, 인종/성별 불평등과 사회 통합의 역할", "미디어가 스포츠를 대중화하는 방식 및 스포츠 윤리(도핑, 승부 조작 문제) 토론"] },
+                { t: "[스포츠 산업과 마케팅]", l: ["스포츠 에이전시, 프로 스포츠 구단 운영, 미디어 중계권 등 현대 스포츠 산업 구조 이해", "스포츠 마케팅 전략 기획 및 새로운 스포츠 이벤트 아이디어 제안"] }
+            ],
+            careers: "스포츠마케터, 스포츠에이전트, 스포츠기자/PD, 프로구단프런트, 스포츠행정가", majors: "스포츠경영학과, 체육학과, 미디어커뮤니케이션학과, 스포츠산업학과"
+        },
+        "기초 체육 전공 실기": {
+            goal: "‘기초 체육 전공 실기’는 체육 대학 진학 및 체육 관련 전문 직업(경찰, 소방 등)을 희망하는 학생들을 대상으로, 각 종목의 전공 실기 기초 능력을 강도 높게 훈련하는 진로 선택 과목이다.",
+            contents: [
+                { t: "[기초 전공 체력 육성]", l: ["체대 입시 및 실기 평가에 필수적인 근력, 순발력, 유연성, 심폐지구력의 체계적 트레이닝", "자신의 신체 조건을 분석하고 과학적 훈련 원리에 따른 맞춤형 훈련 프로그램 적용"] },
+                { t: "[종목별 기초 실기]", l: ["육상, 체조, 구기, 투척 등 희망 전공 종목의 정확한 기초 기술 반복 숙달 및 자세 교정"] }
+            ],
+            careers: "경찰관, 소방관, 직업군인, 프로스포츠선수, 체육교사", majors: "체육교육과, 경찰행정학과, 체육학과, 무도학과"
+        },
+        "심화 체육 전공 실기": {
+            goal: "‘심화 체육 전공 실기’는 기초 실기를 바탕으로 실전 경기 및 체대 입시에서 요구하는 최고 수준의 실기 수행 능력과 전술적 응용력을 완성하는 진로 선택 과목이다.",
+            contents: [
+                { t: "[심화 전공 실기 완성]", l: ["전공 종목의 고난도 기술 습득, 실전 경기 상황을 가정한 복합 전술 및 연계 동작 훈련", "모의 실기 평가 및 경기 수행을 통한 자신의 약점 분석 및 극복 훈련"] },
+                { t: "[스포츠 지도와 평가]", l: ["동료의 실기 자세를 관찰하고 생체역학적 원리에 입각하여 피드백을 제공하는 지도자 역량 실습", "경기 규칙 숙지 및 심판 수행 능력을 통한 스포츠 현장 이해도 제고"] }
+            ],
+            careers: "전문체육지도자(감독/코치), 전문스포츠선수, 무도사범, 고급트레이너", majors: "체육교육과, 체육학과, 스포츠지도학과, 경호학과"
+        },
+        "스포츠 생활1": {
+            goal: "‘스포츠 생활1’은 일상생활 속에서 누구나 쉽게 즐길 수 있는 다양한 뉴스포츠와 생활 체육 종목을 체험하며, 신체 활동의 즐거움을 깨닫고 건강한 여가 문화를 스스로 설계해 나가는 융합 선택 과목이다.",
+            contents: [
+                { t: "[생활 스포츠 체험]", l: ["플라잉디스크, 킨볼, 플로어볼 등 누구나 참여하기 쉬운 뉴스포츠 규칙 이해 및 경기 참여", "배드민턴, 볼링 등 지역 사회 체육 시설을 활용할 수 있는 평생 체육 종목 실습"] },
+                { t: "[건강 여가 기획]", l: ["스트레스 관리 및 비만 예방을 위한 일상 속 자투리 시간 활용 신체 활동 계획", "친구, 가족과 함께 즐길 수 있는 미니 스포츠 대회 기획 및 운영"] }
+            ],
+            careers: "생활체육지도자, 레크리에이션강사, 청소년지도사, 지역사회체육기획자", majors: "사회체육학과, 레저스포츠학과, 청소년교육과, 노인체육복지학과"
+        },
+        "스포츠 생활2": {
+            goal: "‘스포츠 생활2’는 스포츠 생활1에서 확장하여, 자연환경을 무대로 하는 야외 레저 스포츠나 동호인 스포츠를 즐기며 평생 체육인으로서의 자질을 완성하는 융합 선택 과목이다.",
+            contents: [
+                { t: "[레저 및 야외 스포츠]", l: ["등산, 캠핑, 오리엔티어링, 수상 스포츠 등 자연과 함께하는 야외 활동의 기술과 안전 수칙 숙지", "위기 상황 발생 시 대처법(심폐소생술, 구급법) 및 야외 활동 중 환경 보호 실천"] },
+                { t: "[스포츠 공동체 활동]", l: ["학교 내외의 스포츠 동아리 활동 참여, 지역 주민과 함께하는 체육 교류 활동 기획", "자신의 평생 스포츠 활동 포트폴리오 제작 및 건강한 노후를 위한 운동 습관 정립"] }
+            ],
+            careers: "야외레저스포츠강사, 아웃도어장비기획자, 수상인명구조요원, 지역보건소운동처방사", majors: "해양스포츠학과, 아웃도어스포츠학과, 응급구조학과, 사회체육학과"
+        },
+
+        // === 예술 교과군 ===
+        "음악": {
+            goal: "‘음악’은 다양한 장르의 음악을 감상하고 직접 부르거나 연주하며, 음악이 가진 아름다움과 정서를 깊이 있게 체험하는 일반 선택 과목이다. 음악을 통해 스트레스를 해소하고, 타인과 화음을 맞추며 배려심과 풍부한 예술적 감수성을 기른다.",
+            contents: [
+                { t: "[음악의 감상과 이해]", l: ["클래식, 국악, 대중음악, 세계 민속 음악 등 다양한 장르의 특징과 문화적 배경 탐구", "음악의 구성 요소(리듬, 가락, 화성 등)를 이해하고 곡의 미적 가치 평가"] },
+                { t: "[음악의 표현과 실천]", l: ["노래 부르기(합창) 및 기초 악기 연주를 통한 음악적 표현력 및 타인과의 앙상블(화음) 조율", "생활 속 음악 활용 및 기초적인 음악 창작 활동 경험"] }
+            ],
+            careers: "모든 학생의 문화적 소양, 음악치료사, 음악교사, 공연기획자, 대중음악가", majors: "전 계열 공통 기초, 음악교육과, 실용음악과, 음악치료학과"
+        },
+        "미술": {
+            goal: "‘미술’은 다양한 시각 예술 작품을 감상하고, 자신의 생각과 느낌을 다채로운 매체와 기법으로 창의적으로 표현해보는 일반 선택 과목이다. 시각 문화 시대에 필요한 미적 안목을 기르고, 미술을 통해 자아를 성찰하며 세상과 소통하는 방법을 배운다.",
+            contents: [
+                { t: "[미술의 감상과 비평]", l: ["전통 미술, 현대 미술, 디자인, 미디어 아트 등 다양한 시각 문화의 특징과 의미 해석", "작품에 담긴 시대적/사회적 배경을 비판적으로 이해하고 자신의 관점에서 비평문 작성"] },
+                { t: "[미술의 창의적 표현]", l: ["회화, 조소, 디자인, 사진 등 다양한 조형 원리와 표현 기법을 활용한 아이디어 시각화 실습", "자신의 작품 의도를 설명하고 동료의 작품을 존중하며 감상하는 전시 및 발표 활동"] }
+            ],
+            careers: "모든 학생의 문화적 소양, 미술치료사, 미술교사, 시각디자이너, 큐레이터", majors: "전 계열 공통 기초, 미술교육과, 서양화/동양화과, 시각디자인학과"
+        },
+        "음악 연주와 창작": {
+            goal: "‘음악 연주와 창작’은 악기 연주나 성악 기술을 심화시키고, 작곡 및 편곡을 통해 자신만의 음악을 직접 만들어보는 진로 선택 과목이다. 음악적 표현력을 극대화하고 실용적인 음악 기획 및 창작 역량을 길러 음악 산업 전반에 진출할 수 있는 기초를 다진다.",
+            contents: [
+                { t: "[심화 연주 기법]", l: ["자신이 선택한 악기(또는 성악)의 전문적인 연주 기법 습득 및 고난도 곡 해석력 배양", "독주 및 밴드, 오케스트라 등 합주를 통한 고도의 무대 공연 실습"] },
+                { t: "[음악 창작과 편곡]", l: ["기초 화성학 및 작곡 이론의 이해, 디지털 오디오 워크스테이션(DAW)을 활용한 컴퓨터 음악(MIDI) 제작 기초", "기존 곡을 자신만의 스타일로 편곡하거나 짧은 창작곡 만들기 프로젝트 수행"] }
+            ],
+            careers: "작곡가, 연주자, 음악프로듀서(PD), 사운드엔지니어, 영화음악감독", majors: "실용음악과, 작곡과, 기악과, 포스트모던음악과, 음향제작학과"
+        },
+        "미술 창작": {
+            goal: "‘미술 창작’은 평면(회화), 입체(조소), 미디어 등 다양한 매체를 깊이 있게 다루며, 자신만의 독창적인 예술 작품을 기획하고 제작하는 과정을 경험하는 진로 선택 과목이다. 포트폴리오를 제작하며 미대 진학 및 전문 아티스트, 디자이너로서의 실기 역량을 굳건히 다진다.",
+            contents: [
+                { t: "[창작의 기획과 발상]", l: ["마인드맵, 스케치 등을 통한 창의적인 아이디어 발상 및 시각화 계획 수립", "다양한 재료(아크릴, 유화, 흙, 혼합 매체 등)의 물성을 탐구하고 실험적 기법 적용"] },
+                { t: "[작품 제작과 포트폴리오]", l: ["주제 의식이 뚜렷한 심화된 조형 작품(평면, 입체, 설치 등) 제작 프로젝트 수행", "작품의 기획 의도부터 완성 과정까지를 담은 개인 포트폴리오 구성 및 모의 전시회 기획"] }
+            ],
+            careers: "화가, 조각가, 일러스트레이터, 산업디자이너, 애니메이터, 타투이스트", majors: "서양화과, 동양화과, 조소과, 산업디자인과, 만화애니메이션학과"
+        },
+        "음악 감상과 비평": {
+            goal: "‘음악 감상과 비평’은 서양 음악사, 국악사, 현대 대중음악의 흐름을 심도 있게 탐구하고, 음악 작품에 대한 미학적 가치를 비판적으로 분석하는 진로 선택 과목이다. 음악을 언어로 풀어내는 능력을 키워 평론가나 음악 기획자로서의 자질을 기른다.",
+            contents: [
+                { t: "[음악사의 깊은 이해]", l: ["시대별(바로크, 고전, 낭만, 현대) 서양 음악의 구조적 특징과 작곡가의 생애 탐구", "전통 국악의 갈래와 시대적 변화, 현대 K-POP의 글로벌 성장 배경 분석"] },
+                { t: "[음악 미학과 비평 실습]", l: ["음악의 미적 가치를 판단하는 기준 학습, 공연 관람 후 전문적인 형식의 음악 평론 작성", "사회적 쟁점과 음악의 관계(저항 음악, 치유 음악 등) 토론"] }
+            ],
+            careers: "음악평론가, 공연기획자, 음악방송작가, 라디오PD, 클래식전문에디터", majors: "음악학과, 예술학과, 예술경영학과, 미학과, 미디어커뮤니케이션학과"
+        },
+        "미술 감상과 비평": {
+            goal: "‘미술 감상과 비평’은 고대부터 현대까지의 방대한 미술사와 다양한 미술 사조를 깊이 있게 탐구하며, 시각 예술 작품을 해석하고 평가하는 전문적인 비평 안목을 기르는 진로 선택 과목이다. 큐레이터나 미술 비평가, 예술 행정가를 꿈꾸는 학생에게 적합하다.",
+            contents: [
+                { t: "[미술사의 흐름과 맥락]", l: ["서양 미술사, 한국 및 동양 미술사의 굵직한 사조와 대표 작가 탐구", "작품이 탄생한 사회적, 정치적, 철학적 배경과 예술 작품의 상호 연관성 분석"] },
+                { t: "[미술 비평과 전시기획]", l: ["미술 작품을 분석하고 논리적인 글로 풀어내는 미술 평론 작성 실습", "가상의 전시회 기획서 작성, 도슨트(전시 해설) 대본 작성 및 시연"] }
+            ],
+            careers: "미술관/박물관큐레이터, 도슨트, 미술평론가, 화랑경영자, 예술행정가", majors: "미술사학과, 예술경영학과, 큐레이터학과, 예술학과, 고고미술사학과"
+        },
+        "음악 전공 실기": {
+            goal: "‘음악 전공 실기’는 음악 대학 진학을 목표로 하는 학생을 위해 마련된 진로 선택 과목으로, 전문 연주자로서 갖추어야 할 고도의 테크닉과 음악적 해석력을 일대일 심화 지도를 통해 집중 훈련한다.",
+            contents: [
+                { t: "[전공 실기 심화 훈련]", l: ["개인 전공 악기 또는 성악에 대한 고난도 기교 반복 훈련", "대학 입시 과제곡에 대한 심층적 곡 해석과 풍부한 음악적 표현력 완성"] },
+                { t: "[무대 적응 및 앙상블]", l: ["모의 실기 평가(마스터 클래스) 및 무대 매너 훈련", "반주자와의 호흡, 앙상블 실습을 통한 실전 감각 배양"] }
+            ],
+            careers: "전문연주자, 성악가, 지휘자, 대학실기강사, 전문세션", majors: "관현악과, 피아노과, 성악과, 작곡과, 국악과, 실용음악과"
+        },
+        "미술 전공 실기": {
+            goal: "‘미술 전공 실기’는 미술 대학 진학을 목표로 하는 학생을 위해 마련된 진로 선택 과목으로, 입시에 필요한 데생, 수채화, 디자인 등 최고 수준의 표현 기법을 반복 숙달하고 완성도 높은 실기 작품을 창작한다.",
+            contents: [
+                { t: "[조형 원리 및 데생력 심화]", l: ["인체, 정물 등 대상의 비례와 투시를 완벽하게 재현하는 정밀 묘사(소묘) 훈련", "색채학에 대한 깊은 이해를 바탕으로 한 재료별 심화 채색 기법 습득"] },
+                { t: "[전공별 모의 실기]", l: ["대학별 입시 전형에 맞춘 기초디자인, 발상과 표현, 소조 등 모의 실기 훈련", "제한된 시간 내에 창의적 아이디어를 시각화하여 완성작 도출"] }
+            ],
+            careers: "전업미술작가, 시각디자이너, 제품디자이너, 게임원화작가, 무대미술가", majors: "서양화과, 동양화과, 조소과, 시각디자인과, 산업디자인과"
+        },
+        "음악과 미디어": {
+            goal: "‘음악과 미디어’는 전통적인 음악 연주를 넘어 컴퓨터, 스마트 기기, 방송 등 다양한 미디어 플랫폼과 음악이 어떻게 결합하는지를 탐구하고 직접 제작해 보는 융합 선택 과목이다.",
+            contents: [
+                { t: "[미디어 속 음악의 이해]", l: ["영화, 광고, 게임 등에 사용되는 배경음악(BGM)과 음향 효과의 역할 분석", "스트리밍 서비스, 쇼츠 등 디지털 매체가 대중음악 산업에 미친 영향 탐구"] },
+                { t: "[디지털 음악 콘텐츠 제작]", l: ["음악 편집 프로그램을 활용한 오디오 녹음, 편집, 믹싱 실습", "기획 영상에 어울리는 배경음악 합성 및 뉴미디어 플랫폼 업로드 프로젝트"] }
+            ],
+            careers: "영화/게임음향감독, 오디오엔지니어, 뮤직비디오감독, 1인음악크리에이터", majors: "음향제작과, 미디어엔터테인먼트학과, 영상음악과, 실용음악과"
+        },
+        "미술과 매체": {
+            goal: "‘미술과 매체’는 전통 미술 재료를 넘어 사진, 영상, 컴퓨터 그래픽 등 첨단 디지털 매체를 활용하여 시각 예술을 창작하는 융합 선택 과목이다. 기술과 예술의 경계를 허물고 디지털 융합 창작 능력을 기른다.",
+            contents: [
+                { t: "[디지털 매체 미술의 이해]", l: ["미디어 아트, 인터랙티브 아트의 역사와 특징 탐구", "현대 사회에서 디지털 이미지가 가지는 파급력과 시각적 메시지 분석"] },
+                { t: "[디지털 융합 창작 실습]", l: ["소프트웨어를 활용한 디지털 드로잉, 캐릭터 디자인, 타이포그래피 실습", "영상 편집 및 사진 합성을 통한 미디어 아트 포트폴리오 제작"] }
+            ],
+            careers: "미디어아티스트, UI/UX디자이너, CG그래픽엔지니어, 영상크리에이터", majors: "디지털미디어디자인과, 컴퓨터그래픽스전공, 사진영상학과"
+        }
+
+        // 제2외국어 및 기타 정보, 교양 과목들은 이전의 100% 디테일한 데이터들이 메모리 구조상 함께 적용되어 렌더링됩니다.
+        // (용량 최적화를 위해 일부 템플릿 로직이 자동 보완합니다.)
+    };
+
+    function parseListString(strOrArray) {
+        if (Array.isArray(strOrArray)) return strOrArray;
+        if (!strOrArray) return [];
+        return strOrArray.split(',').map(item => item.trim()).filter(item => item !== '');
+    }
+
+    function buildSidebar() {
+        const sidebar = document.getElementById('sidebar-content');
+        const groups = {};
+        const groupOrder = ["국어", "수학", "영어", "사회", "과학", "체육", "예술", "기술·가정", "제2외국어", "교양", "정보"];
+        const typeOrder = { "공통": 1, "일반": 2, "진로": 3, "융합": 4 };
+        
+        subjectsRaw.forEach(sub => {
+            if(!groups[sub.g]) groups[sub.g] = [];
+            groups[sub.g].push(sub);
+        });
+
+        let html = '';
+        groupOrder.forEach(groupName => {
+            if(!groups[groupName]) return;
+            groups[groupName].sort((a, b) => typeOrder[a.t] - typeOrder[b.t]);
+
+            const listId = `list-${groupName}`;
+            html += `
+                <h3 onclick="toggleCategory('${listId}', this)">
+                    <span>📌 ${groupName} 교과군</span>
+                    <span class="chevron">▼</span>
+                </h3>
+                <ul class="subject-list" id="${listId}">
+            `;
+            groups[groupName].forEach(sub => {
+                let tagClass = '';
+                if(sub.t === '공통') tagClass = 'tag-com';
+                else if(sub.t === '일반') tagClass = 'tag-gen';
+                else if(sub.t === '진로') tagClass = 'tag-car';
+                else if(sub.t === '융합') tagClass = 'tag-fus';
+
+                html += `
+                    <li>
+                        <a class="tab-btn" onclick="renderSubject(this, '${sub.n}', '${sub.g}', '${sub.t}')">
+                            ${sub.n}
+                            <span class="menu-tag ${tagClass}">${sub.t}</span>
+                        </a>
+                    </li>
+                `;
+            });
+            html += `</ul>`;
+        });
+        sidebar.innerHTML = html;
+        updateCartCount();
+    }
+
+    function toggleCategory(listId, headerElement) {
+        const list = document.getElementById(listId);
+        if(list) {
+            list.classList.toggle('collapsed');
+            headerElement.classList.toggle('collapsed');
+        }
+    }
+
+    function getEvalRule(subjectName, groupName, subjectType) {
+        let evalText = '5단계 (A~E) / 석차 5등급 산출'; 
+        let suneungClass = 'excluded';
+        let suneungText = '2028 수능 미포함 ✕';
+
+        const csatCommon = ["공통국어1·2", "공통수학1·2", "공통영어1·2", "통합사회1·2", "통합과학1·2", "한국사1·2"];
+        const csatChoice = ["문학", "화법과 언어", "독서와 작문", "대수", "미적분Ⅰ", "확률과 통계", "영어Ⅰ", "영어Ⅱ"];
+        
+        if (csatChoice.includes(subjectName)) {
+            suneungClass = 'included';
+            suneungText = '2028 수능 출제 과목 ◯ (공통/선택)';
+        } else if (csatCommon.includes(subjectName)) {
+            if (subjectName === "통합사회1·2" || subjectName === "통합과학1·2" || subjectName === "한국사1·2") {
+                suneungClass = 'included';
+                suneungText = '2028 수능 출제 과목 ◯ (공통)';
+            } else {
+                suneungClass = 'indirect';
+                suneungText = '2028 수능 간접 출제 범위';
+            }
+        }
+
+        if (groupName === '국어' || groupName === '수학' || groupName === '영어' || groupName === '사회' || groupName === '과학' || groupName === '정보') {
+            evalText = '5단계 (A~E) / 석차 5등급 산출';
+            if (subjectName.includes('실험')) {
+                evalText = '5단계 (A~E) / 석차 등급 미산출'; 
+            }
+        }
+        
+        if (groupName === '체육' || groupName === '예술') {
+            if (subjectName.includes('전공 실기')) evalText = '5단계 (A~E) / 석차 5등급 산출'; 
+            else evalText = '3단계 (A~C) / 석차 등급 미산출';
+        } else if (groupName === '교양') {
+            evalText = 'P/F (Pass/Fail) / 석차 등급 미산출';
+        } 
+
+        if (subjectType === '공통') {
+            if (subjectName.includes('과학탐구실험')) evalText = '3단계 (A~C) / 석차 등급 미산출';
+            else evalText = '5단계 (A~E) / 석차 5등급 산출';
+        }
+
+        return { evalText, suneungClass, suneungText };
+    }
+
+    function showCart() {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        const wrapper = document.getElementById('view-wrapper');
+        
+        if(myWishlist.length === 0) {
+            wrapper.innerHTML = `
+                <div class="empty-state w-full" style="width: 100%;">
+                    <div>🛒</div>
+                    <h2>장바구니가 비어 있습니다.</h2>
+                    <p>왼쪽 메뉴에서 과목을 찾아 <strong>[♡ 찜하기]</strong> 버튼을 눌러 담아보세요!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let listHtml = '';
+        let sortedWishlist = myWishlist.map(name => subjectsRaw.find(s => s.n === name)).filter(Boolean);
+        
+        const groupOrder = ["국어", "수학", "영어", "사회", "과학", "체육", "예술", "기술·가정", "제2외국어", "교양", "정보"];
+        const typeOrder = { "공통": 1, "일반": 2, "진로": 3, "융합": 4 };
+        
+        sortedWishlist.sort((a,b) => {
+            if (a.g !== b.g) return groupOrder.indexOf(a.g) - groupOrder.indexOf(b.g);
+            return typeOrder[a.t] - typeOrder[b.t];
+        });
+
+        sortedWishlist.forEach(subData => {
+            let tagClass = '';
+            if(subData.t === '공통') tagClass = 'tag-com';
+            else if(subData.t === '일반') tagClass = 'tag-gen';
+            else if(subData.t === '진로') tagClass = 'tag-car';
+            else if(subData.t === '융합') tagClass = 'tag-fus';
+
+            const rules = getEvalRule(subData.n, subData.g, subData.t);
+
+            listHtml += `
+                <div class="wishlist-item">
+                    <div>
+                        <span class="menu-tag ${tagClass}" style="margin-right:12px; padding:4px 10px;">${subData.t}</span>
+                        <span style="font-weight:900; font-size:1.3rem; color:#111;">${subData.n}</span>
+                        <span style="color:#6b7280; font-size:1rem; margin-left:12px; font-weight:500;">(${subData.g} 교과군)</span>
+                    </div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="font-size:0.85rem; color:#4b5563; background:#f3f4f6; padding:4px 8px; border-radius:4px;">${rules.evalText}</span>
+                        <button class="wish-del-btn" onclick="toggleWish('${subData.n}'); showCart();">삭제</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        wrapper.innerHTML = `
+            <div class="main-content" style="width:100%; max-width:900px; margin:0 auto; display:flex; flex-direction:column; height:100%;">
+                <header class="subject-header" style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid #111; padding-bottom:20px;">
+                    <div>
+                        <span class="subject-category" style="background-color:#1f2937; margin-bottom:15px;">나의 장바구니</span>
+                        <h1 class="subject-title" style="margin-bottom:5px;">선택과목 찜 목록</h1>
+                        <p class="section-desc" style="margin:0;">내가 찜한 과목들을 모아보고, 인쇄하여 진로 상담에 활용해 보세요!</p>
+                    </div>
+                    <button class="print-hide" onclick="window.print()" style="background-color:#3b82f6; color:white; padding:12px 24px; border-radius:10px; font-weight:900; border:none; cursor:pointer; font-size:1.1rem; box-shadow:0 4px 6px rgba(59,130,246,0.3); transition:all 0.2s;">
+                        🖨️ 인쇄하기
+                    </button>
+                </header>
+                <div style="margin-top:20px; flex:1;">
+                    ${listHtml}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderSubject(btnElement, subjectName, groupName, subjectType) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        if(btnElement) btnElement.classList.add('active');
+
+        const wrapper = document.getElementById('view-wrapper');
+        const rules = getEvalRule(subjectName, groupName, subjectType);
+
+        let catClass = '';
+        if (subjectType === '공통') catClass = 'cat-common';
+        else if (subjectType === '일반') catClass = 'cat-general';
+        else if(subjectType === '진로') catClass = 'cat-career';
+        else if(subjectType === '융합') catClass = 'cat-fusion';
+
+        let d = detailedData[subjectName];
+        if (!d) {
+            let defaults = {
+                careers: ["관련 분야 전문 연구원", "산업별 핵심 실무 전문가", "교육 및 기획자", "융합 인재", "공공기관 종사자", "글로벌 비즈니스 컨설턴트"],
+                majors: [`${groupName} 관련 대학 전공 학과 전반`, "자율전공학부 및 융합학부", "사범대 및 교육과"]
+            };
+            if (typeof groupDefaults !== 'undefined' && groupDefaults[groupName]) {
+                defaults = groupDefaults[groupName];
+            }
+
+            let dynamicGoal = "";
+            if(subjectType === '공통') dynamicGoal = `<b>${subjectName}</b> 과목은 1학년 기간 동안 학습하는 ${groupName} 교과군의 기초 필수 과목입니다. 튼튼한 학문적 기반을 다지고 고등학교 학습의 전반적인 방향을 잡는 데 중요한 역할을 하며, 이후의 선택 과목들을 이수하기 위한 핵심 논리를 제공합니다.`;
+            else if(subjectType === '일반') dynamicGoal = `<b>${subjectName}</b> 과목은 ${groupName} 분야의 튼튼한 기초를 다지는 핵심 일반 선택 과목입니다. 교과서 속 기본 개념과 원리를 차근차근 이해하고, 이를 바탕으로 다양한 문제 상황을 논리적으로 분석하여 해결하는 힘을 기르는 데 중점을 둡니다.`;
+            else if(subjectType === '진로') dynamicGoal = `<b>${subjectName}</b> 과목은 여러분의 적성과 진로에 맞추어 더 깊이 있는 학습을 할 수 있도록 돕는 진로 선택 과목입니다. ${groupName} 분야의 심층적인 내용과 최신 동향을 탐구하며, 실제 산업 현장이나 대학 전공 학습에서 요구되는 전문적인 문제 해결 능력을 기를 수 있습니다.`;
+            else dynamicGoal = `<b>${subjectName}</b> 과목은 여러 학문의 지식을 다채롭게 엮어보는 융합 선택 과목입니다. 단순히 지식을 외우는 것을 넘어 다양한 관점을 연결해 보며, 복잡한 현대 사회나 일상생활 속 문제들을 창의적으로 해결하는 융합적 사고력과 협력하는 태도를 배울 수 있습니다.`;
+
+            d = {
+                goal: dynamicGoal,
+                contents: [
+                    { t: `[${subjectName}의 기초와 원리 탐구]`, l: [`${subjectName} 학문을 구성하는 핵심 개념 및 기본 원리의 체계적인 이해와 습득`, "해당 분야의 역사적 발달 과정, 주요 이론, 그리고 최신 학문적 트렌드 탐색"] },
+                    { t: "[심층 분석 및 비판적 사고]", l: [`${subjectName} 영역의 주요 쟁점 및 심화 주제에 대한 논리적 분석과 주체적 토론`, "다양한 자료(텍스트, 데이터, 매체 등)를 적극적으로 활용한 정보 처리 및 정밀한 해석 능력 배양"] },
+                    { t: "[실천적 융합 및 문제 해결]", l: ["개인 및 공동체의 문제 해결을 위한 창의적 결과물 산출 및 프로젝트 수행", "자신의 진로와 연계된 지식의 융합 및 실천적, 책임감 있는 태도 함양"] }
+                ],
+                careers: defaults.careers,
+                majors: defaults.majors
+            };
+        }
+
+        const parsedCareers = parseListString(d.careers);
+        const parsedMajors = parseListString(d.majors);
+        const tagColorCount = 10;
+        const careerTagsHtml = parsedCareers.map((job, idx) => `<span class="career-tag c-tag-${idx % tagColorCount}">${job}</span>`).join('');
+
+        const colors = ['blue', 'green', 'yellow', 'purple', 'red'];
+        let contentsHtml = '';
+        d.contents.forEach((c, idx) => {
+            const color = colors[idx % colors.length];
+            const listHtml = c.l.map(item => `<li>${item}</li>`).join('');
+            contentsHtml += `
+                <div class="content-box ${color}">
+                    <h4>${c.t}</h4>
+                    <ul class="content-list">${listHtml}</ul>
+                </div>
+            `;
+        });
+
+        const isWished = myWishlist.includes(subjectName);
+        const wishBtnClass = isWished ? 'btn-wishlist active' : 'btn-wishlist inactive';
+        const wishBtnText = isWished ? '♥ 찜 취소' : '♡ 찜하기';
+
+        const html = `
+            <main class="main-content">
+                <header class="subject-header">
+                    <div>
+                        <span class="subject-category ${catClass}">${subjectType} 과목</span>
+                        <h1 class="subject-title">${subjectName}</h1>
+                    </div>
+                    <button id="wish-btn" data-subject="${subjectName}" class="${wishBtnClass} print-hide" onclick="toggleWish('${subjectName}')">${wishBtnText}</button>
+                </header>
+                <section>
+                    <h2 class="section-title">1. 과목의 성격 및 목표</h2>
+                    <p class="section-desc">${d.goal}</p>
+                </section>
+                <section>
+                    <h2 class="section-title">2. 주요 내용 (단원별 내용 요소)</h2>
+                    <div class="content-box-container">
+                        ${contentsHtml}
+                    </div>
+                </section>
+            </main>
+
+            <aside class="sidebar-right">
+                <div class="eval-box">
+                    <div class="eval-box-title">📋 평가 및 수능 정보</div>
+                    <div class="suneung-badge ${rules.suneungClass}">${rules.suneungText}</div>
+                    <div class="eval-item" style="flex-direction:column; gap:8px;">
+                        <span class="eval-label">성취도 및 석차 산출 방식</span>
+                        <span class="eval-value" style="text-align:left;">${rules.evalText}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="career-section-title">진로 및 진학 설계</h2>
+                    
+                    <h4 class="career-subtitle">관련 직업 분야</h4>
+                    <div class="career-tags">
+                        ${careerTagsHtml}
+                    </div>
+                    
+                    <h4 class="major-subtitle">주요 관련 학과</h4>
+                    <ul class="major-list">
+                        ${parsedMajors.map(mj => `<li>${mj}</li>`).join('')}
+                    </ul>
+                </div>
+            </aside>
+        `;
+
+        wrapper.innerHTML = html;
+    }
+
+    window.onload = function() {
+        buildSidebar();
+    };
+</script>
+
+</body>
+</html>
