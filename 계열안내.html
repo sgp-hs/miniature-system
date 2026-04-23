@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022 개정 교육과정 계열별 학과 안내</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-color: #333;
+            --bg-color: #f3f4f6;
+            --border-color: #e5e7eb;
+            --sidebar-width: 300px;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1450px;
+            margin: 30px auto;
+            background-color: #fff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            height: 88vh; /* 스크롤 고정 */
+        }
+        
+        /* 사이드바 아코디언 스타일 */
+        .sidebar-left {
+            width: var(--sidebar-width);
+            background-color: #ffffff;
+            padding: 25px 20px;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+        .sidebar-left::-webkit-scrollbar { width: 6px; }
+        .sidebar-left::-webkit-scrollbar-track { background: #f1f1f1; }
+        .sidebar-left::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+
+        .sidebar-left h3 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #111827;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #111827;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .accordion-item { margin-bottom: 12px; }
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 14px 18px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-weight: 800;
+            color: #1e293b;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        .accordion-header:hover { background: #f1f5f9; border-color: #cbd5e1; }
+        .accordion-header.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+        .accordion-header .icon { transition: transform 0.3s ease; font-size: 0.9rem; }
+        .accordion-header.active .icon { transform: rotate(180deg); }
+        
+        .accordion-content {
+            display: none;
+            padding: 10px 5px 5px 15px;
+        }
+        .accordion-content.open {
+            display: block;
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .subject-list { list-style: none; padding: 0; margin: 0; border-left: 2px solid #e2e8f0; margin-left: 10px; }
+        .subject-list li { margin-bottom: 4px; position: relative; }
+        .subject-list li::before {
+            content: ''; position: absolute; top: 18px; left: -2px; width: 12px; height: 2px; background-color: #e2e8f0;
+        }
+        .subject-list a {
+            display: block; padding: 8px 12px 8px 20px; text-decoration: none; color: #475569;
+            border-radius: 6px; transition: all 0.2s; cursor: pointer; font-size: 0.95rem; font-weight: 600;
+        }
+        .subject-list a:hover { color: var(--primary-color); background-color: #eef2ff; }
+        .subject-list a.active {
+            background-color: #eef2ff; color: var(--primary-color); font-weight: 800;
+        }
+
+        /* 뷰 영역 (메인) */
+        .view-wrapper {
+            display: none; flex: 1; flex-direction: column; animation: fadeIn 0.4s ease-in-out;
+            padding: 45px 55px; overflow-y: auto; background-color: #ffffff;
+        }
+        .view-wrapper.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .subject-header { margin-bottom: 30px; }
+        .subject-category {
+            display: inline-block; padding: 6px 16px; color: var(--primary-color); border-radius: 20px;
+            font-size: 0.95rem; font-weight: 800; margin-bottom: 15px; background-color: #e0e7ff;
+        }
+        .subject-title { font-size: 2.4rem; font-weight: 900; margin: 0; color: #0f172a; letter-spacing: -0.5px; }
+        .subject-desc { font-size: 1.15rem; color: #475569; margin-top: 18px; line-height: 1.7; word-break: keep-all; }
+
+        /* 계열 과목 선택 안내 박스 */
+        .track-info-box {
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+            border-left: 5px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .track-info-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .track-info-desc {
+            font-size: 1.05rem;
+            color: #334155;
+            line-height: 1.6;
+            margin: 0;
+            word-break: keep-all;
+        }
+
+        .section-title { font-size: 1.4rem; font-weight: 800; margin: 35px 0 20px 0; color: #0f172a; display: flex; align-items: center; gap: 10px; }
+        
+        .major-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
+        .major-tag {
+            padding: 12px 22px; background-color: #fff; border: 2px solid #e2e8f0; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 800; color: #334155; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .major-tag:hover { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); transform: translateY(-4px); box-shadow: 0 8px 15px rgba(79, 70, 229, 0.25); }
+
+        /* 모달 팝업 스타일 */
+        .modal-overlay {
+            visibility: hidden; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(15, 23, 42, 0.75); backdrop-filter: blur(5px); z-index: 1000;
+            display: flex; justify-content: center; align-items: center; opacity: 0; transition: all 0.3s ease;
+        }
+        .modal-overlay.show { visibility: visible; opacity: 1; }
+        .modal-content {
+            background-color: #fff; width: 92%; max-width: 900px; max-height: 88vh; overflow-y: auto;
+            border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(30px) scale(0.95); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        .modal-overlay.show .modal-content { transform: translateY(0) scale(1); }
+        .modal-close {
+            position: absolute; top: 25px; right: 30px; background: #f1f5f9; border: none; width: 44px; height: 44px;
+            border-radius: 50%; font-size: 1.6rem; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+        }
+        .modal-close:hover { background-color: #e2e8f0; color: #0f172a; transform: rotate(90deg); }
+        
+        .modal-title { font-size: 2rem; font-weight: 900; color: var(--primary-color); margin-top: 0; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+        
+        .major-desc { font-weight: 600; font-size: 1.15rem; margin-bottom: 35px; color: #1e293b; background: #f8fafc; padding: 25px; border-radius: 12px; border-left: 5px solid var(--primary-color); line-height: 1.7; }
+        .detail-h5 { font-size: 1.3rem; color: #0f172a; margin: 40px 0 20px 0; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+        
+        .detail-list { margin: 0 0 25px 0; padding-left: 0; list-style: none; }
+        .detail-list li { margin-bottom: 12px; position: relative; padding-left: 24px; color: #334155; font-size: 1.05rem; }
+        .detail-list li::before { content: '✔'; position: absolute; left: 0; color: var(--primary-color); font-weight: bold; }
+        
+        .detail-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; border: 1px solid #cbd5e1; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .detail-table th, .detail-table td { border-bottom: 1px solid #cbd5e1; padding: 16px 20px; text-align: left; }
+        .detail-table tr:last-child th, .detail-table tr:last-child td { border-bottom: none; }
+        .detail-table th { background-color: #f1f5f9; width: 25%; color: #1e293b; font-weight: 800; border-right: 1px solid #cbd5e1; }
+        .detail-table td { color: #334155; background-color: #fff; font-weight: 500; line-height: 1.6; }
+        
+        .info-section { background-color: #f0fdf4; padding: 25px; border-radius: 12px; font-size: 1.05rem; color: #166534; margin-bottom: 25px; border: 1px solid #bbf7d0; font-weight: 600; line-height: 1.6;}
+        
+        /* 🌟 전면 개편된 과목 선택 정보 모듈 (테이블 형태) 🌟 */
+        .subject-selection-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        }
+        .subject-row {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            background: #fff;
+        }
+        .subject-row:last-child { border-bottom: none; }
+        .subject-type {
+            width: 140px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.05rem;
+            border-right: 1px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+        .subject-type.gen { background-color: #eff6ff; color: #1d4ed8; }
+        .subject-type.car { background-color: #f5f3ff; color: #6b21a8; }
+        .subject-type.fus { background-color: #fdf2f8; color: #be185d; }
+        
+        .subject-chips-area {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .subject-chip { 
+            display: inline-block; padding: 8px 16px; border-radius: 20px; 
+            font-size: 0.95rem; font-weight: 700; word-break: keep-all; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.1s;
+        }
+        .subject-chip:hover { transform: translateY(-2px); }
+        .subject-chip.gen-chip { background-color: #fff; color: #1e3a8a; border: 1px solid #bfdbfe; }
+        .subject-chip.car-chip { background-color: #fff; color: #581c87; border: 1px solid #d8b4fe; }
+        .subject-chip.fus-chip { background-color: #fff; color: #9f1239; border: 1px solid #fbcfe8; }
+
+        @media (max-width: 1024px) {
+            .container { flex-direction: column; height: auto; margin: 0; border-radius: 0;}
+            .sidebar-left { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); padding: 20px; height: auto; max-height: 350px;}
+            .view-wrapper { padding: 30px 20px; }
+            .subject-row { flex-direction: column; }
+            .subject-type { width: 100%; border-right: none; border-bottom: 1px solid #e2e8f0; padding: 12px; }
+            .major-desc { font-size: 1.05rem; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 아코디언 방식의 19개 계열 내비게이션 -->
+    <aside class="sidebar-left">
+        <h3>🎓 고등학교 계열 안내</h3>
+        
+        <div class="accordion-item">
+            <button class="accordion-header active" onclick="toggleAccordion(this)">
+                💡 인문·사회 분야 <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content open">
+                <ul class="subject-list">
+                    <li><a class="tab-btn active" onclick="switchTab('lang_lit')">언어·문학 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('humanities')">인문과학 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('business')">상경 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('media')">광고·언론·정보 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('social')">사회과학 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('law')">법·행정 계열</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                ⚙️ 자연·공학 분야 <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <ul class="subject-list">
+                    <li><a class="tab-btn" onclick="switchTab('nat_sci')">자연과학 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('ecology')">생활과학 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('agri')">농학 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('mech_elec')">기계·전기·전자 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('chem_bio')">화학·생명 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('arch_env')">건축·환경 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('it_comp')">정보·컴퓨터 계열</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                🩺 의약·보건 분야 <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <ul class="subject-list">
+                    <li><a class="tab-btn" onclick="switchTab('health')">보건 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('medicine')">의약학 계열</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                🏫 교육 분야 <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <ul class="subject-list">
+                    <li><a class="tab-btn" onclick="switchTab('edu')">교육 계열</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                🎨 예체능 분야 <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <ul class="subject-list">
+                    <li><a class="tab-btn" onclick="switchTab('pe')">체육 계열</a></li>
+                    <li><a class="tab-btn" onclick="switchTab('arts')">예술 계열</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                🌈 융합·자율 분야 <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <ul class="subject-list">
+                    <li><a class="tab-btn" onclick="switchTab('free')">자율전공</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 우측 뷰 영역 (19개 계열 본문) -->
+    
+    <!-- 1. 언어·문학 계열 -->
+    <div id="lang_lit" class="view-wrapper active">
+        <header class="subject-header">
+            <span class="subject-category">인문·사회 분야</span>
+            <h1 class="subject-title">언어·문학 계열</h1>
+            <p class="subject-desc">세계 각국의 언어 구조와 문학 작품을 심도 있게 연구하여, 인간 삶의 본질과 세계의 다양한 문화를 이해하고 글로벌 소통 능력을 기르는 계열입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">언어와 문학 계열 진학을 위해서는 <strong>국어 및 외국어(영어, 제2외국어) 교과군</strong>의 일반/진로/융합 과목을 폭넓고 깊이 있게 이수하는 것이 핵심입니다. 또한 타 문화에 대한 이해도를 높이기 위해 사회 교과(역사, 지리, 현대사회와 윤리 등)의 연계 학습이 강력히 권장됩니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색 (클릭하여 2022 개정 권장 과목 보기)</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('국어국문학과')">국어국문학과</span>
+            <span class="major-tag" onclick="openMajorModal('동양어학과')">동양어학과</span>
+            <span class="major-tag" onclick="openMajorModal('서양어학과')">서양어학과</span>
+            <span class="major-tag" onclick="openMajorModal('영어영문학과')">영어영문학과</span>
+            <span class="major-tag" onclick="openMajorModal('통번역학과')">통번역학과</span>
+        </div>
+    </div>
+
+    <!-- 2. 인문과학 계열 -->
+    <div id="humanities" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">인문·사회 분야</span>
+            <h1 class="subject-title">인문과학 계열</h1>
+            <p class="subject-desc">인간의 근원적 가치, 사상, 역사, 철학, 문화 등을 비판적이고 다각적인 시각으로 연구하여 인문학적 통찰력을 기르는 학문 계열입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">인문과학 계열은 인간의 사상과 역사를 다루므로 <strong>사회 교과군(세계사, 윤리와 사상 등)과 국어 교과군</strong>의 심도 있는 이수가 필수적입니다. 현상을 비판적으로 분석할 수 있는 논리적 사고력과 철학적 기반을 다지는 과목 선택을 권장합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('고고학과')">고고학과</span>
+            <span class="major-tag" onclick="openMajorModal('문화재보존학과')">문화재보존학과</span>
+            <span class="major-tag" onclick="openMajorModal('문화콘텐츠학과')">문화콘텐츠학과</span>
+            <span class="major-tag" onclick="openMajorModal('문헌정보학과')">문헌정보학과</span>
+            <span class="major-tag" onclick="openMajorModal('사학과')">사학과</span>
+            <span class="major-tag" onclick="openMajorModal('인류학과')">인류학과</span>
+            <span class="major-tag" onclick="openMajorModal('철학과')">철학과</span>
+            <span class="major-tag" onclick="openMajorModal('종교학과')">종교학과</span>
+        </div>
+    </div>
+
+    <!-- 3. 상경 계열 -->
+    <div id="business" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">인문·사회 분야</span>
+            <h1 class="subject-title">상경 계열</h1>
+            <p class="subject-desc">기업 경영, 자원의 효율적 분배, 무역 등 경제 및 경영 현상의 원리를 수학적이고 논리적으로 규명하여 글로벌 비즈니스 리더를 양성합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">상경 계열은 문과 계열 중에서도 데이터 분석과 논리가 핵심이므로 <strong>수학(대수, 미적분I, 확률과 통계, 경제 수학 등)</strong>의 이수가 절대적으로 중요합니다. 또한 사회 교과 중 <strong>경제, 정치, 법과 사회</strong> 과목은 전공 기초 지식 형성에 매우 유리합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('경영학과')">경영학과</span>
+            <span class="major-tag" onclick="openMajorModal('경제학과')">경제학과</span>
+            <span class="major-tag" onclick="openMajorModal('국제통상학과')">국제통상학과</span>
+            <span class="major-tag" onclick="openMajorModal('회계학과')">회계학과</span>
+            <span class="major-tag" onclick="openMajorModal('세무학과')">세무학과</span>
+            <span class="major-tag" onclick="openMajorModal('글로벌비즈니스학과')">글로벌비즈니스학과</span>
+        </div>
+    </div>
+
+    <!-- 4. 광고·언론·정보 계열 -->
+    <div id="media" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">인문·사회 분야</span>
+            <h1 class="subject-title">광고·언론·정보 계열</h1>
+            <p class="subject-desc">정보의 생산과 전달, 대중 매체의 발전, PR 및 광고 전략 등 급변하는 미디어 환경 속에서 대중과 소통하는 방법을 연구합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">효과적인 커뮤니케이션과 현대 사회에 대한 이해를 위해 <strong>사회 교과(사회·문화, 윤리와 사상)와 국어 교과(화법과 언어)</strong> 이수가 중요합니다. 미디어 관련 진로 및 융합 과목을 통해 매체 분석력과 창의적 기획력을 어필하는 것이 좋습니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('미디어커뮤니케이션학과')">미디어커뮤니케이션학과</span>
+            <span class="major-tag" onclick="openMajorModal('신문방송학과')">신문방송학과</span>
+            <span class="major-tag" onclick="openMajorModal('광고홍보학과')">광고홍보학과</span>
+            <span class="major-tag" onclick="openMajorModal('언론정보학과')">언론정보학과</span>
+            <span class="major-tag" onclick="openMajorModal('방송영상학과')">방송영상학과</span>
+        </div>
+    </div>
+
+    <!-- 5. 사회과학 계열 -->
+    <div id="social" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">인문·사회 분야</span>
+            <h1 class="subject-title">사회과학 계열</h1>
+            <p class="subject-desc">개인과 사회의 유기적 관계, 불평등, 인간 심리 등 인간 사회에서 일어나는 다양한 현상을 과학적이고 체계적으로 분석합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">사회 현상을 실증적으로 연구하므로 <strong>사회 교과 전반(사회·문화, 정치, 법과 사회 등)</strong>에 대한 폭넓은 이해와 함께 통계 자료 분석을 위한 <strong>수학(확률과 통계) 및 정보 교과</strong>의 융합적 이수가 대학 진학 후 매우 큰 도움이 됩니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('사회학과')">사회학과</span>
+            <span class="major-tag" onclick="openMajorModal('심리학과')">심리학과</span>
+            <span class="major-tag" onclick="openMajorModal('정치외교학과')">정치외교학과</span>
+            <span class="major-tag" onclick="openMajorModal('사회복지학과')">사회복지학과</span>
+            <span class="major-tag" onclick="openMajorModal('국제관계학과')">국제관계학과</span>
+            <span class="major-tag" onclick="openMajorModal('도시사회학과')">도시사회학과</span>
+        </div>
+    </div>
+
+    <!-- 6. 법·행정 계열 -->
+    <div id="law" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">인문·사회 분야</span>
+            <h1 class="subject-title">법·행정 계열</h1>
+            <p class="subject-desc">국가의 법 규범과 공공 정책의 수립 및 집행 과정을 연구하여 정의를 실현하고 공공의 이익을 도모하는 전문가를 양성합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">사회 질서와 규범을 다루는 학문이므로 <strong>사회 교과(정치, 법과 사회, 사회·문화)</strong> 이수는 필수입니다. 또한 복잡한 텍스트를 정확하게 읽어내고 논증하는 능력을 기르기 위해 논리와 사고 관련 과목 선택이 요구됩니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('법학과')">법학과</span>
+            <span class="major-tag" onclick="openMajorModal('행정학과')">행정학과</span>
+            <span class="major-tag" onclick="openMajorModal('경찰행정학과')">경찰행정학과</span>
+            <span class="major-tag" onclick="openMajorModal('공공인재학부')">공공인재학부</span>
+            <span class="major-tag" onclick="openMajorModal('소방행정학과')">소방행정학과</span>
+        </div>
+    </div>
+
+    <!-- 7. 자연과학 계열 -->
+    <div id="nat_sci" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">자연과학 계열</h1>
+            <p class="subject-desc">우주, 물질, 생명 등 자연 현상의 근본적인 원리를 수학적, 과학적 관점에서 기초부터 심도 있게 탐구하는 순수 기초 학문입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">순수 과학의 토대를 다지기 위해 <strong>수학(대수, 미적분I·II, 기하)과 과학(물리학, 화학, 생명과학, 지구과학)</strong> 교과의 심화(진로) 선택 과목 이수가 절대적으로 중요합니다. 현상의 증명과 탐구 역량을 집중적으로 길러야 합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('수학과')">수학과</span>
+            <span class="major-tag" onclick="openMajorModal('통계학과')">통계학과</span>
+            <span class="major-tag" onclick="openMajorModal('물리학과')">물리학과</span>
+            <span class="major-tag" onclick="openMajorModal('화학과')">화학과</span>
+            <span class="major-tag" onclick="openMajorModal('생명과학과')">생명과학과</span>
+            <span class="major-tag" onclick="openMajorModal('지구환경과학과')">지구환경과학과</span>
+            <span class="major-tag" onclick="openMajorModal('천문우주학과')">천문우주학과</span>
+            <span class="major-tag" onclick="openMajorModal('해양학과')">해양학과</span>
+        </div>
+    </div>
+
+    <!-- 8. 생활과학 계열 -->
+    <div id="ecology" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">생활과학 계열</h1>
+            <p class="subject-desc">인간의 의식주와 밀접한 생활 환경을 개선하고, 가족 및 아동 발달을 연구하여 개인과 가족의 삶의 질을 높이는 실용 과학입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">일상생활의 과학적 원리와 인간 중심의 환경을 연구하므로 <strong>화학, 생명과학 등 기초 과학 교과와 함께 기술·가정, 사회(사회·문화, 세계시민과 지리)</strong> 교과를 아우르는 융합적인 과목 선택이 진학 및 전공 적응에 유리합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('의류학과')">의류학과</span>
+            <span class="major-tag" onclick="openMajorModal('식품영양학과')">식품영양학과</span>
+            <span class="major-tag" onclick="openMajorModal('아동가족학과')">아동가족학과</span>
+            <span class="major-tag" onclick="openMajorModal('주거환경학과')">주거환경학과</span>
+            <span class="major-tag" onclick="openMajorModal('소비자학과')">소비자학과</span>
+        </div>
+    </div>
+
+    <!-- 9. 농학 계열 -->
+    <div id="agri" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">농학 계열</h1>
+            <p class="subject-desc">식량 생산, 동식물 자원 관리, 산림 보존 등 생명공학 기술을 농업에 접목하여 지속 가능한 생태계와 자원 확보 기술을 배웁니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">생명 현상과 자연 환경을 다루므로 <strong>생명과학, 지구과학, 화학</strong>의 이수가 뼈대가 됩니다. 최근 첨단 스마트팜 기술이 도입됨에 따라 환경 및 정보 분야의 진로/융합 과목을 함께 수강하는 것을 강력히 권장합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('농생명과학과')">농생명과학과</span>
+            <span class="major-tag" onclick="openMajorModal('동물자원학과')">동물자원학과</span>
+            <span class="major-tag" onclick="openMajorModal('산림과학과')">산림과학과</span>
+            <span class="major-tag" onclick="openMajorModal('조경학과')">조경학과</span>
+            <span class="major-tag" onclick="openMajorModal('스마트팜학과')">스마트팜학과</span>
+        </div>
+    </div>
+
+    <!-- 10. 기계·전기·전자 계열 -->
+    <div id="mech_elec" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">기계·전기·전자 계열</h1>
+            <p class="subject-desc">자동차, 반도체, 로봇 등 현대 산업의 뼈대가 되는 기계 장치와 전기·전자 통신 하드웨어 제어 기술을 융합적으로 연구합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">현대 공학의 척추 역할을 하는 계열로, 역학적 원리와 회로 시스템 이해를 위해 <strong>수학(미적분I·II, 기하)과 물리학(전자기와 양자, 역학과 에너지 등)</strong>의 심도 있는 이수가 매우 중요합니다. 더불어 정보 교과를 통한 컴퓨팅 사고력 배양도 필수적입니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('기계공학과')">기계공학과</span>
+            <span class="major-tag" onclick="openMajorModal('전기전자공학과')">전기전자공학과</span>
+            <span class="major-tag" onclick="openMajorModal('자동차공학과')">자동차공학과</span>
+            <span class="major-tag" onclick="openMajorModal('메카트로닉스공학과')">메카트로닉스공학과</span>
+            <span class="major-tag" onclick="openMajorModal('로봇공학과')">로봇공학과</span>
+        </div>
+    </div>
+
+    <!-- 11. 화학·생명 계열 -->
+    <div id="chem_bio" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">화학·생명 계열</h1>
+            <p class="subject-desc">정밀 화학, 바이오 의약품, 이차전지 등 물질의 분자적 제어와 생물학적 메커니즘을 공정화하여 대량 생산하는 기술을 다룹니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">신소재, 신약, 친환경 에너지 등을 다루기 위해 <strong>화학과 생명과학</strong>의 일반 선택 및 심화(진로) 선택 과목의 이수가 최우선입니다. 공정 설계를 위한 <strong>물리학과 수학(미적분I·II)</strong>의 기본기도 함께 갖춰야 합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('화학공학과')">화학공학과</span>
+            <span class="major-tag" onclick="openMajorModal('생명공학과')">생명공학과</span>
+            <span class="major-tag" onclick="openMajorModal('신소재공학과')">신소재공학과</span>
+            <span class="major-tag" onclick="openMajorModal('나노공학과')">나노공학과</span>
+            <span class="major-tag" onclick="openMajorModal('에너지공학과')">에너지공학과</span>
+        </div>
+    </div>
+
+    <!-- 12. 건축·환경 계열 -->
+    <div id="arch_env" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">건축·환경 계열</h1>
+            <p class="subject-desc">인간이 살아가는 공간인 건축물과 인프라(도로, 교량)를 설계하고, 환경 오염 방지 및 친환경 스마트 시티를 건설하는 계열입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">거대한 인프라의 뼈대와 환경 보전을 연구하므로 <strong>물리학, 지구과학 및 수학(미적분I·II, 기하)</strong> 과목 이수가 기반이 되어야 합니다. 건축 설계 분야 지망 시 미적 감각 향상을 위해 미술 관련 진로/융합 과목 선택도 추천합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('건축학과')">건축학과</span>
+            <span class="major-tag" onclick="openMajorModal('건축공학과')">건축공학과</span>
+            <span class="major-tag" onclick="openMajorModal('토목공학과')">토목공학과</span>
+            <span class="major-tag" onclick="openMajorModal('환경공학과')">환경공학과</span>
+            <span class="major-tag" onclick="openMajorModal('도시공학과')">도시공학과</span>
+            <span class="major-tag" onclick="openMajorModal('실내건축학과')">실내건축학과</span>
+        </div>
+    </div>
+
+    <!-- 13. 정보·컴퓨터 계열 -->
+    <div id="it_comp" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">자연·공학 분야</span>
+            <h1 class="subject-title">정보·컴퓨터 계열</h1>
+            <p class="subject-desc">소프트웨어 개발, 데이터베이스, 네트워크 보안, 인공지능 등 4차 산업혁명의 핵심인 IT 알고리즘과 컴퓨터 시스템을 연구합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">소프트웨어와 인공지능의 뼈대인 알고리즘 설계를 위해 <strong>수학 교과 전반(대수, 미적분I·II, 확률과 통계 등)</strong>의 탁월한 역량이 필요합니다. 더불어 <strong>정보, 인공지능 기초, 데이터 과학</strong> 과목의 실습 경험이 대입에 매우 유리합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('컴퓨터공학과')">컴퓨터공학과</span>
+            <span class="major-tag" onclick="openMajorModal('인공지능(AI)학과')">인공지능(AI)학과</span>
+            <span class="major-tag" onclick="openMajorModal('소프트웨어학과')">소프트웨어학과</span>
+            <span class="major-tag" onclick="openMajorModal('정보보안학과')">정보보안학과</span>
+            <span class="major-tag" onclick="openMajorModal('데이터사이언스학과')">데이터사이언스학과</span>
+            <span class="major-tag" onclick="openMajorModal('게임공학과')">게임공학과</span>
+        </div>
+    </div>
+
+    <!-- 14. 보건 계열 -->
+    <div id="health" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">의약·보건 분야</span>
+            <h1 class="subject-title">보건 계열</h1>
+            <p class="subject-desc">환자의 재활 치료, 임상 검사, 질병 간호 및 국민 건강 증진을 지원하는 따뜻한 인성의 보건 의료 전문 인력을 양성합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">인체의 해부학과 생리학을 다루므로 <strong>생명과학, 화학</strong> 지식이 필수적입니다. 또한 환자를 다루는 의료진으로서 인간에 대한 심도 있는 이해를 위해 <strong>사회(사회·문화)와 심리학, 보건</strong> 등 융합적인 과목 선택이 매우 중요합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('간호학과')">간호학과</span>
+            <span class="major-tag" onclick="openMajorModal('물리치료학과')">물리치료학과</span>
+            <span class="major-tag" onclick="openMajorModal('방사선학과')">방사선학과</span>
+            <span class="major-tag" onclick="openMajorModal('임상병리학과')">임상병리학과</span>
+            <span class="major-tag" onclick="openMajorModal('응급구조학과')">응급구조학과</span>
+            <span class="major-tag" onclick="openMajorModal('작업치료학과')">작업치료학과</span>
+            <span class="major-tag" onclick="openMajorModal('치위생학과')">치위생학과</span>
+            <span class="major-tag" onclick="openMajorModal('보건행정학과')">보건행정학과</span>
+        </div>
+    </div>
+
+    <!-- 15. 의약학 계열 -->
+    <div id="medicine" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">의약·보건 분야</span>
+            <h1 class="subject-title">의약학 계열</h1>
+            <p class="subject-desc">인체의 해부학적 구조와 질병의 진단, 치료, 그리고 생명을 살리는 신약 개발을 주도하는 최고 수준의 의료 전문가를 배출합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">가장 높은 수준의 학업 역량이 요구되는 계열로, <strong>수학(미적분I·II, 확률과 통계) 및 과학(생명과학, 화학, 물리학)</strong>의 일반 및 진로 선택 과목을 모두 깊이 있게 이수해야 합니다. 생명 윤리에 대한 성찰을 위해 윤리와 사상 과목 수강도 권장합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('의예과')">의예과</span>
+            <span class="major-tag" onclick="openMajorModal('치의예과')">치의예과</span>
+            <span class="major-tag" onclick="openMajorModal('한의예과')">한의예과</span>
+            <span class="major-tag" onclick="openMajorModal('약학과')">약학과</span>
+            <span class="major-tag" onclick="openMajorModal('수의예과')">수의예과</span>
+        </div>
+    </div>
+
+    <!-- 16. 교육 계열 -->
+    <div id="edu" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">교육 분야</span>
+            <h1 class="subject-title">교육 계열</h1>
+            <p class="subject-desc">올바른 인성과 가치관을 바탕으로 다음 세대를 이끌어갈 훌륭한 교사 및 교육 행정, 교육 공학 전문가를 양성하는 계열입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">본인이 가르치고자 하는 <strong>희망 전공 교과(국어, 수학, 과학 등)의 심화 과목</strong>을 철저히 이수하는 것이 최우선입니다. 더불어 교육학적 마인드를 기르기 위해 <strong>'사회문제 탐구', 심리학</strong> 등의 교양 및 진로 과목 선택이 매우 큰 강점이 됩니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('국어교육과')">국어교육과</span>
+            <span class="major-tag" onclick="openMajorModal('영어교육과')">영어교육과</span>
+            <span class="major-tag" onclick="openMajorModal('수학교육과')">수학교육과</span>
+            <span class="major-tag" onclick="openMajorModal('과학교육과')">과학교육과</span>
+            <span class="major-tag" onclick="openMajorModal('사회교육과')">사회교육과</span>
+            <span class="major-tag" onclick="openMajorModal('유아교육과')">유아교육과</span>
+            <span class="major-tag" onclick="openMajorModal('초등교육과')">초등교육과</span>
+            <span class="major-tag" onclick="openMajorModal('특수교육과')">특수교육과</span>
+            <span class="major-tag" onclick="openMajorModal('교육학과')">교육학과</span>
+        </div>
+    </div>
+
+    <!-- 17. 체육 계열 -->
+    <div id="pe" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">예체능 분야</span>
+            <h1 class="subject-title">체육 계열</h1>
+            <p class="subject-desc">신체 활동의 과학적 원리와 다양한 스포츠 실무를 익혀 훌륭한 체육 지도자, 스포츠 마케터, 재활 전문가를 기릅니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">현대 체육은 단순한 실기를 넘어 과학적 훈련 및 관리가 필수적입니다. 따라서 체육 과목과 함께 신체 역학을 이해하기 위한 <strong>생명과학, 물리학</strong> 과목의 이수가 강력히 권장됩니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('체육학과')">체육학과</span>
+            <span class="major-tag" onclick="openMajorModal('스포츠의학과')">스포츠의학과</span>
+            <span class="major-tag" onclick="openMajorModal('스포츠산업학과')">스포츠산업학과</span>
+            <span class="major-tag" onclick="openMajorModal('경호학과')">경호학과</span>
+            <span class="major-tag" onclick="openMajorModal('사회체육학과')">사회체육학과</span>
+        </div>
+    </div>
+
+    <!-- 18. 예술 계열 -->
+    <div id="arts" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">예체능 분야</span>
+            <h1 class="subject-title">예술 계열</h1>
+            <p class="subject-desc">디자인, 순수미술, 음악, 연기 등 창의적인 예술 감각과 표현력을 바탕으로 다채로운 문화 예술 콘텐츠를 창작하는 인재를 양성합니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 계열 과목 선택 안내</div>
+            <p class="track-info-desc">본인의 세부 전공(미술, 음악, 연극 등)에 맞는 <strong>예술 교과군 과목(음악/미술 연주와 창작 등)</strong>을 집중 이수하세요. 훌륭한 예술가는 인문학적 상상력이 뛰어나야 하므로 문학, 역사, 철학 등의 과목 연계도 대학 평가에서 긍정적으로 작용합니다.</p>
+        </div>
+        <h2 class="section-title">🏫 관련 학과 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('시각디자인학과')">시각디자인학과</span>
+            <span class="major-tag" onclick="openMajorModal('산업디자인학과')">산업디자인학과</span>
+            <span class="major-tag" onclick="openMajorModal('패션디자인학과')">패션디자인학과</span>
+            <span class="major-tag" onclick="openMajorModal('서양화과')">서양화과</span>
+            <span class="major-tag" onclick="openMajorModal('동양화과')">동양화과</span>
+            <span class="major-tag" onclick="openMajorModal('실용음악과')">실용음악과</span>
+            <span class="major-tag" onclick="openMajorModal('연극영화과')">연극영화과</span>
+            <span class="major-tag" onclick="openMajorModal('무용학과')">무용학과</span>
+        </div>
+    </div>
+
+    <!-- 19. 자율전공 -->
+    <div id="free" class="view-wrapper">
+        <header class="subject-header">
+            <span class="subject-category">융합·자율 분야</span>
+            <h1 class="subject-title">자율전공</h1>
+            <p class="subject-desc">입학 시 전공을 정하지 않고, 대학 진학 후 다양한 학문을 폭넓게 탐색하여 자신의 적성에 맞는 전공을 선택하는 융합적 학부입니다.</p>
+        </header>
+        <div class="track-info-box">
+            <div class="track-info-title">💡 전공자율선택제 유형 및 과목 선택 정보</div>
+            <p class="track-info-desc">
+                <strong>[유형1] 무전공 통합 모집:</strong> 대학 내 모든 전공 자율 선택으로 학생의 전공 100% 자율 선택 보장 (의약학, 보건, 사범계열 등 일부 특수 학과 제외)<br>
+                <strong>[유형2] 단과대/계열별 광역 모집:</strong> 계열 또는 단과대 내 전공 자율 선택 또는 학과 정원의 150% 이상 범위 내 선택 보장<br><br>
+                특정 분야에 치우치지 않고 국어, 수학, 영어, 사회, 과학의 일반 선택 과목을 고르게 이수하여 탄탄한 기초 학업 역량을 증명하는 것이 가장 유리합니다.
+            </p>
+        </div>
+        <h2 class="section-title">🏫 관련 학부/모집 단위 탐색</h2>
+        <div class="major-tags">
+            <span class="major-tag" onclick="openMajorModal('자유전공학부')">자유전공학부</span>
+            <span class="major-tag" onclick="openMajorModal('자율전공학부')">자율전공학부</span>
+            <span class="major-tag" onclick="openMajorModal('광역모집(인문/자연/공과대)')">광역모집(인문/자연/공과대)</span>
+            <span class="major-tag" onclick="openMajorModal('스크랜튼학부')">스크랜튼학부</span>
+            <span class="major-tag" onclick="openMajorModal('인터칼리지')">인터칼리지</span>
+            <span class="major-tag" onclick="openMajorModal('글로벌자유전공학부')">글로벌자유전공학부</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- 학과 상세 정보 모달 -->
+<div id="majorModal" class="modal-overlay" onclick="closeMajorModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeMajorModal(event)">✕</button>
+        <h3 id="modalTitle" class="modal-title">학과명</h3>
+        <div id="modalBody" class="modal-body">
+            <!-- 내용 동적 삽입 -->
+        </div>
+    </div>
+</div>
+
+<!-- 자바스크립트 -->
+<script>
+    // 아코디언 메뉴 동작 로직
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+        document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+
+        if (!isOpen) {
+            content.classList.add('open');
+            header.classList.add('active');
+        }
+    }
+
+    // 탭(계열) 전환 로직
+    function switchTab(tabId) {
+        const views = document.querySelectorAll('.view-wrapper');
+        views.forEach(view => view.classList.remove('active'));
+
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        const targetView = document.getElementById(tabId);
+        if(targetView) {
+            targetView.classList.add('active');
+            targetView.scrollTop = 0;
+        }
+
+        const targetBtn = event.currentTarget;
+        if(targetBtn) targetBtn.classList.add('active');
+    }
+
+    // 🌟 안내서 기준 100% 동기화 및 2022 개정 과목명으로 정제된 핵심 학과 데이터
+    const majorData = {
+        // --- 1. 언어·문학 계열 ---
+        "국어국문학과": {
+            desc: "국어의 구조와 역사를 밝히고, 시대별 한국 문학을 사회 배경 속에서 비판적으로 감상하고 연구하여 한국 문화의 전통을 창조적으로 계승합니다.",
+            recommend: ["문학 작품을 깊이 있게 읽고 자신만의 시각으로 분석하고 비평하는 것을 즐기는 학생", "우리말의 어원과 언어 현상에 호기심을 느끼고 논리적인 글쓰기에 소질이 있는 학생"],
+            subjects: [{ cat: "국어학", list: "국어음운론, 국어통사론, 국어사, 한국어의미론" }, { cat: "국문학", list: "한국현대시론, 한국현대소설론, 고전문학사, 문학비평론" }],
+            similar: "한국어문학과, 국어국문창작학과",
+            careers: ["방송 PD, 기자, 출판 기획자, 시인, 소설가, 중등 국어교사(교직이수), 카피라이터"],
+            highschool: { gen: "화법과 언어, 독서와 작문, 문학, 윤리와 사상, 사회·문화", car: "심화 국어, 고전 읽기, 주제 탐구 독서, 고전과 윤리", fus: "언어생활 탐구, 독서 토론과 글쓰기, 문학과 영상" }
+        },
+        "동양어학과": {
+            desc: "중국어, 일본어 등 아시아 주요 국가의 언어를 체계적으로 습득하고, 해당 국가의 문학, 역사, 사회 전반을 연구하여 동아시아 지역 전문가를 기릅니다.",
+            recommend: ["한자 학습에 거부감이 없으며 동아시아의 대중문화와 역사에 깊은 흥미를 느끼는 학생"],
+            subjects: [{ cat: "어학/실용", list: "고급 해당 언어 회화, 시청각 어학, 통번역실습" }, { cat: "문학/문화", list: "해당 국가 현대문학사, 동아시아 문화의 이해, 지역사회경제론" }],
+            similar: "중어중문학과, 일어일문학과, 아시아어문학부",
+            careers: ["해외영업, 다국적 기업 주재원, 전문 통번역가, 대사관 직원, 외교관"],
+            highschool: { gen: "중국어/일본어 등, 동아시아 역사 기행, 정치와 법", car: "진로 중국어/일본어 등, 국제 정치, 국제 경제", fus: "다문화 사회의 이해, 여행지리" }
+        },
+        "서양어학과": {
+            desc: "프랑스어, 독일어, 스페인어, 러시아어 등 서양 및 중남미 지역의 언어를 완벽히 구사하고, 서양 사상의 근간이 되는 문학과 문화를 깊이 있게 탐구합니다.",
+            recommend: ["서양의 예술, 철학 등에 뛰어난 감수성을 지니고 낯선 언어 습득에 두려움이 없는 학생"],
+            subjects: [{ cat: "어학/실용", list: "서양어 고급 회화, 작문, 비즈니스 서양어" }, { cat: "문학/문화", list: "해당 언어권 문학사, 유럽/중남미 문화의 이해" }],
+            similar: "영어영문학과, 유럽어문학부, 서어서문학과, 불어불문학과",
+            careers: ["국제기구(UN 등), 서양권 진출 국내 기업, 전문 통번역가, 문화 예술 기획자"],
+            highschool: { gen: "프랑스어/스페인어 등, 세계사, 윤리와 사상", car: "진로 제2외국어, 지역 이해, 현대 세계의 변화", fus: "세계 문화와 언어, 철학" }
+        },
+        "영어영문학과": {
+            desc: "글로벌 공용어인 영어의 언어적 특성을 탐구하고, 영미권 국가의 문학 작품과 사회 문화를 심층적으로 분석하여 국제적인 안목을 지닌 전문 인재를 양성합니다.",
+            recommend: ["영어 소통에 뛰어나며 영미권의 역사, 철학, 대중문화 전반에 지적 호기심이 풍부한 학생"],
+            subjects: [{ cat: "영어학", list: "영어음성학, 영어통사론, 영어발달사, 응용언어학" }, { cat: "영미문학", list: "영미소설, 영미시, 영미희곡, 미국문화의 이해" }],
+            similar: "영어과, 글로벌커뮤니케이션학과",
+            careers: ["다국적 기업, 무역회사, 외무영사직 공무원, 국제기구 종사자, 중등 영어교사"],
+            highschool: { gen: "영어 회화, 영어 독해와 작문, 문학, 세계사", car: "진로 영어, 영어권 문화, 영미 문학 읽기", fus: "영미 문화의 이해, 미디어 영어" }
+        },
+        "중어중문학과": {
+            desc: "세계 최대 시장인 중국의 언어와 장구한 역사 속에서 피어난 중국 문학, 현대 중국 사회의 문화를 체계적으로 연구합니다.",
+            recommend: ["한자 및 중국의 고전 문학과 역사에 흥미를 느끼며, 현대 중국의 경제적 흐름에 관심이 많은 학생"],
+            subjects: [{ cat: "어학/실용", list: "고급중국어, 중국어회화, 시청각중국어" }, { cat: "문학/문화", list: "중국현대문학사, 중국고전문학, 중국문화의 이해" }],
+            similar: "중국학과, 아시아어문학부",
+            careers: ["해외영업, 무역회사, 중국어 통번역가, 대기업 해외 주재원"],
+            highschool: { gen: "중국어, 동아시아 역사 기행, 한문", car: "진로 중국어, 진로 한문, 국제 정치", fus: "다문화 사회의 이해, 여행지리" }
+        },
+        "일어일문학과": {
+            desc: "일본의 언어 구조와 문법을 습득하고, 일본의 고전 및 현대 문학 작품, 사회, 그리고 전 세계적으로 영향력 있는 대중문화 전반을 연구합니다.",
+            recommend: ["일본의 대중문화(애니메이션, 소설 등)에 빠져본 경험이 있으며 이를 학문적으로 분석하고 싶은 학생"],
+            subjects: [{ cat: "어학/문학", list: "고급일본어회화, 일본현대문학사, 일본고전문학" }, { cat: "문화/사회", list: "일본문화의 이해, 한일관계론, 일본지역학" }],
+            similar: "일본어과, 일본학과",
+            careers: ["일본 현지 글로벌 기업 취업, 게임/콘텐츠 기획자, 통번역가, 항공사 승무원"],
+            highschool: { gen: "일본어, 동아시아 역사 기행, 세계사", car: "진로 일본어, 지역 이해, 현대 세계의 변화", fus: "예술과 매체, 다문화 사회의 이해" }
+        },
+        "서어서문학과": {
+            desc: "세계 2위의 모국어인 스페인어와 마술적 사실주의로 대표되는 라틴 아메리카 국가들의 문학, 예술, 역사를 심도 있게 연구합니다.",
+            recommend: ["스페인 및 라틴 아메리카 특유의 정열적인 예술, 춤, 문학에 매료된 학생"],
+            subjects: [{ cat: "어학/문학", list: "서어서문회화, 비즈니스 스페인어, 중남미문학사, 세르반테스 강독" }],
+            similar: "스페인어과, 중남미학과",
+            careers: ["국제기구(UN), 중남미 진출 기업, 스페인 대사관, 무역상사"],
+            highschool: { gen: "스페인어, 세계사, 세계시민과 지리", car: "진로 제2외국어, 국제 정치, 현대 세계의 변화", fus: "세계 문화와 언어, 매체 의사소통" }
+        },
+        "불어불문학과": {
+            desc: "서양 예술과 철학의 중심인 프랑스어 구사 능력을 키우고, 계몽주의부터 현대 실존주의에 이르는 프랑스 문학과 사상을 깊이 있게 탐구합니다.",
+            recommend: ["프랑스의 세련된 패션, 영화, 미술, 철학 등 문화 예술 전반에 뛰어난 감수성을 지닌 학생"],
+            subjects: [{ cat: "어학/문학", list: "프랑스어회화, 프랑스시, 프랑스소설, 샹송과 문화, 프랑스사상사" }],
+            similar: "프랑스어과, 프랑스언어문화학과",
+            careers: ["문화 예술 공연 기획자, 패션 마케터, 갤러리 큐레이터, 프랑스계 기업"],
+            highschool: { gen: "프랑스어, 세계사, 윤리와 사상, 미술", car: "진로 제2외국어, 고전과 윤리", fus: "예술과 매체, 철학" }
+        },
+        "독어독문학과": {
+            desc: "유럽 경제의 중심이자 철학, 문학의 뼈대를 제공한 독일어와 독일 문화, 문학 작품을 치밀하게 분석하고 연구합니다.",
+            recommend: ["독일 철학이나 문학 작품 특유의 논리적이고 깊이 있는 사유를 즐기며, 유럽의 역사와 경제에 관심이 있는 학생"],
+            subjects: [{ cat: "어학/문학", list: "독일어문법, 독일어회화, 독일고전문학, 독일문화의 이해, 독일어권지역학" }],
+            similar: "독일어과, 유럽문화학과",
+            careers: ["독일계 다국적 기업, 외국계 은행, 통번역가, 철학/문학 연구원"],
+            highschool: { gen: "독일어, 세계사, 윤리와 사상, 사회·문화", car: "진로 제2외국어, 고전과 윤리", fus: "철학, 세계 문화와 언어" }
+        },
+        "노어노문학과": {
+            desc: "도스토옙스키, 톨스토이 등 세계 문학의 거장을 낳은 러시아어와 러시아 문학, 그리고 러시아 및 동유럽권의 역사와 사회를 연구합니다.",
+            recommend: ["러시아 문학의 웅장한 서사와 철학적 깊이에 매료되었으며, 북방 유라시아 지역의 지정학적, 경제적 변화에 관심 있는 학생"],
+            subjects: [{ cat: "어학/문학", list: "러시아어회화, 러시아문법, 러시아문학사, 러시아문화와 예술, 유라시아지역학" }],
+            similar: "러시아학과, 유라시아학과",
+            careers: ["한국-러시아 교류 및 무역 기업, 자원 외교 관련 공기업, 대사관, 통번역가"],
+            highschool: { gen: "러시아어, 세계사, 세계시민과 지리", car: "진로 제2외국어, 국제 정치, 국제 경제", fus: "다문화 사회의 이해, 역사로 탐구하는 현대 세계" }
+        },
+        "문예창작학과": {
+            desc: "시, 소설 등 순수 문학뿐만 아니라 영화, 드라마, 웹소설 등 다양한 대중 매체의 시나리오 창작 능력을 기르는 실기 중심 학과입니다.",
+            recommend: ["풍부한 상상력과 통찰력을 바탕으로 나만의 이야기를 글로 표현하는 것을 즐기는 학생"],
+            subjects: [{ cat: "창작실기", list: "시/소설 창작, 희곡/시나리오 창작, 아동문학 창작, 문예창작론, 서사학" }],
+            similar: "스토리텔링학과, 웹소설창작전공",
+            careers: ["시인, 소설가, 방송 작가, 영화/드라마 시나리오 작가, 웹소설 작가, 카피라이터"],
+            highschool: { gen: "문학, 독서와 작문, 화법과 언어, 연극", car: "문학과 영상, 고전 읽기", fus: "독서 토론과 글쓰기, 매체 의사소통, 연극과 창작" }
+        },
+        "통번역학과": {
+            desc: "언어와 문화의 차이를 극복하고 소통을 돕는 통역과 번역의 전문 기술을 실기 위주로 엄격하게 훈련합니다.",
+            recommend: ["뛰어난 외국어 감각과 다양한 글로벌 이슈(정치/경제/과학 등)에 대한 폭넓은 상식을 갖춘 학생"],
+            subjects: [{ cat: "통/번역", list: "동시통역기초, 순차통역연습, 비즈니스/국제회의 통역, 영상 번역, 번역 비평" }],
+            similar: "영어통번역학부, 국제커뮤니케이션학과",
+            careers: ["국제회의 전문 통역사, 영상 번역가, 외교부 직원, 외국계 금융사"],
+            highschool: { gen: "영어 독해와 작문, 화법과 언어, 정치와 법, 경제", car: "진로 영어, 국제 경제, 국제 정치", fus: "매체 의사소통, 다문화 사회의 이해" }
+        },
+
+        // --- 2. 인문과학 계열 ---
+        "고고학과": {
+            desc: "땅속에 묻힌 인류의 유적과 유물을 직접 발굴하여, 문헌 기록이 부족한 과거 인류의 생활상과 문화를 실증적으로 복원하고 연구하는 학문입니다.",
+            recommend: ["인류의 과거와 역사에 호기심이 많고, 야외 발굴 현장 등 활동적이고 모험심 강한 탐구를 끈기 있게 수행할 수 있는 학생"],
+            subjects: [{ cat: "고고학", list: "야외발굴조사방법론, 한국고고학, 선사시대고고학, 유물분석론" }],
+            similar: "고고인류학과, 고고미술사학과",
+            careers: ["박물관 학예연구사(큐레이터), 매장문화재 발굴 기관 조사원, 문화재청 공무원"],
+            highschool: { gen: "세계사, 동아시아 역사 기행, 한국지리 탐구, 지구과학", car: "역사 탐구, 지역 이해", fus: "역사로 탐구하는 현대 세계, 융합과학 탐구" }
+        },
+        "문화재보존학과": {
+            desc: "오랜 세월로 훼손된 문화재의 재질과 특성을 화학적, 물리적으로 과학 분석하고, 섬세한 수작업을 통해 원래의 모습으로 복원하고 보존하는 기술을 배웁니다.",
+            recommend: ["역사적 유물에 대한 애정과 함께, 정밀한 화학적 처리 지식과 고도의 집중력이 요구되는 섬세한 수작업 능력을 겸비한 이과형 인문 학생"],
+            subjects: [{ cat: "보존과학", list: "보존과학개론, 문화재재료학, 수리복원실습, 무기물보존처리, 문화재분석화학" }],
+            similar: "문화유산보존학과",
+            careers: ["문화재보존원, 국립문화재연구소 연구원, 박물관 보존과학자, 미술품 복원가"],
+            highschool: { gen: "화학, 생명과학, 세계사, 미술", car: "물질과 에너지, 역사 탐구, 미술 창작", fus: "과학의 역사와 문화, 융합과학 탐구" }
+        },
+        "문화콘텐츠학과": {
+            desc: "영화, 게임, 웹툰, 드라마 등 대중문화 콘텐츠의 기획, 스토리텔링, 제작, 마케팅 과정을 배우며, 독창적인 아이디어를 지닌 문화 산업 기획 전문가를 양성합니다.",
+            recommend: ["대중문화 트렌드에 극도로 민감하며, 톡톡 튀는 상상력으로 새로운 이야기(내러티브)를 기획하고 창작하는 것을 진심으로 즐기는 학생"],
+            subjects: [{ cat: "콘텐츠기획", list: "문화콘텐츠기획론, 스토리텔링기초, 영상문화의 이해, 디지털콘텐츠마케팅" }],
+            similar: "미디어콘텐츠학과, 문화기획학과",
+            careers: ["방송/게임/웹툰 콘텐츠 기획자, 문화 평론가, 카피라이터, 연예기획사 A&R"],
+            highschool: { gen: "사회·문화, 문학, 화법과 언어, 미술, 정보", car: "문학과 영상, 미디어 커뮤니케이션", fus: "예술과 매체, 독서 토론과 글쓰기" }
+        },
+        "문헌정보학과": {
+            desc: "빅데이터 시대에 폭발적으로 증가하는 지식과 문헌 자료를 체계적으로 수집, 분류하고 컴퓨터 시스템을 통해 효율적으로 검색, 보존하여 제공하는 정보 관리 기술을 배웁니다.",
+            recommend: ["방대한 정보를 나만의 규칙으로 논리 정연하게 정리하고 분류하는 작업에 희열을 느끼며, 데이터베이스 구조에 흥미가 있는 꼼꼼한 학생"],
+            subjects: [{ cat: "문헌/정보", list: "정보검색론, 자료분류론, 디지털도서관론, 데이터베이스, 서지학" }],
+            similar: "기록관리학과, 정보관리학과",
+            careers: ["도서관 사서, 사서교사, 데이터베이스 관리자(DBA), 국가기록원 기록물 관리사"],
+            highschool: { gen: "정보, 사회·문화, 독서와 작문, 확률과 통계", car: "데이터 과학, 논리와 사고", fus: "정보과제 탐구, 독서 토론과 글쓰기" }
+        },
+        "사학과": {
+            desc: "과거 인류가 남긴 발자취와 역사적 사실을 과학적이고 객관적인 사료를 통해 실증적으로 탐구함으로써, 사회 구조를 이해하고 미래를 통찰하는 비판적 사고력을 기릅니다.",
+            recommend: ["사료를 맹신하지 않고, 시대적 배경을 고려하여 그 의미를 객관적이고 논리적으로 해석해 내는 추리력을 키우고 싶은 학생"],
+            subjects: [{ cat: "역사연구", list: "한국고대/중세/근현대사, 서양사, 동양사, 사료강독, 역사학개론" }],
+            similar: "역사학과, 국사학과, 역사콘텐츠학과",
+            careers: ["중등 역사교사(교직이수), 대학 역사 연구소 연구원, 다큐멘터리 전문 방송 PD"],
+            highschool: { gen: "세계사, 동아시아 역사 기행, 사회·문화", car: "역사 탐구, 현대 세계의 변화, 고전 읽기", fus: "역사로 탐구하는 현대 세계, 다문화 사회의 이해" }
+        },
+        "인류학과": {
+            desc: "전 세계의 다양한 민족과 집단의 문화, 사회 구조, 언어, 진화 과정을 현지 조사를 통해 비교 연구하여 인간 본질에 대한 총체적인 이해를 도모합니다.",
+            recommend: ["타 문화에 대한 편견이 없고 열린 시각을 가지며, 낯선 환경에서의 현지 조사(인터뷰 등)를 통해 인간 사회의 다양성을 깊이 탐구하고 싶은 학생"],
+            subjects: [{ cat: "인류학", list: "문화인류학, 생물인류학, 민족지연구, 현지조사방법론, 다문화사회의 이해" }],
+            similar: "문화인류학과, 고고인류학과",
+            careers: ["국제기구(UN, NGO) 활동가, 여론/시장 리서치 전문가, 다문화 가족 지원 전문가"],
+            highschool: { gen: "사회·문화, 세계시민과 지리, 윤리와 사상, 생명과학", car: "사회문제 탐구, 지역 이해", fus: "다문화 사회의 이해, 철학" }
+        },
+        "철학과": {
+            desc: "인류가 오랜 세월 품어온 인간의 존재, 삶의 의미, 도덕과 가치에 대한 가장 근원적인 질문들을 던지고, 이를 비판적인 사유를 통해 해결해 나가는 인문학의 기초입니다.",
+            recommend: ["동서양 사상가들의 텍스트를 읽고 논리적으로 토론하며 사물의 본질을 파고들기 좋아하는 비판적 사고력이 뛰어난 학생"],
+            subjects: [{ cat: "철학/논리", list: "서양/동양철학사, 인식론, 기호논리학, 윤리학, 미학, 사회철학" }],
+            similar: "윤리학과, 철학상담학과",
+            careers: ["학계 철학 연구원, 언론인(시사 PD, 기자), 출판 기획자, 인문학 전문 강사"],
+            highschool: { gen: "윤리와 사상, 현대사회와 윤리, 세계사, 정치", car: "고전과 윤리, 윤리문제 탐구, 논리와 사고", fus: "철학, 인문학과 윤리, 독서 토론과 글쓰기" }
+        },
+        "종교학과": {
+            desc: "기독교, 불교 등 세계의 다양한 종교 현상과 문화를 철학, 역사, 사회학적 관점에서 객관적으로 연구하여 인류 문화의 심연을 이해합니다.",
+            recommend: ["타 문화권의 신앙과 종교적 상징에 대해 편견 없이 열린 마음으로 탐구하려는 포용력을 가진 학생"],
+            subjects: [{ cat: "종교학", list: "종교학개론, 세계종교사, 비교종교학, 종교사회학, 신화학" }],
+            similar: "문화인류학과",
+            careers: ["종교학자, 언론인, 다문화 가족 지원 센터 전문가, 국제 NGO 활동가"],
+            highschool: { gen: "세계사, 윤리와 사상, 생활과 윤리", car: "고전과 윤리, 역사 탐구", fus: "종교학, 다문화 사회의 이해, 인문학과 윤리" }
+        },
+
+        // --- 3. 상경 계열 ---
+        "경영학과": {
+            desc: "기업과 조직이 경쟁 속에서 이윤을 창출하기 위해 필요한 전략 기획, 마케팅, 재무, 인사 관리 등 경영 전반에 걸친 종합적인 이론과 비즈니스 사례를 학습합니다.",
+            recommend: ["조직 내 리더십 발휘와 시장 경제 흐름 파악에 능하며, 수치 데이터와 통계 자료를 분석하여 논리적인 사업 기획안을 도출하는 것을 즐기는 학생"],
+            subjects: [{ cat: "경영/재무", list: "경영전략, 마케팅원론, 인적자원관리, 조직행동론, 재무관리, 생산운영관리" }],
+            similar: "글로벌경영학과, 파이낸스경영학과",
+            careers: ["국내외 대기업 기획/마케팅/재무/인사 직무, 공인회계사(CPA), 경영 전문 컨설턴트, 창업가"],
+            highschool: { gen: "경제, 확률과 통계, 정치, 대수", car: "경제 수학, 국제 경제, 사회문제 탐구", fus: "금융과 경제 생활, 데이터 과학" }
+        },
+        "경제학과": {
+            desc: "제한된 자원의 효율적 배분과 물가, 실업, 환율 등 글로벌 시장에서 발생하는 다양한 미시적·거시적 경제 현상의 원리를 통계적, 수학적 모델링으로 규명합니다.",
+            recommend: ["현실 경제 문제와 정부 정책의 인과관계에 호기심이 많고, 사회 현상을 수학적인 수식 모델링을 통해 논리적으로 증명하고 분석하는 것을 매우 즐기는 학생"],
+            subjects: [{ cat: "경제이론/응용", list: "미시/거시경제학, 경제수학, 계량경제학, 통계학, 국제경제학, 화폐금융론" }],
+            similar: "식품자원경제학과, 농업경제학과",
+            careers: ["국책 은행(한국은행), 시중 은행, 증권사 핵심 인력, 민간/국책 경제연구소 연구원, 감정평가사"],
+            highschool: { gen: "경제, 확률과 통계, 미적분I, 정치", car: "경제 수학, 국제 경제, 미적분II", fus: "금융과 경제 생활, 데이터 과학" }
+        },
+        "국제통상학과": {
+            desc: "국가 간의 무역 거래, 관세 및 통상 정책, 다국적 기업의 비즈니스 환경, 그리고 국제 금융 시장의 흐름을 폭넓게 연구하여 세계화 시대의 무역 전문가를 양성합니다.",
+            recommend: ["세계 경제의 거시적 흐름, 각국의 무역 협정(FTA)에 관심이 많고, 외국어 능력을 무기로 해외 무대에서 활약하고 싶은 열정적인 학생"],
+            subjects: [{ cat: "무역/통상", list: "국제통상론, 국제무역법, 통상정책론, 무역상무론, 국제경영학" }],
+            similar: "무역학과, 글로벌비즈니스학과",
+            careers: ["종합상사 해외영업 담당, KOTRA(대한무역투자진흥공사) 등 공공기관, 수출입 통관 전문 관세사"],
+            highschool: { gen: "경제, 영어 독해와 작문, 세계시민과 지리", car: "국제 경제, 경제 수학, 진로 영어, 국제 정치", fus: "현대 세계의 변화, 실생활과 영어" }
+        },
+        "회계학과": {
+            desc: "기업의 경영 활동으로 발생하는 재무 상태의 변동을 정확히 측정, 기록, 분석하여 투자자 등 정보 이용자들에게 투명한 재무 정보를 제공하는 시스템을 연구합니다.",
+            recommend: ["숫자에 대한 탁월한 감각을 지니고 있으며, 장부 계산과 검증 과정에서 한 치의 오차도 허용하지 않는 꼼꼼한 성격의 학생"],
+            subjects: [{ cat: "회계/세무", list: "회계원리, 중급/고급재무회계, 원가관리회계, 세법개론, 회계감사" }],
+            similar: "세무학과, 세무회계학과",
+            careers: ["공인회계사(CPA), 세무사, 일반 기업 핵심 재무/회계팀, 국세청/금융감독원 공무원"],
+            highschool: { gen: "경제, 확률과 통계, 대수, 정치", car: "경제 수학, 사회문제 탐구", fus: "금융과 경제 생활, 데이터 과학" }
+        },
+        "세무학과": {
+            desc: "개인 및 기업의 세금과 관련된 법률, 회계, 경제 지식을 체계적으로 학습하여 공정하고 효율적인 조세 제도를 운영하고 기업의 절세 전략을 수립하는 조세 전문가를 양성합니다.",
+            recommend: ["숫자에 밝고 법률과 제도의 엄격한 적용 원리에 관심이 많으며, 윤리의식과 정확한 계산 능력을 지닌 학생"],
+            subjects: [{ cat: "세무/회계", list: "세법개론, 법인세법, 소득세법, 부가가치세법, 조세법, 회계원리" }],
+            similar: "회계학과, 세무회계학과",
+            careers: ["세무사, 공인회계사(CPA), 국세청 및 지자체 세무직 공무원, 대기업 세무/회계팀"],
+            highschool: { gen: "경제, 확률과 통계, 정치와 법", car: "경제 수학, 사회문제 탐구", fus: "금융과 경제 생활" }
+        },
+        "글로벌비즈니스학과": {
+            desc: "경영학 지식과 탁월한 외국어 능력을 융합하여, 세계화된 비즈니스 환경에서 활동하는 다국적 기업의 전략과 마케팅, 협상 능력을 배양합니다.",
+            recommend: ["다양한 문화적 배경을 가진 사람들과 소통하는 것을 즐기고, 글로벌 마켓을 무대로 비즈니스를 주도하고 싶은 리더십 있는 학생"],
+            subjects: [{ cat: "글로벌경영", list: "글로벌마케팅, 국제재무관리, 다국적기업론, 글로벌비즈니스협상, 고급외국어" }],
+            similar: "국제경영학과, 글로벌경영학과",
+            careers: ["다국적 글로벌 기업, 해외 주재원, 국제 무역 상사, 글로벌 경영 컨설턴트"],
+            highschool: { gen: "경제, 정치, 영어 독해와 작문, 세계사", car: "국제 경제, 진로 영어, 현대 세계의 변화", fus: "다문화 사회의 이해, 세계 문화와 언어" }
+        },
+
+        // --- 4. 광고·언론·정보 계열 ---
+        "미디어커뮤니케이션학과": {
+            desc: "전통적인 신문, 방송을 넘어 융합 뉴미디어 환경에서 메시지가 대중에게 어떻게 전달되고 여론을 형성하는지 탐구하며, 기획력을 갖춘 콘텐츠 전문가를 양성합니다.",
+            recommend: ["새로운 미디어 트렌드와 밈(Meme)에 민감하며, 영상, 기사 등 다채로운 미디어 콘텐츠 기획 및 제작에 주체할 수 없는 열정이 있는 학생"],
+            subjects: [{ cat: "언론/영상", list: "언론학개론, 커뮤니케이션이론, 취재보도론, 방송제작실습, 디지털미디어론" }],
+            similar: "신문방송학과, 영상커뮤니케이션학과",
+            careers: ["지상파 및 케이블 방송 PD, 신문/방송 기자, 뉴미디어 디지털 콘텐츠 기획자 및 크리에이터"],
+            highschool: { gen: "사회·문화, 화법과 언어, 정보, 문학", car: "미디어 커뮤니케이션, 문학과 영상", fus: "매체 의사소통, 예술과 매체" }
+        },
+        "신문방송학과": {
+            desc: "신문, 방송, 잡지 등 대중 매체의 역사와 사회적 역할, 저널리즘 윤리를 연구하며, 올바른 여론 형성을 주도할 전문 언론인과 방송인을 길러냅니다.",
+            recommend: ["사회의 진실을 밝히고 권력을 감시하는 기자의 역할에 매력을 느끼며, 글쓰기와 말하기 능력이 탁월한 학생"],
+            subjects: [{ cat: "저널리즘/방송", list: "저널리즘의 이해, 취재보도실습, 방송기획제작, 미디어비평, 언론법제와 윤리" }],
+            similar: "언론정보학과, 미디어커뮤니케이션학과",
+            careers: ["신문사/방송국 기자, 앵커, 아나운서, 방송국 PD, 언론학 연구원"],
+            highschool: { gen: "사회·문화, 정치, 화법과 언어, 독서와 작문", car: "미디어 커뮤니케이션, 사회문제 탐구", fus: "매체 의사소통, 독서 토론과 글쓰기" }
+        },
+        "광고홍보학과": {
+            desc: "소비자 심리를 분석하여 브랜드 가치를 높이는 기발한 광고 전략 수립, 창의적인 카피라이팅 및 영상 표현, 기업 홍보(PR) 기법을 훈련합니다.",
+            recommend: ["틀에 갇히지 않은 기발한 아이디어가 넘치며, 마케팅 데이터 조사를 통해 사람들의 마음을 움직이는 설득에 흥미를 느끼는 학생"],
+            subjects: [{ cat: "광고/홍보", list: "광고학개론, 카피라이팅, 크리에이티브발상법, PR커뮤니케이션, 소비자행동론" }],
+            similar: "홍보학과, 홍보광고학과",
+            careers: ["종합 광고 대행사 광고 기획자(AE), 카피라이터, CF 감독, 기업 브랜드 매니저(BM)"],
+            highschool: { gen: "사회·문화, 확률과 통계, 화법과 언어, 미술", car: "미디어 커뮤니케이션, 경제 수학", fus: "심리학, 매체 의사소통, 예술과 매체" }
+        },
+        "언론정보학과": {
+            desc: "언론 매체의 사회적 영향력과 커뮤니케이션 현상을 비판적으로 분석하고, 올바른 저널리즘의 방향을 제시하는 이론과 실무를 학습합니다.",
+            recommend: ["사회 현상에 대한 비판적 시각을 바탕으로 진실을 파헤치는 저널리즘에 관심이 많은 학생"],
+            subjects: [{ cat: "언론학", list: "언론사, 미디어효과론, 언론보도실습, 저널리즘이론, 정치커뮤니케이션" }],
+            similar: "신문방송학과",
+            careers: ["언론사 기자, 시사 프로그램 PD, 언론 기관 연구원, 공공기관 홍보 담당"],
+            highschool: { gen: "정치, 사회·문화, 독서와 작문", car: "미디어 커뮤니케이션, 사회문제 탐구, 논리와 사고", fus: "매체 의사소통" }
+        },
+        "방송영상학과": {
+            desc: "방송, 영화, 디지털 영상 등 영상 매체의 기획, 촬영, 편집, 연출 기술을 실무 위주로 학습하여 창의적인 영상 콘텐츠 제작 전문가를 양성합니다.",
+            recommend: ["카메라 앵글, 조명, 편집 기술을 통해 시각적으로 아름답고 역동적인 영상을 연출하는 것을 사랑하는 학생"],
+            subjects: [{ cat: "영상제작", list: "방송연출, 카메라촬영기법, 디지털영상편집, 다큐멘터리제작, 영상스토리보드" }],
+            similar: "영상디자인학과, 미디어영상학과",
+            careers: ["방송국 PD, 영화감독, 촬영/조명 감독, 영상 모션그래픽 디자이너, 크리에이터"],
+            highschool: { gen: "미술, 연극, 화법과 언어", car: "문학과 영상, 미디어 커뮤니케이션", fus: "예술과 매체, 매체 의사소통" }
+        },
+
+        // --- 5. 사회과학 계열 ---
+        "사회학과": {
+            desc: "개인과 사회의 유기적 관계, 사회 구조의 변동, 불평등, 젠더 등 다양한 현상의 근본 원인을 과학적인 조사 방법론을 통해 실증적으로 분석합니다.",
+            recommend: ["당연하게 여겨지는 우리 사회의 불평등, 일탈, 차별 현상에 비판적인 시각으로 의문을 품고 철저한 설문 조사와 통계 분석 데이터로 증명하길 좋아하는 학생"],
+            subjects: [{ cat: "사회/이론", list: "사회조사방법론, 사회통계학, 현대사회학이론, 도시사회학, 정보사회학" }],
+            similar: "도시사회학과, 정보사회학과",
+            careers: ["여론조사 및 마케팅 리서치 기관 연구원, 통계청 조사 분석가, 언론인, 사회학자"],
+            highschool: { gen: "사회·문화, 정치, 정치와 법, 확률과 통계", car: "사회문제 탐구, 현대 세계의 변화", fus: "데이터 과학, 철학" }
+        },
+        "심리학과": {
+            desc: "인간의 감정, 인지 과정, 행동의 패턴을 철학적 추측이 아닌 엄격한 과학적 실험과 통계적 분석을 통해 객관적으로 연구하여 정신 건강 증진에 기여합니다.",
+            recommend: ["타인의 심리와 행동 원인에 깊은 호기심을 가지고 예리하게 관찰하며, 심리 검사 도구와 통계 프로그램을 활용해 과학적으로 분석하는 이과적 성향도 갖춘 학생"],
+            subjects: [{ cat: "심리/통계", list: "발달심리학, 인지심리학, 임상심리학, 상담심리학, 심리통계학, 범죄심리학" }],
+            similar: "상담심리학과, 산업심리학과",
+            careers: ["임상심리전문가, 전문 상담심리사, 범죄심리분석관(프로파일러), 기업 HR/마케팅 리서처"],
+            highschool: { gen: "생명과학, 확률과 통계, 사회·문화, 생활과 윤리", car: "생명과학 탐구, 사회문제 탐구", fus: "심리학, 데이터 과학" }
+        },
+        "정치외교학과": {
+            desc: "국내외 정치 권력 구조, 선거 제도뿐만 아니라 급변하는 국제 사회 속 국가 간의 치열한 이해관계, 전쟁과 평화, 외교 정책 등을 연구합니다.",
+            recommend: ["국내외 정치 뉴스, 국제 사회의 협력 이슈에 관심이 많고, 자신의 뚜렷한 주장을 바탕으로 대립하는 의견을 중재하고 타인을 설득하는 소통 능력이 뛰어난 학생"],
+            subjects: [{ cat: "정치/외교", list: "한국정치론, 국제정치학, 외교정책론, 국제기구론, 서양정치사상" }],
+            similar: "국제관계학과, 정치외교학전공",
+            careers: ["외교관, 국제기구(UN 등) 종사자, 국회의원 및 국회 보좌관, 방송 및 신문사 정치부 기자"],
+            highschool: { gen: "정치, 정치와 법, 세계사, 세계시민과 지리", car: "국제 정치, 사회문제 탐구, 진로 영어", fus: "현대 세계의 변화, 인문학과 윤리" }
+        },
+        "사회복지학과": {
+            desc: "아동, 노인, 장애인 등 사회적 취약 계층의 삶의 질을 실질적으로 향상시키고 불평등을 완화하기 위한 다양한 복지 정책과 구체적인 실천 원조 기술을 배웁니다.",
+            recommend: ["타인의 아픔에 깊이 공감하는 따뜻한 이타심을 지니고, 구조적인 사회 문제를 비판적으로 바라보며 제도적 대안(복지 시스템)을 기획하려는 사명감을 지닌 학생"],
+            subjects: [{ cat: "복지/정책", list: "사회복지개론, 인간행동과 사회환경, 사회복지정책론, 아동/노인/장애인복지론" }],
+            similar: "아동복지학과, 가족복지학과",
+            careers: ["1급 사회복지사, 보건복지부/지자체 사회복지 전담 공무원, 유니세프 등 대형 NGO 활동가"],
+            highschool: { gen: "사회·문화, 정치와 법, 생활과 윤리, 경제", car: "사회문제 탐구", fus: "심리학, 다문화 사회의 이해, 철학" }
+        },
+        "국제관계학과": {
+            desc: "정치외교학을 기반으로 하되, 국제 정치, 국제법, 국제 경제 등 초국가적인 이슈와 글로벌 협력에 학문적 초점을 더욱 맞추어 국제 사회 전문가를 양성합니다.",
+            recommend: ["지구촌 갈등, 전쟁, 환경 문제, 무역 전쟁 등 거시적인 글로벌 이슈를 분석하고 국제적인 해결책을 모색하고 싶은 학생"],
+            subjects: [{ cat: "국제학", list: "국제관계학개론, 국제법, 글로벌거버넌스, 동북아국제관계, 국제안보론" }],
+            similar: "국제학부, 정치외교학과",
+            careers: ["국제기구(UN, WTO), 국제개발협력(KOICA) 전문가, 외교관, 글로벌 NGO"],
+            highschool: { gen: "정치, 세계사, 세계시민과 지리", car: "국제 정치, 국제 경제, 현대 세계의 변화", fus: "다문화 사회의 이해" }
+        },
+        "도시사회학과": {
+            desc: "인구 집중으로 발생하는 도시 문제(주거, 교통, 환경, 범죄 등)를 사회학적 관점에서 분석하고 쾌적하고 살기 좋은 도시를 만들기 위한 정책적 대안을 연구합니다.",
+            recommend: ["복잡한 도시 구조 속에서 발생하는 사회 불평등과 공간적 문제에 호기심이 많고, 스마트 시티 등 미래 도시에 관심 있는 학생"],
+            subjects: [{ cat: "도시사회", list: "도시사회학, 도시계획론, 지역사회연구, 인구문제와 사회, 사회조사방법론" }],
+            similar: "사회학과, 도시행정학과",
+            careers: ["도시 및 국토 계획 관련 공기업(LH 등), 지자체 도시재생 부서, 사회조사 연구원"],
+            highschool: { gen: "사회·문화, 한국지리 탐구, 정치, 확률과 통계", car: "사회문제 탐구, 도시의 미래 탐구", fus: "데이터 과학" }
+        },
+
+        // --- 6. 법·행정 계열 ---
+        "법학과": {
+            desc: "사회의 질서 유지와 정의 실현을 위해 만들어진 국가의 최고 규범인 '법(Law)'의 제정 원리와 텍스트를 심도 있게 해석하고, 합리적인 법적 추론 능력으로 분쟁을 해결합니다.",
+            recommend: ["복잡하고 방대한 텍스트의 핵심을 빠르고 정확하게 파악해 내는 뛰어난 독해력을 지니고, 객관적인 증거와 논리에 따라 냉철하게 시시비비를 가려내는 정의로운 학생"],
+            subjects: [{ cat: "법학", list: "헌법, 민법총칙, 형법, 행정법, 형사소송법, 상법" }],
+            similar: "공공인재학부, 법무행정학과",
+            careers: ["로스쿨 진학 후 변호사/판사/검사, 법무사, 공인노무사, 일반 대기업 사내 법무팀"],
+            highschool: { gen: "정치와 법, 정치, 독서와 작문, 윤리와 사상", car: "논리와 사고, 사회문제 탐구", fus: "인문학과 윤리, 철학, 독서 토론과 글쓰기" }
+        },
+        "행정학과": {
+            desc: "국가 및 지자체의 공공 정책이 어떻게 기획되고 집행되는지, 그리고 공공기관의 거대한 조직과 인사, 국가 재무 예산을 어떻게 효율적으로 관리할 것인지를 연구합니다.",
+            recommend: ["공공의 이익과 사회 복지 증진에 기여하고자 하는 헌신적인 사명감이 투철하고, 복잡한 사회 갈등을 분석하여 가장 합리적인 타협점을 제시하는 기획력을 갖춘 학생"],
+            subjects: [{ cat: "행정/정책", list: "행정학개론, 행정사학, 정책학, 조직행정론, 인사행정론, 재무행정론" }],
+            similar: "공공행정학과, 자치행정학과",
+            careers: ["행정고시(5급 공채) 및 7/9급 국가/지방직 공무원, 국회 사무처, 주요 공기업 임직원"],
+            highschool: { gen: "정치, 경제, 사회·문화", car: "사회문제 탐구, 국제 정치", fus: "철학, 인문학과 윤리, 데이터 과학" }
+        },
+        "경찰행정학과": {
+            desc: "범죄의 발생 원인을 심리적/사회적으로 분석 및 예방하고, 고도의 과학 수사 기법과 치안 유지 전략을 통해 사회 안전망을 철통같이 책임지는 형사 사법 전문가를 양성합니다.",
+            recommend: ["법률을 철저히 준수하는 준법정신과 흉악한 범죄에 맞설 수 있는 고도의 정의감을 지니고, 위험하고 강도 높은 현장을 이겨낼 수 있는 강인한 체력을 겸비한 학생"],
+            subjects: [{ cat: "수사/경찰", list: "경찰학개론, 수사학, 범죄학, 범죄심리학, 형법, 경찰무도" }],
+            similar: "경호학과, 해양경찰학과",
+            careers: ["경찰대학 진학 및 경찰 간부, 일반 순경, 과학수사대(CSI) 요원, 국가정보원(NIS), 교정직 공무원"],
+            highschool: { gen: "정치와 법, 사회·문화, 체육, 생활과 윤리", car: "사회문제 탐구, 스포츠 경기 체력, 논리와 사고", fus: "심리학, 보건, 인문학과 윤리" }
+        },
+        "공공인재학부": {
+            desc: "국가 및 지역 사회를 이끌어갈 우수한 공직자, 법조인, 공공기관 핵심 인재를 양성하기 위해 법학, 행정학, 정치학을 융합적으로 교육하는 특성화 학부입니다.",
+            recommend: ["로스쿨 진학이나 고위 공직(행정고시 등) 진출 등 국가 발전과 사회의 리더로서 뚜렷한 엘리트 진로 목표를 가진 학생"],
+            subjects: [{ cat: "공공/법/행정", list: "헌법, 행정학개론, 정책분석론, 공공리더십, 민법, 형법" }],
+            similar: "자유전공학부, 행정학과, 법학과",
+            careers: ["고위 공무원(5급), 로스쿨 진학 후 법조인, 공기업 핵심 관리자, 국책 연구소"],
+            highschool: { gen: "정치, 정치와 법, 경제, 역사", car: "사회문제 탐구, 논리와 사고", fus: "인문학과 윤리, 철학" }
+        },
+        "소방행정학과": {
+            desc: "대형 재난, 화재 예방 및 구조, 구급을 총괄하는 소방 행정 및 방재 시스템을 전문적으로 연구하여 국민의 생명과 재산을 지키는 소방 지휘관 및 전문가를 양성합니다.",
+            recommend: ["불길과 재난 현장에 뛰어드는 숭고한 용기와 투철한 희생 정신을 갖추었으며 행정적 통솔력과 꼼꼼한 관리 능력을 지닌 학생"],
+            subjects: [{ cat: "소방/재난", list: "소방학개론, 소방관계법규, 재난관리론, 화재조사론, 위험물질론, 소방행정법" }],
+            similar: "소방방재학과, 응급구조학과",
+            careers: ["소방간부후보생 및 소방공무원, 소방 안전 관리자, 재난 관리 국책 연구원"],
+            highschool: { gen: "정치와 법, 화학, 정치, 체육", car: "사회문제 탐구, 스포츠 경기 체력", fus: "보건, 인체와 구조" }
+        },
+
+        // --- 7. 자연과학 계열 ---
+        "수학과": {
+            desc: "대수학, 해석학, 기하학 등 수학의 기초 이론을 깊이 있게 연구하여 완벽한 논리적 문제 해결 능력을 기르며, 이를 통해 타 첨단 기술 발전의 뼈대와 토대를 제공하는 순수 학문입니다.",
+            recommend: ["눈에 보이지 않는 추상적인 수식과 개념을 체계화하고, 풀리지 않는 어려운 증명 문제에 며칠이고 끈질기게 매달려 결국 답 찾아내는 데서 희열을 느끼는 끈기 있는 학생"],
+            subjects: [{ cat: "대수/해석", list: "해석학, 선형대수학, 현대대수학, 미분기하학, 위상수학, 수리통계학" }],
+            similar: "수리과학과, 정보수학과",
+            careers: ["순수/응용 수학자, 중고교 수학교사, 금융/보험 계리사, 암호 학자, 빅데이터 분석가"],
+            highschool: { gen: "대수, 미적분I, 확률과 통계", car: "미적분II, 기하, 전문 수학, 이산 수학", fus: "수학과 탐구, 데이터 과학, 실용 수학" }
+        },
+        "통계학과": {
+            desc: "폭발적으로 발생하는 수많은 불확실한 데이터를 수집, 분석하여 숨겨진 패턴을 찾아내고, 이를 바탕으로 정부의 핵심 정책이나 기업의 마케팅에서 가장 합리적인 의사결정을 내리도록 돕습니다.",
+            recommend: ["어지럽게 널려 있는 방대한 데이터 속에서 규칙성을 찾아 수치화하고 시각화하는 것에 희열을 느끼며, 프로그래밍(Python, R) 도구를 활용하는 데 거부감이 없는 학생"],
+            subjects: [{ cat: "통계/응용", list: "수리통계학, 확률론, 회귀분석, 다변량분석, 시계열분석, 데이터마이닝" }],
+            similar: "정보통계학과, 응용통계학과, 데이터사이언스학과",
+            careers: ["금융권(은행, 증권사) 빅데이터 분석가, 보험 계리사, IT 기업 데이터 사이언티스트"],
+            highschool: { gen: "확률과 통계, 대수, 미적분I, 정보, 경제", car: "경제 수학, 미적분II, 데이터 과학, 이산 수학", fus: "수학과 탐구, 실용 수학, 문제 해결과 프로그래밍" }
+        },
+        "물리학과": {
+            desc: "우주의 움직임부터 양자 입자의 상호작용까지 자연계 모든 현상의 근본 원리를 규명하고, 이를 정교한 수학적 언어로 설명하여 반도체, 우주항공 등 첨단 기술의 핵심 기초를 다집니다.",
+            recommend: ["자연 현상의 근본 원리에 끊임없이 '왜?'라는 질문을 던지며, 추상적인 물리적 현상을 한 치의 오차 없는 수학적 수식과 그래프로 정교하게 모델링해 내는 능력이 탁월한 학생"],
+            subjects: [{ cat: "물리학", list: "일반물리학, 고전역학, 전자기학, 양자역학, 열 및 통계물리학, 고체물리학" }],
+            similar: "응용물리학과",
+            careers: ["국책 기초과학 연구원(IBS 등), 반도체 및 디스플레이 양자 첨단산업 설계 엔지니어"],
+            highschool: { gen: "물리학, 대수, 미적분I, 화학", car: "역학과 에너지, 전자기와 양자, 미적분II, 기하", fus: "과학의 역사와 문화, 융합과학 탐구" }
+        },
+        "화학과": {
+            desc: "물질의 구성 요소인 원자와 분자의 구조, 변화 과정을 낱낱이 연구하여, 기존에 없던 새로운 성질의 물질(신소재)을 창조하거나 질병을 치료하는 신약 개발의 핵심 기반 지식을 제공합니다.",
+            recommend: ["화학 물질들이 섞이며 색이 변하거나 빛을 내는 반응 메커니즘을 밝히는 정밀한 실험 과정에 흠뻑 빠져있으며 미세한 오차도 허용하지 않고 꼼꼼하게 관찰, 기록하는 학생"],
+            subjects: [{ cat: "화학", list: "유기화학, 무기화학, 물리화학, 분석화학, 생화학, 양자화학" }],
+            similar: "응용화학과, 나노화학과",
+            careers: ["제약회사 신약 R&D, 대형 화장품 브랜드 연구원, 석유화학 첨단 신소재 개발자"],
+            highschool: { gen: "화학, 생명과학, 미적분I, 물리학", car: "물질과 에너지, 화학 반응의 세계, 미적분II", fus: "과학과 사회, 융합과학 탐구, 환경" }
+        },
+        "생명과학과": {
+            desc: "살아 숨 쉬는 생명체의 신비로운 생명 현상 원리를 세포, 단백질, 유전자 단위에서 심층적으로 탐구하여 난치병 치료, 식량 자원 등 미래 첨단 바이오 산업을 주도합니다.",
+            recommend: ["동식물, 미생물 및 인체의 정교한 작동 원리에 끝없는 지적 호기심을 지니며, 섬세함이 요구되는 세포 배양 등의 실험을 끈기 있게 수행할 수 있는 학생"],
+            subjects: [{ cat: "생명과학", list: "일반생물학, 세포생물학, 분자생물학, 유전학, 생화학, 미생물학, 면역학" }],
+            similar: "의생명과학과, 바이오융합학과",
+            careers: ["생명공학 연구원, 제약회사(신약 개발), 공공기관 연구원, 국과수 DNA 분석관"],
+            highschool: { gen: "생명과학, 화학, 물리학", car: "세포와 물질대사, 생물의 유전과 진화, 화학 반응의 세계", fus: "과학의 역사와 문화, 생태와 환경, 융합과학 탐구" }
+        },
+        "지구환경과학과": {
+            desc: "지각부터 깊은 바다, 대기권까지 지구 시스템의 변화 과정을 연구하여 기후 변화, 환경 오염, 자원 고갈 등 인류 생존을 위협하는 전 지구적 문제를 진단합니다.",
+            recommend: ["기후 위기, 화산 폭발 등 거대한 자연 현상의 원리에 깊은 관심이 있으며, 야외 지질 답사를 수행하는 활동적이고 역동적인 탐구를 즐기는 학생"],
+            subjects: [{ cat: "지구과학", list: "지질학, 광물학, 대기과학, 기상학, 기후학, 지구물리학, 해양학" }],
+            similar: "대기과학과, 지질학과",
+            careers: ["기상청 예보관, 환경부 공무원, 한국지질자원연구원 연구원"],
+            highschool: { gen: "지구과학, 물리학, 화학, 생명과학", car: "지구시스템과학, 행성 우주 과학, 기후 변화와 환경생태", fus: "과학과 사회, 생태와 환경" }
+        },
+        "천문우주학과": {
+            desc: "태양계, 항성, 은하 등 광활한 우주 공간에서 일어나는 모든 현상과 우주의 기원을 첨단 관측 기기와 수학/물리학적 지식을 총동원하여 연구합니다.",
+            recommend: ["미지의 우주 공간에 대한 무한한 동경과 호기심을 지니고, 망원경 관측 데이터를 수학적으로 분석해 낼 수 있는 물리/수학 기본기를 갖춘 학생"],
+            subjects: [{ cat: "천문/우주", list: "천문학개론, 관측천문학, 천체물리학, 태양계천문학, 우주론, 항성진화론" }],
+            similar: "우주과학과",
+            careers: ["한국천문연구원(KASI), 항공우주연구원(KARI), 과학관 천문 큐레이터, 항공우주 기업체"],
+            highschool: { gen: "지구과학, 물리학, 미적분I", car: "행성 우주 과학, 역학과 에너지, 전자기와 양자, 미적분II, 기하", fus: "과학의 역사와 문화, 융합과학 탐구" }
+        },
+        "해양학과": {
+            desc: "지구 표면의 70%를 차지하는 바다의 물리적, 화학적, 생물학적, 지질학적 현상을 종합적으로 연구하여 해양 자원 개발 및 해양 생태계 보존을 주도합니다.",
+            recommend: ["신비로운 바다 생태계와 해류의 움직임에 매력을 느끼며, 탐사선을 타고 바다로 나가는 스케일 큰 현장 연구를 해보고 싶은 학생"],
+            subjects: [{ cat: "해양과학", list: "물리해양학, 화학해양학, 생물해양학, 해양지질학, 해양환경학" }],
+            similar: "해양생명과학과, 지구환경과학과",
+            careers: ["한국해양과학기술원(KIOST), 해양수산부 공무원, 기상청, 수산자원공단"],
+            highschool: { gen: "지구과학, 생명과학, 물리학, 화학", car: "지구시스템과학, 세포와 물질대사, 역학과 에너지", fus: "생태와 환경, 기후 변화와 환경생태" }
+        },
+
+        // --- 8. 생활과학 계열 ---
+        "의류학과": {
+            desc: "의복의 새로운 소재 개발부터 미적 디자인, 상품 기획, 패션 마케팅, 그리고 인체와 의복의 쾌적한 상호작용에 이르기까지 화려한 패션 산업 전반을 예술적, 과학적, 경영학적으로 통합하여 배웁니다.",
+            recommend: ["시시각각 변하는 글로벌 패션 트렌드에 극도로 민감하며 독창적인 옷을 직접 코디하는 것을 즐기고, 직물의 화학적 특성을 이해하며 소비자 심리를 꿰뚫는 마케팅 마인드를 지닌 학생"],
+            subjects: [{ cat: "패션/소재", list: "패션일러스트레이션, 서양복식사, 입체재단, 직물학, 패션마케팅, 의복환경학" }],
+            similar: "패션디자인학과, 패션산업학과",
+            careers: ["글로벌 패션 브랜드 디자이너, 패션 상품 기획자(MD), 패션 전문 매거진 에디터"],
+            highschool: { gen: "미술, 화학, 기술·가정, 사회·문화, 경제", car: "가정과학, 미술 창작", fus: "생태와 환경, 예술과 매체, 인문학과 윤리" }
+        },
+        "식품영양학과": {
+            desc: "생명 유지의 필수 요소인 식품의 화학적 성분, 가공 및 저장 원리, 인체 내 영양 대사 메커니즘을 과학적으로 규명하여 질병 예방 및 올바른 식생활 건강 증진에 완벽히 기여하는 전문가를 양성합니다.",
+            recommend: ["다이어트, 기능성 영양제의 효능 등에 관심이 많으며, 식품이 조리/발효될 때 일어나는 화학적 변화를 실험실에서 과학적으로 분석하고 증명하는 과정에 강한 흥미가 있는 학생"],
+            subjects: [{ cat: "식품/영양", list: "식품화학, 식품미생물학, 식품가공학, 기초/임상영양학, 생애주기영양학" }],
+            similar: "식품공학과, 푸드테크학과",
+            careers: ["대형 종합병원 소속 임상 영양사, 대기업 식품회사 R&D 연구원, 식약처 보건직 공무원"],
+            highschool: { gen: "화학, 생명과학, 기술·가정, 확률과 통계", car: "가정과학, 물질과 에너지, 세포와 물질대사", fus: "보건, 과학과 사회, 융합과학 탐구" }
+        },
+        "아동가족학과": {
+            desc: "영아기부터 청소년기에 이르는 아동의 인지, 정서 발달 과정과 가족 관계의 복잡한 역동성을 심리/사회학적으로 심층 연구하여 저출산 시대에 파괴되어가는 건강한 가정 환경 조성을 돕고 복지를 실현합니다.",
+            recommend: ["영유아의 행동 발달과 심리에 관심이 많고, 현대 사회의 가슴 아픈 붕괴되는 가족 문제를 전문적인 심리 상담 및 국가 제도로 치유하고 해결하고 싶은 포용력과 사명감을 지닌 학생"],
+            subjects: [{ cat: "아동/가족", list: "영/유아발달, 아동심리학, 아동복지론, 놀이치료, 가족관계학, 부모교육론" }],
+            similar: "아동복지학과, 유아교육과, 가족복지학과",
+            careers: ["국공립 어린이집 보육교사 및 원장, 아동/청소년 전문 심리 상담사, 건강가정지원센터 복지사"],
+            highschool: { gen: "사회·문화, 기술·가정, 생활과 윤리, 생명과학, 정치", car: "가정과학, 사회문제 탐구", fus: "심리학, 다문화 사회의 이해, 보건" }
+        },
+        "주거환경학과": {
+            desc: "가족 생활과 직결된 주거 공간의 설계, 실내 환경 개선, 스마트 홈 등 인간 중심의 쾌적하고 안락한 주거 문화를 창조하는 방법을 배웁니다.",
+            recommend: ["실내 공간을 가장 편리하고 아름답게 꾸밀 수 있을지 몰두하며 인테리어 도면이나 3D 모델링을 즐기는 미적 감각과 공학적 센스를 겸비한 학생"],
+            subjects: [{ cat: "주거/공간", list: "주거학, 실내디자인, 주거환경심리학, CAD/BIM 실습, 스마트홈디자인, 주거복지론" }],
+            similar: "실내건축학과, 인테리어디자인학과",
+            careers: ["실내 건축(인테리어) 디자이너, 주거복지사, 공간 코디네이터, 건설사 주택사업부"],
+            highschool: { gen: "미술, 기술·가정, 물리학, 한국지리 탐구", car: "가정과학, 공간과 도형, 입체 조형", fus: "예술과 매체, 생태와 환경" }
+        },
+        "소비자학과": {
+            desc: "소비자의 심리와 행동 양식을 분석하고 소비 트렌드를 예측하며, 올바른 소비 문화 정착과 소비자 권익을 보호하는 마케팅 및 정책 전문가를 양성합니다.",
+            recommend: ["유행하는 트렌드 뒤에 숨겨진 사람들의 구매 심리에 관심이 많고, 소비자 피해 구제 등 경제 정의에 사명감이 있는 학생"],
+            subjects: [{ cat: "소비자/경제", list: "소비자행동론, 소비트렌드분석, 가계재무관리, 소비자법과 정책, 고객관계관리(CRM)" }],
+            similar: "경영학과(마케팅), 경제학과",
+            careers: ["기업 마케팅 및 고객 만족(CS) 팀, 시장조사 리서치 기관, 한국소비자원 공무원, 금융권 PB"],
+            highschool: { gen: "경제, 확률과 통계, 사회·문화, 기술·가정", car: "경제 수학, 사회문제 탐구", fus: "금융과 경제 생활, 심리학, 데이터 과학" }
+        },
+
+        // --- 9. 농학 계열 ---
+        "농생명과학과": {
+            desc: "1차 산업인 농업에 최첨단 유전공학, 분자생물학, 그리고 센서 등을 활용한 ICT 기술을 융합 접목하여 기후 변화에 견디는 신품종 개발, 스마트팜 등 인류 식량 위기 극복의 핵심 기술을 배웁니다.",
+            recommend: ["식물 등 자연 환경 생명체에 애정이 깊으며, 컴퓨터 코딩이나 센서 기술을 융합한 자동화 '스마트팜' 등 첨단 농업 혁명에 뛰어들어 식량 위기를 해결해 보고 싶은 이과 학생"],
+            subjects: [{ cat: "농업/생명", list: "재배학원론, 토양학, 작물생리학, 작물육종학, 시설원예학(스마트팜), 유전공학" }],
+            similar: "식물자원학과, 스마트팜학과",
+            careers: ["농촌진흥청/농림부 공무원, 대형 종묘 및 비료 개발 회사 R&D 연구원, 스마트팜 창업가"],
+            highschool: { gen: "생명과학, 지구과학, 화학, 기술·가정", car: "농업 생명 과학, 세포와 물질대사", fus: "기후 변화와 환경생태, 생태와 환경" }
+        },
+        "동물자원학과": {
+            desc: "인류의 단백질원인 대가축부터 반려동물(개, 고양이), 야생동물에 이르기까지 다양한 동물의 유전, 번식, 영양, 질병 등을 폭넓게 연구하여 동물의 효율적 활용과 동물 복지, 방역 메커니즘을 배웁니다.",
+            recommend: ["단순히 귀여운 동물을 좋아하는 것을 넘어 동물의 해부학적 생리와 번식 메커니즘 등 생물학적 특성 전반에 진지한 호기심을 가지며, 펫(Pet) 산업을 주도하고 싶은 비즈니스 마인드를 갖춘 학생"],
+            subjects: [{ cat: "동물생리/자원", list: "동물해부생리학, 가축육종학, 동물번식학, 동물영양학, 사료학, 반려동물관리학" }],
+            similar: "반려동물학과, 축산학과",
+            careers: ["대형 사료/동물 의약품 개발 회사 연구원, 마사회(KRA), 반려동물 행동교정사, 펫푸드 기획자"],
+            highschool: { gen: "생명과학, 화학, 지구과학, 기술·가정", car: "생물의 유전과 진화, 농업 생명 과학", fus: "생태와 환경, 보건" }
+        },
+        "산림과학과": {
+            desc: "기후 위기 대응의 핵심인 산림 생태계의 보전, 훼손된 숲의 복원, 친환경 목재 자원 활용, 산림 치유 등 숲이 주는 가치를 과학적이고 경영학적인 측면에서 연구합니다.",
+            recommend: ["야외 활동과 숲 탐사를 즐기며, 지구 온난화 방지와 생태계 보존에 헌신하고 싶은 사명감을 가진 학생"],
+            subjects: [{ cat: "산림학", list: "수목학, 산림생태학, 조림학, 산림보호학, 산림경영학, 임산공학" }],
+            similar: "임산생명공학과",
+            careers: ["산림청 공무원, 국립공원공단, 산림치유지도사, 친환경 목재 기업 연구원"],
+            highschool: { gen: "생명과학, 지구과학, 한국지리 탐구", car: "농업 생명 과학, 기후 변화와 환경생태", fus: "생태와 환경, 융합과학 탐구" }
+        },
+        "조경학과": {
+            desc: "무분별한 개발로 훼손된 자연 생태계를 복원하고, 대규모 도시 공원, 광장, 리조트 등 인간이 거주하고 휴식하는 공간을 자연과 가장 조화롭고 아름답게 연결하기 위해 종합적으로 계획, 설계, 시공합니다.",
+            recommend: ["식물 생태에 관심이 많으면서도 동시에 도면을 설계하고 3D 모델링으로 공간을 창조해 내는 뛰어난 미적 감각과 공간 지각력을 지닌 건축/디자인 융합 성향의 학생"],
+            subjects: [{ cat: "조경설계/생태", list: "조경설계스튜디오, 조경미학, 컴퓨터그래픽스, 조경수목학, 생태계복원공학, 조경시공학" }],
+            similar: "환경조경학과, 도시조경학과",
+            careers: ["대형 건설사 조경팀(시공/설계), 조경 설계 전문 엔지니어링 회사, 한국토지주택공사(LH) 설계 담당"],
+            highschool: { gen: "지구과학, 생명과학, 미술, 미적분I", car: "농업 생명 과학, 기하, 미술 창작", fus: "생태와 환경, 기후 변화와 환경생태, 예술과 매체" }
+        },
+        "스마트팜학과": {
+            desc: "전통 농업에 사물인터넷(IoT), 빅데이터, 인공지능 등 4차 산업혁명 기술을 접목하여 온도, 습도 등을 자동 제어하는 지능형 실내 농장을 연구하고 구축합니다.",
+            recommend: ["농작물 재배 지식과 센서 제어, 코딩(IT) 기술을 동시에 구사하여 효율적이고 혁신적인 미래 농업 시스템을 뚝딱 만들어보고 싶은 융합형 인재"],
+            subjects: [{ cat: "스마트농업", list: "시설원예학, 농업센서공학, 농업환경제어, 스마트팜설계, 농생명데이터분석" }],
+            similar: "농생명과학과, 바이오시스템공학과",
+            careers: ["스마트팜 구축 전문 기업(애그테크 벤처), 농촌진흥청 스마트농업 연구원, 미래형 농장 창업가(CEO)"],
+            highschool: { gen: "생명과학, 정보, 화학, 대수", car: "농업 생명 과학, 인공지능 기초, 데이터 과학", fus: "문제 해결과 프로그래밍, 융합과학 탐구" }
+        },
+
+        // --- 10. 기계·전기·전자 계열 ---
+        "기계공학과": {
+            desc: "사물에 작용하는 힘과 운동의 물리적 법칙(4대 역학)을 가장 깊이 있게 수학적으로 계산하여, 자동차, 비행기, 로봇, 반도체 생산 장비 등 현대 산업에 필수적인 기계 시스템 전체의 구조를 설계하고 제작합니다.",
+            recommend: ["기계적 작동 원리와 힘의 흐름에 무한한 호기심이 많고, 물체의 변형과 유체의 흐름 등을 물리학과 고등 수학(미적분, 기하)의 정교한 계산으로 논리적으로 증명하고 풀어내는 이과적 사고방식을 가진 학생"],
+            subjects: [{ cat: "기초역학/설계", list: "고체역학(재료), 열역학, 유체역학, 동역학, 기계설계, 자동제어, CAD/CAM, 로봇공학" }],
+            similar: "기계설계공학과, 기계시스템공학과",
+            careers: ["현대자동차, 한국항공우주산업(KAI), 한화오션 등 모빌리티/중공업 핵심 엔지니어, 한국기계연구원(KIMM)"],
+            highschool: { gen: "물리학, 대수, 미적분I, 화학", car: "역학과 에너지, 미적분II, 기하", fus: "공학 일반, 융합과학 탐구" }
+        },
+        "전기전자공학과": {
+            desc: "거대한 전력망 시스템부터 스마트폰 반도체 칩, 5G 통신과 인공지능 기기에 이르기까지 눈에 보이지 않는 전자의 미세한 흐름을 극한으로 제어하고 최적화된 회로를 설계하는 현대 IT 지식 정보 사회의 핵심 공학입니다.",
+            recommend: ["보이지 않지만 세상을 움직이는 전자기학적 파동의 원리와 복잡한 논리 회로 기판(PCB)을 분석하고 설계하는 과정을 진심으로 즐기며, 복잡한 수식을 두려워하지 않고 마이크로컨트롤러를 제어하고 싶은 학생"],
+            subjects: [{ cat: "회로/통신/전력", list: "회로이론, 전자기학, 전자회로, 반도체공학, 신호및시스템, 디지털통신이론, 제어공학, 전력공학" }],
+            similar: "전자공학과, 전기공학과, 시스템반도체공학과",
+            careers: ["삼성전자/SK하이닉스 반도체 정밀 설계 공정 엔지니어, 애플/LG 스마트폰 및 디스플레이 개발자, 한국전력공사"],
+            highschool: { gen: "물리학, 대수, 미적분I, 정보", car: "전자기와 양자, 미적분II, 기하", fus: "수학과 창의적 융합, 인공지능 기초" }
+        },
+        "자동차공학과": {
+            desc: "전통적 내연기관부터 전기차, 자율주행 자동차 및 UAM 등 최첨단 미래 모빌리티 기술을 기계, 전기, 컴퓨터 융합을 통해 전문적으로 배웁니다.",
+            recommend: ["차량 동역학 분석뿐만 아니라 카메라 센서와 AI가 결합된 자율주행 기술 발전에 흠뻑 빠져있는 학생"],
+            subjects: [{ cat: "자동차", list: "내연기관론, 차량동역학, 친환경자동차공학, 자동차전자제어시스템, 자율주행제어" }],
+            similar: "미래모빌리티학과",
+            careers: ["현대/기아자동차 등 완성차 제조사, 부품 기업, 자율주행 R&D"],
+            highschool: { gen: "물리학, 대수, 미적분I, 정보", car: "역학과 에너지, 기하, 미적분II", fus: "공학 일반, 데이터 과학" }
+        },
+        "메카트로닉스공학과": {
+            desc: "기계공학과 전자공학의 융합 학문으로 공장 자동화, 스마트 로봇 제어 시스템 등 정밀하고 지능화된 하드웨어를 설계하고 코딩합니다.",
+            recommend: ["기계의 튼튼한 골격과 전자의 두뇌(소프트웨어)를 한 번에 다루어 내가 만든 로봇이 스스로 움직이게 만드는 융합 작업에 카타르시스를 느끼는 학생"],
+            subjects: [{ cat: "제어/로봇", list: "자동제어, 로봇공학, 마이크로프로세서, 센서공학, 동역학, 논리회로" }],
+            similar: "로봇공학과, 기전공학과",
+            careers: ["공장 자동화(FA) 로봇 엔지니어, 스마트 팩토리 제어 프로그래머, 방위산업 무기 체계 제어"],
+            highschool: { gen: "물리학, 대수, 미적분I, 정보", car: "역학과 에너지, 전자기와 양자, 인공지능 기초", fus: "공학 일반, 문제 해결과 프로그래밍" }
+        },
+        "로봇공학과": {
+            desc: "인간을 대신하거나 보조하는 지능형 로봇(산업용 다관절 로봇, 휴머노이드, 수술용 로봇 등)의 기구학적 설계, 모터 제어 및 인공지능 인지 알고리즘을 심층 연구합니다.",
+            recommend: ["공상과학 영화 속 인공지능 로봇을 실제로 현실에 구현해내고 싶은 로봇 매니아이자, 하드웨어 조립과 코딩을 모두 미친 듯이 파고드는 학생"],
+            subjects: [{ cat: "로봇제어", list: "로봇기구학, 로봇동역학, 임베디드시스템, 컴퓨터비전(영상인식), 기계학습응용" }],
+            similar: "메카트로닉스공학과",
+            careers: ["현대로보틱스, 두산로보틱스 등 첨단 로봇 개발 연구원, 무인 자율주행 로봇 배달 스타트업, 의료용 로봇 엔지니어"],
+            highschool: { gen: "물리학, 미적분I, 정보", car: "역학과 에너지, 미적분II, 기하, 인공지능 기초", fus: "공학 일반, 수학과 창의적 융합" }
+        },
+
+        // --- 11. 화학·생명 계열 ---
+        "화학공학과": {
+            desc: "비커에서 일어나는 작은 화학 반응을 거대한 파이프와 반응기를 갖춘 대형 화학 공장 수준으로 안전하고 경제적으로 스케일업(Scale-up)하여 석유, 플라스틱, 배터리 등을 양산하는 공정 시스템을 설계하고 최적화합니다.",
+            recommend: ["화학 반응식을 단순히 암기하는 것을 넘어, 반응 과정에서 발생하는 열과 유체의 압력 변화를 정밀한 수학과 물리학적 수식으로 계산하여 실제 공장을 돌리는 설계 엔지니어가 되고 싶은 꼼꼼한 이과 학생"],
+            subjects: [{ cat: "화공기초/공정", list: "화공열역학, 유체역학, 열 및 물질전달, 물리화학, 반응공학, 공정제어, 분리공정, 고분자공학" }],
+            similar: "에너지공학과, 화학에너지공학과",
+            careers: ["SK이노베이션, S-Oil 등 대형 정유/석유화학 최적화 엔지니어, LG에너지솔루션 등 이차전지 배터리 셀 설계 엔지니어"],
+            highschool: { gen: "화학, 물리학, 미적분I, 생명과학", car: "물질과 에너지, 화학 반응의 세계, 미적분II", fus: "생태와 환경, 공학 일반, 융합과학 탐구" }
+        },
+        "생명공학과": {
+            desc: "유전자, 단백질 등 생명체의 신비로운 원리를 공학적으로 정교하게 응용 및 조작하여, 인류의 난치병을 치료하는 바이오 의약품(백신, 항암제), 유전자 재조합 신품종 등 미래 첨단 바이오 제품을 획기적으로 개발합니다.",
+            recommend: ["DNA 염기 서열과 단백질이 접히는 미세한 분자 결합 원리에 강렬한 호기심이 많고, 피펫을 들고 정밀하게 세포를 배양하는 까다로운 실험을 끈기 있게 수행할 수 있으며 공학적 최적화 과정에 카타르시스를 느끼는 학생"],
+            subjects: [{ cat: "바이오공학", list: "생화학, 분자생물학, 세포생물학, 유전공학, 생물공정공학, 단백질공학, 면역공학" }],
+            similar: "의생명공학과, 화공생명공학과",
+            careers: ["삼성바이오로직스/셀트리온 등 글로벌 바이오 의약품 제조사 핵심 신약 R&D 연구원, 국과수 DNA 유전자 분석관"],
+            highschool: { gen: "생명과학, 화학, 미적분I, 물리학", car: "세포와 물질대사, 화학 반응의 세계, 생명과학 탐구", fus: "융합과학 탐구, 인공지능 기초, 과학의 역사와 문화" }
+        },
+        "신소재공학과": {
+            desc: "반도체, 디스플레이, 배터리 등 첨단 산업의 뼈대가 되는 금속, 세라믹, 고분자 재료의 원자 구조와 특성을 파악하고 새로운 성질의 물질을 조작/개발합니다.",
+            recommend: ["물질의 미시적 원자 구조가 변할 때 투명도나 강도 등 눈에 띄는 특성이 확연히 뒤바뀌는 경이로운 현상에 강하게 매력을 느끼는 학생"],
+            subjects: [{ cat: "소재공학", list: "재료공학개론, 결정학, 재료열역학, 고체물리, 반도체재료, 고분자재료" }],
+            similar: "재료공학과",
+            careers: ["반도체 핵심 소재 및 공정 개발자, 전기차 배터리(양/음극재) 연구원, 기초 철강 엔지니어"],
+            highschool: { gen: "화학, 물리학, 미적분I", car: "물질과 에너지, 역학과 에너지, 전자기와 양자, 미적분II", fus: "공학 일반, 융합과학 탐구" }
+        },
+        "나노공학과": {
+            desc: "나노 단위 미시 세계에서 원자와 분자를 정밀하게 제어하고 조립하여 초소형 센서, 약물 전달 시스템 등 혁신적인 양자/나노 기기를 개발하는 최첨단 융합 학문입니다.",
+            recommend: ["눈에 보이지 않는 초미세 세계의 양자역학적 현상에 호기심이 많으며 물리, 화학, 생물을 한 그릇에 융합하는 것에 카타르시스를 느끼는 학생"],
+            subjects: [{ cat: "나노기술", list: "나노과학개론, 양자역학기초, 나노바이오공학, 반도체소자공학" }],
+            similar: "나노융합공학과",
+            careers: ["초미세 반도체 공정 연구원, 나노 바이오 센서 개발 제약 연구자, 국책 나노기술 선도 연구소"],
+            highschool: { gen: "물리학, 화학, 미적분I", car: "전자기와 양자, 물질과 에너지, 미적분II", fus: "융합과학 탐구" }
+        },
+        "에너지공학과": {
+            desc: "화석 연료의 고갈과 기후 변화에 대응하기 위해 태양광, 풍력, 수소, 연료전지 등 차세대 친환경 신재생 에너지의 생산, 저장, 변환 효율을 극대화하는 공학을 배웁니다.",
+            recommend: ["전 지구적인 에너지 위기 문제에 사명감을 느끼며, 배터리나 수소 연료 전지 등 화학적, 물리적 에너지 변환 원리(열역학 등)에 관심이 깊은 학생"],
+            subjects: [{ cat: "에너지공학", list: "에너지공학개론, 열역학, 신재생에너지공학, 연료전지공학, 이차전지(배터리)개론" }],
+            similar: "화학에너지공학과, 신재생에너지공학과",
+            careers: ["배터리 셀 제조사(LG엔솔 등), 한국수력원자력 및 전력 공기업, 수소 연료 전지 개발 모빌리티 기업"],
+            highschool: { gen: "화학, 물리학, 미적분I, 지구과학", car: "물질과 에너지, 역학과 에너지", fus: "공학 일반, 기후 변화와 환경생태" }
+        },
+
+        // --- 12. 건축·환경 계열 ---
+        "건축학과": {
+            desc: "인간의 다양한 삶의 방식과 문화를 담아내는 건축 공간을 예술적인 미학적 조형미와 실용적인 동선, 공학적 안전성을 겸비하여 설계(디자인)하는 예술과 공학의 교차점입니다. (일반적으로 스튜디오 실습 위주 5년제)",
+            recommend: ["도면이나 조감도를 보고 입체적인 3D 공간을 렌더링해 내는 미친 공간 지각력과 섬세한 미적 감각, 그리고 기초 공학적 이해를 겸비하여 나만의 웅장한 건축물을 직접 설계하고 모형을 깎는 과정에 희열을 느끼는 학생"],
+            subjects: [{ cat: "건축설계/역사", list: "건축설계스튜디오, 공간디자인, 디지털건축(BIM), 서양건축사, 현대건축론, 건축계획론" }],
+            similar: "실내건축학과, 실내디자인학과",
+            careers: ["건축사(건축사사무소 창업 및 설계자), 인테리어 공간 디자이너, 도시계획가, 국토교통부 건축직 공무원"],
+            highschool: { gen: "미술, 물리학, 미적분I, 세계시민과 지리, 사회·문화", car: "미술 창작, 기하, 미적분II", fus: "예술과 매체, 수학과 과제 탐구, 인문학과 윤리" }
+        },
+        "건축공학과": {
+            desc: "건축학이 디자인한 건물이 무너지지 않도록 철골과 콘크리트의 두께를 역학적으로 계산하고, 효율적으로 건설하기 위한 시공, 설비, 친환경 재료를 다루는 4년제 학과입니다.",
+            recommend: ["거대한 건축물의 힘의 균형(역학)을 치밀하게 계산하고, 웅장한 공사 현장을 지휘하며 공기와 예산을 통제하는 카리스마 넘치는 프로젝트 매니저가 되고 싶은 학생"],
+            subjects: [{ cat: "구조/시공", list: "건축구조역학, 철근콘크리트구조, 건축시공학, 건설사업관리(CM), 건축환경설비" }],
+            similar: "스마트건설공학과",
+            careers: ["대형 건설회사 시공 현장 소장, 건축물 구조 설계 엔지니어, 건축직 공무원"],
+            highschool: { gen: "물리학, 대수, 미적분I", car: "역학과 에너지, 기하, 미적분II", fus: "공학 일반" }
+        },
+        "토목공학과": {
+            desc: "대자연을 개척하여 고속도로, 해저 터널, 교량, 댐, 항만 등 국가 발전의 핏줄이 되는 가장 거대하고 웅장한 필수 기반 시설(인프라)을 안전하게 설계하고 건설합니다.",
+            recommend: ["수만 톤의 흙과 철근이 자연의 거대한 힘(수압, 지진력)을 버텨내는 구조 역학을 수학적으로 계산하는 데 탁월하며 거대한 스케일의 랜드마크를 건설하고 싶은 학생"],
+            subjects: [{ cat: "역학/인프라", list: "구조역학, 토질역학, 수리학, 측량학, 교량공학, 상하수도공학" }],
+            similar: "사회기반시스템공학과, 건설환경공학과",
+            careers: ["토목 설계 전문 엔지니어링 회사, 한국도로공사 등 거대 공기업 임직원, 토목직 공무원"],
+            highschool: { gen: "물리학, 대수, 미적분I, 지구과학", car: "역학과 에너지, 미적분II, 기하", fus: "공학 일반, 수학과 탐구" }
+        },
+        "환경공학과": {
+            desc: "심각하게 병든 지구의 수질, 대기, 폐기물 오염을 근본적으로 방지하고 깨끗하게 정화하며, 지속 가능한 친환경 생태계를 조성하기 위한 고도의 물리/화학/생물학적 처리 공정과 최첨단 환경 시스템을 통합적으로 연구합니다.",
+            recommend: ["온실가스로 인한 지구 온난화, 미세 플라스틱 등 오염 문제 해결에 사명감을 느끼며, 화학 반응과 유체 역학 원리를 총동원하여 오염 물질을 걸러내는 거대한 정수장 등을 설계할 이과적 두뇌를 활용하고 싶은 학생"],
+            subjects: [{ cat: "환경처리/설계", list: "수질오염제어공학, 대기오염관리, 폐기물처리, 환경플랜트설계, 환경화학, 환경미생물학" }],
+            similar: "에너지환경공학과, 바이오환경공학과",
+            careers: ["환경부/지자체 환경직 공무원, 대규모 개발 전 환경 파괴를 방지하는 환경영향평가사, 대기업 ESG(안전환경) 핵심 관리자"],
+            highschool: { gen: "화학, 지구과학, 생명과학, 물리학", car: "지구시스템과학, 물질과 에너지, 세포와 물질대사", fus: "기후 변화와 환경생태, 생태와 환경, 공학 일반" }
+        },
+        "도시공학과": {
+            desc: "교통 지옥, 주택 부족, 환경 오염 등 복잡한 도시 문제를 해결하기 위해, 도시의 토지 이용, 교통 시스템, 주거 단지, 공원 등을 거시적으로 계획하고 스마트 시티로 재생하는 기술을 배웁니다.",
+            recommend: ["심시티나 시티즈 스카이라인 같은 도시 건설 시뮬레이션 게임을 즐기며, 방대한 데이터 분석을 바탕으로 쾌적하고 살기 좋은 미래 스마트 도시의 마스터플랜을 직접 스케치해보고 싶은 기획력 뛰어난 학생"],
+            subjects: [{ cat: "도시계획", list: "도시계획론, 도시설계, 교통공학, 도시재생론, 공간정보시스템(GIS), 스마트시티설계" }],
+            similar: "도시계획학과, 교통공학과",
+            careers: ["한국토지주택공사(LH) 및 각 지방 도시공사, 도시계획/교통 전문 엔지니어링 및 컨설팅 기업, 국토교통부 공무원"],
+            highschool: { gen: "지구과학, 확률과 통계, 정치, 한국지리 탐구", car: "도시의 미래 탐구, 경제 수학", fus: "데이터 과학, 생태와 환경" }
+        },
+        "실내건축학과": {
+            desc: "건축물의 빈 껍데기 내부를 사람의 동선, 채광, 음향, 재질, 색채 등을 철저히 고려하여 미학적이고 기능적으로 가장 안락한 인테리어 공간으로 창조하는 실내 디자인 특화 학과입니다.",
+            recommend: ["건물의 웅장한 외관보다는 내가 직접 발 딛고 생활하는 방, 카페, 미술관 내부 공간의 아기자기한 디테일과 조명 분위기에 미친 듯이 예민하게 반응하며 도면 렌더링을 즐기는 미적 감각의 소유자"],
+            subjects: [{ cat: "실내설계/디자인", list: "실내디자인스튜디오, 공간색채학, 조명디자인, 가구디자인, 실내건축재료학, 3D공간모델링" }],
+            similar: "주거환경학과, 인테리어디자인학과",
+            careers: ["실내 건축(인테리어) 전문 디자이너, 전시기획 공간/무대 세트 디자이너, 대형 건설사 아파트 모델하우스 기획자"],
+            highschool: { gen: "미술, 물리학, 기술·가정", car: "미술 창작, 평면 조형, 입체 조형", fus: "예술과 매체, 융합과학 탐구" }
+        },
+
+        // --- 13. 정보·컴퓨터 계열 ---
+        "컴퓨터공학과": {
+            desc: "스마트폰 칩의 하드웨어 구조부터 운영체제, 방대한 데이터베이스 시스템, 네트워크, 그리고 복잡한 연산을 찰나에 끝내는 알고리즘 프로그래밍에 이르기까지 4차 산업혁명의 정보화 사회 뼈대를 설계하고 구축합니다.",
+            recommend: ["수천 줄의 코드를 짜며 발생한 버그를 집요하게 고쳐 내며 쾌감을 느끼는 코딩 덕후 성향과, 복잡하게 꼬인 문제를 체계적인 알고리즘으로 분해하여 가장 빠른 정답을 도출해 내는 수학적이고 논리적인 사고력이 매우 뛰어난 학생"],
+            subjects: [{ cat: "SW/HW", list: "C/파이썬프로그래밍, 자료구조, 알고리즘분석, 소프트웨어공학, 운영체제(OS), 컴퓨터네트워크, 컴퓨터구조" }],
+            similar: "소프트웨어학과, 정보컴퓨터공학과",
+            careers: ["카카오, 네이버 등 테크 기업 핵심 소프트웨어 개발자(프론트/백엔드), 대형 게임 회사 서버 개발자, 클라우드 시스템 아키텍트"],
+            highschool: { gen: "대수, 미적분I, 정보, 확률과 통계", car: "미적분II, 데이터 과학, 이산 수학", fus: "수학과 창의적 융합, 인공지능 기초, 문제 해결과 프로그래밍" }
+        },
+        "인공지능(AI)학과": {
+            desc: "기계학습(머신러닝), 딥러닝, 챗GPT와 같은 대규모 자연어 처리 및 시각 인식 알고리즘 등 최신 AI 기술을 심층 설계하고 전 산업 분야에 융합할 고급 AI 원천 기술 전문가를 양성합니다.",
+            recommend: ["수학(선형대수, 확률과 통계) 기본기가 탄탄하고 빅데이터에서 알고리즘 패턴을 찾는 데 흥미가 넘치는 학생"],
+            subjects: [{ cat: "AI알고리즘", list: "기계학습, 딥러닝설계, 인공지능수학, 컴퓨터비전, 자연어처리(NLP)" }],
+            similar: "응용인공지능학과, 지능형소프트웨어학과",
+            careers: ["글로벌 빅테크 AI 선행 기술 연구원, 자율주행 알고리즘 수석 엔지니어, 데이터 사이언티스트"],
+            highschool: { gen: "확률과 통계, 미적분I, 정보", car: "인공지능 기초, 미적분II, 기하, 데이터 과학", fus: "인공지능과 미래 사회, 수학과 탐구" }
+        },
+        "소프트웨어학과": {
+            desc: "하드웨어적 설계보다는 사용자 중심의 웹, 스마트폰 앱, 게임, 핀테크 등 상용화 소프트웨어의 기획과 대규모 실무 개발 프로젝트 수행 능력에 에너지를 집중하는 실무 밀착형 학과입니다.",
+            recommend: ["팀 프로젝트 리더십이 탁월하고 아이디어를 실제 돌아가는 편리한 스마트폰 앱이나 서비스로 직접 코딩하여 구현해 내는 것을 즐기는 학생"],
+            subjects: [{ cat: "SW설계/실무", list: "객체지향프로그래밍, 소프트웨어공학, UI/UX설계, 웹서버프로그래밍, 모바일앱개발실습" }],
+            similar: "모바일소프트웨어학과",
+            careers: ["토스, 쿠팡 등 모바일 플랫폼 프론트엔드/모바일 앱 개발자, 소프트웨어 프로젝트 매니저(PM)"],
+            highschool: { gen: "정보, 확률과 통계, 대수, 영어 독해와 작문", car: "데이터 과학, 이산 수학, 진로 영어", fus: "문제 해결과 프로그래밍, 정보과제 탐구" }
+        },
+        "정보보안학과": {
+            desc: "나날이 교묘해지는 해커들의 사이버 공격으로부터 국가의 기밀 정보와 기업의 핵심 데이터, 금융 시스템을 방어하기 위해 암호학 및 화이트 해킹 실전 방어 기술을 깊이 파고듭니다.",
+            recommend: ["해커가 시스템을 뚫으려 할 때 그 경로를 먼저 예측하는 통찰력과 투철한 윤리 의식, 네트워크 구조에 대한 집요한 호기심을 가진 학생"],
+            subjects: [{ cat: "보안/해킹", list: "정보보호개론, 네트워크보안, 현대암호학, 악성코드분석, 모의해킹실습, 디지털포렌식" }],
+            similar: "사이버국방학과, 산업보안학과",
+            careers: ["화이트해커, 국내외 주요 대기업 보안 관제(CERT), 국가정보원/사이버수사대 수사관"],
+            highschool: { gen: "정보, 확률과 통계, 정치와 법, 대수", car: "데이터 과학, 이산 수학, 윤리 문제 탐구", fus: "공학 일반, 문제 해결과 프로그래밍" }
+        },
+        "데이터사이언스학과": {
+            desc: "폭발적으로 증가하는 빅데이터를 프로그래밍(Python, R 등)과 통계학을 이용해 수집, 가공, 분석하여 기업의 이윤 창출이나 사회 문제 해결에 직결되는 핵심 인사이트(정보)를 도출해내는 학문입니다.",
+            recommend: ["복잡한 숫자와 텍스트 데이터의 늪 속에서 아무도 보지 못한 숨겨진 패턴과 규칙성을 발굴해내어 직관적인 그래프로 시각화하는 과정에 전율을 느끼는 분석적 사고력의 끝판왕 학생"],
+            subjects: [{ cat: "데이터분석", list: "데이터마이닝, 빅데이터분석실무, 파이썬프로그래밍, 응용통계학, 데이터시각화" }],
+            similar: "빅데이터공학과, 통계학과",
+            careers: ["금융권/IT 기업 최고 연봉의 데이터 사이언티스트, 인공지능 학습 데이터 구축 전문가, 비즈니스 애널리스트"],
+            highschool: { gen: "확률과 통계, 정보, 대수, 미적분I", car: "데이터 과학, 경제 수학, 미적분II", fus: "인공지능과 미래 사회, 수학과 과제 탐구" }
+        },
+        "게임공학과": {
+            desc: "단순히 게임을 플레이하는 것을 넘어, 화려한 3D 그래픽을 모니터에 렌더링하는 컴퓨터 그래픽스 기술과 수만 명이 동시에 접속해도 서버가 터지지 않게 유지하는 고도의 게임 서버 프로그래밍 기술을 심층적으로 배웁니다.",
+            recommend: ["RPG, FPS 등 게임을 플레이할 때 타격감이나 물리 엔진이 어떻게 코드로 구현되었을지 뜯어보고 분석하기를 좋아하며, 수학(벡터, 행렬)과 물리 지식을 바탕으로 나만의 게임 세계를 창조해보고 싶은 학생"],
+            subjects: [{ cat: "게임프로그래밍", list: "게임엔진프로그래밍(Unity, Unreal), 3D컴퓨터그래픽스, 게임서버프로그래밍, 게임인공지능, 물리엔진기초" }],
+            similar: "소프트웨어학과, 가상현실(VR)콘텐츠학과",
+            careers: ["넥슨, 엔씨소프트, 스마일게이트 등 대형 게임 회사의 클라이언트/서버 프로그래머, 메타버스/VR 플랫폼 개발자, 테크니컬 아트디렉터(TA)"],
+            highschool: { gen: "정보, 기하, 물리학, 대수", car: "이산 수학, 미적분II, 역학과 에너지", fus: "문제 해결과 프로그래밍, 예술과 매체" }
+        },
+
+        // --- 14. 보건 계열 ---
+        "간호학과": {
+            desc: "질병과 외상으로 고통받는 환자의 신체적 회복을 돕는 해부학, 약리학 등 의학 지식을 바탕으로 최신 임상 간호 실무를 배우며, 환자와 보호자의 깊은 심리적 불안까지 따뜻하게 어루만져 돌보는 백의의 천사를 양성합니다.",
+            recommend: ["병상에서 고통받는 타인의 아픔에 깊이 공감하며 돌봄의 과정에서 삶의 가치를 느끼고, 긴박한 3교대 의료 현장에서 쏟아지는 업무 압박을 묵묵히 견뎌낼 수 있는 흔들림 없는 강인한 멘탈과 튼튼한 체력을 갖춘 학생"],
+            subjects: [{ cat: "기초/임상간호", list: "인체해부학, 인체생리학, 약리학, 성인/아동/모성/정신/기본간호학 및 현장 실습" }],
+            similar: "글로벌간호학과, 보건간호학과",
+            careers: ["대학병원 및 대형 종합병원 임상 간호사, 보건교사(교직이수 합격 시), 특정 분야(마취 등) 전문간호사, 보건소 공무원"],
+            highschool: { gen: "생명과학, 화학, 사회·문화, 생활과 윤리", car: "세포와 물질대사, 사회문제 탐구", fus: "보건, 심리학, 생태와 환경" }
+        },
+        "물리치료학과": {
+            desc: "질병, 교통사고 등으로 신체 기능에 손상을 입은 환자를 치료하고 재활을 돕기 위한 물리적, 운동적 치료 기법을 배웁니다.",
+            recommend: ["인체의 뼈, 근육의 역학적 움직임 원리에 관심이 많고 장기 재활 환자를 돕는 친절한 인내심을 가진 학생"],
+            subjects: [{ cat: "재활치료", list: "기초해부학, 인체운동학, 정형/신경계물리치료" }],
+            similar: "작업치료학과, 재활치료학과",
+            careers: ["재활 전문 병원 물리치료사, 프로 스포츠 팀닥터(트레이너), 발달장애 아동 재활 센터"],
+            highschool: { gen: "생명과학, 체육, 생활과 윤리, 물리학", car: "세포와 물질대사, 체육 전공 실기, 역학과 에너지", fus: "보건, 인체와 구조" }
+        },
+        "방사선학과": {
+            desc: "CT, MRI 등 첨단 방사선 기기를 이용하여 질병을 조기 진단하고, 방사선을 이용해 암세포를 파괴하는 첨단 치료 기술을 다룹니다.",
+            recommend: ["전자기파 원리를 이해하기 위한 물리학적 지식과 미세한 영상 차이를 구별하는 시각적 분석력이 뛰어난 학생"],
+            subjects: [{ cat: "방사선학", list: "방사선물리학, 영상진단학(X선/CT/MRI), 방사선종양치료학" }],
+            similar: "방사선종양학과, 영상의학과",
+            careers: ["대학병원 영상의학과/핵의학과 전문 방사선사, 첨단 의료기기 장비 엔지니어"],
+            highschool: { gen: "물리학, 생명과학, 미적분I", car: "전자기와 양자, 기하, 세포와 물질대사", fus: "보건, 인체와 구조" }
+        },
+        "임상병리학과": {
+            desc: "혈액, 소변 등 생체 시료를 채취하여 첨단 장비로 성분을 정밀 분석함으로써 질병의 원인을 찾아내고 예후를 판정합니다.",
+            recommend: ["실험실 환경에서의 정밀한 현미경 관찰, 화학 분석에 한 치의 오차도 허용하지 않는 꼼꼼한 학생"],
+            subjects: [{ cat: "임상검사", list: "임상화학, 진단세포학, 임상혈액학, 임상미생물학, 분자진단학" }],
+            similar: "의생명검사학과",
+            careers: ["대학병원 진단검사의학과 전문 임상병리사, 글로벌 진단시약 제약회사, 국과수 DNA 분석관"],
+            highschool: { gen: "생명과학, 화학, 확률과 통계", car: "세포와 물질대사, 물질과 에너지", fus: "보건, 데이터 과학, 인체와 구조" }
+        },
+        "응급구조학과": {
+            desc: "사고, 재난 등 분초를 다투어 위급해지는 환자에게 구급차 및 응급실 현장에서 신속하고 전문적인 응급처치를 수행하여 골든타임을 확보합니다.",
+            recommend: ["끔찍한 재난 현장에서도 당황하지 않는 강심장과 냉철한 순발력, 압도적인 신체 체력을 지닌 학생"],
+            subjects: [{ cat: "응급구조", list: "전문심장소생술, 외상응급처치학, 재난관리학, 구급차동승실습" }],
+            similar: "소방구조학과, 재난안전학과",
+            careers: ["119 구급대원(소방공무원), 대학병원 응급실 1급 응급구조사, 해양경찰구조대"],
+            highschool: { gen: "생명과학, 체육, 화학, 사회·문화", car: "세포와 물질대사, 체육 전공 실기, 스포츠 경기 체력", fus: "보건, 인체와 구조" }
+        },
+        "작업치료학과": {
+            desc: "신체적, 정신적 장애로 인해 일상생활(밥 먹기, 옷 입기 등)에 어려움을 겪는 환자들이 다시 독립적인 삶을 살 수 있도록 다양한 인지 및 신체 재활 훈련 프로그램을 기획하고 치료합니다.",
+            recommend: ["환자의 신체적 기능 장애뿐만 아니라 심리적인 우울감까지 세심하게 파악하고, 일상 복귀를 위해 옆에서 끊임없이 동기를 부여해 줄 수 있는 극강의 공감 능력과 친절함을 지닌 학생"],
+            subjects: [{ cat: "작업재활/치료", list: "작업치료학개론, 일상생활동작훈련, 신경계작업치료, 인지/지각재활, 아동/노인작업치료" }],
+            similar: "재활치료학과",
+            careers: ["대학병원/재활전문병원 및 요양병원 핵심 작업치료사, 보건소 소속 치매안심센터 및 발달장애 아동 치료 센터 전담 인력, 장애인고용공단 평가사"],
+            highschool: { gen: "생명과학, 생활과 윤리, 체육, 사회·문화", car: "세포와 물질대사, 사회문제 탐구", fus: "보건, 심리학, 인체와 구조" }
+        },
+        "치위생학과": {
+            desc: "환자의 구강 질환(충치, 잇몸병 등)을 예방하기 위한 스케일링, 불소 도포 등의 전문적인 예방 치과 처치를 수행하고, 치과의사의 진료를 보조하며 국민의 전반적인 구강 보건 교육을 담당하는 치과 전문 의료 인력을 양성합니다.",
+            recommend: ["비좁은 입안에서 날카로운 치과 기구를 다뤄야 하므로 눈과 손의 협응력이 뛰어나고 극도로 섬세한 손재주를 가졌으며, 피를 보는 치과 수술 환경에서도 흔들리지 않는 침착함을 지닌 학생"],
+            subjects: [{ cat: "치위생/구강", list: "구강해부학, 치위생학개론, 예방치과학, 치면세마론(스케일링실습), 임상치위생학, 치과방사선학" }],
+            similar: "보건과학과",
+            careers: ["대형 치과 병원/의원 및 대학병원 치과 전문 수석 치과위생사, 전국 보건소 소속 구강보건 전담 공무원, 오스템임플란트 등 대형 치과 의료기기 및 장비 관련 기업 전문가"],
+            highschool: { gen: "생명과학, 화학, 물리학, 사회·문화", car: "세포와 물질대사, 물질과 에너지", fus: "보건, 인체와 구조, 과학의 역사와 문화" }
+        },
+        "보건행정학과": {
+            desc: "병원 및 의료 기관이 원활하고 적자로 돌아가지 않게 체계적으로 운영되도록 하는 의료 경영/원무/인사 시스템과 국가의 전반적인 보건 복지 정책, 건강보험 청구 시스템(심사평가)을 전문적으로 연구하고 총괄 관리하는 방법을 배웁니다.",
+            recommend: ["직접 피를 보고 주사를 놓는 임상 현장보다는 병원이라는 거대하고 복잡한 조직을 뒤에서 효율적으로 통제하고 관리하는 경영학적 마인드와 서류 및 통계 처리, 데이터 분석 능력이 뛰어난 꼼꼼한 문·이과 융합형 학생"],
+            subjects: [{ cat: "보건행정/경영", list: "보건의료법규, 병원경영학, 의무기록관리학, 의료보험청구및심사, 보건의료정보학(데이터분석)" }],
+            similar: "병원경영학과, 보건관리학과, 의료경영학과",
+            careers: ["대학병원 및 대형 종합병원의 원무과/기획조정실/인사팀 등 병원 행정직 및 건강보험 심사청구 전문가, 보건복지부/건강보험심사평가원(심평원)/국민건강보험공단 소속 핵심 공무원 및 공기업 임직원"],
+            highschool: { gen: "사회·문화, 확률과 통계, 경제, 정치와 법", car: "사회문제 탐구, 경제 수학", fus: "보건, 데이터 과학, 금융과 경제 생활" }
+        },
+
+        // --- 15. 의약학 계열 ---
+        "의예과": {
+            desc: "인체의 구조와 생리적 메커니즘, 질병의 원인 진단 및 수술/약물 치료를 가장 방대하고 심도 있게 연구하며, 촌각을 다투는 수술실과 진료실에서 인류 건강 증진과 생명 연장에 기여할 대한민국 최고 수준의 전문 의사 및 기초 의학 융합 연구자를 양성합니다.",
+            recommend: ["인간의 한계를 시험하는 듯한 6년간의 엄청난 의학 암기량과 학업량을 완벽히 소화해 내는 초인적인 끈기와 무서운 집중력을 가졌으며, 생사를 오가는 극도의 두려움에 떠는 환자의 마음에 깊이 공감하는 따뜻한 인성을 뼛속까지 갖춘 전교 최상위권 학생"],
+            subjects: [{ cat: "기초의학/예과", list: "해부학, 생리학, 병리학, 약리학, 미생물학, 의학유전학, 의료윤리학" }, { cat: "임상의학(본과)", list: "내과학, 외과학, 소아청소년과학, 산부인과학, 정신건강의학, 예방의학, 전 과목 병원 임상 실습" }],
+            similar: "의학과(본과 진입 후), 의생명융합학과",
+            careers: ["전공의 수련 후 분과별 전문의, 개인 병원 및 의원 개원의, 의과대학 교수, 국립암센터 등 의학 연구원, 세계보건기구(WHO) 글로벌 보건 전문가"],
+            highschool: { gen: "생명과학, 화학, 미적분I, 확률과 통계, 물리학, 윤리와 사상", car: "세포와 물질대사, 화학 반응의 세계, 생명과학 탐구, 미적분II", fus: "인문학과 윤리, 과학의 역사와 문화, 보건" }
+        },
+        "치의예과": {
+            desc: "치아, 잇몸 등 구강 및 악안면 영역 전체의 질병을 예방하고 치료하며, 충치 치료, 임플란트, 교정, 구강 외과 수술 등 첨단 바이오 소재가 융합된 고도의 치과 의료 전문인을 양성합니다.",
+            recommend: ["의학적 지식뿐 아니라 밀리미터 단위의 좁은 구강 내 치료를 완수하는 매우 섬세한 손재주와 치과 재료 특성에 대한 융합적 이해를 갖춘 학생"],
+            subjects: [{ cat: "치의학", list: "구강해부학, 구강조직발생학, 치과생체재료학, 보존과학, 보철과학, 치과교정학, 구강악안면외과학" }],
+            similar: "치기공학과, 치위생학과",
+            careers: ["치과의사(개원의/전문의), 치과대학 교수, 국립 치의학 연구 기관 연구원, 차세대 치과 소재 R&D 연구원"],
+            highschool: { gen: "화학, 생명과학, 미적분I, 물리학, 확률과 통계", car: "물질과 에너지, 세포와 물질대사, 미적분II", fus: "공학 일반(재료 공학적 이해), 융합과학 탐구, 보건" }
+        },
+        "한의예과": {
+            desc: "음양오행 등 동양 철학적 생명관을 바탕으로 인체를 통합적으로 이해하며, 막힌 기를 뚫는 침, 뜸, 체질에 맞춘 한약 등의 전통 치료 기술을 현대 과학과 접목하여 융합적으로 연구하는 대한민국 고유 의학입니다.",
+            recommend: ["전통적인 동양 생명관에 관심이 깊고 한자로 빽빽하게 적힌 방대한 고전 한문 문헌을 해독하는 탁월한 한문 능력과, 맥진기 등 현대 과학 기기로 데이터를 분석해 내는 이과적 능력을 두루 겸비한 융합형 학생"],
+            subjects: [{ cat: "한의학", list: "한의학개론, 본초학(약재), 경혈학(침자리), 원전학, 한방내과학, 침구과학, 사상체질의학" }],
+            similar: "한약학과",
+            careers: ["사상체질 및 침구 전문 한의사(개원의, 한방병원 진료의), 한국한의학연구원(KIOM) 등 국가 주도 한의약 R&D 연구원, 식약처 천연물 신약 개발 담당관"],
+            highschool: { gen: "생명과학, 화학, 한문, 윤리와 사상, 미적분I", car: "세포와 물질대사, 진로 한문, 고전 읽기, 고전과 윤리", fus: "철학, 인문학과 윤리, 보건, 과학의 역사와 문화" }
+        },
+        "약학과": {
+            desc: "질병 치료를 위한 기적의 신약(항암제, 백신 등) 합성 및 분자 단위 개발부터, 약물이 인체 내에 흡수되어 질병 타겟에 작용하는 복잡한 약리 기전 연구, 조제 및 올바른 복약 지도에 이르는 의약품의 전 생애 주기 과정을 가장 심도 있게 연구합니다.",
+            recommend: ["화학과 생물학 분야 전반에서 물질 구조식의 미세한 차이와 복잡한 체내 반응 메커니즘을 이해하는 데 소름 돋는 탁월함을 보이며, 불치병 치료를 위한 신약 개발 연구의 최전선에 뛰어들어 수백만 명의 생명을 구하는 야망을 가진 이과 최상위권 학생"],
+            subjects: [{ cat: "약학전공", list: "유기화학, 생화학, 약리학(인체반응), 약제학(약물제형), 독성학, 병태생리학, 약물치료학, 임상약학실습" }],
+            similar: "바이오제약학과, 제약공학과",
+            careers: ["동네 약국 및 종합병원 소속 전문 임상 약사, 글로벌 빅파마(대형 제약회사)의 핵심 신약 R&D 연구원, 식약처 및 특허청 약무 관리 고위 공무원"],
+            highschool: { gen: "화학, 생명과학, 미적분I, 물리학, 확률과 통계", car: "물질과 에너지, 화학 반응의 세계, 세포와 물질대사, 미적분II", fus: "보건, 생태와 환경, 데이터 과학" }
+        },
+        "수의예과": {
+            desc: "반려동물(개, 고양이), 인류의 단백질원인 대가축, 그리고 희귀 야생동물의 질병 예방 및 내·외과적 수술 치료 기술을 전방위적으로 습득하고, 인수공통전염병 방역을 통해 공중 보건까지 책임지는 고도의 수의학 전문 지식을 무섭게 파고듭니다.",
+            recommend: ["귀여운 강아지를 예뻐하는 수준을 넘어, 피와 지독한 고름 냄새가 진동하는 참혹한 수술실 임상 현장을 이겨낼 수 있는 강단 있는 멘탈과 인수공통전염병 등 방역 생물학에 관심이 많은 학생"],
+            subjects: [{ cat: "수의학", list: "수의해부학, 수의생리학, 수의조직학, 수의내/외과학, 소동물질병학, 야생동물학, 수의면역학" }],
+            similar: "동물보건학과",
+            careers: ["반려동물 및 특수동물 전담 동물병원 임상 수의사, 농림축산검역본부 국가 공무원 및 방역관, 대형 동물원 야생동물 큐레이터 수의사"],
+            highschool: { gen: "생명과학, 화학, 미적분I, 영어 독해와 작문", car: "생물의 유전과 진화, 세포와 물질대사, 생명과학 탐구", fus: "환경, 융합과학 탐구, 보건" }
+        },
+
+        // --- 16. 교육 계열 ---
+        "국어교육과": {
+            desc: "단순히 문학을 배우는 것을 넘어, 국어국문학에 대한 깊은 지식을 중·고등학생들의 눈높이에 맞춰 가장 효과적으로 가르치기 위한 최고의 교수-학습 방법론, 심리학을 통합적으로 학습하는 사범대학 학과입니다.",
+            recommend: ["국어 문법과 문학 전반에 학문적 흥미가 높으며 자신의 지식을 칠판 앞에서 열정적으로 설명하는 것을 사랑하고, 사춘기 학생들의 예민한 고민을 들어주며 바른 어른으로 성장하는 것을 돕는 데 진정한 삶의 보람을 느끼는 학생"],
+            subjects: [{ cat: "전공/교직", list: "국어문법론, 현대소설강독, 국어교육론, 국어교재연구 및 지도법, 교육심리학, 학교현장실습" }],
+            similar: "역사교육과, 일반사회교육과",
+            careers: ["국공립 및 사립 중/고등학교 정교사(국어교사), 교육청 장학사, 대형 입시 학원 강사, 에듀테크 기업 국어 콘텐츠/학습지 수석 개발자"],
+            highschool: { gen: "문학, 화법과 언어, 독서와 작문, 생활과 윤리", car: "교육의 이해, 심화 국어, 고전 읽기, 사회문제 탐구", fus: "독서 토론과 글쓰기, 언어생활 탐구, 인문학과 윤리" }
+        },
+        "영어교육과": {
+            desc: "원어민 수준의 폭발적인 영어 의사소통 능력 향상과 영미 문화 이해를 바탕으로, 세계화 시대에 걸맞은 가장 흥미롭고 인터랙티브한 영어 교수법을 끝없이 연구하여 훌륭한 중·고등학교 영어 교사를 양성합니다.",
+            recommend: ["완벽한 발음과 유창한 영어 소통 능력을 기본으로 갖추고, 유튜브, 팝송 등 다이내믹한 매체를 활용하여 학생들의 수준에 맞는 수업을 기획하는 천재적인 티칭 역량을 키우고 싶은 학생"],
+            subjects: [{ cat: "전공/교직", list: "영어음성음운론, 영미문학개론, 영어통사론, 영어교육론, 멀티미디어 영어교육, 영어평가론" }],
+            similar: "유아영어교육과",
+            careers: ["수십 대 일의 경쟁률을 뚫은 중/고등학교 정규 영어교사, 국제학교 원어민 코티칭 교사, 대형 어학교육 기업 프리미엄 영어교재 개발자"],
+            highschool: { gen: "영어 회화, 영어 독해와 작문, 사회·문화", car: "교육의 이해, 영어권 문화, 진로 영어", fus: "영미 문화의 이해, 매체 의사소통, 실생활과 영어" }
+        },
+        "수학교육과": {
+            desc: "대수, 해석 등 대학교 수준의 고차원적인 수학적 원리에 통달하는 것은 물론이고, 수많은 '수포자' 학생들에게 수학이 외계어가 아님을 증명하고 수학의 본질적 즐거움과 논리력을 쉽게 쪼개어 가르치는 진정한 수학 교사를 기릅니다.",
+            recommend: ["어려운 증명 원리를 비유나 그림(시각화 자료)을 통해 소름 돋게 쉽고 완벽하게 설명해 내는 티칭(Teaching) 재능이 탁월하며, 이해 못 해 좌절하는 학생을 끝까지 포기하지 않는 뜨거운 인내심을 가진 학생"],
+            subjects: [{ cat: "전공/교직", list: "해석학, 선형대수학, 미분기하학, 수학교육론, 수학교재연구 및 지도법, 수학교육공학(소프트웨어 활용)" }],
+            similar: "과학교육과, 컴퓨터교육과, 수리과학과",
+            careers: ["전국의 중/고등학교 정교사(수학교사), 각 시도 교육청 수학교육 영재 육성 담당 장학사, 대형 출판사 수학 교과서 기획자, 인터넷 강의 1타 강사"],
+            highschool: { gen: "대수, 미적분I, 확률과 통계, 기하", car: "교육의 이해, 미적분II, 이산 수학, 경제 수학", fus: "수학과 탐구, 수학과 문화, 철학" }
+        },
+        "과학교육과": {
+            desc: "물리, 화학, 생명과학, 지구과학 등 기초 과학 지식을 뼈대로 삼아, 칠판 수업을 벗어나 폭발하고 색이 변하는 다이내믹한 실험 중심의 탐구 학습을 학교 현장에서 가장 안전하고 효과적으로 지도하는 중·고등 과학 교사를 양성합니다. (일반적으로 물리/화학/생물/지구과학 교육과로 세분화되어 운영됩니다.)",
+            recommend: ["과학 원리 탐구와 실험을 온몸으로 즐기며, 학생들이 호기심을 가지고 과학에 미치도록 접근할 수 있는 재미있는 실험 쇼(수업)를 미친 듯이 설계하고 싶은 학생"],
+            subjects: [{ cat: "전공/교직", list: "일반물리/화학/생물/지구과학 및 전공심화, 과학교과교육론, 과학실험지도법, 과학논리및논술" }],
+            similar: "수학교육과",
+            careers: ["중/고등학교 정규 과학교사(물리/화학/생물/지구과학 전공별 임용), 영재교육원 지도 강사, 첨단 과학 실험 교구(키트) 개발 기업 연구원, 과학관 큐레이터"],
+            highschool: { gen: "물리학, 화학, 생명과학, 지구과학, 대수", car: "교육의 이해, (물/화/생/지 중 본인 희망 전공의 진로 과목 집중 이수)", fus: "과학의 역사와 문화, 융합과학 탐구, 생태와 환경" }
+        },
+        "사회교육과": {
+            desc: "일반사회(정치, 경제, 사회문화, 법), 역사, 지리 등 인간 사회의 다양한 현상을 아우르는 폭넓은 사회과학 지식을 바탕으로 민주 시민 의식과 비판적 사고력을 길러주는 중·고등학교 사회과 교사를 양성합니다.",
+            recommend: ["시사 문제, 정치, 경제 이슈 등에 해박한 지식을 가지고 있으며 토론을 즐기고, 학생들에게 올바른 국가관과 글로벌 마인드를 심어줄 수 있는 달변가형 학생"],
+            subjects: [{ cat: "전공/교직", list: "정치학개론, 경제학원론, 사회학개론, 일반사회/역사/지리 교육론, 사회과 교재연구 및 지도법" }],
+            similar: "역사교육과, 지리교육과",
+            careers: ["중/고등학교 일반사회, 역사, 지리 교사, 교육 행정 공무원, 사회과 전문 학원 강사, 사회 교과서 집필자"],
+            highschool: { gen: "정치와 법, 경제, 사회·문화, 한국지리, 세계사", car: "교육의 이해, 사회문제 탐구, 국제 정치, 국제 경제", fus: "역사로 탐구하는 현대 세계, 다문화 사회의 이해, 철학" }
+        },
+        "유아교육과": {
+            desc: "만 0~5세 영유아기의 폭발적인 신체, 인지, 정서 발달 과정을 완벽히 이해하고, 이들의 전인적 발달을 돕기 위해 아이들 눈높이에 맞춘 다채로운 놀이 중심 교육, 교구 제작, 아동 심리를 연구하는 유치원 교사를 양성합니다.",
+            recommend: ["어린아이들을 진심으로 사랑하고 수백 번 넘어져도 안아줄 수 있는 지구보다 넓은 바다 같은 인내심과, 피아노, 율동, 미술 등 다방면의 예체능 활동에 미친 듯한 에너지를 쏟아부을 수 있는 학생"],
+            subjects: [{ cat: "유아심리/실무", list: "영/유아발달심리, 아동복지론, 유아놀이지도, 유아언어교육, 아동음악과 동작, 유아교재교구연구, 유치원 실습" }],
+            similar: "아동가족학과, 보육학과",
+            careers: ["국공립 단설/병설 유치원(유아임용고시 합격 시) 및 사립 유치원 핵심 담임 교사, 어린이집 원장, 핑크퐁 등 영유아 에듀테크 기업 교구 기획자"],
+            highschool: { gen: "생활과 윤리, 음악, 미술, 생명과학, 사회·문화", car: "교육의 이해, 가정과학, 심화 국어", fus: "심리학, 예술과 매체, 인문학과 윤리" }
+        },
+        "초등교육과": {
+            desc: "오로지 전국의 10개 교육대학교와 소수의 사범대학에만 개설된 특수 목적 학과로, 국어 한 과목만이 아니라 국영수사과 예체능에 이르기까지 모든 교과를 완벽하게 아우르는 전인적 교육 역량을 갖추어 초등학생 꼬마들의 바른 인성과 기초 학력을 길러줄 담임 교사를 양성합니다.",
+            recommend: ["수학만 잘하거나 체육만 잘하는 등 특정 과목에 편중되지 않고 전 교과에 걸쳐 평균 이상의 우수한 기량을 갖춘 육각형 올라운더(All-rounder) 학생이며, 맑은 아이들의 눈높이에서 공감하고 인자하게 지도할 수 있는 도덕성이 탁월한 바른 생활 학생"],
+            subjects: [{ cat: "초등전반/심리", list: "초등 국/영/수/사/과/예체능 심화 교과, 초등교육학개론, 아동심리학, 초등학급경영론, 4주간의 초등학교 교생 실습" }],
+            similar: "유아교육과, 특수교육과 (※ 중등 사범대학과는 진로 트랙이 완전히 분리됨)",
+            careers: ["초등교원 임용고시 합격 후 전국의 국공립 초등학교 전담 담임 정교사, 교육청 소속 장학사/교육연구사, 아이스크림에듀 등 대형 초등 에듀테크 기획자"],
+            highschool: { gen: "국/영/수/사/과 전 교과군의 일반 선택 과목을 편식 없이 고르고 완벽하게 이수", car: "교육의 이해, (본인이 자신 있는 심화 전공 분야 1~2개 이수)", fus: "심리학, 다문화 사회의 이해, 철학" }
+        },
+        "특수교육과": {
+            desc: "시각, 청각, 지적 장애 및 자폐 스펙트럼 등 신체적, 정신적으로 남들과 조금 다른 특별한 요구를 가진 특수 아동들의 잠재력을 최대한 끌어내고 사회적 자립을 돕기 위한 1:1 맞춤형 특수 교육 전문가를 숭고하게 양성합니다.",
+            recommend: ["세상의 편견에 흔들리지 않고 장애인에 대한 깊은 이해와 헌신적인 봉사 정신, 강한 사명감을 가졌으며, 학생의 1mm 미세한 발달 변화를 알아차리고 수천 번 반복해서 가르칠 수 있는 천사 같은 인내심과 관찰력을 지닌 학생"],
+            subjects: [{ cat: "특수아동이해", list: "특수교육학개론, 지적장애아교육, 자폐스펙트럼장애교육, 시각/청각장애아교육, 행동수정(ABA), 점자/수어 실습, 특수교육공학" }],
+            similar: "초등특수교육과, 유아특수교육과, 언어치료학과",
+            careers: ["전국의 국공립/사립 특수학교 및 일반 학교 특수학급 전담 교사(임용고시 합격 시), 장애인 종합 복지관 및 발달장애 치료 센터 전문 재활 교사/언어재활사"],
+            highschool: { gen: "생활과 윤리, 생명과학, 사회·문화, 정치와 법", car: "교육의 이해, 사회문제 탐구", fus: "심리학, 다문화 사회의 이해, 보건, 인체와 구조" }
+        },
+        "교육학과": {
+            desc: "단순히 과목 티칭을 넘어 '교육' 자체의 철학적, 사회학적, 행정적 구조를 거시적으로 탐구하여 국가 교육 정책의 큰 그림을 그리고 평생 교육 체계를 기획할 대한민국 최고의 교육 두뇌 브레인을 양성합니다.",
+            recommend: ["학교 폭력, 강남과 지방의 교육 불평등, 매년 바뀌는 대입 제도 등 사회와 학교 현장의 뼈아픈 병폐들을 비판적으로 분석하고, 이를 뒤집을 근본적인 정책 대안과 제도를 고민하는 거시적인 기획력이 뛰어난 학생"],
+            subjects: [{ cat: "교육거시이론", list: "교육철학, 한국/서양 교육사, 교육사회학, 교육행정학 및 교육경영, 교육과정론, 평생교육론, 인적자원개발(HRD)" }],
+            similar: "교육공학과, 평생교육학과, 청소년학과",
+            careers: ["행정고시(교육행정직) 및 7/9급 교육부/교육청 교육행정직 국가 공무원, 한국교육과정평가원(KICE) 등 최고 국책 연구원, 삼성/현대 등 대기업 인사팀 산하 임직원 사내 교육 총괄 전담(HRD) 부서"],
+            highschool: { gen: "사회·문화, 정치와 법, 생활과 윤리, 역사", car: "교육의 이해, 사회문제 탐구, 논리와 사고", fus: "철학, 심리학, 데이터 과학" }
+        },
+
+        // --- 17. 체육 계열 ---
+        "체육학과": {
+            desc: "인체의 움직임에 관한 역학적, 생리학적, 사회학적 지식을 과학적으로 치밀하게 탐구하고, 달리기, 수영, 구기 종목 등 전방위적인 다양한 스포츠 실기 능력을 극한으로 배양하여 국가대표를 이끄는 엘리트 체육 및 100세 시대 생활 체육을 최전선에서 이끌어갈 현장 지도자와 학자를 기릅니다.",
+            recommend: ["운동 신경이 압도적으로 타고났으며, 하루 종일 뛰어다녀도 지치지 않는 체력을 가졌을 뿐만 아니라, 스포츠 경기를 볼 때 단순히 열광하는 것을 넘어 복잡한 경기 규칙이나 팀 전술의 포메이션을 날카롭게 분석하기를 좋아하는 전략가형 학생", "팀의 주장을 맡아 팀원들의 사기를 북돋고 땀 흘려 기술을 가르쳐주며, 목표를 향해 조직을 이끄는 데 탁월하고 압도적인 카리스마적 리더십이 있는 학생"],
+            subjects: [{ cat: "체육이론/과학", list: "체육학개론, 스포츠생리학, 체육측정평가, 스포츠사회학, 스포츠심리학, 스포츠역학" }, { cat: "스포츠실기", list: "육상, 체조, 수영 실기, 구기 종목(축구/농구 등), 동계 스포츠, 무도(태권도/유도 등)" }],
+            similar: "사회체육학과, 스포츠지도학과, 특수체육교육과",
+            careers: ["치열한 임용을 뚫고 올라가는 중/고등학교 정교사(체육교사) 및 대학 체육 교수", "태릉 선수촌 등 국가대표 및 프로 스포츠 구단 전담 수석 감독/코치, 전국 보건소 및 지자체 소속 생활체육 전문 지도자", "국민체육진흥공단, 대한체육회 등 거대 국가 체육 행정 공기업 임직원, 스포츠 데이터 전력 분석관"],
+            highschool: { gen: "체육, 생명과학, 사회·문화, 정치와 법", car: "체육 전공 실기, 스포츠 경기 체력, 심리학", fus: "스포츠 생활, 스포츠와 건강, 심리학, 보건" }
+        },
+        "스포츠의학과": {
+            desc: "격렬한 스포츠 현장에서 발생하는 상해의 응급 처치와 재활, 일반인의 만성 질환 예방을 위한 과학적인 운동 처방을 의학적, 체육학적 관점에서 융합하여 배우는 최첨단 융합 학과입니다.",
+            recommend: ["단순히 공을 차고 땀 흘리는 체육 활동의 즐거움을 훌쩍 넘어서서, 무거운 덤벨을 들 때 내 인체의 뼈 각도, 수백 개의 근육 다발, 그리고 혈류의 생리적 반응 등 해부학적 생물학 메커니즘에 의학적인 딥(Deep)한 관심이 있는 이과적 성향이 강한 학생", "십자인대가 끊어져 좌절한 선수가 다시 잔디 구장을 뛸 수 있도록 수개월간 곁에서 눈물겨운 재활을 체계적으로 설계하고 돕는, 피도 눈물도 없는 이성적 분석력과 뜨거운 인류애를 동시에 가진 학생"],
+            subjects: [{ cat: "의학/생리", list: "기초/기능해부학, 운동생리학, 스포츠생체역학, 스포츠영양학, 병태생리학" }, { cat: "재활/처방실무", list: "스포츠상해예방 및 테이핑실습, 운동처방론, 재활의학, 심혈관계운동처방, 선수트레이닝(AT)실습" }],
+            similar: "운동재활학과, 건강관리학과, 스포츠재활학과",
+            careers: ["수십억 연봉의 선수들을 관리하는 프로 스포츠 구단 및 국가대표 선수촌 전속 수석 선수 트레이너(AT)", "대형 정형외과 및 척추관절 전문 재활병원 소속 최상급 임상운동사 및 재활 치료사", "전국 보건소 국가 운동처방사, 태릉선수촌 등 전문 엘리트 체육인 경기력 향상 생체 역학 연구원"],
+            highschool: { gen: "생명과학, 체육, 물리학, 화학", car: "세포와 물질대사, 체육 전공 실기, 역학과 에너지", fus: "인체와 구조, 스포츠와 건강, 보건" }
+        },
+        "스포츠산업학과": {
+            desc: "천문학적인 자본이 움직이는 프로 스포츠 마케팅, 수백억 규모의 구단 경영, 스포츠 에이전트 등 스포츠를 하나의 거대한 부가가치를 창출하는 비즈니스적, 경제적 관점에서 아주 차갑고 체계적으로 분석하고 지배하는 법을 배웁니다.",
+            recommend: ["손흥민, 이강인 등 월드클래스 선수들의 화려한 플레이를 감상하는 것에 그치지 않고, 그들의 유니폼 스폰서 단가, 수만 명의 관중 유치 마케팅 전략, 어마어마한 중계권료 등 경기장 이면에서 조용히 벌어지는 수백억 대 비즈니스 수익 창출 전쟁에 훨씬 더 큰 호기심을 느끼는 기획자형 학생"],
+            subjects: [{ cat: "경영/마케팅", list: "스포츠산업개론, 스포츠경영학, 스포츠마케팅, 스포츠소비자행동론, 스포츠시설경영론" }, { cat: "비즈니스실무", list: "스포츠에이전트론, 스포츠미디어론, 스포츠이벤트기획, 스포츠법률, 스포츠스폰서십" }],
+            similar: "스포츠경영학과, 체육행정학과, 스포츠비즈니스학과",
+            careers: ["프로 구단 프런트의 핵심인 마케팅/전략기획팀 수석 매니저", "나이키, 아디다스 등 글로벌 스포츠 의류 기업의 스포츠 마케터 및 MD", "슈퍼스타 선수의 계약을 좌지우지하는 거물급 스포츠 에이전트, 대규모 올림픽 전문 기획 대행사 대표"],
+            highschool: { gen: "체육, 확률과 통계, 경제, 사회·문화", car: "경제 수학, 사회문제 탐구, 국제 경제", fus: "스포츠와 건강, 매체 의사소통, 현대 세계의 변화, 금융과 경제 생활" }
+        },
+        "경호학과": {
+            desc: "0.1초의 방심이 생사를 가르는 긴박한 상황 속에서 국가의 심장인 요인(대통령, VIP)의 신변을 각종 잔혹한 테러 위협으로부터 완벽하게 육탄 방어하기 위한 극한의 경호 무도, 치밀한 전술, 그리고 드론/AI가 결합된 최첨단 민간 보안 시스템을 전문적으로 익힙니다.",
+            recommend: ["나 자신보다 타인의 생명을 지키기 위해 기꺼이 날아오는 총알 앞으로 몸을 던질 수 있는 투철한 희생 정신과 충성심, 예리하게 현장을 스캔하는 독수리 같은 판단력을 지닌 학생", "돌발 상황이나 폭력 앞에서도 얼어붙지 않는 냉철한 강심장과 순발력, 그리고 압도적으로 상대를 제압할 수 있는 무도 실력(유도 합 4단 이상 등)과 탄탄한 멘탈을 지닌 학생"],
+            subjects: [{ cat: "경호/무도", list: "경호학개론, 경호무도(태권도/유도/합기도/특공무술), 테러학, 응급처치, 사격술, 체포호신술, 민간경비론" }],
+            similar: "보안안전학과, 무도학과, 경호보안학과",
+            careers: ["대통령경호처(청와대 101경비단 등) 최정예 특수 요원, 경찰특공대(SOU), 국가정보원 대테러 요원", "삼성, 현대 등 대기업 총수 전담 VIP 수행 경호원, 에스원/ADT캡스 등 보안 솔루션 대기업 기획자"],
+            highschool: { gen: "체육, 사회·문화, 정치와 법, 생활과 윤리", car: "스포츠 경기 체력, 사회문제 탐구, 체육 전공 실기", fus: "심리학, 스포츠와 건강, 보건, 인체와 구조" }
+        },
+        "사회체육학과": {
+            desc: "엘리트 선수 육성보다는 남녀노소 일반 대중이 참여하는 건강 증진 목적의 생활 체육 프로그램(수영, 에어로빅, 피트니스 등)을 기획하고 지도하는 대중 친화적인 스포츠 전문가를 길러냅니다.",
+            recommend: ["사람들과 어울리며 밝은 에너지를 내뿜고, 일반인들도 쉽고 재밌게 운동을 따라 할 수 있도록 친절하게 지도하는 것을 즐기는 외향적이고 긍정적인 학생"],
+            subjects: [{ cat: "생활체육/지도", list: "생활체육개론, 레크리에이션지도법, 노인/유아체육론, 수영/구기/에어로빅 실기, 여가학" }],
+            similar: "생활체육학과, 스포츠레저학과",
+            careers: ["시/군/구 보건소 및 지자체 체육회 전임 생활체육 지도자, 대형 피트니스 센터(PT) 및 수영장 수석 강사, 실버(노인) 타운 전담 스포츠 강사, 유아 체육 전문 교사"],
+            highschool: { gen: "체육, 사회·문화, 생명과학", car: "체육 전공 실기, 스포츠 경기 체력", fus: "스포츠 생활, 스포츠와 건강, 심리학" }
+        },
+
+        // --- 18. 예술 계열 ---
+        "시각디자인학과": {
+            desc: "단순히 예쁜 그림을 그리는 것을 넘어, 문자(타이포그래피), 기호, 일러스트 이미지, 강렬한 색채 등 다양한 시각 매체를 전략적으로 활용하여 기업의 브랜드 메시지나 정보를 가장 매력적이고 뇌리에 꽂히도록 전달하는 고도의 상업적 기획 디자인을 연구합니다.",
+            recommend: ["컴퓨터 그래픽 툴(포토샵, 일러스트 등)을 마법처럼 활용해 내 머릿속의 번뜩이는 아이디어를 세련된 포스터나 앱 화면으로 기획하고 사람들의 시선을 확 사로잡는 데 미친 듯한 흥미가 있는 직관적이고 논리적인 미적 감각의 소유자"],
+            subjects: [{ cat: "기초/응용시각", list: "타이포그래피, 평면조형, 색채학, 컴퓨터그래픽스, 광고/패키지디자인, UI/UX디자인(앱/웹 화면), 브랜드아이덴티티디자인(CI)" }],
+            similar: "커뮤니케이션디자인학과, 미디어디자인학과, 영상디자인학과",
+            careers: ["토스, 네이버 등 최정상 IT 기업 고연봉 웹/앱 UI/UX 디자이너, 제일기획 등 광고대행사 수석 아트디렉터(AD), 기업 브랜드 로고 전문 디자이너, 일러스트레이터"],
+            highschool: { gen: "미술, 정보, 사회·문화, 문학", car: "미술 전공 실기, 평면 조형", fus: "미술과 매체, 예술과 매체, 매체 의사소통" }
+        },
+        "산업디자인학과": {
+            desc: "스마트폰, 가전제품, 가구, 미래 무인 자동차에 이르기까지 수많은 3D 산업 제품들의 아름다운 외형(심미성)은 물론, 스위치를 누르는 각도와 그립감 등 인체공학적으로 쓰기 편한 기능성(UX)까지 수학/공학적으로 융합 고려하여 제품 전체를 설계합니다.",
+            recommend: ["평면적인 그림보다 3D 공간 지각력을 바탕으로 찰흙, 나무, 3D 프린터를 이용해 실제 손에 잡히는 단단한 입체 모형(목업)을 깎고 다듬어내는 미친 메이커(Maker) 기질의 작업을 진심으로 좋아하는 학생"],
+            subjects: [{ cat: "입체/제품디자인", list: "제품디자인기초, 3D컴퓨터모델링(CAD, 라이노), 입체조형, 렌더링기법, 인간공학, 운송기기(자동차)디자인, 재료공정학" }],
+            similar: "공업디자인학과, 제품디자인학과, 자동차디자인학과",
+            careers: ["삼성전자, 애플 등 글로벌 IT 하드웨어 기업 핵심 제품 디자이너, 현대차 등 완성차 외/내장 수석 디자이너, 인체공학 가구 디자이너, 3D 모델러, 디자인 컨설턴트"],
+            highschool: { gen: "미술, 물리학, 대수, 기술·가정", car: "입체 조형, 기하", fus: "예술과 매체, 공학 일반, 수학과 창의적 융합" }
+        },
+        "패션디자인학과": {
+            desc: "인체의 곡선에 맞춘 아름다운 실루엣의 옷을 짓기 위해 패션 일러스트레이션, 패턴 제작(재단), 봉제 기술을 집중적으로 실기 위주로 훈련하며, 나만의 독창적인 브랜드 컬렉션을 런칭할 수 있는 톱 디자이너를 양성합니다.",
+            recommend: ["유행하는 옷을 입는 것에서 그치지 않고, 가위와 미싱을 들고 밤을 새워가며 원단을 자르고 이어 붙여 세상에 하나뿐인 나만의 드레스를 기어코 완성해 내는 끈질긴 손재주와 예술적 광기를 지닌 학생"],
+            subjects: [{ cat: "패션실무/디자인", list: "패션일러스트레이션, 입체패턴(드레이핑), 평면패턴, 서양/한국복식사, 패션디자인발상, 텍스타일디자인, 졸업패션쇼 기획" }],
+            similar: "패션산업학과, 의상디자인학과",
+            careers: ["하이엔드 명품 및 내셔널 브랜드 패션 디자이너, 무대/영화 의상 특수 제작 디자이너, 나만의 인디 브랜드 창업(CEO), 스타일리스트, 패션 매거진 에디터"],
+            highschool: { gen: "미술, 역사, 사회·문화", car: "미술 전공 실기, 평면/입체 조형", fus: "예술과 매체, 다문화 사회의 이해" }
+        },
+        "서양화과": {
+            desc: "냄새 진한 유화, 수채화, 아크릴, 에칭 판화 등 서양 미술의 다양한 매체와 기법의 본질을 거친 훈련으로 습득하고, 캔버스 위에 작가 개인의 심오한 철학과 무한한 세계관을 독창적인 조형 언어로 폭발적으로 표현해 내는 순수 미술의 정수를 배웁니다.",
+            recommend: ["내면의 소용돌이치는 감정을 세상의 정해진 형식에 얽매이지 않고 자유롭고 거칠게 표출하고자 하며, 남들이 알아주지 않아도 매일 10시간씩 이젤 앞에 앉아 치열하게 창작 활동을 이어갈 강철 같은 끈기를 지닌 아티스트"],
+            subjects: [{ cat: "회화실기/미학", list: "인체드로잉, 유화/수채화 실기, 판화기법, 현대미술매체실험(혼합매체), 서양미술사, 현대미술론, 미학, 작가론" }],
+            similar: "동양화과, 조형예술학과, 순수미술학과, 회화과",
+            careers: ["세상의 하나뿐인 캔버스를 창조하는 전업 화가(파인 아티스트), 국공립 미술관 큐레이터 및 화랑(갤러리) 디렉터, 중고등학교 미술 교사, 무대 배경/세트 디자이너"],
+            highschool: { gen: "미술, 세계사, 문학, 생활과 윤리", car: "미술 전공 실기, 평면 조형, 미술사", fus: "미술 감상과 비평, 철학, 예술과 매체" }
+        },
+        "동양화과": {
+            desc: "먹과 벼루, 화선지와 한지 등 동양의 전통적인 재료를 바탕으로 수묵화, 채색화 기법을 연마하며, 여백의 미와 정신 수양을 중시하는 동양 철학의 혼을 현대적인 감각으로 재해석하여 그려내는 고고한 순수 미술 학과입니다.",
+            recommend: ["서양의 화려한 색채보다는 먹의 농담이 번지는 신비로움과, 한 번의 붓놀림(일필휘지)에 모든 기운을 담아내는 동양 미술 특유의 정적이고 묵직한 호흡을 온몸으로 즐길 줄 아는 차분하고 내공 있는 학생"],
+            subjects: [{ cat: "수묵/채색실기", list: "수묵화기초, 채색화실기, 사군자/문인화, 산수화, 동양미술사, 한국화재료학, 서예기초" }],
+            similar: "한국화과, 동양화전공",
+            careers: ["전업 동양화가, 민화/불화/단청 전문 복원가 및 문화재 보존 전문가, 동양 미술 전문 큐레이터, 일러스트레이터, 미술 교사"],
+            highschool: { gen: "미술, 동아시아 역사 기행, 한문, 윤리와 사상", car: "미술 전공 실기, 평면 조형, 진로 한문", fus: "미술 감상과 비평, 동양 철학, 예술과 매체" }
+        },
+        "실용음악과": {
+            desc: "K-pop, 재즈, OST 등 대중들이 매일 즐겨 듣고 열광하며 따라 부르는 고도로 상업적이고 현대적인 대중음악의 보컬, 기악 연주, 컴퓨터 작곡(MIDI) 등을 뼈를 깎는 실기 위주로 철저히 훈련하여 트렌디한 대중음악 콘텐츠를 창작해 냅니다.",
+            recommend: ["매주 바뀌는 대중음악 차트 트렌드에 극도로 예민하게 반응하며, 무대 위 퍼포먼스나 깜깜한 스튜디오에 박혀 밤새워 완벽한 사운드를 창작하고 믹싱하는 작업 자체를 미친 듯이 즐기는 열정적인 뮤지션 지망생"],
+            subjects: [{ cat: "창작/연주실기", list: "개인 전공실기(보컬/기타/미디 등), 위클리 앙상블(합주), 실용음악화성학, 작편곡법, 컴퓨터음악(MIDI), 사운드엔지니어링(음향학), 대중음악사" }],
+            similar: "대중음악과, 포스트모던음악과, K-pop학과",
+            careers: ["음원 차트를 휩쓰는 가수, 싱어송라이터, 대형 기획사 소속 아이돌 전담 프로듀서/작곡가, 최고급 스튜디오 세션 연주자, 보컬 트레이너, 방송국 음향 감독"],
+            highschool: { gen: "음악, 물리학(음향 원리 파악에 유리), 문학", car: "음악 전공 실기, 연주 실습, 음악사", fus: "음악 감상과 비평, 예술과 매체, 매체 의사소통" }
+        },
+        "연극영화과": {
+            desc: "살아있는 연극 무대와 천만 관객 영화 스크린을 완벽하게 직조해 내기 위해, 소름 돋는 연기, 치밀한 미장센 연출, 감각적인 카메라 촬영, 빛을 다루는 조명, 시나리오 작법 등 극예술 전반에 걸친 강도 높은 실무 제작 능력을 습득하여 대중문화를 이끌어갈 종합 예술인을 양성합니다.",
+            recommend: ["수천 명의 관객과 수십 대의 카메라 앞에서도 단 한 치의 부끄러움 없이 눈물을 터뜨리며 타인의 삶에 빙의할 수 있는 폭발적인 감수성을 가졌으며, 감독으로서 수십 명의 스태프들과 밤낮없이 현장을 지휘하는 미친 협동심, 리더십, 강철 체력을 가진 학생"],
+            subjects: [{ cat: "연기/제작실무", list: "기초연기, 고급화술, 신체훈련, 무대연극연출, 영화감독론, 영화제작실습(촬영/조명/편집), 시나리오작법, 영화사/연극사, 무대디자인" }],
+            similar: "방송연예과, 매체연기학과, 영화영상학과",
+            careers: ["브라운관과 스크린을 누비는 영화/연극 배우, 탤런트, 뮤지컬 배우, 봉준호/박찬욱을 꿈꾸는 영화감독, 무대 위를 창조하는 연극 연출가, 지상파 방송국 메인 PD, 천만 관객을 울리는 시나리오 극작가"],
+            highschool: { gen: "문학, 연극, 음악, 미술, 사회·문화", car: "문학과 영상, 연극의 이해, 심화 국어", fus: "예술과 매체, 매체 의사소통, 철학, 심리학" }
+        },
+        "무용학과": {
+            desc: "대사나 글이 아닌 오로지 인간의 신체를 유일한 매개체로 삼아, 인간의 걷잡을 수 없이 복잡한 감정과 깊은 사상을 시공간 속에 가장 역동적이고 창의적인 율동으로 폭발적으로 표현해 내는 원초적이고 아름다운 순수 종합 예술을 배웁니다. (한국무용, 현대무용, 발레 등으로 세분화)",
+            recommend: ["음악에 맞춰 몸을 움직여 감정을 표출하는 것을 온전히 사랑하며, 화려한 무대 위 단 1분의 점프를 위해 연습실에서 매일같이 이어지는 혹독한 신체 훈련(스트레칭, 바 훈련)을 눈물로 기꺼이 인내할 수 있는 초인적인 유연성과 독한 끈기를 지닌 학생"],
+            subjects: [{ cat: "무용실기/이론", list: "발레/한국무용/현대무용 전공실기(심화), 안무법(코레오그래피), 무용창작실습, 즉흥무용, 무용사, 무용해부학(부상방지), 무용미학, 무대기술" }],
+            similar: "실용무용학과(스트릿댄스 등), 창작무용과",
+            careers: ["국립발레단, 국립무용단 등 산하 국공립 및 유수 무용단 수석 정단원(솔리스트), 자신만의 작품 세계를 구축하는 독립 안무가, 대형 뮤지컬 앙상블 배우, 무용 치료사, 예고 무용 교사"],
+            highschool: { gen: "체육, 음악, 역사, 문학", car: "체육 전공 실기, 연극의 이해, 스포츠 경기 체력", fus: "예술과 매체, 인체와 구조(해부학 기초), 음악 감상과 비평" }
+        },
+
+        // --- 19. 자율전공 (안내서 완벽 반영) ---
+        "자유전공학부": {
+            desc: "대학 입학 시 특정 전공에 묶이지 않고 무전공으로 진학하여, 1~2학년 동안 광범위하고 다양한 학문 분과를 직접 수강해 보며 체험하고 학과 교수님들의 밀착 멘토링을 통해 본인의 찐 적성을 파악한 후, 가장 경쟁력 있는 전공을 최종 확정하여 학위를 취득하는 자율권 보장 제도입니다. (유형1에 해당)",
+            recommend: ["특정 분야에 얽매이지 않고 세상을 바라보는 넓은 시야를 원하며, 다양한 학문을 두루 섭렵한 후 가장 유망한 분야에 최종적으로 뛰어들어 융합형 초전문가로 성장하고 싶은 깊이 있는 탐구욕을 가진 학생"],
+            subjects: [{ cat: "자유설계(1학년)", list: "학문적 글쓰기와 소통, 비판적 사고, 미래사회 융합 이슈 분석, 전공 탐색 멘토링, 기초통계학" }, { cat: "심화전공(2학년~)", list: "진급 시 배정된 학과의 커리큘럼에 따라 심화 전공 교과 전면 이수" }],
+            similar: "자율전공학부",
+            careers: ["선택한 최종 전공에 따라 대기업 임직원, 국가 고위 공무원, 법조인, IT 개발자, 미디어 전문가 등 사회 최고 전문 직업군으로 자유롭게 진출"],
+            highschool: { gen: "사회(정치, 경제 등) 및 과학(물리, 생명과학 등) 등 상반된 분야의 일반 선택을 고르게 이수하여 기초 역량 증명", car: "다방면의 진로 탐색을 주저하지 않았음을 보여주는 다양한 과목 이수 (예: 고전 읽기와 데이터 과학 등)", fus: "주제 탐구, 논리와 사고, 인문학과 윤리 등 융합 과목" }
+        },
+        "자율전공학부": {
+            desc: "고등학교 때 획일적으로 진로를 결정하는 대신, 대학 1학년 동안 인문, 사회, 자연과학, 공학 등 다양한 학문 경계를 스펀지처럼 넘나들며 폭넓게 탐색한 뒤, 2학년 진급 시 자신의 '진짜 적성'에 소름 돋게 맞는 세부 전공을 100% 자기 주도적으로 선택하여 졸업하는 혁신적이고 유연한 학부입니다.",
+            recommend: ["문과와 이과의 성향을 고루 갖추어 다방면에 지적 호기심이 많고 융합적인 사고가 가능하며, 한정된 틀에 얽매이지 않고 자기 주도적으로 독창적인 진로를 스스로 개척하고 싶은 도전적인 학생"],
+            subjects: [{ cat: "자율탐색", list: "인문학기초, 자연과학의이해, 융합세미나, 자기설계전공탐색, 비판적사고와글쓰기" }],
+            similar: "자유전공학부, 전공자유학부",
+            careers: ["2학년 진입 시 선택한 전공에 따라 경영, 공학, 행정, 연구 등 세상의 모든 유망한 분야로 막힘없이 진출 가능"],
+            highschool: { gen: "국/영/수/사/과 전반의 일반 선택 과목을 편식 없이 고르고 깊이 있게 완벽 이수", car: "본인의 핵심 관심사 위주의 다양한 진로 탐구 과목 집중", fus: "주제 탐구, 다문화 사회의 이해, 융합과학 탐구 등 폭넓은 시야" }
+        },
+        "광역모집(인문/자연/공과대)": {
+            desc: "단과대학 또는 특정 계열(인문계열, 자연과학대학, 공과대학 등) 단위로 크게 모집하여, 1학년 때는 해당 계열의 기초 지식을 넓게 학습하고 2학년 진급 시 해당 단과대 내의 세부 전공(학과 정원의 150% 이상 범위 내 등)을 자율적으로 선택하는 제도입니다. (유형2에 해당)",
+            recommend: ["공학이나 상경 등 큰 틀에서의 계열은 결정했으나, 그 안에서 구체적으로 어떤 학과(기계 vs 전자, 경영 vs 경제)가 나에게 맞을지 대학에서 직접 배워보고 신중하게 결정하고 싶은 합리적인 학생"],
+            subjects: [{ cat: "계열기초(1학년)", list: "공학수학, 기초물리학, 인문학의이해, 사회과학입문 등 소속 계열 공통 필수 교양" }, { cat: "세부전공(2학년~)", list: "선택한 학과의 전공 심화 과목" }],
+            similar: "글로벌융합학부, 스크랜튼학부, 인터칼리지",
+            careers: ["진입한 해당 계열 및 세부 학과의 특성에 맞춘 다양한 전문 직업군 진출"],
+            highschool: { gen: "자신이 지원하는 광역 계열(문과/이과)에 적합한 일반 선택 과목 집중 이수 (예: 공과대 진학 시 물리학/미적분I 필수)", car: "지원 계열과 연관된 2~3개 분야의 진로 선택 과목 탐구", fus: "진로 탐색에 도움이 되는 융합 과목" }
+        },
+        "스크랜튼학부": {
+            desc: "입학 후 특정 전공에 얽매이지 않고 자유롭게 학문을 탐색한 후, 인문·사회·자연 등 다양한 학문 분야를 아우르는 융합적 교육 과정을 거쳐 주전공과 융합 전공을 다중으로 이수하는 최우수 엘리트 양성 학부입니다.",
+            recommend: ["글로벌 리더로서 폭넓은 통찰력을 기르고 싶으며 인문학과 자연과학을 아우르는 지적 탐구심이 강한 학생"],
+            subjects: [{ cat: "기초/융합", list: "고전읽기, 논리적사고와글쓰기, 글로벌이해, 융합세미나" }, { cat: "전공진입", list: "추후 배정받는 주전공 및 융합 전공 교과" }],
+            similar: "자유전공학부, 글로벌융합학부",
+            careers: ["글로벌 기업, 국제기구, 고위 공직자, 법조인, 융합 학문 학계 연구원 등"],
+            highschool: { gen: "국어, 수학, 영어, 사회, 과학의 일반 선택 과목 고른 이수", car: "다방면의 진로 탐구 과목 및 고전 읽기", fus: "인문학과 윤리, 다문화 사회의 이해, 주제 탐구 등 융합 과목" }
+        },
+        "인터칼리지": {
+            desc: "단과대학과 학과의 장벽을 허물고 전공 선택의 완전한 자유를 보장하는 교육 혁신 플랫폼으로, 데이터를 기반으로 한 진로 설계와 심층 멘토링을 통해 본인만의 고유한 융합 전공을 디자인합니다.",
+            recommend: ["정해진 커리큘럼보다는 스스로 학습 계획을 설계하는 데 익숙하고 다양한 학문을 실험적으로 연결해보고 싶은 창의적인 학생"],
+            subjects: [{ cat: "탐색/설계", list: "디지털리터러시, 창의적문제해결, 전공탐색멘토링, AI와 데이터" }],
+            similar: "자유전공학부, 광역모집",
+            careers: ["본인이 설계한 융합 전공에 맞춘 IT, 미디어, 경영, 연구개발 등 모든 분야 진출 가능"],
+            highschool: { gen: "다양한 일반 선택 과목을 통해 기초 학업 역량을 튼튼히 다짐", car: "관심 분야의 진로 선택 과목 자기 주도적 이수", fus: "데이터 과학, 인공지능과 미래 사회, 문제 해결과 프로그래밍" }
+        },
+        "글로벌자유전공학부": {
+            desc: "국제적 감각과 외국어 능력을 바탕으로 1학년 때 폭넓은 교양과 글로벌 문화를 학습한 후, 2학년 진학 시 인문, 상경, IT 등 다양한 학문 분야 중 본인의 적성에 맞는 전공을 자유롭게 선택하여 글로벌 인재로 성장합니다.",
+            recommend: ["외국어에 능통하고 세계 무대에서 활약하고자 하는 포부를 지니며, 어떤 분야로 나아갈지 대학에서 글로벌 트렌드를 직접 보고 결정하고 싶은 학생"],
+            subjects: [{ cat: "글로벌기초", list: "고급외국어, 글로벌문화이해, 국제관계이론, 융합적사고와글쓰기" }],
+            similar: "국제학부, 자유전공학부",
+            careers: ["다국적 기업, 외무영사직, 국제기구(UN 등), 글로벌 마케터, 국제통상 전문가"],
+            highschool: { gen: "영어 회화, 사회·문화, 정치, 세계사", car: "진로 영어, 국제 정치, 국제 경제, 현대 세계의 변화", fus: "세계 문화와 언어, 다문화 사회의 이해, 영미 문화의 이해" }
+        },
+        "글로벌융합학부": {
+            desc: "단일 학문(순수 문과, 순수 이과)의 지식만으로는 절대 풀 수 없는 기후 변화의 위기, 디지털 대전환, 다문화 등 현대 사회의 글로벌 난제를 해결하기 위해 인문사회과학의 깊이 있는 통찰력과 IT 빅데이터 기술의 실용성을 유기적으로 결합한 융합 인재를 기릅니다.",
+            recommend: ["인문학적 감수성과 기획력을 지님과 동시에 코딩, 통계 데이터 분석 등 이과적 지식을 무기로 삼아 국제 사회의 거대한 이슈를 주도적으로 해결하는 글로벌 리더가 되고 싶은 학생"],
+            subjects: [{ cat: "융합프로젝트", list: "디지털인문학, 데이터사이언스기초, 글로벌문화이해, 융합프로그래밍(파이썬), 지속가능발전론, 캡스톤디자인" }],
+            similar: "융합인재학부",
+            careers: ["IT 신사업 융합 기획자, 빅데이터 분석 전문가, 다국적 기업 마케터, 국제기구(UN) 활동가, 혁신 벤처 창업가"],
+            highschool: { gen: "사회·문화, 정보, 확률과 통계, 영어 독해와 작문", car: "데이터 과학, 현대 세계의 변화, 진로 영어", fus: "다문화 사회의 이해, 인공지능과 미래 사회, 기후 변화와 환경생태" }
+        }
+    };
+
+    // 과목명 문자열을 분리하여 개별 태그 디자인으로 렌더링하는 함수
+    function createSubjectChips(subjectString, chipClass) {
+        if (!subjectString) return `<span style="color:#94a3b8;">-</span>`;
+        // 쉽표(,) 기준으로 과목을 나누고 빈 문자열 제거 후 칩 형태의 HTML 렌더링
+        return subjectString.split(',').map(s => {
+            const subjectName = s.trim();
+            if (!subjectName) return '';
+            return `<span class="subject-chip ${chipClass}-chip">${subjectName}</span>`;
+        }).join('');
+    }
+
+    function openMajorModal(majorName) {
+        const modal = document.getElementById('majorModal');
+        const title = document.getElementById('modalTitle');
+        const body = document.getElementById('modalBody');
+
+        title.innerHTML = `📚 ${majorName}`;
+        
+        if(majorData[majorName]) {
+            const data = majorData[majorName];
+            
+            // 🌟 3단계 동적 학습 과목 칩(태그) 모듈화 🌟
+            // 반복되는 뻔한 텍스트를 제거하고 '관련 과목 태그'를 중점적으로 시각화하여 보여줍니다.
+            const competencyHtml = `
+                <h5 class="detail-h5">💡 고교 권장 선택 과목 (2022 개정 교육과정 기준)</h5>
+                <div class="subject-selection-container">
+                    <div class="subject-row">
+                        <div class="subject-type gen">일반 선택 과목</div>
+                        <div class="subject-chips-area">
+                            ${createSubjectChips(data.highschool.gen, 'gen')}
+                        </div>
+                    </div>
+                    <div class="subject-row">
+                        <div class="subject-type car">진로 선택 과목</div>
+                        <div class="subject-chips-area">
+                            ${createSubjectChips(data.highschool.car, 'car')}
+                        </div>
+                    </div>
+                    <div class="subject-row">
+                        <div class="subject-type fus">융합 선택 과목</div>
+                        <div class="subject-chips-area">
+                            ${createSubjectChips(data.highschool.fus, 'fus')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            let html = `
+                <div class="major-detail-content">
+                    <p class="major-desc">${data.desc}</p>
+
+                    ${competencyHtml}
+
+                    <h5 class="detail-h5">🧐 이런 학생에게 강력히 추천합니다!</h5>
+                    <ul class="detail-list">
+                        ${data.recommend.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+
+                    <h5 class="detail-h5">📖 대학에서 배우는 주요 전공 교과목</h5>
+                    <table class="detail-table">
+                        ${data.subjects.map(sub => `<tr><th>${sub.cat}</th><td>${sub.list}</td></tr>`).join('')}
+                    </table>
+
+                    <h5 class="detail-h5">💼 졸업 후 진출 분야 및 직업</h5>
+                    <ul class="detail-list">
+                        ${data.careers.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+
+                    <div class="info-section">
+                        <strong>📌 관련 및 유사 학과 :</strong> ${data.similar}
+                    </div>
+                </div>
+            `;
+            body.innerHTML = html;
+        } else {
+            body.innerHTML = `
+                <div class="major-detail-content">
+                    <p class="major-desc"><strong>${majorName}</strong>에 대한 2022 개정 교육과정 상세 과목 매핑은 곧 추가될 예정입니다.</p>
+                </div>
+            `;
+        }
+
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+    }
+
+    function closeMajorModal(event) {
+        if(event) event.preventDefault();
+        const modal = document.getElementById('majorModal');
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // 스크롤 복구
+    }
+</script>
+
+</body>
+</html>
