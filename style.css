@@ -479,14 +479,13 @@ body {
 }
 
 /* =========================================
-   과목명 버튼 + 계열/비고 배지
+   과목명 버튼 + 과목 비고
    ========================================= */
 
-.inner-table td:nth-child(3),
-.group-view-table td:first-child {
-    position: relative;
+.subject-name-cell {
     text-align: center !important;
-    white-space: normal;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
 }
 
 .subject-name-wrap {
@@ -507,12 +506,13 @@ body {
     font-weight: 800; 
     cursor: pointer; 
     padding: 6px 8px; 
-    border-radius: 6px; 
+    border-radius: 8px; 
     width: 170px;
     min-width: 170px;
     max-width: 170px;
     min-height: 34px;
     display: inline-flex !important;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center; 
@@ -521,13 +521,6 @@ body {
     vertical-align: middle;
     white-space: normal;
     word-break: keep-all;
-}
-
-.inner-table td:nth-child(3) .inner-sub-btn,
-.inner-table td:nth-child(3) .subject-name-fixed {
-    width: 170px !important;
-    min-width: 170px !important;
-    max-width: 170px !important;
 }
 
 .group-view-table td:first-child .inner-sub-btn,
@@ -542,6 +535,27 @@ body {
     color: #fff; 
 }
 
+.subject-title-text {
+    display: block;
+}
+
+.subject-note-in-btn {
+    display: inline-block;
+    margin-top: 3px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.75);
+    color: #1e40af;
+    font-size: 0.62rem;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.inner-sub-btn:hover .subject-note-in-btn {
+    background: rgba(255,255,255,0.95);
+    color: #1e3a8a;
+}
+
 .subject-swap-mark {
     display: inline-flex;
     align-items: center;
@@ -552,36 +566,9 @@ body {
     flex-shrink: 0;
 }
 
+/* 이전 배지 코드가 남아도 화면에 영향 최소화 */
 .subject-note-badge {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    background: #fff7ed;
-    color: #c2410c;
-    border: 1px solid #fdba74;
-    padding: 2px 7px;
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 900;
-    white-space: nowrap;
-    line-height: 1.4;
-    z-index: 2;
-}
-
-.inner-table td:nth-child(3) .subject-note-badge {
-    position: absolute;
-    left: calc(50% + 92px);
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 0 !important;
-}
-
-.group-view-table td:first-child .subject-note-badge {
-    position: absolute;
-    left: calc(50% + 102px);
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 0 !important;
+    display: none !important;
 }
 
 /* =========================================
@@ -742,26 +729,8 @@ body {
     font-weight: 900;
 }
 
-.k-tag { 
-    padding: 3px 8px; 
-    border-radius: 6px; 
-    font-size: 0.78rem; 
-    font-weight: 800; 
-    margin-right: 10px; 
-    color: white; 
-    flex-shrink: 0; 
-    margin-top: 2px;
-}
-
-.k-know { 
-    background-color: #2563eb; 
-} 
-
-.k-skill { 
-    background-color: #059669; 
-}
-
-.eval-box {
+.eval-box,
+.career-box {
     background: white; 
     border: 1px solid #e2e8f0; 
     border-radius: 16px; 
@@ -769,20 +738,43 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
+.side-card-title,
+.career-box h4 {
+    display: block;
+    text-align: left;
+    background: #f8fafc;
+    border: 1px solid #dbeafe;
+    border-left: 5px solid #1d4ed8;
+    border-radius: 10px;
+    padding: 9px 12px;
+    color: #1d4ed8;
+    font-size: 0.98rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.career-box h4:nth-of-type(2) {
+    margin-top: 24px;
+}
+
 .eval-chip-row {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
     flex-wrap: wrap;
-    gap: 8px;
 }
 
 .eval-chip {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 7px 10px;
-    border-radius: 999px;
-    font-size: 0.82rem;
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-size: 0.9rem;
     font-weight: 900;
+    min-width: 105px;
+    text-align: center;
     line-height: 1.2;
 }
 
@@ -794,26 +786,20 @@ body {
 
 .eval-chip.excluded {
     background: #e2e8f0;
-    color: #475569;
+    color: #334155;
     border: 1px solid #cbd5e1;
-}
-
-.eval-chip.pf {
-    background: #f1f5f9;
-    color: #475569;
-    border: 1px solid #cbd5e1;
-}
-
-.eval-chip.grade3 {
-    background: #d1fae5;
-    color: #065f46;
-    border: 1px solid #6ee7b7;
 }
 
 .eval-chip.grade5 {
-    background: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fca5a5;
+    background: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fdba74;
+}
+
+.eval-chip.grade3 {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #6ee7b7;
 }
 
 .eval-chip.norank {
@@ -822,30 +808,17 @@ body {
     border: 1px solid #fde047;
 }
 
-.suneung-badge { 
-    text-align: center; 
-    padding: 14px; 
-    border-radius: 12px; 
-    font-weight: 800; 
-    margin-bottom: 15px; 
-    color: white; 
-    font-size: 1rem; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-}
-
-.suneung-badge.included { 
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); 
-}
-
-.suneung-badge.excluded { 
-    background: #64748b; 
+.eval-chip.pf {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
 }
 
 .eval-badge { 
-    padding: 4px 10px; 
-    border-radius: 6px; 
+    padding: 4px 8px; 
+    border-radius: 7px; 
     font-weight: 800; 
-    font-size: 0.82rem; 
+    font-size: 0.78rem; 
     white-space: nowrap;
 }
 
@@ -873,15 +846,27 @@ body {
     border: 1px solid #fde047;
 }
 
+.career-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
 .career-tag {
     display: inline-block;
     padding: 6px 10px;
-    background: #eff6ff;
-    color: #1d4ed8;
-    border: 1px solid #bfdbfe;
-    border-radius: 999px;
-    font-size: 0.85rem;
+    background: #f1f5f9;
+    border: none;
+    color: #334155;
+    border-radius: 9px;
+    font-size: 0.84rem;
     font-weight: 700;
+    line-height: 1.25;
+    box-shadow: none;
+}
+
+.career-tag:hover {
+    background: #e2e8f0;
 }
 
 .major-list {
@@ -889,14 +874,17 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 7px;
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 10px !important;
+    margin: 6px 0 0 0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
 }
 
 .major-list li {
     padding: 9px 10px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 10px;
     color: #334155;
     font-size: 0.88rem;
@@ -1010,359 +998,369 @@ body {
         margin: 15px 0 13px 0;
     }
 
+    #main-container {
+        margin: 14px auto;
+    }
+
     .view-section { 
-        padding: 25px 15px; 
+        padding: 18px 8px; 
+        border-radius: 14px;
+        overflow-x: hidden;
     }
 
-    .nav-btns { 
-        justify-content: flex-start; 
-        width: 100%; 
+    .top-nav {
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+        gap: 10px;
     }
 
-    .btn-action { 
-        width: 48%; 
-        justify-content: center; 
-        padding: 12px; 
-        font-size: 0.95rem;
+    .nav-title {
+        font-size: 1.5rem;
+    }
+
+    .nav-subtitle {
+        font-size: 0.88rem;
+        margin-top: 4px;
+    }
+
+    .btn-action {
+        width: auto !important;
+        justify-content: center;
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        border-radius: 12px;
     }
 
     .view-mode-box {
-        padding: 12px;
+        padding: 10px;
+        gap: 8px;
+        margin-bottom: 16px;
     }
 
     .view-mode-btn {
         min-width: 100%;
-        font-size: 1rem;
-        padding: 14px;
+        padding: 12px;
+        font-size: 0.92rem;
     }
 
     .semester-tabs {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .semester-tab {
+        padding: 10px 6px;
+        font-size: 0.82rem;
+        border-radius: 10px;
     }
 
     .subject-group-tabs {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .subject-group-tab {
+        padding: 10px 6px;
+        font-size: 0.82rem;
+        border-radius: 10px;
     }
 
     .selected-view-title {
-        padding: 18px;
+        padding: 14px 15px;
+        margin: 14px 0 18px 0;
+        border-radius: 14px;
     }
 
     .selected-view-title h2 {
-        font-size: 1.35rem;
+        font-size: 1.15rem;
     }
 
-    .subject-group .group-title { 
-        font-size: 1rem; 
-        padding: 12px 15px; 
+    .selected-view-title p {
+        font-size: 0.8rem;
+        margin-top: 6px;
     }
 
-    .inner-table {
-        table-layout: auto;
+    .subject-group {
+        overflow-x: hidden;
     }
 
-    .inner-table th, 
-    .inner-table td { 
-        font-size: 0.8rem; 
-        padding: 9px 4px; 
+    .group-mandatory .group-title,
+    .group-elective .group-title {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+
+    .rule-desc-header {
+        padding: 12px 14px;
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .inner-table,
+    .group-view-table {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        table-layout: fixed !important;
+    }
+
+    .inner-table th,
+    .inner-table td,
+    .group-view-table th,
+    .group-view-table td {
+        font-size: 0.66rem;
+        padding: 7px 2px;
+        word-break: keep-all;
+    }
+
+    .subject-name-cell {
+        padding-left: 2px !important;
+        padding-right: 2px !important;
     }
 
     .inner-sub-btn,
     .subject-name-fixed {
-        width: 125px !important;
-        min-width: 125px !important;
-        max-width: 125px !important;
-        min-height: 32px;
-        font-size: 0.78rem;
-        padding: 6px 7px;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        min-height: 30px;
+        padding: 5px 3px;
+        font-size: 0.68rem;
+        line-height: 1.15;
+        border-radius: 7px;
     }
 
-    .group-view-table td:first-child .inner-sub-btn,
-    .group-view-table td:first-child .subject-name-fixed {
-        width: 135px !important;
-        min-width: 135px !important;
-        max-width: 135px !important;
+    .subject-note-in-btn {
+        font-size: 0.54rem;
+        padding: 1px 4px;
+        margin-top: 2px;
     }
 
     .subject-name-wrap {
-        width: auto !important;
-        display: inline-flex !important;
-        gap: 4px;
-        flex-wrap: nowrap;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
     }
 
-    .inner-table td:nth-child(3) .subject-note-badge,
-    .group-view-table td:first-child .subject-note-badge {
-        position: static;
-        transform: none;
-        margin-left: 5px !important;
-        vertical-align: middle;
-    }
-
-    .group-view-table th,
-    .group-view-table td {
-        font-size: 0.78rem;
-        padding: 9px 4px;
+    .subject-swap-mark {
+        font-size: 0.75rem;
     }
 
     .placement-badge {
-        font-size: 0.72rem;
-        padding: 4px 7px;
+        font-size: 0.64rem;
+        padding: 3px 5px;
     }
 
-    .subject-note-badge {
-        font-size: 0.65rem;
-        padding: 2px 6px;
+    .eval-badge {
+        font-size: 0.62rem;
+        padding: 4px 4px;
+        border-radius: 7px;
+        white-space: nowrap;
+    }
+
+    .detail-layout {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .detail-side {
+        width: 100%;
+        order: -1;
+        gap: 12px;
+    }
+
+    .detail-card .top-nav {
+        flex-direction: row; 
+        align-items: flex-start; 
+        justify-content: space-between;
+        gap: 10px;
+        padding-bottom: 12px !important;
+        margin-bottom: 14px !important;
+    }
+
+    .subject-badge {
+        font-size: 0.72rem;
+        padding: 5px 10px;
+        margin-bottom: 8px;
     }
 
     .detail-title { 
-        font-size: 2.4rem; 
-    }
-
-    .detail-card .top-nav { 
-        flex-direction: row; 
-        align-items: center; 
-        justify-content: space-between;
+        font-size: 2.1rem; 
+        letter-spacing: -1px;
     }
 
     .detail-card .btn-action.home { 
         width: auto; 
-        padding: 10px 20px;
+        padding: 9px 12px;
+        font-size: 0.82rem;
+        border-radius: 10px;
+        margin-left: auto;
     }
 
     .section-title {
-        font-size: 1.25rem;
-        margin: 18px 0 10px 0;
+        font-size: 1.1rem;
+        margin: 14px 0 8px 0;
+        padding-bottom: 8px;
     }
 
     .section-desc {
-        font-size: 1rem;
-        padding: 18px 20px;
+        font-size: 0.92rem;
+        padding: 16px 14px;
+        border-radius: 12px;
     }
 
     .content-box {
-        padding: 18px 20px;
+        padding: 14px 14px 12px;
+        margin-bottom: 12px;
+        border-radius: 12px;
     }
 
     .content-box h4 {
-        margin: -18px -20px 16px -20px;
-        padding: 14px 18px;
+        margin: -14px -14px 12px -14px;
+        padding: 12px 14px;
+        font-size: 1rem;
     }
 
-    .major-list {
-        grid-template-columns: 1fr;
+    .content-list li {
+        font-size: 0.92rem;
+        margin-bottom: 6px;
+        padding-left: 14px;
     }
 
-    .major-list li.long-major {
-        grid-column: auto;
+    .eval-box,
+    .career-box {
+        padding: 14px !important;
+        border-radius: 14px !important;
     }
-}
-/* =========================================
-   상세 화면 오른쪽 카드 정리
-   - 평가 정보 가운데 정렬
-   - 수능/등급 배지 둥근 사각형 처리
-   - 관련 직업/관련 학과 제목 구분
-   ========================================= */
 
-/* 평가 정보 카드 제목 가운데 정렬 */
-.eval-box > div:first-child {
-    text-align: center !important;
-    padding: 10px 12px;
-    margin: -4px -4px 14px -4px !important;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    color: var(--primary-color) !important;
-}
+    .side-card-title,
+    .career-box h4 {
+        padding: 9px 10px;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
 
-/* 평가 배지 묶음 가운데 정렬 */
-.eval-chip-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* 수능/성취도 배지: 둥근 사각형 + 크기 확대 */
-.eval-chip {
-    border-radius: 8px !important;
-    padding: 9px 13px;
-    font-size: 0.9rem;
-    font-weight: 900;
-    min-width: 105px;
-    text-align: center;
-}
-
-/* 수능 출제/미출제 색 구분 */
-.eval-chip.included {
-    background: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fca5a5;
-}
-
-.eval-chip.excluded {
-    background: #e2e8f0;
-    color: #334155;
-    border: 1px solid #cbd5e1;
-}
-
-/* 성취도/등급 색 구분 */
-.eval-chip.grade5 {
-    background: #fff7ed;
-    color: #c2410c;
-    border: 1px solid #fdba74;
-}
-
-.eval-chip.grade3 {
-    background: #ecfdf5;
-    color: #047857;
-    border: 1px solid #6ee7b7;
-}
-
-.eval-chip.norank {
-    background: #fef9c3;
-    color: #854d0e;
-    border: 1px solid #fde047;
-}
-
-.eval-chip.pf {
-    background: #f1f5f9;
-    color: #475569;
-    border: 1px solid #cbd5e1;
-}
-
-/* 관련 직업 / 관련 학과 제목 구분 */
-.career-box h4 {
-    display: block;
-    background: #f8fafc;
-    border-left: 5px solid var(--primary-color);
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-bottom: 12px !important;
-    color: var(--primary-color) !important;
-    font-size: 1rem !important;
-    font-weight: 900 !important;
-}
-
-/* 관련 학과 제목은 위쪽 여백만 조금 확보 */
-.career-box h4:nth-of-type(2) {
-    margin-top: 24px !important;
-}
-
-/* 관련 직업 태그와 제목 사이 정돈 */
-.career-tags {
-    padding: 2px 0 4px 0;
-}
-
-/* 관련 학과 박스가 제목과 더 잘 구분되도록 */
-.major-list {
-    margin-top: 2px !important;
-}
-
-/* 모바일 조정 */
-@media (max-width: 768px) {
-    .eval-chip {
-        min-width: auto;
-        font-size: 0.82rem;
-        padding: 8px 10px;
+    .career-box h4:nth-of-type(2) {
+        margin-top: 14px;
     }
 
     .eval-chip-row {
-        gap: 7px;
+        gap: 8px;
+        justify-content: flex-start;
     }
 
-    .career-box h4 {
-        font-size: 0.95rem !important;
-        padding: 9px 10px;
+    .eval-chip {
+        min-width: auto;
+        font-size: 0.78rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+    }
+
+    .career-tags {
+        gap: 6px;
+        padding: 0;
+    }
+
+    .career-tag {
+        padding: 7px 10px;
+        font-size: 0.8rem;
+        border-radius: 9px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .major-list {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px;
+        padding: 8px !important;
+    }
+
+    .major-list li {
+        font-size: 0.78rem;
+        padding: 8px 6px;
+        border-radius: 8px;
+    }
+
+    .major-list li.long-major {
+        grid-column: 1 / -1;
     }
 }
 /* =========================================
-   오른쪽 카드 제목 푸른 계열 강조
+   과목명 버튼 안의 고시외/과학계열/전문교과 표시 재정리
+   - 과목명 옆에 표시
+   - 필요할 때만 줄바꿈
+   - 고시외 등은 붉은 계열 배지
    ========================================= */
 
-/* 평가 정보 제목 */
-.eval-box > div:first-child {
-    background: #eff6ff !important;
-    border: 1px solid #bfdbfe !important;
-    color: #1d4ed8 !important;
+/* 과목명 버튼 내부를 가로 배치로 변경 */
+.inner-sub-btn,
+.subject-name-fixed {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    column-gap: 6px;
+    row-gap: 3px;
 }
 
-/* 관련 직업 / 관련 학과 제목 */
-.career-box h4 {
-    background: #eff6ff !important;
-    border-left: 5px solid #1d4ed8 !important;
-    border-top: 1px solid #bfdbfe;
-    border-right: 1px solid #bfdbfe;
-    border-bottom: 1px solid #bfdbfe;
-    color: #1d4ed8 !important;
-    border-radius: 10px;
+/* 과목명 텍스트 */
+.subject-title-text {
+    display: inline !important;
+    width: auto !important;
+    max-width: 100%;
+    text-align: center;
+    line-height: 1.2;
 }
 
-/* 관련 학과 목록 전체를 살짝 묶어 구분 */
-.major-list {
-    background: #f8fafc;
-    border: 1px solid #dbeafe;
-    border-radius: 12px;
-    padding: 10px !important;
-    margin-top: 6px !important;
+/* 고시외 / 과학계열 / 전문교과 배지 */
+.subject-note-in-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0 !important;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: #fff7ed !important;
+    color: #c2410c !important;
+    border: 1px solid #fdba74;
+    font-size: 0.66rem;
+    font-weight: 900;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-/* 관련 학과 개별 항목 */
-.major-list li {
-    background: white !important;
-    border: 1px solid #bfdbfe !important;
-    color: #334155;
+/* 과목명 버튼 hover 시에도 배지 색 유지 */
+.inner-sub-btn:hover .subject-note-in-btn {
+    background: #fff7ed !important;
+    color: #c2410c !important;
+    border-color: #fdba74;
 }
 
-/* 관련 직업 태그도 제목과 어울리게 약간 정돈 */
-.career-tag {
-    background: #f8fafc;
-    border: 1px solid #bfdbfe;
-    color: #1d4ed8;
-}
-/* 오른쪽 카드 파랑 농도 낮추기 */
-.eval-box > div:first-child,
-.career-box h4 {
-    background: #f8fafc !important;
-    border: 1px solid #dbeafe !important;
-    border-left: 5px solid #1d4ed8 !important;
-    color: #1d4ed8 !important;
-}
+/* 모바일에서는 더 작게, 그래도 과목명 옆에 붙게 */
+@media (max-width: 768px) {
+    .inner-sub-btn,
+    .subject-name-fixed {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        column-gap: 4px;
+        row-gap: 2px;
+    }
 
-/* 관련 학과 묶음은 아주 연한 회색톤 */
-.major-list {
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-}
+    .subject-title-text {
+        display: inline !important;
+        width: auto !important;
+        max-width: 100%;
+        line-height: 1.15;
+    }
 
-/* 관련 학과 개별 박스는 흰색 유지 */
-.major-list li {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
-    color: #334155 !important;
-}
-
-/* 관련 직업 태그도 파랑을 조금 낮춤 */
-.career-tag {
-    background: #ffffff !important;
-    border: 1px solid #bfdbfe !important;
-    color: #1d4ed8 !important;
-}
-/* 관련 직업 배지: 테두리 제거 + 색 채움 */
-.career-tag {
-    display: inline-block;
-    padding: 6px 10px;
-    background: #f1f5f9 !important;
-    border: none !important;
-    color: #334155 !important;
-    border-radius: 9px !important;
-    font-size: 0.84rem;
-    font-weight: 700 !important;
-    line-height: 1.25;
-    box-shadow: none !important;
-}
-
-.career-tag:hover {
-    background: #e2e8f0 !important;
+    .subject-note-in-btn {
+        font-size: 0.54rem !important;
+        padding: 1px 5px !important;
+        border-radius: 999px;
+        margin-top: 0 !important;
+    }
 }

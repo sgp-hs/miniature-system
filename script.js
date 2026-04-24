@@ -92,10 +92,10 @@ function renderMainView() {
     let html = `
         <div class="view-mode-box">
             <button class="view-mode-btn ${currentMainMode === 'semester' ? 'active' : ''}" onclick="setMainMode('semester')">
-                📅 학기별 보기
+                📅 학기별 편제 보기
             </button>
             <button class="view-mode-btn ${currentMainMode === 'group' ? 'active' : ''}" onclick="setMainMode('group')">
-                📚 교과군별 보기
+                📚 교과별 과목 보기
             </button>
         </div>
     `;
@@ -187,15 +187,14 @@ function renderSubjectTable(subjects, placement) {
     }
 
     const rows = subjects.map(sub => {
-        const noteBadge = sub.note ? `<span class="subject-note-badge">${getShortNote(sub.note)}</span>` : '';
         const subjectCellContent = renderSubjectNameButtons(sub);
         const evalTargetName = getEvalTargetName(sub.n);
 
         return `
             <tr>
-                <td>${sub.g}</td>
+                <td>${getShortGroupLabel(sub.g)}</td>
                 <td>${sub.t}</td>
-                <td style="text-align:left; padding-left:15px;">${subjectCellContent} ${noteBadge}</td>
+                <td class="subject-name-cell">${subjectCellContent}</td>
                 <td>${sub.c}</td>
                 <td>${getShortEval(evalTargetName, sub.g, sub.t)}</td>
             </tr>
@@ -206,11 +205,11 @@ function renderSubjectTable(subjects, placement) {
         <table class="inner-table">
             <thead>
                 <tr>
-                    <th width="15%">교과군</th>
-                    <th width="15%">구분</th>
-                    <th width="40%">과목명</th>
-                    <th width="10%">학점</th>
-                    <th width="20%">성적처리</th>
+                    <th width="11%">교과</th>
+                    <th width="12%">구분</th>
+                    <th width="43%">과목명</th>
+                    <th width="8%">학점</th>
+                    <th width="26%">성취도/등급</th>
                 </tr>
             </thead>
             <tbody>
@@ -328,12 +327,11 @@ function isSameGroup(originalGroup, selectedGroup) {
 
 function renderGroupSubjectTable(rows) {
     const rowHtml = rows.map(sub => {
-        const noteBadge = sub.note ? `<span class="subject-note-badge">${getShortNote(sub.note)}</span>` : '';
         const subjectCellContent = renderSubjectNameButtons(sub);
 
         return `
             <tr>
-                <td style="text-align:left; padding-left:15px;">${subjectCellContent} ${noteBadge}</td>
+                <td class="subject-name-cell">${subjectCellContent}</td>
                 <td>${sub.semester}</td>
                 <td><span class="placement-badge ${sub.placement === '학교 지정' ? 'mandatory' : 'elective'}">${sub.placement}</span></td>
                 <td>${sub.t}</td>
@@ -346,11 +344,11 @@ function renderGroupSubjectTable(rows) {
         <table class="inner-table group-view-table">
             <thead>
                 <tr>
-                    <th width="34%">과목명</th>
+                    <th width="36%">과목명</th>
                     <th width="22%">학년/학기</th>
                     <th width="18%">편성</th>
                     <th width="14%">구분</th>
-                    <th width="12%">학점</th>
+                    <th width="10%">학점</th>
                 </tr>
             </thead>
             <tbody>
@@ -362,17 +360,20 @@ function renderGroupSubjectTable(rows) {
 
 /* =========================================
    과목명 버튼 공통 처리
-   음악 ↔ 미술처럼 묶인 과목도 각각 클릭 가능
+   고시외/과학계열/전문교과는 파란 과목명 버튼 안에 표시
    ========================================= */
 
 function renderSubjectNameButtons(sub) {
+    const noteHtml = sub.note ? `<span class="subject-note-in-btn">${getShortNote(sub.note)}</span>` : '';
+
     if (sub.n.includes('↔')) {
         const parts = sub.n.split('↔').map(p => p.trim());
 
         const buttons = parts.map(p => {
             return `
                 <button class="inner-sub-btn subject-name-fixed" onclick="renderSubjectDetail('${p}', '${sub.g}', '${sub.t}')">
-                    ${p}
+                    <span class="subject-title-text">${p}</span>
+                    ${noteHtml}
                 </button>
             `;
         }).join('<span class="subject-swap-mark">↔</span>');
@@ -383,7 +384,8 @@ function renderSubjectNameButtons(sub) {
     return `
         <div class="subject-name-wrap">
             <button class="inner-sub-btn subject-name-fixed" onclick="renderSubjectDetail('${sub.n}', '${sub.g}', '${sub.t}')">
-                ${sub.n}
+                <span class="subject-title-text">${sub.n}</span>
+                ${noteHtml}
             </button>
         </div>
     `;
@@ -398,9 +400,20 @@ function getEvalTargetName(subjectName) {
 }
 
 /* =========================================
+   교과군명 축약
+   ========================================= */
+
+function getShortGroupLabel(groupName) {
+    const groupMap = {
+        '기술·가정/정보': '기술·정보',
+        '제2외국어': '제2외'
+    };
+
+    return groupMap[groupName] || groupName;
+}
+
+/* =========================================
    note 표시 줄이기
-   고시외 과목 → 고시외
-   과학 계열 → 과학계열
    ========================================= */
 
 function getShortNote(note) {
@@ -422,7 +435,7 @@ function getShortNote(note) {
    ========================================= */
 
 function getEvalRule(subjectName, groupName, subjectType) {
-    let evalLabel = '5단계 / 석차 5등급';
+    let evalLabel = '5단계/5등급';
     let evalBadgeClass = 'grade5';
     let suneungClass = 'excluded';
     let suneungText = '수능 미출제';
@@ -456,21 +469,21 @@ function getEvalRule(subjectName, groupName, subjectType) {
         suneungClass = 'included';
 
         if (pureName === "일본어" || pureName === "중국어") {
-            suneungText = '수능 출제 / 제2외국어';
+            suneungText = '수능 출제/제2외';
         } else {
             suneungText = '수능 출제';
         }
     }
 
     if (groupName === '교양') {
-        evalLabel = 'P/F / 등급 미산출';
+        evalLabel = 'P/F';
         evalBadgeClass = 'pf';
     } else if (groupName === '체육' || groupName === '예술' || pureName.includes('과학탐구실험')) {
         if (pureName.includes('전공 실기')) {
-            evalLabel = '5단계 / 석차 5등급';
+            evalLabel = '5단계/5등급';
             evalBadgeClass = 'grade5';
         } else {
-            evalLabel = '3단계 / 등급 미산출';
+            evalLabel = '3단계/미산출';
             evalBadgeClass = 'grade3';
         }
     } else {
@@ -486,10 +499,10 @@ function getEvalRule(subjectName, groupName, subjectType) {
         ];
 
         if (noRankFusion.includes(pureName)) {
-            evalLabel = '5단계 / 등급 미산출';
+            evalLabel = '5단계/미산출';
             evalBadgeClass = 'norank';
         } else {
-            evalLabel = '5단계 / 석차 5등급';
+            evalLabel = '5단계/5등급';
             evalBadgeClass = 'grade5';
         }
     }
@@ -529,7 +542,7 @@ function cleanContentItem(item) {
 
 function renderSubjectDetail(subjectName, groupName, subjectType) {
     const viewDetail = document.getElementById('view-detail');
-    const { evalLabel, evalBadgeClass, evalText, suneungClass, suneungText } = getEvalRule(subjectName, groupName, subjectType);
+    const { evalLabel, evalBadgeClass, suneungClass, suneungText } = getEvalRule(subjectName, groupName, subjectType);
 
     let pureName = subjectName.replace('1·2', '1').trim();
 
@@ -609,22 +622,20 @@ function renderSubjectDetail(subjectName, groupName, subjectType) {
 
                 <div class="detail-side">
                     <div class="eval-box">
-                        <div style="font-size:1.05rem; font-weight:900; margin-bottom:12px; color:#1e293b;">
-                            📋 평가 정보
-                        </div>
+                        <div class="side-card-title">📋 평가 정보</div>
                         <div class="eval-chip-row">
                             <span class="eval-chip ${suneungClass}">${suneungText}</span>
                             <span class="eval-chip ${evalBadgeClass}">${evalLabel}</span>
                         </div>
                     </div>
 
-                    <div class="career-box" style="background:white; border:1px solid #e2e8f0; border-radius:16px; padding:22px; box-shadow:0 4px 10px rgba(0,0,0,0.03);">
-                        <h4 style="margin: 0 0 10px 0; font-size:1.05rem; color:#1e293b;">💼 관련 직업</h4>
-                        <div class="career-tags" style="display:flex; flex-wrap:wrap; gap:8px;">
+                    <div class="career-box">
+                        <h4>💼 관련 직업</h4>
+                        <div class="career-tags">
                             ${careerTagsHtml}
                         </div>
 
-                        <h4 style="margin: 24px 0 10px 0; font-size:1.05rem; color:#1e293b;">🎓 관련 학과</h4>
+                        <h4>🎓 관련 학과</h4>
                         <ul class="major-list">
                             ${majorListHtml}
                         </ul>
