@@ -13,19 +13,37 @@
 
 <div id="intro-screen">
     <div class="intro-header">
-        <h1 class="intro-title-main">2022 개정 교육과정 선택과목 안내</h1>
-    </div>
-    
-    <img src="블라이언.png" alt="마스코트" class="intro-mascot">
-    
-    <div class="year-btn-group">
-        <button class="year-btn" onclick="startApp(2025)">🎒 2025학년도 입학생</button>
-        <button class="year-btn" onclick="startApp(2026)">🎒 2026학년도 입학생</button>
+        <h1 class="intro-title-main">2022 개정 교육과정<br class="mobile-break"> 선택과목 안내</h1>
     </div>
 
-    <div class="intro-footer">
-        <img src="서고_교표.png" alt="교표" class="intro-logo">
-        <span class="intro-school-name">서귀포고등학교</span>
+    <img src="블라이언.png" alt="서귀포고등학교 마스코트" class="intro-mascot-main">
+
+    <div class="intro-school-line">
+        <img src="서고_교표.png" alt="교표" class="intro-logo-small">
+        <span>서귀포고등학교</span>
+    </div>
+
+    <div class="intro-action-panel">
+        <div class="intro-menu-title">입학년도별 교육과정 및 편성 과목 확인</div>
+        <div class="intro-menu-desc">입학년도에 따라 달라지는 교육과정과 학기별 편성 과목을 확인합니다.</div>
+
+        <div class="year-btn-row">
+            <button class="year-btn compact-btn" onclick="startApp(2025)">
+                2025학년도 입학생
+            </button>
+            <button class="year-btn compact-btn" onclick="startApp(2026)">
+                2026학년도 입학생
+            </button>
+        </div>
+
+        <div class="intro-divider"></div>
+
+        <div class="intro-menu-title">진로·학과 탐색</div>
+        <div class="intro-menu-desc">계열별 학과 정보와 진로 방향을 살펴봅니다.</div>
+
+        <button class="year-btn career-btn compact-career-btn" onclick="location.href='계열안내.html'">
+            계열·학과 안내
+        </button>
     </div>
 </div>
 
@@ -34,10 +52,9 @@
         <div class="top-nav">
             <div>
                 <h1 class="nav-title" id="nav-year-title">학기별 편제표</h1>
-                <p style="color:#64748b; margin-top:10px; font-weight:600;">과목명을 클릭하면 상세 설명을 볼 수 있습니다.</p>
+                <p class="nav-subtitle">과목명을 클릭하면 상세 설명을 볼 수 있습니다.</p>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn-action" onclick="location.href='계열안내.html'" style="background-color: var(--secondary-color);">🎓 계열 안내</button>
+            <div class="nav-btns">
                 <button class="btn-action home" onclick="goHome()">🏠 처음으로</button>
             </div>
         </div>
