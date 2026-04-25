@@ -3,8 +3,21 @@ function renderSubjects(subjectString) {
         return `<span style="color:#94a3b8;">-</span>`;
     }
 
+    /*
+      데이터 형식 예시:
+      국어: 화법과 언어, 독서와 작문, 문학|영어: 영어Ⅰ, 영어Ⅱ, 영어 독해와 작문|사회: 세계시민과 지리, 세계사, 사회와 문화, 현대사회와 윤리
+
+      처리 방식:
+      - 짧은 과목군: 카드 2개씩 배치
+      - 긴 과목군: 한 줄 전체 사용
+    */
+
     if (!subjectString.includes(':')) {
-        return `<span style="line-height: 1.7; color: #334155;">${subjectString}</span>`;
+        return `
+            <div class="subject-chip-grid">
+                <div class="subject-chip long">${subjectString}</div>
+            </div>
+        `;
     }
 
     const groups = subjectString.split('|');
@@ -17,15 +30,29 @@ function renderSubjects(subjectString) {
         const groupName = parts[0].trim();
         const subjects = parts.slice(1).join(':').trim();
 
+        const fullText = `[${groupName}] ${subjects}`;
+
+        /*
+          길이 기준:
+          - 38자 이상이면 긴 카드로 처리
+          - 사회, 과학처럼 과목이 많은 경우 1줄 전체 차지
+          - 국어, 영어, 정보, 한문처럼 짧은 경우 2칸 배치
+        */
+        const isLong = fullText.length >= 38;
+
         html += `
-            <div style="margin-bottom: 8px; line-height: 1.7;">
-                <strong style="color: var(--primary); margin-right: 6px;">[${groupName}]</strong>
-                <span style="color: #334155;">${subjects}</span>
+            <div class="subject-chip ${isLong ? 'long' : ''}">
+                <strong>[${groupName}]</strong>
+                <span>${subjects}</span>
             </div>
         `;
     });
 
-    return html;
+    return `
+        <div class="subject-chip-grid">
+            ${html}
+        </div>
+    `;
 }
 
 function renderCourseTable(
@@ -172,7 +199,9 @@ function openMajorModal(name) {
             ? data.recommend.map(r => `<li>${r}</li>`).join('')
             : `<li>${data.recommend}</li>`;
 
-        const careersText = Array.isArray(data.careers) ? data.careers.join(', ') : (data.careers || "");
+        const careersText = Array.isArray(data.careers)
+            ? data.careers.join(', ')
+            : (data.careers || "");
 
         body.innerHTML = `
             <h1 class="modal-title">${name}</h1>

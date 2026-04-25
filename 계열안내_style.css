@@ -548,3 +548,235 @@ body {
     font-size: 1.7rem;
   }
 }
+/* =========================
+   모바일 왼쪽 사이드바 메뉴 축소
+   ========================= */
+@media (max-width: 900px) {
+
+  .sidebar {
+    padding: 14px 12px 16px !important;
+  }
+
+  .sidebar h3 {
+    font-size: 1.18rem !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 10px !important;
+    gap: 6px !important;
+  }
+
+  .accordion-item {
+    margin-bottom: 8px !important;
+  }
+
+  .accordion-header {
+    font-size: 0.92rem !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .accordion-header span:last-child {
+    font-size: 0.82rem !important;
+  }
+
+  .accordion-content {
+    margin-top: 6px !important;
+    padding-top: 0 !important;
+  }
+
+  .accordion-content ul {
+    padding-left: 18px !important;
+    border-left-width: 2px !important;
+  }
+
+  .accordion-content li {
+    margin: 4px 0 !important;
+  }
+
+  .accordion-content li::before {
+    left: -18px !important;
+    top: 16px !important;
+    width: 10px !important;
+    height: 2px !important;
+  }
+
+  .tab-btn {
+    font-size: 0.82rem !important;
+    padding: 7px 9px !important;
+    border-radius: 9px !important;
+    line-height: 1.25 !important;
+  }
+}
+/* =========================
+   PC 왼쪽 사이드바 메뉴 살짝 축소
+   ========================= */
+@media (min-width: 901px) {
+
+  .sidebar {
+    width: 330px !important;
+    min-width: 300px !important;
+    padding: 18px 14px 22px !important;
+  }
+
+  .sidebar h3 {
+    font-size: 1.55rem !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .accordion-item {
+    margin-bottom: 11px !important;
+  }
+
+  .accordion-header {
+    font-size: 1.12rem !important;
+    padding: 14px 16px !important;
+    border-radius: 15px !important;
+    line-height: 1.25 !important;
+  }
+
+  .accordion-header span:last-child {
+    font-size: 0.92rem !important;
+  }
+
+  .accordion-content {
+    margin-top: 8px !important;
+  }
+
+  .accordion-content ul {
+    padding-left: 22px !important;
+  }
+
+  .accordion-content li {
+    margin: 5px 0 !important;
+  }
+
+  .accordion-content li::before {
+    left: -22px !important;
+    top: 17px !important;
+    width: 12px !important;
+    height: 2px !important;
+  }
+
+  .tab-btn {
+    font-size: 0.96rem !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+    line-height: 1.28 !important;
+  }
+}
+/* =========================
+   계열안내 처음으로 버튼
+========================= */
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sidebar-top h3 {
+  margin-bottom: 0 !important;
+}
+
+.back-home-btn {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 14px;
+  background: #475569;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+.back-home-btn::before {
+  content: "🏠 ";
+}
+
+.back-home-btn:hover {
+  background: #334155;
+  transform: translateY(-1px);
+}
+
+/* PC에서는 버튼을 조금 얇게 */
+@media (min-width: 901px) {
+  .back-home-btn {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 모바일에서는 더 compact하게 */
+@media (max-width: 900px) {
+  .sidebar-top {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .back-home-btn {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    border-radius: 10px;
+  }
+}
+/* =========================
+   공통 선택 과목 카드형 표시
+========================= */
+
+.subject-chip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 10px;
+  width: 100%;
+}
+
+.subject-chip {
+  padding: 9px 11px;
+  border-radius: 11px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.subject-chip strong {
+  color: #4f46e5;
+  font-weight: 900;
+  margin-right: 5px;
+}
+
+.subject-chip.long {
+  grid-column: 1 / -1;
+}
+
+/* 기존 과목 영역 여백 줄이기 */
+.subject-items {
+  padding: 14px 16px !important;
+}
+
+/* 모바일에서는 1줄 1개 */
+@media (max-width: 900px) {
+  .subject-chip-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .subject-chip {
+    padding: 7px 9px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    border-radius: 9px;
+  }
+
+  .subject-items {
+    padding: 10px 10px !important;
+  }
+}

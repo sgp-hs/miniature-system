@@ -1364,3 +1364,63 @@ body {
         margin-top: 0 !important;
     }
 }
+/* =========================
+   모바일용: 상단 전환 버튼 + 교과 버튼 압축
+========================= */
+@media (max-width: 768px) {
+  /* 상단 2개 버튼을 같은 행으로 */
+  .view-toggle-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .view-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    padding: 0 12px;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* 교과 버튼 영역 */
+  .subject-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .subject-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 8px 8px;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  /* 전체 간격도 살짝 압축 */
+  .toggle-section,
+  .subject-section,
+  .page-section {
+    margin-bottom: 14px;
+  }
+
+  .section-box {
+    padding: 14px 12px;
+    border-radius: 18px;
+  }
+}
