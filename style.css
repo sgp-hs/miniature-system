@@ -109,6 +109,7 @@ body {
     word-break: keep-all;
 }
 
+/* 입학년도 버튼 2개 */
 .year-btn-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -152,11 +153,22 @@ body {
     margin: 20px 0 18px 0;
 }
 
+/* 진로·학과 탐색 버튼 2개 */
+.career-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
 .compact-career-btn {
     width: 100%;
-    padding: 15px 12px;
-    font-size: 1.08rem;
+    min-width: 0;
+    padding: 15px 10px;
+    font-size: 1rem;
     border-radius: 16px;
+    line-height: 1.25;
+    white-space: normal;
+    word-break: keep-all;
 }
 
 .year-btn.career-btn {
@@ -566,7 +578,6 @@ body {
     flex-shrink: 0;
 }
 
-/* 이전 배지 코드가 남아도 화면에 영향 최소화 */
 .subject-note-badge {
     display: none !important;
 }
@@ -984,14 +995,28 @@ body {
     }
 
     .year-btn-row {
-        grid-template-columns: 1fr;
-        gap: 9px;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
-    .compact-btn,
+    .compact-btn {
+        padding: 12px 6px;
+        font-size: 0.84rem;
+        line-height: 1.2;
+        border-radius: 14px;
+    }
+
+    .career-btn-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px;
+    }
+
     .compact-career-btn {
-        padding: 12px 10px;
-        font-size: 0.98rem;
+        padding: 11px 5px;
+        font-size: 0.78rem;
+        border-radius: 13px;
+        line-height: 1.18;
+        letter-spacing: -0.03em;
     }
 
     .intro-divider {
@@ -1290,14 +1315,11 @@ body {
         grid-column: 1 / -1;
     }
 }
+
 /* =========================================
    과목명 버튼 안의 고시외/과학계열/전문교과 표시 재정리
-   - 과목명 옆에 표시
-   - 필요할 때만 줄바꿈
-   - 고시외 등은 붉은 계열 배지
    ========================================= */
 
-/* 과목명 버튼 내부를 가로 배치로 변경 */
 .inner-sub-btn,
 .subject-name-fixed {
     flex-direction: row !important;
@@ -1306,7 +1328,6 @@ body {
     row-gap: 3px;
 }
 
-/* 과목명 텍스트 */
 .subject-title-text {
     display: inline !important;
     width: auto !important;
@@ -1315,7 +1336,6 @@ body {
     line-height: 1.2;
 }
 
-/* 고시외 / 과학계열 / 전문교과 배지 */
 .subject-note-in-btn {
     display: inline-flex !important;
     align-items: center;
@@ -1333,14 +1353,12 @@ body {
     flex-shrink: 0;
 }
 
-/* 과목명 버튼 hover 시에도 배지 색 유지 */
 .inner-sub-btn:hover .subject-note-in-btn {
     background: #fff7ed !important;
     color: #c2410c !important;
     border-color: #fdba74;
 }
 
-/* 모바일에서는 더 작게, 그래도 과목명 옆에 붙게 */
 @media (max-width: 768px) {
     .inner-sub-btn,
     .subject-name-fixed {
@@ -1364,63 +1382,62 @@ body {
         margin-top: 0 !important;
     }
 }
+
 /* =========================
    모바일용: 상단 전환 버튼 + 교과 버튼 압축
-========================= */
+   ========================= */
+
 @media (max-width: 768px) {
-  /* 상단 2개 버튼을 같은 행으로 */
-  .view-toggle-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
+    .view-toggle-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
 
-  .view-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 54px;
-    padding: 0 12px;
-    border-radius: 16px;
-    font-size: 1rem;
-    font-weight: 800;
-    line-height: 1.2;
-    text-align: center;
-    white-space: nowrap;
-  }
+    .view-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 54px;
+        padding: 0 12px;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.2;
+        text-align: center;
+        white-space: nowrap;
+    }
 
-  /* 교과 버튼 영역 */
-  .subject-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 8px;
-  }
+    .subject-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 8px;
+    }
 
-  .subject-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 54px;
-    padding: 8px 8px;
-    border-radius: 16px;
-    font-size: 1rem;
-    font-weight: 800;
-    line-height: 1.2;
-    text-align: center;
-    word-break: keep-all;
-  }
+    .subject-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 8px 8px;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.2;
+        text-align: center;
+        word-break: keep-all;
+    }
 
-  /* 전체 간격도 살짝 압축 */
-  .toggle-section,
-  .subject-section,
-  .page-section {
-    margin-bottom: 14px;
-  }
+    .toggle-section,
+    .subject-section,
+    .page-section {
+        margin-bottom: 14px;
+    }
 
-  .section-box {
-    padding: 14px 12px;
-    border-radius: 18px;
-  }
+    .section-box {
+        padding: 14px 12px;
+        border-radius: 18px;
+    }
 }

@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>2028 대입 전공 연계 권장과목 안내</title>
+<link as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet"/>
+<style>
+    :root {
+      --snu: #003478;
+      --khu: #9D1B2F;
+      --cau: #004C97;
+      --korea: #8B0029;
+      --pusan: #005BAA;
+      --knu: #E60012;
+      --dongguk: #F39800;
+      --dankook: #005BAC;
+      --ajou: #0072CE;
+      --soongsil: #006272;
+      --inha: #0055A4;
+
+      --uni-color: #004C97;
+      --uni-light: #f0f4f9;
+      --border-color: #e5e7eb;
+      --text-main: #374151;
+      --text-muted: #6b7280;
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --dark: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg);
+      margin: 0;
+      padding: 32px 20px 56px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .home-btn {
+      border: none;
+      background: #111827;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1f2937, #0f172a);
+      color: white;
+      padding: 36px 40px;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+
+    .hero .label {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,0.88);
+      font-size: 1rem;
+    }
+
+    .core-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0 24px;
+    }
+
+    .core-card {
+      background: var(--card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+
+    .core-card strong {
+      display: block;
+      color: #111827;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .core-card span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .guide-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-left: 6px solid #111827;
+      border-radius: 12px;
+      padding: 22px;
+      margin: 24px 0;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+
+    .guide-box h2 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      color: #111827;
+    }
+
+    .guide-box ul {
+      margin: 10px 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .guide-box li {
+      margin: 5px 0;
+    }
+
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 28px;
+    }
+
+    .jump-nav a {
+      text-decoration: none;
+      color: #111827;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .jump-nav a:hover {
+      transform: translateY(-1px);
+    }
+
+    .uni-snu { --uni-color: var(--snu); --uni-light: #f0f5fb; }
+    .uni-khu { --uni-color: var(--khu); --uni-light: #fbf1f3; }
+    .uni-cau { --uni-color: var(--cau); --uni-light: #f0f4f9; }
+    .uni-korea { --uni-color: var(--korea); --uni-light: #fbf1f4; }
+    .uni-pusan { --uni-color: var(--pusan); --uni-light: #f0f7fb; }
+    .uni-knu { --uni-color: var(--knu); --uni-light: #fff1f2; }
+    .uni-dongguk { --uni-color: var(--dongguk); --uni-light: #fff7ed; }
+    .uni-dankook { --uni-color: var(--dankook); --uni-light: #f0f7ff; }
+    .uni-ajou { --uni-color: var(--ajou); --uni-light: #eff7ff; }
+    .uni-soongsil { --uni-color: var(--soongsil); --uni-light: #effafc; }
+    .uni-inha { --uni-color: var(--inha); --uni-light: #f0f6fa; }
+
+    details.section {
+      max-width: 1200px;
+      margin: 0 auto 22px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-top: 6px solid var(--uni-color);
+      overflow: hidden;
+    }
+
+    details.section[open] {
+      margin-bottom: 32px;
+    }
+
+    details.section summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 24px 32px;
+      font-size: 1.24rem;
+      font-weight: 800;
+      color: var(--uni-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    details.section summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.section summary::after {
+      content: "펼치기";
+      flex: 0 0 auto;
+      color: #ffffff;
+      background: var(--uni-color);
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    details.section[open] summary::after {
+      content: "접기";
+    }
+
+    .section-body {
+      padding: 0 32px 36px;
+    }
+
+    .section-body h3 {
+      color: var(--uni-color);
+      border-bottom: 2px solid var(--uni-color);
+      padding-bottom: 12px;
+      margin-top: 0;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .notice-box {
+      background-color: var(--uni-light);
+      border-left: 5px solid var(--uni-color);
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    .notice-box strong {
+      color: var(--uni-color);
+      font-size: 1.08rem;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .table-guide {
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: -10px;
+      padding-right: 5px;
+      display: none;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 0;
+      table-layout: fixed;
+      text-align: center;
+    }
+
+    table.wide,
+    table.mid,
+    table.narrow {
+      min-width: 0;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 9px 7px;
+      vertical-align: middle;
+      line-height: 1.42;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    th {
+      background-color: #f9fafb;
+      font-weight: 800;
+      color: #111827;
+      font-size: 0.88rem;
+      line-height: 1.32;
+      white-space: normal;
+      text-align: center;
+    }
+
+    tbody tr:hover { background-color: #f8fafc; }
+
+    td {
+      font-size: 0.82rem;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .left td,
+    td.left {
+      text-align: left;
+    }
+
+    .center {
+      text-align: center !important;
+    }
+
+    .small-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    .draft-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 0.92rem;
+    }
+
+
+    .compact-table {
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+
+    .compact-table table {
+      min-width: 620px;
+    }
+
+    .uni-label {
+      display: inline-block;
+      margin: 8px 0 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--uni-light);
+      color: var(--uni-color);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .integrated-note {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+
+    /* =========================================
+       숭실대·아주대·인하대 통합 선택 과목 가이드 표
+       - 대분류·중분류·모집단위 칸을 줄이고 과목 칸을 균형 있게 배치
+       ========================================= */
+    .integrated-guide-table {
+      table-layout: fixed;
+      min-width: 0;
+    }
+
+    .integrated-guide-table th,
+    .integrated-guide-table td {
+      padding: 8px 6px;
+      font-size: 0.76rem;
+      line-height: 1.38;
+      vertical-align: middle;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    /* 대분류 */
+    .integrated-guide-table th:nth-child(1),
+    .integrated-guide-table td:nth-child(1) {
+      width: 56px;
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    /* 중분류 */
+    .integrated-guide-table th:nth-child(2),
+    .integrated-guide-table td:nth-child(2) {
+      width: 70px;
+      text-align: center;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    /* 모집단위 */
+    .integrated-guide-table th:nth-child(3),
+    .integrated-guide-table td:nth-child(3) {
+      width: 178px;
+      font-size: 0.74rem;
+      line-height: 1.36;
+    }
+
+    /* 일반선택 / 진로선택 / 융합선택 */
+    .integrated-guide-table th:nth-child(4),
+    .integrated-guide-table td:nth-child(4),
+    .integrated-guide-table th:nth-child(5),
+    .integrated-guide-table td:nth-child(5),
+    .integrated-guide-table th:nth-child(6),
+    .integrated-guide-table td:nth-child(6) {
+      width: auto;
+      font-size: 0.74rem;
+      line-height: 1.38;
+    }
+
+    .integrated-guide-table strong:not(.uni-label) {
+      font-weight: 900;
+      color: #1d4ed8;
+    }
+
+    .integrated-guide-table .uni-label {
+      display: inline-block;
+      margin: 5px 0 3px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #111827;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    
+
+    /* 동국대 기준 교과 영역 분류: 접기/펼치기형으로 압축 */
+    .criteria-toggle {
+      margin: 18px 0 26px;
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--uni-color);
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.035);
+    }
+
+    .criteria-toggle summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 15px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: var(--uni-color);
+      font-weight: 900;
+      font-size: 1rem;
+      background: var(--uni-light);
+    }
+
+    .criteria-toggle summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .criteria-toggle summary::after {
+      content: "보기";
+      flex: 0 0 auto;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--uni-color);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .criteria-toggle[open] summary::after {
+      content: "닫기";
+    }
+
+    .criteria-body {
+      padding: 16px 18px 18px;
+    }
+
+    .criteria-body > p {
+      margin: 0 0 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .dongguk-criteria-wrap {
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+
+    .dongguk-criteria-table {
+      min-width: 0;
+      table-layout: fixed;
+    }
+
+    .dongguk-criteria-table th,
+    .dongguk-criteria-table td {
+      padding: 8px 7px;
+      font-size: 0.8rem;
+      line-height: 1.38;
+    }
+
+    .dongguk-criteria-table th:nth-child(1),
+    .dongguk-criteria-table td:nth-child(1) {
+      width: 58px;
+      text-align: center !important;
+      font-weight: 800;
+    }
+
+    .dongguk-criteria-table th:nth-child(2),
+    .dongguk-criteria-table td:nth-child(2) {
+      width: 58px;
+      text-align: center !important;
+      font-weight: 800;
+    }
+
+    .dongguk-criteria-table th:nth-child(3),
+    .dongguk-criteria-table td:nth-child(3),
+    .dongguk-criteria-table th:nth-child(4),
+    .dongguk-criteria-table td:nth-child(4),
+    .dongguk-criteria-table th:nth-child(5),
+    .dongguk-criteria-table td:nth-child(5) {
+      text-align: left !important;
+    }
+
+@media (max-width: 768px) {
+      table.wide { min-width: 0; }
+      table.mid { min-width: 0; }
+      table.narrow { min-width: 0; }
+
+      th, td {
+        padding: 9px 7px;
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .integrated-guide-table {
+        min-width: 0;
+      }
+
+      .integrated-guide-table th,
+      .integrated-guide-table td {
+        padding: 8px 6px;
+        font-size: 0.76rem;
+        line-height: 1.42;
+      }
+
+      .integrated-guide-table th:nth-child(1),
+      .integrated-guide-table td:nth-child(1) {
+        width: 58px;
+      }
+
+      .integrated-guide-table th:nth-child(2),
+      .integrated-guide-table td:nth-child(2) {
+        width: 76px;
+      }
+
+      .integrated-guide-table th:nth-child(3),
+      .integrated-guide-table td:nth-child(3) {
+        width: 190px;
+      }
+
+      .integrated-guide-table th:nth-child(4),
+      .integrated-guide-table td:nth-child(4),
+      .integrated-guide-table th:nth-child(5),
+      .integrated-guide-table td:nth-child(5),
+      .integrated-guide-table th:nth-child(6),
+      .integrated-guide-table td:nth-child(6) {
+        width: 212px;
+      }
+    }
+
+
+    /* 동국대 기준 교과 영역 분류표 */
+    .dongguk-criteria-wrap {
+      margin-top: 18px;
+      margin-bottom: 24px;
+      overflow-x: visible;
+    }
+
+    .dongguk-criteria-table {
+      width: 100%;
+      min-width: 0;
+      table-layout: fixed;
+    }
+
+    .dongguk-criteria-table th,
+    .dongguk-criteria-table td {
+      padding: 9px 8px;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      vertical-align: middle;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .dongguk-criteria-table th {
+      text-align: center !important;
+      font-weight: 800;
+    }
+
+    .dongguk-criteria-table td {
+      text-align: left !important;
+    }
+
+    .dongguk-criteria-table td:nth-child(1),
+    .dongguk-criteria-table td:nth-child(2) {
+      text-align: center !important;
+      font-weight: 800;
+    }
+
+    .dongguk-criteria-table th:nth-child(1) { width: 80px; }
+    .dongguk-criteria-table th:nth-child(2) { width: 70px; }
+    .dongguk-criteria-table th:nth-child(3) { width: 25%; }
+    .dongguk-criteria-table th:nth-child(4) { width: 35%; }
+    .dongguk-criteria-table th:nth-child(5) { width: 25%; }
+
+    /* 동국대 모집단위 표 정렬 안정화 */
+    .dongguk-table td {
+      text-align: left !important;
+      font-weight: 400;
+    }
+
+    .dongguk-table td[rowspan] {
+      text-align: center !important;
+      font-weight: 800;
+    }
+
+    .dongguk-table td.dash {
+      text-align: center !important;
+    }
+
+    .dongguk-table th {
+      text-align: center !important;
+    }
+
+@media (max-width: 960px) {
+      .core-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px 10px;
+      }
+
+      .hero {
+        padding: 26px 20px;
+        margin-bottom: 18px;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+      }
+
+      .guide-box {
+        padding: 18px 16px;
+        margin: 18px 0;
+      }
+
+      .guide-box h2 {
+        font-size: 1.12rem;
+      }
+
+      .core-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 14px 0 4px;
+      }
+
+      .core-card {
+        padding: 12px 10px;
+        border-radius: 12px;
+      }
+
+      .core-card strong {
+        font-size: 0.88rem;
+        margin-bottom: 4px;
+        line-height: 1.25;
+      }
+
+      .core-card span {
+        font-size: 0.76rem;
+        line-height: 1.35;
+      }
+
+      details.section summary {
+        padding: 20px;
+        font-size: 1.05rem;
+      }
+
+      .section-body {
+        padding: 0 20px 26px;
+      }
+
+      .table-guide {
+        display: block;
+      }
+
+      .jump-nav a {
+        font-size: 0.82rem;
+        padding: 8px 10px;
+      }
+    }
+    /* 표가 PC 화면 안에 들어오도록 공통 조정 */
+    @media (min-width: 769px) {
+      .table-wrap {
+        overflow-x: visible;
+      }
+    }
+
+    th,
+    td.center,
+    .center {
+      text-align: center !important;
+    }
+
+    /* 일반 표의 첫 열은 너무 넓지 않게 조정 */
+    table:not(.integrated-guide-table):not(.snu-table) th:first-child,
+    table:not(.integrated-guide-table):not(.snu-table) td:first-child {
+      width: 26%;
+    }
+
+    table:not(.integrated-guide-table):not(.snu-table) th:last-child,
+    table:not(.integrated-guide-table):not(.snu-table) td:last-child {
+      text-align: center;
+    }
+
+    /* 서울대 표 폭 조정 */
+    .snu-table th:nth-child(1),
+    .snu-table td:nth-child(1) {
+      width: 62px;
+      text-align: center !important;
+    }
+
+    .snu-table th:nth-child(2),
+    .snu-table td:nth-child(2) {
+      width: 32%;
+    }
+
+    .snu-table th:nth-child(3),
+    .snu-table td:nth-child(3) {
+      width: 96px;
+      text-align: center !important;
+    }
+
+    .snu-table th:nth-child(4),
+    .snu-table td:nth-child(4),
+    .snu-table th:nth-child(5),
+    .snu-table td:nth-child(5),
+    .snu-table th:nth-child(6),
+    .snu-table td:nth-child(6) {
+      width: 15%;
+    }
+
+    .snu-table td[colspan],
+    .snu-table td:nth-child(4),
+    .snu-table td:nth-child(5),
+    .snu-table td:nth-child(6) {
+      text-align: center;
+    }
+
+    /* 최종 폭 조정: 표 전체가 한 화면에 들어오도록 보정 */
+    @media (min-width: 769px) {
+      .integrated-guide-table th:nth-child(1),
+      .integrated-guide-table td:nth-child(1) { width: 6%; }
+      .integrated-guide-table th:nth-child(2),
+      .integrated-guide-table td:nth-child(2) { width: 8%; }
+      .integrated-guide-table th:nth-child(3),
+      .integrated-guide-table td:nth-child(3) { width: 20%; }
+      .integrated-guide-table th:nth-child(4),
+      .integrated-guide-table td:nth-child(4),
+      .integrated-guide-table th:nth-child(5),
+      .integrated-guide-table td:nth-child(5),
+      .integrated-guide-table th:nth-child(6),
+      .integrated-guide-table td:nth-child(6) { width: 22%; }
+    }
+
+    @media (max-width: 768px) {
+      .table-wrap { overflow-x: auto; }
+      .integrated-guide-table th:nth-child(1),
+      .integrated-guide-table td:nth-child(1) { width: 6%; }
+      .integrated-guide-table th:nth-child(2),
+      .integrated-guide-table td:nth-child(2) { width: 8%; }
+      .integrated-guide-table th:nth-child(3),
+      .integrated-guide-table td:nth-child(3) { width: 20%; }
+      .integrated-guide-table th:nth-child(4),
+      .integrated-guide-table td:nth-child(4),
+      .integrated-guide-table th:nth-child(5),
+      .integrated-guide-table td:nth-child(5),
+      .integrated-guide-table th:nth-child(6),
+      .integrated-guide-table td:nth-child(6) { width: 22%; }
+    }
+
+  
+
+    /* =========================================
+       최종 표 정렬 및 열 폭 조정
+       - 긴 내용은 왼쪽 정렬, 짧은 분류값은 가운데 정렬
+       - PC 화면에서 표가 최대한 한 화면에 들어오도록 조정
+       ========================================= */
+
+    .table-wrap { overflow-x: auto; }
+
+    table { width: 100%; min-width: 0 !important; table-layout: fixed; }
+    table.wide, table.mid, table.narrow { min-width: 0 !important; }
+
+    th { text-align: center !important; white-space: normal !important; word-break: keep-all; overflow-wrap: break-word; }
+    td { text-align: left; word-break: keep-all; overflow-wrap: break-word; }
+    td.center, .center, td[rowspan] { text-align: center !important; vertical-align: middle !important; }
+
+    .knu-table th:nth-child(1), .knu-table td:nth-child(1) { width: 25%; }
+    .knu-table th:nth-child(2), .knu-table td:nth-child(2) { width: 62%; }
+    .knu-table th:nth-child(3), .knu-table td:nth-child(3) { width: 13%; text-align: center !important; font-size: 0.82rem; }
+
+    .khu-table th:nth-child(1), .khu-table td:nth-child(1) { width: 24%; }
+    .khu-table th:nth-child(2), .khu-table td:nth-child(2) { width: 16%; }
+    .khu-table th:nth-child(3), .khu-table td:nth-child(3) { width: 27%; }
+    .khu-table th:nth-child(4), .khu-table td:nth-child(4) { width: 13%; }
+    .khu-table th:nth-child(5), .khu-table td:nth-child(5) { width: 20%; }
+    .khu-table td:nth-child(n+2) { text-align: left; }
+    .khu-table td.center { text-align: center !important; }
+
+    .korea-table th:nth-child(1), .korea-table td:nth-child(1) { width: 36%; }
+    .korea-table th:nth-child(2), .korea-table td:nth-child(2) { width: 18%; }
+    .korea-table th:nth-child(3), .korea-table td:nth-child(3) { width: 46%; }
+
+    .dankook-table th:nth-child(1), .dankook-table td:nth-child(1) { width: 8%; text-align: center !important; }
+    .dankook-table th:nth-child(2), .dankook-table td:nth-child(2) { width: 30%; }
+    .dankook-table th:nth-child(3), .dankook-table td:nth-child(3) { width: 8%; text-align: center !important; }
+    .dankook-table th:nth-child(4), .dankook-table td:nth-child(4) { width: 54%; text-align: left !important; }
+
+    .dongguk-table th:nth-child(1), .dongguk-table td:nth-child(1) { width: 13%; text-align: center !important; font-weight: 700; }
+    .dongguk-table th:nth-child(2), .dongguk-table td:nth-child(2) { width: 38%; }
+    .dongguk-table th:nth-child(3), .dongguk-table td:nth-child(3) { width: 24%; }
+    .dongguk-table th:nth-child(4), .dongguk-table td:nth-child(4) { width: 25%; }
+
+    .pusan-table th:nth-child(1), .pusan-table td:nth-child(1) { width: 64%; }
+    .pusan-table th:nth-child(2), .pusan-table td:nth-child(2) { width: 36%; }
+
+    .snu-table th:nth-child(1), .snu-table td:nth-child(1) { width: 7%; text-align: center !important; }
+    .snu-table th:nth-child(2), .snu-table td:nth-child(2) { width: 36%; }
+    .snu-table th:nth-child(3), .snu-table td:nth-child(3) { width: 9%; text-align: center !important; }
+    .snu-table th:nth-child(4), .snu-table td:nth-child(4) { width: 20%; }
+    .snu-table th:nth-child(5), .snu-table td:nth-child(5) { width: 21%; }
+    .snu-table th:nth-child(6), .snu-table td:nth-child(6) { width: 7%; }
+    .snu-table td[colspan], .snu-table td.center, .snu-table td:nth-child(6) { text-align: center !important; }
+
+    .integrated-guide-table { min-width: 0 !important; table-layout: fixed; }
+    .integrated-guide-table th:nth-child(1), .integrated-guide-table td:nth-child(1) { width: 6%; text-align: center !important; }
+    .integrated-guide-table th:nth-child(2), .integrated-guide-table td:nth-child(2) { width: 8%; text-align: center !important; }
+    .integrated-guide-table th:nth-child(3), .integrated-guide-table td:nth-child(3) { width: 20%; }
+    .integrated-guide-table th:nth-child(4), .integrated-guide-table td:nth-child(4),
+    .integrated-guide-table th:nth-child(5), .integrated-guide-table td:nth-child(5),
+    .integrated-guide-table th:nth-child(6), .integrated-guide-table td:nth-child(6) { width: 22%; }
+
+    @media (max-width: 768px) { .table-wrap { overflow-x: auto; } .integrated-guide-table { min-width: 900px !important; } }
+
+  
+
+    /* =========================================
+       최종 보정: PC 화면에서 표 가로 스크롤 제거
+       - 표는 무조건 카드 폭 안에 맞춤
+       - 긴 모집단위·과목명은 단어 기준으로 줄바꿈
+       - 짧은 분류값은 가운데, 긴 내용은 왼쪽 정렬
+       ========================================= */
+    table {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      table-layout: fixed !important;
+    }
+
+    table.wide,
+    table.mid,
+    table.narrow {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    th {
+      text-align: center !important;
+      white-space: normal !important;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    td {
+      white-space: normal !important;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      text-align: left;
+    }
+
+    td.center,
+    .center,
+    td[rowspan] {
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+    /* PC에서는 표 스크롤바가 생기지 않도록 표를 화면 안에 맞춤 */
+    @media (min-width: 769px) {
+      .table-wrap {
+        overflow-x: clip !important;
+        width: 100%;
+      }
+
+      th, td {
+        padding: 8px 6px;
+        font-size: 0.78rem;
+        line-height: 1.38;
+      }
+
+      th {
+        font-size: 0.82rem;
+      }
+
+      .section-body {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+    }
+
+    /* 대학별 열 폭 세부 조정 */
+    .knu-table th:nth-child(1),
+    .knu-table td:nth-child(1) { width: 24%; }
+    .knu-table th:nth-child(2),
+    .knu-table td:nth-child(2) { width: 64%; }
+    .knu-table th:nth-child(3),
+    .knu-table td:nth-child(3) {
+      width: 12%;
+      text-align: center !important;
+    }
+
+    .khu-table th:nth-child(1),
+    .khu-table td:nth-child(1) { width: 23%; }
+    .khu-table th:nth-child(2),
+    .khu-table td:nth-child(2) { width: 15%; }
+    .khu-table th:nth-child(3),
+    .khu-table td:nth-child(3) { width: 29%; }
+    .khu-table th:nth-child(4),
+    .khu-table td:nth-child(4) { width: 13%; }
+    .khu-table th:nth-child(5),
+    .khu-table td:nth-child(5) { width: 20%; }
+    .khu-table td:nth-child(n+2) { text-align: left; }
+    .khu-table td.center { text-align: center !important; }
+
+    .korea-table th:nth-child(1),
+    .korea-table td:nth-child(1) { width: 35%; }
+    .korea-table th:nth-child(2),
+    .korea-table td:nth-child(2) { width: 16%; }
+    .korea-table th:nth-child(3),
+    .korea-table td:nth-child(3) { width: 49%; }
+
+    .dankook-table th:nth-child(1),
+    .dankook-table td:nth-child(1) {
+      width: 7%;
+      text-align: center !important;
+    }
+    .dankook-table th:nth-child(2),
+    .dankook-table td:nth-child(2) { width: 29%; }
+    .dankook-table th:nth-child(3),
+    .dankook-table td:nth-child(3) {
+      width: 7%;
+      text-align: center !important;
+    }
+    .dankook-table th:nth-child(4),
+    .dankook-table td:nth-child(4) {
+      width: 57%;
+      text-align: left !important;
+    }
+
+    .dongguk-table th:nth-child(1),
+    .dongguk-table td:nth-child(1) {
+      width: 12%;
+      text-align: center !important;
+      font-weight: 700;
+    }
+    .dongguk-table th:nth-child(2),
+    .dongguk-table td:nth-child(2) { width: 39%; }
+    .dongguk-table th:nth-child(3),
+    .dongguk-table td:nth-child(3) { width: 24%; }
+    .dongguk-table th:nth-child(4),
+    .dongguk-table td:nth-child(4) { width: 25%; }
+
+    .pusan-table th:nth-child(1),
+    .pusan-table td:nth-child(1) { width: 68%; }
+    .pusan-table th:nth-child(2),
+    .pusan-table td:nth-child(2) { width: 32%; }
+
+    .snu-table th:nth-child(1),
+    .snu-table td:nth-child(1) {
+      width: 7%;
+      text-align: center !important;
+    }
+    .snu-table th:nth-child(2),
+    .snu-table td:nth-child(2) { width: 38%; }
+    .snu-table th:nth-child(3),
+    .snu-table td:nth-child(3) {
+      width: 8%;
+      text-align: center !important;
+    }
+    .snu-table th:nth-child(4),
+    .snu-table td:nth-child(4) { width: 20%; }
+    .snu-table th:nth-child(5),
+    .snu-table td:nth-child(5) { width: 22%; }
+    .snu-table th:nth-child(6),
+    .snu-table td:nth-child(6) {
+      width: 5%;
+      text-align: center !important;
+    }
+    .snu-table td[colspan],
+    .snu-table td.center {
+      text-align: center !important;
+    }
+
+    .integrated-guide-table {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      table-layout: fixed !important;
+    }
+    .integrated-guide-table th:nth-child(1),
+    .integrated-guide-table td:nth-child(1) {
+      width: 5.5%;
+      text-align: center !important;
+    }
+    .integrated-guide-table th:nth-child(2),
+    .integrated-guide-table td:nth-child(2) {
+      width: 7.5%;
+      text-align: center !important;
+    }
+    .integrated-guide-table th:nth-child(3),
+    .integrated-guide-table td:nth-child(3) { width: 19%; }
+    .integrated-guide-table th:nth-child(4),
+    .integrated-guide-table td:nth-child(4),
+    .integrated-guide-table th:nth-child(5),
+    .integrated-guide-table td:nth-child(5),
+    .integrated-guide-table th:nth-child(6),
+    .integrated-guide-table td:nth-child(6) { width: 22.66%; }
+
+    /* 모바일은 너무 작아지는 것을 막기 위해 통합표만 좌우 스크롤 허용 */
+    @media (max-width: 768px) {
+      .table-wrap {
+        overflow-x: auto !important;
+      }
+
+      .integrated-guide-table {
+        min-width: 900px !important;
+      }
+    }
+
+
+
+    /* =========================================
+       최종 정렬·열폭 보정
+       - 긴 내용: 왼쪽 정렬
+       - 짧은 분류값: 가운데 정렬
+       - PC 화면: 표가 카드 안에 들어오도록 최소폭 제거
+       ========================================= */
+
+    .table-wrap {
+      overflow-x: visible;
+    }
+
+    table,
+    table.wide,
+    table.mid,
+    table.narrow {
+      width: 100%;
+      min-width: 0 !important;
+      table-layout: fixed;
+    }
+
+    th {
+      text-align: center !important;
+      vertical-align: middle;
+      word-break: keep-all;
+      white-space: normal;
+    }
+
+    td {
+      vertical-align: middle;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      text-align: left;
+    }
+
+    td.center,
+    .center {
+      text-align: center !important;
+    }
+
+    td.text-left,
+    .text-left {
+      text-align: left !important;
+    }
+
+    /* 경북대: 과목선택 안내 넓게, 비고 좁게 */
+    .knu-table th:nth-child(1), .knu-table td:nth-child(1) { width: 24%; }
+    .knu-table th:nth-child(2), .knu-table td:nth-child(2) { width: 64%; text-align: left !important; }
+    .knu-table th:nth-child(3), .knu-table td:nth-child(3) { width: 12%; text-align: center !important; font-size: 0.8rem; }
+
+    /* 경희대: 수학교과 줄이고 과학교과 확보 */
+    .khu-table th:nth-child(1), .khu-table td:nth-child(1) { width: 24%; text-align: left !important; }
+    .khu-table th:nth-child(2), .khu-table td:nth-child(2) { width: 15%; text-align: left !important; }
+    .khu-table th:nth-child(3), .khu-table td:nth-child(3) { width: 28%; text-align: left !important; }
+    .khu-table th:nth-child(4), .khu-table td:nth-child(4) { width: 13%; text-align: left !important; }
+    .khu-table th:nth-child(5), .khu-table td:nth-child(5) { width: 20%; text-align: left !important; }
+    .khu-table td.center { text-align: center !important; }
+
+    /* 고려대: 수학 폭 축소, 과학 폭 확대 */
+    .korea-table th:nth-child(1), .korea-table td:nth-child(1) { width: 36%; text-align: left !important; }
+    .korea-table th:nth-child(2), .korea-table td:nth-child(2) { width: 14%; text-align: center !important; }
+    .korea-table th:nth-child(3), .korea-table td:nth-child(3) { width: 50%; text-align: left !important; }
+
+    /* 단국대: 계열·교과 축소, 안내 폭 확대 */
+    .dankook-table th:nth-child(1), .dankook-table td:nth-child(1) { width: 7%; text-align: center !important; }
+    .dankook-table th:nth-child(2), .dankook-table td:nth-child(2) { width: 28%; text-align: left !important; }
+    .dankook-table th:nth-child(3), .dankook-table td:nth-child(3) { width: 7%; text-align: center !important; }
+    .dankook-table th:nth-child(4), .dankook-table td:nth-child(4) { width: 58%; text-align: left !important; }
+
+    /* 동국대: 단과대학만 가운데, 모집단위/역량/소양은 왼쪽 */
+    .dongguk-table th:nth-child(1) { width: 12%; }
+    .dongguk-table th:nth-child(2) { width: 39%; }
+    .dongguk-table th:nth-child(3) { width: 24%; }
+    .dongguk-table th:nth-child(4) { width: 25%; }
+    .dongguk-table td { text-align: left !important; }
+    .dongguk-table td[rowspan] { text-align: center !important; font-weight: 800; }
+    .dongguk-table td.center { text-align: center !important; }
+
+    /* 부산대: 모집단위 넓게, 과목 선택 가이드 조금 축소 */
+    .pusan-table th:nth-child(1), .pusan-table td:nth-child(1) { width: 68%; text-align: left !important; }
+    .pusan-table th:nth-child(2), .pusan-table td:nth-child(2) { width: 32%; text-align: left !important; }
+
+    /* 서울대: 긴 칸은 왼쪽, 짧은 칸은 가운데 */
+    .snu-table th:nth-child(1), .snu-table td:nth-child(1) { width: 7%; }
+    .snu-table th:nth-child(2), .snu-table td:nth-child(2) { width: 38%; text-align: left !important; }
+    .snu-table th:nth-child(3), .snu-table td:nth-child(3) { width: 8%; text-align: center !important; }
+    .snu-table th:nth-child(4), .snu-table td:nth-child(4) { width: 23%; text-align: left !important; }
+    .snu-table th:nth-child(5), .snu-table td:nth-child(5) { width: 19%; text-align: left !important; }
+    .snu-table th:nth-child(6), .snu-table td:nth-child(6) { width: 5%; text-align: center !important; }
+    .snu-table td.center,
+    .snu-table td[colspan] { text-align: center !important; }
+
+    /* 3개 대학 통합: 대분류/중분류만 가운데, 나머지는 왼쪽 */
+    .integrated-guide-table { min-width: 0 !important; table-layout: fixed; }
+    .integrated-guide-table th:nth-child(1), .integrated-guide-table td:nth-child(1) { width: 6%; text-align: center !important; }
+    .integrated-guide-table th:nth-child(2), .integrated-guide-table td:nth-child(2) { width: 8%; text-align: center !important; }
+    .integrated-guide-table th:nth-child(3), .integrated-guide-table td:nth-child(3) { width: 20%; text-align: left !important; }
+    .integrated-guide-table th:nth-child(4), .integrated-guide-table td:nth-child(4) { width: 22%; text-align: left !important; }
+    .integrated-guide-table th:nth-child(5), .integrated-guide-table td:nth-child(5) { width: 25%; text-align: left !important; }
+    .integrated-guide-table th:nth-child(6), .integrated-guide-table td:nth-child(6) { width: 19%; text-align: left !important; }
+    .integrated-guide-table strong:not(.uni-label) { font-weight: 900; color: #1d4ed8; }
+    .integrated-guide-table .uni-label { text-align: center !important; }
+
+    /* 중앙대: 모집단위는 왼쪽, 권장과목은 왼쪽, 짧은 값은 가운데 */
+    .cau-table th:nth-child(1), .cau-table td:nth-child(1) { width: 36%; text-align: left !important; }
+    .cau-table th:nth-child(2), .cau-table td:nth-child(2),
+    .cau-table th:nth-child(3), .cau-table td:nth-child(3),
+    .cau-table th:nth-child(4), .cau-table td:nth-child(4) { text-align: left !important; }
+    .cau-table td.center { text-align: center !important; }
+
+    @media (max-width: 768px) {
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table.wide,
+      table.mid,
+      table.narrow,
+      .integrated-guide-table {
+        min-width: 900px !important;
+      }
+
+      th, td {
+        font-size: 0.78rem;
+        padding: 8px 6px;
+        line-height: 1.38;
+      }
+    }
+
+
+    /* =========================================
+       동국대학교 기준 교과 영역 분류표 - 폭 재조정
+       교과/영역은 좁게, 일반선택/진로선택/융합선택은 넓게
+       ========================================= */
+    .dongguk-criteria-box {
+      margin: 18px 0 24px;
+    }
+
+    .dongguk-criteria-box summary {
+      padding: 13px 16px;
+      font-size: 0.98rem;
+    }
+
+    .dongguk-criteria-box .criteria-body {
+      padding: 14px 16px 16px;
+    }
+
+    .dongguk-criteria-box .criteria-body > p {
+      margin-bottom: 10px;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .dongguk-criteria-wrap {
+      margin-top: 10px !important;
+      margin-bottom: 0 !important;
+      overflow-x: visible !important;
+    }
+
+    .dongguk-criteria-table {
+      width: 100% !important;
+      min-width: 0 !important;
+      table-layout: fixed !important;
+    }
+
+    .dongguk-criteria-table .criteria-col-subject { width: 46px; }
+    .dongguk-criteria-table .criteria-col-area { width: 58px; }
+    .dongguk-criteria-table .criteria-col-general { width: 28%; }
+    .dongguk-criteria-table .criteria-col-career { width: 36%; }
+    .dongguk-criteria-table .criteria-col-convergence { width: 28%; }
+
+    .dongguk-criteria-table th,
+    .dongguk-criteria-table td {
+      padding: 7px 6px !important;
+      font-size: 0.76rem !important;
+      line-height: 1.36 !important;
+      vertical-align: middle !important;
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+    }
+
+    .dongguk-criteria-table th {
+      text-align: center !important;
+      font-weight: 900 !important;
+      white-space: normal !important;
+      background: #f9fafb;
+    }
+
+    .dongguk-criteria-table td {
+      text-align: left !important;
+      font-weight: 500 !important;
+    }
+
+    .dongguk-criteria-table td:nth-child(1),
+    .dongguk-criteria-table td:nth-child(2),
+    .dongguk-criteria-table td[colspan="2"] {
+      text-align: center !important;
+      font-weight: 900 !important;
+      color: #111827;
+    }
+
+    @media (max-width: 768px) {
+      .dongguk-criteria-box summary {
+        padding: 12px 14px;
+        font-size: 0.92rem;
+      }
+
+      .dongguk-criteria-box .criteria-body {
+        padding: 12px 12px 14px;
+      }
+
+      .dongguk-criteria-table .criteria-col-subject { width: 40px; }
+      .dongguk-criteria-table .criteria-col-area { width: 50px; }
+      .dongguk-criteria-table .criteria-col-general { width: 29%; }
+      .dongguk-criteria-table .criteria-col-career { width: 35%; }
+      .dongguk-criteria-table .criteria-col-convergence { width: 28%; }
+
+      .dongguk-criteria-table th,
+      .dongguk-criteria-table td {
+        padding: 6px 5px !important;
+        font-size: 0.68rem !important;
+        line-height: 1.32 !important;
+      }
+    }
+
+  
+    /* =========================================
+       동국대 기준 교과 영역 분류(설명) 최종 압축 스타일
+       - 안내 핵심 박스와 구분
+       - 닫힌 상태에서는 작은 참고 버튼처럼 표시
+       - PC에서는 기준표가 가로 스크롤을 만들지 않도록 조정
+       ========================================= */
+    .dongguk-criteria-box {
+      margin: 10px 0 18px !important;
+      padding: 0 !important;
+      border: none !important;
+      border-left: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .dongguk-criteria-box summary {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 8px;
+      width: auto !important;
+      max-width: 100%;
+      padding: 8px 12px !important;
+      border: 1px dashed #cbd5e1 !important;
+      border-radius: 999px !important;
+      background: #f8fafc !important;
+      color: #475569 !important;
+      font-size: 0.86rem !important;
+      font-weight: 800 !important;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .dongguk-criteria-box summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .dongguk-criteria-box summary::after {
+      content: "보기";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .dongguk-criteria-box[open] summary::after {
+      content: "닫기";
+      background: var(--uni-color);
+      color: #fff;
+    }
+
+    .dongguk-criteria-box .criteria-body {
+      margin-top: 10px;
+      padding: 12px 14px 14px !important;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .dongguk-criteria-box .criteria-body > p {
+      margin: 0 0 10px !important;
+      font-size: 0.82rem !important;
+      color: #64748b;
+      line-height: 1.45 !important;
+    }
+
+    .dongguk-criteria-wrap {
+      width: 100% !important;
+      margin: 8px 0 0 !important;
+      overflow-x: hidden !important;
+      border-radius: 8px;
+    }
+
+    .dongguk-criteria-table {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      table-layout: fixed !important;
+    }
+
+    .dongguk-criteria-table .criteria-col-subject { width: 42px !important; }
+    .dongguk-criteria-table .criteria-col-area { width: 52px !important; }
+    .dongguk-criteria-table .criteria-col-general { width: 29% !important; }
+    .dongguk-criteria-table .criteria-col-career { width: 36% !important; }
+    .dongguk-criteria-table .criteria-col-convergence { width: 27% !important; }
+
+    .dongguk-criteria-table th,
+    .dongguk-criteria-table td {
+      padding: 6px 5px !important;
+      font-size: 0.68rem !important;
+      line-height: 1.32 !important;
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+      white-space: normal !important;
+    }
+
+    .dongguk-criteria-table th {
+      text-align: center !important;
+      font-weight: 900 !important;
+      background: #f8fafc !important;
+    }
+
+    .dongguk-criteria-table td {
+      text-align: left !important;
+      font-weight: 500 !important;
+    }
+
+    .dongguk-criteria-table td:nth-child(1),
+    .dongguk-criteria-table td:nth-child(2),
+    .dongguk-criteria-table td[colspan="2"] {
+      text-align: center !important;
+      font-weight: 900 !important;
+      color: #111827;
+    }
+
+    @media (max-width: 768px) {
+      .dongguk-criteria-box summary {
+        padding: 7px 10px !important;
+        font-size: 0.78rem !important;
+      }
+
+      .dongguk-criteria-box .criteria-body {
+        padding: 10px !important;
+      }
+
+      .dongguk-criteria-wrap {
+        overflow-x: auto !important;
+      }
+
+      .dongguk-criteria-table {
+        min-width: 680px !important;
+      }
+
+      .dongguk-criteria-table th,
+      .dongguk-criteria-table td {
+        padding: 5px 4px !important;
+        font-size: 0.62rem !important;
+        line-height: 1.28 !important;
+      }
+    }
+
+  
+/* =========================================
+   동국대 기준 교과 영역 분류 버튼 최종 보정
+   - 안내 핵심 박스와 구분되는 강조 배지형 디자인
+   - 제목 옆 설명을 괄호 대신 작은 보조 문장으로 표시
+   ========================================= */
+.dongguk-criteria-box {
+  margin: 10px 0 18px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.dongguk-criteria-box summary {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  width: auto !important;
+  max-width: 100%;
+  padding: 9px 13px !important;
+  border: 1px solid #fb923c !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%) !important;
+  color: #9a3412 !important;
+  font-size: 0.86rem !important;
+  font-weight: 900 !important;
+  cursor: pointer;
+  list-style: none;
+  box-shadow: 0 3px 8px rgba(249, 115, 22, 0.14) !important;
+}
+
+.dongguk-criteria-box summary::-webkit-details-marker {
+  display: none;
+}
+
+.dongguk-criteria-box summary::after {
+  content: "보기";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #f97316;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.dongguk-criteria-box[open] summary::after {
+  content: "닫기";
+  background: #7c2d12;
+  color: #ffffff;
+}
+
+.dongguk-criteria-box .criteria-title {
+  flex: 0 0 auto;
+  font-weight: 900;
+  color: #9a3412;
+}
+
+.dongguk-criteria-box .criteria-desc {
+  color: #c2410c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.dongguk-criteria-box .criteria-body {
+  margin-top: 10px;
+  padding: 12px 14px 14px !important;
+  background: #fffaf5 !important;
+  border: 1px solid #fed7aa !important;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.08) !important;
+}
+
+.dongguk-criteria-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.dongguk-criteria-table {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  table-layout: fixed !important;
+}
+
+/* 모바일에서는 설명 문장이 길어지지 않도록 줄바꿈 */
+@media (max-width: 768px) {
+  .dongguk-criteria-box summary {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 9px 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .dongguk-criteria-box .criteria-title {
+    white-space: nowrap;
+  }
+
+  .dongguk-criteria-box .criteria-desc {
+    font-size: 0.7rem;
+  }
+}
+
+
+
+    /* =========================================
+       최종 가독성 정리: 평가 요소 표 + 동국대 표
+       ========================================= */
+
+    /* 평가에서 함께 보는 요소 표: PC에서 글자 확대 */
+    .evaluation-table {
+      table-layout: fixed;
+      min-width: 0 !important;
+    }
+
+    .evaluation-table th {
+      font-size: 1rem !important;
+      padding: 13px 12px !important;
+      text-align: center !important;
+    }
+
+    .evaluation-table td {
+      font-size: 1rem !important;
+      padding: 13px 12px !important;
+      line-height: 1.55 !important;
+    }
+
+    .evaluation-table td:first-child {
+      width: 28%;
+      text-align: center !important;
+      font-weight: 800;
+      background: #f9fafb;
+      color: #111827;
+    }
+
+    .evaluation-table td:nth-child(2) {
+      text-align: left !important;
+    }
+
+    /* 동국대 표: 열 폭과 정렬을 colgroup 기준으로 고정 */
+    .dongguk-table {
+      table-layout: fixed !important;
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+
+    .dongguk-table .dongguk-col-college { width: 12%; }
+    .dongguk-table .dongguk-col-major { width: 35%; }
+    .dongguk-table .dongguk-col-core { width: 26%; }
+    .dongguk-table .dongguk-col-literacy { width: 27%; }
+
+    .dongguk-table th {
+      text-align: center !important;
+      font-weight: 800 !important;
+      white-space: normal !important;
+    }
+
+    .dongguk-table tbody td {
+      font-size: 0.88rem !important;
+      line-height: 1.48 !important;
+      padding: 9px 8px !important;
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+    }
+
+    /* 단과대학 병합 셀만 가운데·굵게 */
+    .dongguk-table tbody td[rowspan] {
+      text-align: center !important;
+      vertical-align: middle !important;
+      font-weight: 800 !important;
+      color: #111827;
+      background: #fffaf0;
+    }
+
+    /* 모집단위, 역량 영역, 소양 영역은 모두 왼쪽 정렬 */
+    .dongguk-table tbody td:not([rowspan]) {
+      text-align: left !important;
+      font-weight: 400 !important;
+    }
+
+    /* '-'만 가운데 정렬 */
+    .dongguk-table tbody td.dash {
+      text-align: center !important;
+      font-weight: 500 !important;
+    }
+
+    /* 동국대 기준 교과 영역 분류: 참고사항처럼 작게 유지 */
+    .dongguk-criteria-box {
+      margin: 14px 0 20px !important;
+      border: 1px solid #fed7aa !important;
+      border-radius: 12px !important;
+      background: #fff7ed !important;
+      overflow: hidden;
+    }
+
+    .dongguk-criteria-box summary {
+      padding: 11px 14px !important;
+      font-size: 0.92rem !important;
+      color: #9a3412 !important;
+      background: #ffedd5 !important;
+      border-left: 6px solid #f97316 !important;
+    }
+
+    .dongguk-criteria-box summary::after {
+      background: #f97316 !important;
+      color: #fff !important;
+    }
+
+    .dongguk-criteria-box .criteria-title {
+      font-weight: 900 !important;
+    }
+
+    .dongguk-criteria-box .criteria-desc {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.78rem !important;
+      color: #9a3412 !important;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .dongguk-criteria-wrap {
+      overflow-x: auto !important;
+      margin-top: 10px !important;
+    }
+
+    .dongguk-criteria-table {
+      width: 100% !important;
+      min-width: 0 !important;
+      table-layout: fixed !important;
+    }
+
+    .dongguk-criteria-table th,
+    .dongguk-criteria-table td {
+      padding: 7px 6px !important;
+      font-size: 0.76rem !important;
+      line-height: 1.35 !important;
+    }
+
+    .dongguk-criteria-table .criteria-col-subject { width: 44px; }
+    .dongguk-criteria-table .criteria-col-area { width: 52px; }
+    .dongguk-criteria-table .criteria-col-general { width: 28%; }
+    .dongguk-criteria-table .criteria-col-career { width: 36%; }
+    .dongguk-criteria-table .criteria-col-convergence { width: 28%; }
+
+    @media (max-width: 768px) {
+      .evaluation-table th,
+      .evaluation-table td {
+        font-size: 0.88rem !important;
+        padding: 10px 8px !important;
+      }
+
+      .dongguk-table .dongguk-col-college { width: 14%; }
+      .dongguk-table .dongguk-col-major { width: 34%; }
+      .dongguk-table .dongguk-col-core { width: 26%; }
+      .dongguk-table .dongguk-col-literacy { width: 26%; }
+
+      .dongguk-table tbody td {
+        font-size: 0.78rem !important;
+        padding: 8px 6px !important;
+        line-height: 1.42 !important;
+      }
+
+      .dongguk-criteria-table {
+        min-width: 820px !important;
+      }
+    }
+
+  
+
+    /* =========================================
+       최종 보정: 동국대 표 단과대학 칸 축소
+       - 단과대학 칸이 과하게 넓어 보이지 않도록 8%로 축소
+       - 모집단위/역량/소양 영역에 남은 폭 배분
+       ========================================= */
+    .dongguk-table {
+      table-layout: fixed !important;
+    }
+
+    .dongguk-table th:nth-child(1) {
+      width: 8% !important;
+    }
+
+    .dongguk-table th:nth-child(2) {
+      width: 36% !important;
+    }
+
+    .dongguk-table th:nth-child(3) {
+      width: 28% !important;
+    }
+
+    .dongguk-table th:nth-child(4) {
+      width: 28% !important;
+    }
+
+    .dongguk-table td[rowspan] {
+      width: 8% !important;
+      text-align: center !important;
+      font-weight: 800 !important;
+      padding-left: 4px !important;
+      padding-right: 4px !important;
+      line-height: 1.3 !important;
+      word-break: keep-all !important;
+    }
+
+    .dongguk-table td:not([rowspan]) {
+      text-align: left !important;
+      font-weight: 400 !important;
+    }
+
+    .dongguk-table td.dash,
+    .dongguk-table td.center {
+      text-align: center !important;
+    }
+
+    @media (max-width: 768px) {
+      .dongguk-table th:nth-child(1) { width: 9% !important; }
+      .dongguk-table th:nth-child(2) { width: 37% !important; }
+      .dongguk-table th:nth-child(3) { width: 27% !important; }
+      .dongguk-table th:nth-child(4) { width: 27% !important; }
+
+      .dongguk-table td[rowspan] {
+        padding-left: 3px !important;
+        padding-right: 3px !important;
+        font-size: 0.76rem !important;
+      }
+    }
+
+  
+
+    /* =========================================
+       모든 대학 표 공통 정리
+       - 열 제목은 모두 가운데 정렬
+       - 각 표의 첫 번째 열은 은은한 배경색으로 구분
+       ========================================= */
+    details.section table th {
+      text-align: center !important;
+      vertical-align: middle !important;
+      font-weight: 800;
+    }
+
+    details.section table col.first-col {
+      background-color: var(--uni-light);
+    }
+
+    details.section table tbody td:first-child {
+      border-left-color: rgba(17, 24, 39, 0.08);
+    }
+
+    .dongguk-table td[rowspan],
+    .dankook-table td[rowspan],
+    .snu-table td:first-child,
+    .integrated-guide-table td:nth-child(1) {
+      font-weight: 800;
+    }
+
+    .dongguk-criteria-table col.first-col {
+      background-color: #fff7ed;
+    }
+
+  
+
+    /* =========================================
+       최종 수정: 첫 열 색상 제거 + 열 제목 가운데 정렬 통일
+       ========================================= */
+    details.section table thead th,
+    details.section table th,
+    .table-wrap table thead th,
+    .table-wrap table th {
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+    /* 모든 표의 첫 열 배경색 제거 */
+    details.section table col.first-col,
+    .dongguk-criteria-table col.first-col,
+    table col.first-col {
+      background-color: transparent !important;
+    }
+
+    details.section table tbody td:first-child,
+    .table-wrap table tbody td:first-child,
+    .evaluation-table tbody td:first-child,
+    .knu-table tbody td:first-child,
+    .khu-table tbody td:first-child,
+    .korea-table tbody td:first-child,
+    .dankook-table tbody td:first-child,
+    .dongguk-table tbody td:first-child,
+    .pusan-table tbody td:first-child,
+    .snu-table tbody td:first-child,
+    .integrated-guide-table tbody td:first-child,
+    .cau-table tbody td:first-child {
+      background-color: #ffffff !important;
+    }
+
+    /* 동국대처럼 병합된 첫 열도 색 없이 구분만 유지 */
+    .dongguk-table td[rowspan],
+    .dankook-table td[rowspan],
+    .snu-table td:first-child,
+    .integrated-guide-table td:nth-child(1) {
+      font-weight: 800;
+    }
+
+
+    /* =========================================
+       최종 보정: 모든 표 열 제목 가운데 정렬 통일
+       - 각 대학별 열 폭 지정 CSS가 th 정렬을 덮어쓰지 않도록 마지막에 배치
+       ========================================= */
+    table thead th,
+    table tr th,
+    .knu-table th,
+    .khu-table th,
+    .korea-table th,
+    .dankook-table th,
+    .dongguk-table th,
+    .pusan-table th,
+    .snu-table th,
+    .integrated-guide-table th,
+    .cau-table th,
+    .dongguk-criteria-table th {
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+  
+
+    /* =========================================
+       최종 보정: 모든 표의 열 제목은 가운데 정렬
+       - 대학별 열 폭 CSS보다 뒤에 있어야 적용됨
+       ========================================= */
+    table thead th,
+    .table-wrap table thead th,
+    table thead tr th {
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+
+    /* =========================================
+       진짜 최종 보정: 모든 표 열 제목 가운데 정렬
+       - 대학별 nth-child + !important 규칙보다 더 높은 우선순위로 적용
+       ========================================= */
+    main.page .table-wrap table thead tr th,
+    main.page .table-wrap table thead tr th:nth-child(1),
+    main.page .table-wrap table thead tr th:nth-child(2),
+    main.page .table-wrap table thead tr th:nth-child(3),
+    main.page .table-wrap table thead tr th:nth-child(4),
+    main.page .table-wrap table thead tr th:nth-child(5),
+    main.page .table-wrap table thead tr th:nth-child(6),
+    main.page .table-wrap table thead tr th:nth-child(7),
+    main.page .compact-table table thead tr th,
+    main.page table.evaluation-table thead tr th,
+    main.page table.knu-table thead tr th,
+    main.page table.khu-table thead tr th,
+    main.page table.korea-table thead tr th,
+    main.page table.dankook-table thead tr th,
+    main.page table.dongguk-criteria-table thead tr th,
+    main.page table.dongguk-table thead tr th,
+    main.page table.pusan-table thead tr th,
+    main.page table.snu-table thead tr th,
+    main.page table.integrated-guide-table thead tr th,
+    main.page table.cau-table thead tr th {
+      text-align: center !important;
+      vertical-align: middle !important;
+      font-weight: 800;
+    }
+
+
+
+/* =========================================
+   동국대 기준 교과 영역 분류표 굵기 최종 보정
+   - 기존 nth-child 규칙이 rowspan 때문에 과목 칸까지 굵게 만드는 문제 해결
+   - 교과/영역 칸만 굵게, 일반선택·진로선택·융합선택 과목명은 일반 굵기
+   ========================================= */
+main.page table.dongguk-criteria-table tbody td {
+  font-weight: 400 !important;
+  color: var(--text-main) !important;
+  text-align: left !important;
+}
+
+main.page table.dongguk-criteria-table tbody td.criteria-subject-cell,
+main.page table.dongguk-criteria-table tbody td.criteria-area-cell {
+  font-weight: 800 !important;
+  color: #111827 !important;
+  text-align: center !important;
+}
+
+main.page table.dongguk-criteria-table tbody td.criteria-content-cell {
+  font-weight: 400 !important;
+  color: var(--text-main) !important;
+  text-align: left !important;
+}
+
+main.page table.dongguk-criteria-table thead th {
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+/* =========================================
+   동국대 기준 교과 영역 분류표 색상 최종 보정
+   - 기존 criteria-body의 연한 주황 배경이 표 셀에 비쳐 보이는 문제 해결
+   - 교과/영역 칸도 과하게 색칠하지 않고, 굵기만으로 구분
+   ========================================= */
+main.page .dongguk-criteria-box .criteria-body {
+  background: #ffffff !important;
+}
+
+main.page .dongguk-criteria-wrap {
+  background: #ffffff !important;
+}
+
+main.page table.dongguk-criteria-table,
+main.page table.dongguk-criteria-table tbody,
+main.page table.dongguk-criteria-table tr,
+main.page table.dongguk-criteria-table td {
+  background: #ffffff !important;
+}
+
+main.page table.dongguk-criteria-table thead th {
+  background: #f9fafb !important;
+}
+
+main.page table.dongguk-criteria-table tbody td.criteria-subject-cell,
+main.page table.dongguk-criteria-table tbody td.criteria-area-cell {
+  background: #ffffff !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+  text-align: center !important;
+}
+
+main.page table.dongguk-criteria-table tbody td.criteria-content-cell {
+  background: #ffffff !important;
+  font-weight: 400 !important;
+  color: var(--text-main) !important;
+  text-align: left !important;
+}
+
+
+
+    /* =========================================
+       동국대 기준 교과 영역 분류표 - 열 폭 최종 조정
+       - 영역 칸을 넓혀 줄바꿈을 줄이고
+       - 일반선택 칸을 조금 줄여 전체 균형 조정
+       ========================================= */
+    main.page table.dongguk-criteria-table .criteria-col-subject { width: 42px !important; }
+    main.page table.dongguk-criteria-table .criteria-col-area { width: 72px !important; }
+    main.page table.dongguk-criteria-table .criteria-col-general { width: 24% !important; }
+    main.page table.dongguk-criteria-table .criteria-col-career { width: 37% !important; }
+    main.page table.dongguk-criteria-table .criteria-col-convergence { width: 29% !important; }
+
+    main.page table.dongguk-criteria-table th,
+    main.page table.dongguk-criteria-table td {
+      padding: 6px 5px !important;
+      font-size: 0.68rem !important;
+      line-height: 1.30 !important;
+    }
+
+    main.page table.dongguk-criteria-table tbody td.criteria-subject-cell,
+    main.page table.dongguk-criteria-table tbody td.criteria-area-cell {
+      white-space: normal !important;
+      word-break: keep-all !important;
+    }
+
+    @media (max-width: 768px) {
+      main.page table.dongguk-criteria-table .criteria-col-subject { width: 40px !important; }
+      main.page table.dongguk-criteria-table .criteria-col-area { width: 66px !important; }
+      main.page table.dongguk-criteria-table .criteria-col-general { width: 24% !important; }
+      main.page table.dongguk-criteria-table .criteria-col-career { width: 37% !important; }
+      main.page table.dongguk-criteria-table .criteria-col-convergence { width: 29% !important; }
+    }
+
+</style>
+</head>
+<body>
+<main class="page">
+<div class="top-nav">
+<button class="home-btn" onclick="location.href='index.html'">🏠 처음으로</button>
+</div>
+<header class="hero">
+<span class="label">2028 대입 · 전공 연계 권장과목</span>
+<h1>대학별 권장과목 안내</h1>
+<p>
+        2028학년도 대입에서는 2022 개정 교육과정과 고교학점제의 취지를 반영하여
+        여러 대학에서 전공 연계 권장과목 또는 과목 선택 가이드를 제시하고 있습니다.
+      </p>
+</header>
+<section class="guide-box">
+<h2>대학별 안내의 공통 방향</h2>
+<div aria-label="대학별 안내의 공통 방향" class="core-grid">
+<div class="core-card">
+<strong>지원자격 아님</strong>
+<span>권장과목 미이수가 대부분 지원 제한을 의미하지는 않습니다.</span>
+</div>
+<div class="core-card">
+<strong>과목 선택 참고자료</strong>
+<span>희망 전공 학습에 도움이 되는 과목을 안내한 자료입니다.</span>
+</div>
+<div class="core-card">
+<strong>평가 참고 가능</strong>
+<span>일부 대학은 서류평가나 교과역량평가에 참고할 수 있습니다.</span>
+</div>
+<div class="core-card">
+<strong>학습 경험 중요</strong>
+<span>대학은 이수 여부보다 선택 과정과 학습 경험을 함께 봅니다.</span>
+</div>
+</div>
+</section>
+<section class="guide-box">
+<h2>권장과목을 볼 때 기억할 점</h2>
+<p>
+        전공 연계 권장과목은 반드시 들어야 하는 필수 과목이 아니라,
+        희망 전공 학습에 도움이 될 수 있는 과목을 안내한 참고자료입니다.
+      </p>
+<p>
+        따라서 학생들은 권장과목 이수 여부만 생각하기보다 자신의 진로와 적성,
+        과목의 위계, 학교 교육과정 편성 상황을 함께 고려해야 합니다.
+      </p>
+<p>
+        대학별 자료는 변경될 수 있으므로, 최종 지원 전에는 각 대학 입학처 자료를 반드시 확인해야 합니다.
+      </p>
+</section>
+<section class="guide-box">
+<h2>평가에서 함께 보는 요소</h2>
+<p>
+        대학은 특정 과목의 이수 여부만 보기보다, 학생이 자신의 진로와 적성에 맞게 과목을 선택하고
+        그 안에서 어떤 학습 경험을 쌓았는지를 함께 살펴봅니다.
+      </p>
+<div class="table-wrap compact-table">
+<table class="narrow evaluation-table"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>평가 요소</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>과목 선택의 과정</td>
+<td>자신의 진로와 적성에 맞게 과목을 선택했는가</td>
+</tr>
+<tr>
+<td>과목의 위계</td>
+<td>교과별 학습 순서와 수준을 고려하여 이수했는가</td>
+</tr>
+<tr>
+<td>학업 수행 태도</td>
+<td>선택한 과목을 성실하게 학습했는가</td>
+</tr>
+<tr>
+<td>주도적 학습 경험</td>
+<td>관심 분야를 스스로 탐색하고 확장했는가</td>
+</tr>
+<tr>
+<td>심화 탐구 경험</td>
+<td>수업 내용을 바탕으로 깊이 있는 탐구를 했는가</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<nav aria-label="대학 바로가기" class="jump-nav"><a href="#knu">경북대</a>
+<a href="#khu">경희대</a>
+<a href="#korea">고려대</a>
+<a href="#dankook">단국대</a>
+<a href="#dongguk">동국대</a>
+<a href="#pusan">부산대</a>
+<a href="#snu">서울대</a>
+<a href="#three-univ">숭실·아주·인하</a>
+<a href="#cau">중앙대</a></nav>
+<details class="section uni-knu" id="knu">
+<summary>경북대학교 고교 과목 선택 가이드</summary>
+<div class="section-body">
+<p>
+              아래 표는 경북대학교 「2028학년도 고교 과목 선택 가이드」의
+              모집단위별 과목선택 안내를 정리한 것입니다.
+            </p>
+<div class="notice-box">
+<strong>경북대학교 안내 핵심</strong><br/>
+              제시된 과목들을 위계에 맞게 이수하는 것을 권장하며, 안내되지 않는 모집단위의 경우
+              학생의 관심사와 진로 방향에 맞게 선택하기를 권장합니다.
+              또한, 안내된 과목의 이수여부가 해당학과의 지원자격이 아님을 알려드립니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="knu-table wide left"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>모집단위</th>
+<th>과목선택 안내</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>독어독문학과</td><td>전공관련 제2외국어/한문 교과(군)</td><td class="center">1과목 이상 이수권장</td></tr>
+<tr><td>중어중문학과, 일어일문학과</td><td>전공관련 제2외국어/한문 교과(군)</td><td class="center">2과목 이상 이수권장</td></tr>
+<tr><td>사학과, 고고인류학과</td><td>세계사, 사회와 문화, 동아시아역사기행</td><td class="center">2과목 이상 이수권장</td></tr>
+<tr><td>사회과학대학 전 모집단위</td><td>사회와 문화, 세계시민과 지리, 현대사회와 윤리, 정치, 국제 관계의 이해, 한국지리 탐구, 도시의 미래 탐구, 인문학과 윤리,인간과 심리</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>수학과,통계학과,물리학과</td><td>대수, 미적분Ⅰ, 확률과 통계, 미적분Ⅱ, 기하, 인공지능 수학, 물리학</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>화학과,생명공학부,생물학과</td><td>미적분I, 화학, 생명과학, 화학반응의 세계, 세포와 물질대사, 생물의 유전</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>IT대학 전 모집단위</td><td>대수, 미적분I, 확률과 통계, 미적분II, 기하, 물리학, 화학, 역학과 에너지,전자기와 양자</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>농업생명과학대학 전 모집단위(식품자원경제학과 제외)</td><td>대수, 미적분I, 확률과 통계, 미적분Ⅱ, 물리학, 화학, 생명과학, 화학반응의 세계, 세포와 물질대사, 생물의 유전, 물질과 에너지</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>농업생명과학대학 식품자원경제학과</td><td>미적분I, 확률과 통계, 미적분II, 경제수학</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>사범대학 전모집단위</td><td>교육의 이해 및 학과의 특성에 맞는 교과목<br/>★ 학과의 특성 맞는 교과목 ★<br/>예) 국어교육과: [국어] 교과(군) 일반선택, 진로선택과목<br/>수학교육과: [수학] 교과(군) 일반선택, 진로선택과목<br/>정보·컴퓨터교육과: [정보] 교과(군) 일반선택, 진로선택과목</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>의과대학<br/>치과대학<br/>수의과대학<br/>약학대학<br/>생활과학대학 식품영양학과</td><td>화학, 생명과학,세포와 물질대사,생물의 유전,물질과 에너지,화학 반응의 세계</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>간호대학</td><td>생명과학, 화학,세포와 물질대사,생물의 유전,화학 반응의 세계</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>생태환경대학 전모집단위</td><td>대수, 미적분 I, 확률과통계, 생명과학, 화학, 세포와 물질대사, 생물의 유전</td><td class="center">2과목 이상 이수권장</td></tr>
+<tr><td>과학기술대학 전모집단위(치위생학과, 식품외식학과 제외)</td><td>대수, 미적분I, 확률과 통계, 미적분II,기하, 인공지능 수학, 물리학, 화학, 역학과 에너지,전자기와 양자, 물질과 에너지, 화학 반응의 세계</td><td class="center">2과목 이상 이수권장</td></tr>
+<tr><td>과학기술대학 치위생학과,식품외식산업학과</td><td>화학, 생명과학, 세포와 물질대사, 생물의 유전</td><td class="center">2과목 이상 이수권장</td></tr>
+<tr><td>공과대학 전 모집단위</td><td>대수, 미적분I, 확률과 통계, 미적분II, 기하, 인공지능 수학, 물리학, 화학, 전자기와 양자, 화학 반응의 세계,역학과 에너지, 물질과 에너지</td><td class="center">3과목 이상 이수권장</td></tr>
+<tr><td>농업생명과학대학</td><td>대수, 미적분 I, 확률과 통계, 미적분 II<br/>물리학, 화학, 생명과학, 물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전</td><td class="center">3과목 이상 이수권장</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+              ※ 안내되지 않는 모집단위 경우 학생의 관심사와 진로 방향에 맞게 선택하기를 권장합니다.<br/>
+              ※ 자율학부 및 자율전공학부는 모집단위 특성상 고교과목선택가이드를 안내하지 않습니다. 학생의 관심사와 진로 방향에 맞게 선택하기를 권장합니다.<br/>
+              ※ [2028학년도 고교 과목 선택 가이드]는 시행계획 사전예고 이전에 안내되는 자료인 만큼 대학 내부 결정 및 시행계획 수립 결과등에 따라 추후 내용이 변경될 수 있음을 알려드립니다.
+            </p>
+</div>
+</details>
+<!-- 경희대학교 -->
+<details class="section uni-khu" id="khu">
+<summary>경희대학교 자연계열 전공 연계 권장과목 안내</summary>
+<div class="section-body">
+<p>아래 표는 경희대학교 「2022 개정 교육과정 변경(2025.8월말)」 기준을 반영한 것입니다.</p>
+<div class="notice-box">
+<strong>경희대학교 안내 핵심</strong><br/>
+              핵심과목은 학과(부)에서 수학(修學)하기 위해 ‘필수적 이수’를 권장하는 과목이며,
+              권장과목은 학과(부)에서 수학(修學)하기 위해 ‘가급적 이수’를 권장하는 과목입니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="khu-table wide left"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>모집단위</th>
+<th>핵심과목<br/>수학교과</th>
+<th>핵심과목<br/>과학교과</th>
+<th>권장과목<br/>수학교과</th>
+<th>권장과목<br/>과학교과</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>&lt;경희대&gt;<br/>수학과, 응용수학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II, 기하</td><td class="center">-</td><td class="center">-</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>소프트웨어융합<br/>학과, 인공지능학과, 컴퓨터공학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II, 기하</td><td class="center">-</td><td>인공지능<br/>수학</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>산업경영공학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td class="center">-</td><td class="center">-</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>물리학과, 응용물리학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II, 기하</td><td>물리학, 역학과 에너지, 전자기와 양자</td><td class="center">-</td><td>화학, 물질과 에너지</td></tr>
+<tr><td>&lt;경희대&gt;<br/>기계공학부</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II, 기하</td><td>물리학, 화학, 역학과 에너지, 전자기와 양자</td><td class="center">-</td><td>물질과 에너지, 화학 반응의 세계</td></tr>
+<tr><td>&lt;경희대&gt;<br/>미래정보디스플레이<br/>학부, 생체의공학과, 전자공학과, 반도체공학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II, 기하</td><td>물리학, 화학, 역학과 에너지, 전자기와 양자</td><td class="center">-</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>건축공학과, 사회기반시스템<br/>공학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>물리학</td><td>기하</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>건축학과</td><td>대수, 미적분I,<br/>확률과 통계</td><td class="center">-</td><td>미적분II,<br/>기하</td><td>물리학</td></tr>
+<tr><td>&lt;경희대&gt;<br/>화학과, 응용화학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>화학, 물질과 에너지, 화학 반응의 세계</td><td>기하</td><td>물리학, 생명과학, [역학과 에너지, 전자기와 양자] 중 1과목</td></tr>
+<tr><td>&lt;경희대&gt;<br/>원자력공학과<br/>신소재공학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II, 기하</td><td>물리학, 화학, 물질과 에너지, 역학과 에너지</td><td class="center">-</td><td>전자기와 양자, 화학반응의<br/>세계</td></tr>
+<tr><td>&lt;경희대&gt;<br/>화학공학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>물리학, 화학, 물질과 에너지, 화학 반응의 세계</td><td>기하</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>&lt;경희대&gt;<br/>생물학과, 스마트팜과학과</td><td>대수, 미적분I,<br/>확률과 통계</td><td>화학, 생명과학, 세포와 물질대사, 생물의 유전</td><td>미적분II</td><td>물리학</td></tr>
+<tr><td>&lt;경희대&gt;<br/>식품영양학과, 식품생명공학과, 유전생명공학과, 환경학및환경<br/>공학과</td><td>대수, 미적분I,<br/>확률과 통계</td><td>화학, 생명과학, 세포와 물질대사, 생물의 유전</td><td>미적분II</td><td>물질과 에너지, 화학 반응의 세계</td></tr>
+<tr><td>&lt;경희대&gt;<br/>융합바이오· 신소재공학과</td><td>대수, 미적분I<br/>확률과 통계</td><td>화학, 생명과학, 세포와 물질대사, 생물의 유전, 물질과 에너지, 화학반응의 세계</td><td>미적분II</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>지리학과</td><td>대수, 미적분I,<br/>확률과 통계</td><td>지구과학</td><td class="center">-</td><td class="center">-</td></tr>
+<tr><td>&lt;경희대&gt;<br/>우주과학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>물리학, 화학, 지구과학, 역학과 에너지, 전자기와 양자</td><td>기하</td><td>[지구시스템과학, 행성우주과학] 중 1과목</td></tr>
+<tr><td>&lt;경희대&gt;<br/>의예과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>화학, 생명과학, [물질과 에너지, 화학 반응의 세계, 세포와 물질대사, 생물의 유전] 중 3과목</td><td class="center">-</td><td>물리학</td></tr>
+<tr><td>&lt;경희대&gt;<br/>한의예과, 치의예과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>화학, 생명과학, 세포와 물질대사, 생물의 유전</td><td class="center">-</td><td>물리학, [물질과 에너지, 화학 반응의 세계] 중 1과목</td></tr>
+<tr><td>&lt;경희대&gt;<br/>약학과, 한약학과, 약과학과</td><td>대수, 미적분I,<br/>확률과 통계, 미적분II</td><td>화학, 생명과학, [물질과 에너지, 화학 반응의 세계, 세포와 물질대사, 생물의 유전] 중 3과목</td><td class="center">-</td><td>물리학</td></tr>
+<tr><td>&lt;경희대&gt;<br/>간호학과</td><td>대수, 미적분I,<br/>확률과 통계</td><td>생명과학, 세포와 물질대사, 생물의 유전</td><td>미적분II</td><td>화학, 물질과 에너지, 화학 반응의 세계</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<!-- 나머지 대학: 구조 확정 후 표 추가 영역 -->
+<details class="section uni-korea" id="korea">
+<summary>고려대학교 자연계열 권장이수과목 안내</summary>
+<div class="section-body">
+<p>
+              아래 표는 고려대학교 「대입전형 자연계열 권장이수과목」의
+              2022 개정 교육과정 진로선택 기준을 반영한 것입니다.
+            </p>
+<div class="notice-box">
+<strong>고려대학교 안내 핵심</strong><br/>
+              아래 과목은 2028학년도 이후 적용되는 2022 개정 교육과정 기준의 자연계열 권장이수과목입니다.
+              과목 순서는 우선순위가 아니며, 대학 내부 결정 및 시행계획 수립 결과에 따라 추후 변경될 수 있습니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="korea-table mid left"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>모집단위</th>
+<th>수학</th>
+<th>과학</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>생명과학부</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>생명공학부</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>식품공학과</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>환경생태공학부</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>수학과</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>물리학과</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>화학과</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계</td></tr>
+<tr><td>지구환경과학과</td><td class="center">미적분Ⅱ</td><td>지구시스템과학, 행성우주과학</td></tr>
+<tr><td>공과대학(전공자율선택제)</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>화공생명공학과</td><td class="center">미적분Ⅱ, 기하</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 中 2개 과목 이상</td></tr>
+<tr><td>신소재공학부</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 中 2개 과목 이상</td></tr>
+<tr><td>건축사회환경공학부</td><td class="center">미적분Ⅱ</td><td>역학과 에너지</td></tr>
+<tr><td>건축학과</td><td class="center">미적분Ⅱ</td><td class="center">-</td></tr>
+<tr><td>기계공학부</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>산업경영공학부</td><td class="center">미적분Ⅱ</td><td class="center">-</td></tr>
+<tr><td>전기전자공학부</td><td class="center">미적분Ⅱ, 기하</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 中 2개 과목 이상</td></tr>
+<tr><td>반도체공학과</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>융합에너지공학과</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 中 2개 과목 이상</td></tr>
+<tr><td>차세대통신학과</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>의과대학</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>가정교육과</td><td class="center">미적분Ⅱ</td><td class="center">-</td></tr>
+<tr><td>수학교육과</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>간호대학</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>컴퓨터학과</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>데이터과학과</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>인공지능학과</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>바이오의공학부</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 中 2개 과목 이상</td></tr>
+<tr><td>바이오시스템의과학부</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>보건환경융합과학부</td><td class="center">미적분Ⅱ</td><td>물질과 에너지, 화학반응의 세계, 세포와 물질대사, 생물의 유전 中 2개 과목 이상</td></tr>
+<tr><td>사이버국방학과</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>스마트보안학부</td><td class="center">미적분Ⅱ, 기하</td><td class="center">-</td></tr>
+<tr><td>스마트모빌리티학부</td><td class="center">미적분Ⅱ</td><td>역학과 에너지, 전자기와 양자, 물질과 에너지, 화학반응의 세계, 中 2개 과목 이상</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+              ※ 과목 순서는 우선순위가 아닙니다.<br/>
+              ※ 본 내용은 대학 내부 결정 및 시행계획 수립 결과에 따라 추후 내용이 변경될 수 있습니다.
+            </p>
+</div>
+</details>
+<details class="section uni-dankook" id="dankook">
+<summary>단국대학교 모집단위별 이수 권장 과목 안내</summary>
+<div class="section-body">
+<p>
+              아래 표는 단국대학교 「2028학년도 모집단위별 이수 권장 과목 안내」를 정리한 것입니다.
+              단국대학교는 인문계열과 자연계열로 구분하여, 일반선택 과목 이수 후 진로와 적성에 맞게
+              진로선택·융합선택 과목을 이수하도록 안내하고 있습니다.
+            </p>
+<div class="notice-box">
+<strong>단국대학교 안내 핵심</strong><br/>
+              상기 이수 권장 과목은 「2022 개정 교육과정」 도입 및 고교학점제 시행에 따라,
+              고교 학생들의 진로와 적성에 맞는 과목 선택을 돕기 위해 마련되었습니다.
+              수험생의 과목 선택 시 참고 자료로 활용하시기 바랍니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="dankook-table wide left"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>계열</th>
+<th>해당 모집단위</th>
+<th>교과</th>
+<th>이수 권장 과목 안내</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="center" rowspan="5">인문계열</td><td class="text-left" rowspan="5">퇴계혁신칼리지, 인문계열광역, 사회계열광역<br/>문과대학, 법과대학, 사회과학대학,<br/>경영경제대학, 프리무스국제대학, 사범대학</td><td class="center">국어</td><td class="text-left">일반선택(화법과 언어 등)과목 이수 후 진로와 적성에 맞게<br/>진로선택(주제 탐구 독서 등), 융합선택(독서 토론과 글쓰기 등) 과목 이수</td></tr>
+<tr><td class="center">수학</td><td class="text-left">일반선택(대수 등)과목 이수 후 진로와 적성에 맞게<br/>진로선택(기하 등), 융합선택(수학과 문화 등) 과목 이수</td></tr>
+<tr><td class="center">영어</td><td class="text-left">일반선택(영어Ⅰ 등)과목 이수 후 진로와 적성에 맞게<br/>진로선택(영미 문학 읽기 등), 융합선택(실생활 영어 회화 등) 과목 이수</td></tr>
+<tr><td class="center">사회</td><td class="text-left">일반선택(세계시민과 지리 등)과목 이수 후<br/>진로와 적성에 맞게 진로선택(한국지리 탐구 등),<br/>융합선택(여행지리 등) 과목 이수</td></tr>
+<tr><td class="center">과학</td><td class="center text-left">-</td></tr>
+<tr><td class="center" rowspan="5">자연계열</td><td class="text-left" rowspan="5">퇴계혁신칼리지, 공학계열광역, SW융합계열광역,<br/>공과대학, SW융합대학,<br/>프리무스국제대학, 사범대학</td><td class="center">국어</td><td class="text-left">일반선택(화법과 언어 등)과목 이수 후 진로와 적성에 맞게<br/>진로선택(주제 탐구 독서 등), 융합선택(독서 토론과 글쓰기 등) 과목 이수</td></tr>
+<tr><td class="center">수학</td><td class="text-left">일반선택(대수 등)과목 이수 후 진로와 적성에 맞게<br/>진로선택(기하 등), 융합선택(수학과 문화 등) 과목 이수</td></tr>
+<tr><td class="center">영어</td><td class="text-left">일반선택(영어Ⅰ 등)과목 이수 후 진로와 적성에 맞게<br/>진로선택(영미 문학 읽기 등), 융합선택(실생활 영어 회화 등) 과목 이수</td></tr>
+<tr><td class="center">사회</td><td class="center text-left">-</td></tr>
+<tr><td class="center">과학</td><td class="text-left">일반선택(물리학 등)과목 이수 후<br/>진로와 적성에 맞게 진로선택(역학과 에너지 등),<br/>융합선택(과학의 역사와 문화 등) 과목 이수</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+              ※ 상기 이수 권장 과목은 「2022 개정 교육과정」 도입 및 고교학점제 시행에 따라,
+              고교 학생들의 진로와 적성에 맞는 과목 선택을 돕기 위해 마련됨<br/>
+              ※ '2028학년도 모집단위별 이수 권장 과목 안내'는 수험생의 과목 선택 시 참고 자료로 활용하시기 바라며,
+              2028학년도 대학입학전형시행계획 수립 및 대학 내부 결정에 따라 추후 내용이 변경될 수 있음
+            </p>
+</div>
+</details>
+<details class="section uni-dongguk" id="dongguk">
+<summary>동국대학교 전공 관련 교과 영역 안내</summary>
+<div class="section-body">
+<p>
+              아래 표는 동국대학교가 안내하는 전공 관련 교과 영역을 정리한 것입니다.
+              동국대학교의 전공 관련 교과 영역은 특정 교과목을 지칭하는 구분이 아니라,
+              교과보다는 세밀하고 과목보다는 광범위한 동국대학교 자체 기준 영역입니다.
+            </p>
+<div class="notice-box">
+<strong>동국대학교 안내 핵심</strong><br/>
+              전공 관련 교과 영역은 “역량 영역”과 “소양 영역”으로 구분됩니다.
+              역량 영역은 해당 전공을 위해 갖춰야 할 기본적인 학업 역량 영역이며,
+              소양 영역은 진로 탐색 시 해당 전공에 관심이 있다면 학습을 추천하는 영역입니다.
+              제시하는 교과 영역의 순서가 평가의 중요도를 의미하는 것은 아닙니다.
+            </div>
+<details class="criteria-toggle dongguk-criteria-box">
+<summary>
+<span class="criteria-title">동국대학교 기준 교과 영역 분류</span>
+<span class="criteria-desc">수학①·수학② 등 동국대 자체 교과 영역이 어떤 과목을 뜻하는지 확인</span>
+</summary>
+<div class="criteria-body">
+<p>
+    동국대학교는 2022 개정 교육과정의 국어·수학·영어·사회·과학 교과를 기준으로
+    자체 교과 영역을 다음과 같이 구분하여 안내합니다.
+  </p>
+<div class="table-wrap compact-table dongguk-criteria-wrap">
+<table class="dongguk-criteria-table">
+<colgroup>
+<col class="criteria-col-subject"/>
+<col class="criteria-col-area"/>
+<col class="criteria-col-general"/>
+<col class="criteria-col-career"/>
+<col class="criteria-col-convergence"/>
+</colgroup>
+<thead>
+<tr>
+<th>교과</th>
+<th>영역</th>
+<th>일반선택</th>
+<th>진로선택</th>
+<th>융합선택</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="criteria-subject-cell" colspan="2">국어</td>
+<td class="criteria-content-cell">화법과 언어, 독서와 작문, 문학</td>
+<td class="criteria-content-cell">주제 탐구 독서, 문학과 영상, 직무 의사소통</td>
+<td class="criteria-content-cell">독서 토론과 글쓰기, 매체 의사소통, 언어생활 탐구</td>
+</tr>
+<tr>
+<td class="criteria-subject-cell" rowspan="2">수학</td>
+<td class="criteria-area-cell">①</td>
+<td class="criteria-content-cell" rowspan="2">대수, 미적분Ⅰ, 확률과통계</td>
+<td class="criteria-content-cell">미적분Ⅱ, 경제 수학</td>
+<td class="criteria-content-cell" rowspan="2">수학과 문화, 실용 통계, 수학과제 탐구</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">②</td>
+<td class="criteria-content-cell">미적분Ⅱ, 기하, 인공지능 수학</td>
+</tr>
+<tr>
+<td class="criteria-subject-cell" colspan="2">영어</td>
+<td class="criteria-content-cell">영어Ⅰ, 영어Ⅱ, 영어 독해와 작문</td>
+<td class="criteria-content-cell">영미 문학 읽기, 영어 발표와 토론, 심화 영어, 심화 영어 독해와 작문, 직무 영어</td>
+<td class="criteria-content-cell">실생활 영어 회화, 미디어 영어, 세계 문화와 영어</td>
+</tr>
+<tr>
+<td class="criteria-subject-cell" rowspan="4">사회</td>
+<td class="criteria-area-cell">지리</td>
+<td class="criteria-content-cell">세계시민과 지리</td>
+<td class="criteria-content-cell">한국지리 탐구, 도시의 미래 탐구</td>
+<td class="criteria-content-cell">여행지리, 기후변화와 지속가능한 세계</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">역사</td>
+<td class="criteria-content-cell">세계사</td>
+<td class="criteria-content-cell">동아시아 역사 기행</td>
+<td class="criteria-content-cell">역사로 탐구하는 현대 세계</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">일반사회</td>
+<td class="criteria-content-cell">사회와 문화</td>
+<td class="criteria-content-cell">경제, 정치, 법과 사회, 국제관계의 이해</td>
+<td class="criteria-content-cell">사회문제 탐구, 금융과 경제 생활</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">윤리</td>
+<td class="criteria-content-cell">현대사회와 윤리</td>
+<td class="criteria-content-cell">윤리와 사상, 인문학과 윤리</td>
+<td class="criteria-content-cell">윤리문제 탐구</td>
+</tr>
+<tr>
+<td class="criteria-subject-cell" rowspan="4">과학</td>
+<td class="criteria-area-cell">물리학</td>
+<td class="criteria-content-cell">물리학</td>
+<td class="criteria-content-cell">역학과 에너지, 전자기와 양자</td>
+<td class="criteria-content-cell" rowspan="4">과학의 역사와 문화, 기후변화와 환경생태, 융합과학 탐구</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">화학</td>
+<td class="criteria-content-cell">화학</td>
+<td class="criteria-content-cell">물질과 에너지, 화학 반응의 세계</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">생명과학</td>
+<td class="criteria-content-cell">생명과학</td>
+<td class="criteria-content-cell">세포와 물질대사, 생물의 유전</td>
+</tr>
+<tr>
+<td class="criteria-area-cell">지구과학</td>
+<td class="criteria-content-cell">지구과학</td>
+<td class="criteria-content-cell">지구시스템과학, 행성우주과학</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="dongguk-table wide left">
+<colgroup>
+<col class="dongguk-col-college"/>
+<col class="dongguk-col-major"/>
+<col class="dongguk-col-core"/>
+<col class="dongguk-col-literacy"/>
+</colgroup>
+<thead>
+<tr>
+<th>단과대학</th>
+<th>모집단위</th>
+<th>역량 영역</th>
+<th>소양 영역</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="center" rowspan="2">불교</td><td class="text-left">불교학부</td><td class="text-left">역사, 윤리</td><td class="text-left">지리, 일반사회</td></tr>
+<tr><td class="text-left">문화유산학과</td><td class="text-left">역사, 일반사회</td><td class="text-left">한문</td></tr>
+<tr><td class="center" rowspan="6">문과</td><td class="text-left">국어국문·문예창작학부</td><td class="text-left">국어</td><td class="text-left">역사, 일반사회, 한문</td></tr>
+<tr><td class="text-left">영어영문학부</td><td class="text-left">국어, 영어</td><td class="dash">-</td></tr>
+<tr><td class="text-left">일본학과</td><td class="text-left">국어, 일본어</td><td class="text-left">일반사회, 역사</td></tr>
+<tr><td class="text-left">중어중문학과</td><td class="text-left">국어, 중국어</td><td class="dash">-</td></tr>
+<tr><td class="text-left">철학과</td><td class="text-left">국어, 윤리</td><td class="text-left">교양, 한문</td></tr>
+<tr><td class="text-left">사학과</td><td class="text-left">국어, 역사</td><td class="text-left">일반사회, 지리, 윤리, 한문</td></tr>
+<tr><td class="center" rowspan="1">법과</td><td class="text-left">법학과</td><td class="text-left">국어, 일반사회</td><td class="text-left">윤리</td></tr>
+<tr><td class="center" rowspan="5">사회과학</td><td class="text-left">정치외교학전공/행정학전공/북한학전공/광고홍보학과/미디어커뮤니케이션학전공</td><td class="text-left">일반사회</td><td class="text-left">역사, 윤리, 지리</td></tr>
+<tr><td class="text-left">경제학과/식품산업관리학과</td><td class="text-left">수학①, 일반사회</td><td class="text-left">역사, 윤리, 지리</td></tr>
+<tr><td class="text-left">국제통상학과</td><td class="text-left">수학①, 일반사회, 영어</td><td class="dash">-</td></tr>
+<tr><td class="text-left">사회학전공/사회복지학과</td><td class="text-left">일반사회, 윤리</td><td class="text-left">역사, 지리</td></tr>
+<tr><td class="text-left">경찰사법대학 경찰행정학부</td><td class="text-left">수학①, 일반사회</td><td class="text-left">역사, 윤리, 지리</td></tr>
+<tr><td class="center" rowspan="1">경영</td><td class="text-left">경영대학(광역화)</td><td class="text-left">수학①, 영어</td><td class="text-left">일반사회</td></tr>
+<tr><td class="center" rowspan="5">사범</td><td class="text-left">교육학과</td><td class="text-left">일반사회</td><td class="text-left">역사, 윤리, 지리</td></tr>
+<tr><td class="text-left">국어교육과</td><td class="text-left">국어</td><td class="text-left">일반사회, 역사, 윤리, 지리</td></tr>
+<tr><td class="text-left">역사교육과</td><td class="text-left">역사</td><td class="text-left">일반사회, 지리, 윤리</td></tr>
+<tr><td class="text-left">지리교육과</td><td class="text-left">지리</td><td class="text-left">일반사회, 역사, 윤리</td></tr>
+<tr><td class="text-left">수학교육과</td><td class="text-left">수학②</td><td class="dash">-</td></tr>
+<tr><td class="center" rowspan="1">예술</td><td class="text-left">연극학부/영화영상학과</td><td class="dash">-</td><td class="text-left">일반사회, 역사, 윤리, 지리</td></tr>
+<tr><td class="center" rowspan="1">열린전공학부(인문)</td><td class="text-left">열린전공학부(인문)</td><td class="text-left">국어, 영어</td><td class="text-left">일반사회, 역사, 윤리, 지리, 제2외국어</td></tr>
+<tr><td class="center" rowspan="3">이과</td><td class="text-left">수학과/통계학과</td><td class="text-left">수학②</td><td class="dash">-</td></tr>
+<tr><td class="text-left">화학과</td><td class="text-left">수학②, 물리학, 화학</td><td class="text-left">생명과학</td></tr>
+<tr><td class="text-left">물리학과</td><td class="text-left">수학②, 물리학, 화학</td><td class="dash">-</td></tr>
+<tr><td class="center" rowspan="4">바이오시스템</td><td class="text-left">바이오시스템대학(광역화)/식품바이오융합공학과</td><td class="text-left">수학②, 화학, 생명과학</td><td class="text-left">지구과학</td></tr>
+<tr><td class="text-left">융합환경과학과</td><td class="text-left">수학②, 화학, 생명과학</td><td class="text-left">물리학</td></tr>
+<tr><td class="text-left">생명과학과</td><td class="text-left">수학②, 화학, 생명과학</td><td class="text-left">물리학</td></tr>
+<tr><td class="text-left">의생명공학과</td><td class="text-left">수학②, 물리학, 화학</td><td class="text-left">생명과학</td></tr>
+<tr><td class="center" rowspan="5">공과</td><td class="text-left">전자전기공학부/기계로봇에너지공학과/에너지신소재공학과</td><td class="text-left">수학②, 물리학, 화학</td><td class="dash">-</td></tr>
+<tr><td class="text-left">정보통신공학과/건축공학부</td><td class="text-left">수학②, 물리학</td><td class="dash">-</td></tr>
+<tr><td class="text-left">건설환경공학과</td><td class="text-left">수학②, 물리학, 화학</td><td class="text-left">지구과학</td></tr>
+<tr><td class="text-left">화공생물공학과</td><td class="text-left">수학②, 물리학, 화학</td><td class="text-left">생명과학</td></tr>
+<tr><td class="text-left">산업시스템공학과</td><td class="text-left">수학②</td><td class="text-left">물리학</td></tr>
+<tr><td class="center" rowspan="4">첨단융합</td><td class="text-left">컴퓨터·AI학부</td><td class="text-left">수학②</td><td class="dash">-</td></tr>
+<tr><td class="text-left">시스템반도체학부</td><td class="text-left">수학②, 물리학, 화학</td><td class="dash">-</td></tr>
+<tr><td class="text-left">의료인공지능공학과/지능형네트워크융합학과</td><td class="text-left">수학②, 물리학</td><td class="dash">-</td></tr>
+<tr><td class="text-left">가정교육과</td><td class="text-left">화학, 기술·가정</td><td class="text-left">일반사회, 생명과학, 정보</td></tr>
+<tr><td class="center" rowspan="1">약학</td><td class="text-left">약학과</td><td class="text-left">수학②, 화학, 생명과학</td><td class="text-left">물리학</td></tr>
+<tr><td class="center" rowspan="1">열린전공학부(자연)</td><td class="text-left">열린전공학부(자연)</td><td class="text-left">수학②</td><td class="text-left">물리학, 화학</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+              ※ 제시하는 교과 영역의 순서가 평가의 중요도를 의미하는 것은 아닙니다.<br/>
+              ※ 해당 내용은 2028학년도 대학입학전형 시행계획 확정 시 최종 안내 예정이므로 변경될 수 있습니다.
+            </p>
+</div>
+</details>
+<details class="section uni-pusan" id="pusan">
+<summary>부산대학교 고교 과목 선택 가이드</summary>
+<div class="section-body">
+<p>
+              아래 표는 부산대학교 「2028학년도 입학생 대상 고교 과목 선택 가이드」의
+              모집단위별 과목 선택 가이드를 정리한 것입니다.
+            </p>
+<div class="notice-box">
+<strong>부산대학교 안내 핵심</strong><br/>
+              고교학점제 시행 및 2022 개정 교육과정 도입에 따라 고교생의 관심과 적성을 고려한
+              주도적 과목 선택을 지원하기 위해 최소한의 과목 선택 가이드를 안내합니다.
+              과목 이수 시 교과(군)별 과목의 위계를 고려하여 이수하는 것을 권장합니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="pusan-table wide left"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>모집단위</th>
+<th>과목 선택 가이드</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>경제통상대학 경제학부<br/>경영대학 경영학과</td>
+<td>확률과 통계, 미적분Ⅰ, 미적분Ⅱ 중 1과목 이상 이수</td>
+</tr>
+<tr>
+<td>자연과학대학 수학과, 통계학과<br/>공과대학 산업공학과<br/>사범대학 수학교육과<br/>생명자원과학대학 IT응용공학과<br/>정보의생명공학대학 정보컴퓨터공학부(컴퓨터공학전공, 인공지능전공, 디자인테크놀로지전공)</td>
+<td>확률과 통계, 기하, 미적분Ⅱ 중 2과목 이상 이수</td>
+</tr>
+<tr>
+<td>자연과학대학 화학과, 생명과학과, 미생물학과, 분자생물학과<br/>사범대학 생물교육과<br/>생활과학대학 식품영양학과<br/>간호대학 간호학과<br/>생명자원과학대학 원예생명과학과, 식품공학과, 생명환경화학과, 바이오소재과학과, 바이오환경에너지학과, 조경학과<br/>약학부 약학부<br/>의과대학 의예과<br/>치과대학 치의예과<br/>한의학전문대학원 한의학전문대학원 학·석사통합과정</td>
+<td>화학, 생명과학 관련 일반선택과목 및 진로선택과목 중 3과목 이상 이수</td>
+</tr>
+<tr>
+<td>자연과학대학 물리학과<br/>공과대학 기계공학부, 고분자공학과, 유기소재시스템공학과, 화공생명공학과, 환경공학과, 재료공학부, 전기전자공학부(전기공학전공, 전자공학전공, 반도체공학전공), 건축공학과, 사회기반시스템공학과, 항공우주공학과, 조선·해양공학과, 첨단IT자율전공, 첨단소재자율전공, 첨단모빌리티자율전공<br/>사범대학 물리교육과, 화학교육과<br/>생명자원과학대학 바이오산업기계공학과<br/>학부대학 첨단융합학부</td>
+<td>기하, 미적분Ⅱ 중 1과목 이상 이수하고, 물리학, 화학 관련 일반선택과목 및 진로선택과목 중 3과목 이상 이수</td>
+</tr>
+<tr>
+<td>자연과학대학 지질환경과학과, 해양학과, 대기환경과학과<br/>사범대학 지구과학교육과</td>
+<td>물리학, 지구과학 관련 일반선택과목 및 진로선택과목 중 1과목 이상 이수</td>
+</tr>
+<tr>
+<td>정보의생명공학대학 의생명융합공학부<br/>학부대학 응용생명융합학부</td>
+<td>물리학, 화학, 생명과학 관련 일반선택과목 및 진로선택과목 중 3과목 이상 이수</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+              ※ 아래 기재된 모집단위 이외 모집단위는 과목이 미설정되어 있으며,
+              과목이 미설정된 모집단위는 본인의 관심과 적성에 따라 과목을 폭넓게 선택하여 이수하는 것을 권장합니다.<br/>
+              ※ 물리학 관련 과목 : 물리학, 역학과 에너지, 전자기와 양자 / 화학 관련 과목 : 화학, 물질과 에너지, 화학 반응의 세계<br/>
+              ※ 생명과학 관련 과목 : 생명과학, 세포와 물질대사, 생물의 유전 / 지구과학 관련 과목 : 지구과학, 지구시스템과학, 행성우주과학
+            </p>
+</div>
+</details>
+<!-- 서울대학교 -->
+<details class="section uni-snu" id="snu">
+<summary>서울대학교 전공 연계 권장과목 안내</summary>
+<div class="section-body">
+<p>아래 표는 서울대학교 전공 연계 과목 선택 안내의 유형별 모집단위와 권장과목을 정리한 것입니다.</p>
+<div class="notice-box">
+<strong>서울대학교 안내 핵심</strong><br/>
+              전공 연계 권장과목은 지원자격과 무관하지만, 모집단위가 권장하는 과목의 이수 여부는 수시모집 서류평가 및 정시모집 교과역량평가에 반영됩니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="wide left snu-table"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>유형</th>
+<th>모집단위</th>
+<th>교과(군)</th>
+<th>일반 선택</th>
+<th>진로 선택</th>
+<th>융합 선택</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="center">유형 Ⅰ</td>
+<td class="text-left">
+                      인문대학<br/>
+                      사회과학대학<br/>
+                      간호대학<br/>
+                      경영대학<br/>
+                      농업생명과학대학 농경제사회학부<br/>
+                      사범대학 교육학과, 국어교육과, 영어교육과, 독어교육과, 불어교육과, 사회교육과, 역사교육과, 지리교육과, 윤리교육과<br/>
+                      생활과학대학 소비자아동학부, 식품영양학과, 의류학과
+                    </td>
+<td class="center">[제2외국어/한문]</td>
+<td class="center" colspan="3">1과목 이상</td>
+</tr>
+<tr>
+<td class="center" rowspan="2">유형 Ⅱ</td>
+<td class="text-left" rowspan="2">
+                      자연과학대학<br/>
+                      간호대학<br/>
+                      공과대학<br/>
+                      농업생명과학대학 식물생산과학부, 산림과학부, 식품·동물생명공학부, 응용생물화학부, 조경·지역시스템공학부, 바이오시스템·소재학부, 스마트시스템과학과<br/>
+                      사범대학 수학교육과, 물리교육과, 화학교육과, 생물교육과, 지구과학교육과<br/>
+                      생활과학대학 식품영양학과, 의류학과<br/>
+                      수의과대학<br/>
+                      약학대학<br/>
+                      의과대학<br/>
+                      첨단융합학부<br/>
+                      치의학대학원 치의학과
+                    </td>
+<td class="center">[수학]</td>
+<td class="center">-</td>
+<td class="text-left">기하, 미적분Ⅱ<br/>단, 간호대학, 치의학대학원 치의학과는 ‘기하’ 또는 ‘미적분Ⅱ’</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td class="center">[과학]</td>
+<td class="text-left">
+                      아래 모집단위의 경우 제시한 일반 선택 과목을 우선 이수하는 것을 권장함<br/><br/>
+                      자연과학대학 물리·천문학부 물리학전공<br/>
+                      공과대학 기계공학부, 전기·정보공학부, 원자핵공학과, 조선해양공학과, 항공우주공학과<br/>
+                      사범대학 물리교육과: 물리학<br/><br/>
+                      자연과학대학 화학부<br/>
+                      사범대학 화학교육과: 화학<br/><br/>
+                      자연과학대학 생명과학부<br/>
+                      사범대학 생물교육과<br/>
+                      의과대학: 생명과학<br/><br/>
+                      자연과학대학 물리·천문학부 천문학전공, 지구환경과학부<br/>
+                      사범대학 지구과학교육과: 지구과학<br/><br/>
+                      약학대학: 화학 또는 생명과학
+                    </td>
+<td class="center">3과목 이상<br/>단, 의과대학은 ‘세포와 물질대사’, ‘생물의 유전’을 포함하여 3과목 이상</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td class="center">유형 Ⅲ</td>
+<td class="text-left">미술대학<br/>사범대학 체육교육과<br/>음악대학<br/>학부대학</td>
+<td class="center">-</td>
+<td class="center">-</td>
+<td class="center">-</td>
+<td class="center">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<details class="section uni-soongsil" id="three-univ">
+<summary>숭실대·아주대·인하대 3개 대학 통합</summary>
+<div class="section-body">
+<p>
+  아래 표는 숭실대학교·아주대학교·인하대학교 3개 대학의 선택 과목 가이드를
+  중분류 기준으로 통합하여 정리한 것입니다.
+</p>
+<div class="notice-box">
+<strong>숭실대·아주대·인하대 3개 대학 통합 안내</strong><br/>
+  본 가이드북은 숭실대학교·아주대학교·인하대학교 3개 대학 모집단위별로
+  전공과 연계성이 높은 과목을 권장과목으로 제시한 참고자료입니다.
+  굵은 글씨로 표시된 과목은 3개 대학에서 공통적으로 전공 학습과 연계성이 높다고 판단한 과목입니다.
+  다만, 굵은 글씨가 다른 과목보다 더 중요하거나 우선 이수해야 한다는 의미는 아닙니다.<br/><br/>
+
+  학교별 개설 과목, 교육과정 편성, 학생 개인의 학업 여건에 따라 선택 가능한 과목은 달라질 수 있으므로,
+  학생의 진로와 적성, 학교 교육과정, 학업 상황을 함께 고려하여 활용해야 합니다.
+  대학은 특정 과목 이수 여부보다 선택한 과목 안에서의 학습 경험을 중요하게 살펴봅니다.
+</div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="wide left integrated-guide-table"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th>대분류</th>
+<th>중분류</th>
+<th>모집단위</th>
+<th>일반 선택</th>
+<th>진로 선택</th>
+<th>융합 선택</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>인문사회</td>
+<td>경영ㆍ경제</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>경제학과,<br/>글로벌통상학과,<br/>경영학부, 회계학과,<br/>벤처중소기업학과,<br/>금융학부<br/><br/><strong class="uni-label">아주대</strong><br/><br/>경영학과, 경영인텔리전스학과,<br/>금융공학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>경영학과, 경제학과,<br/>국제통상학과,<br/>파이낸스경영학과,<br/>아태물류학과</td>
+<td><strong>독서와 작문</strong>, 문학, <strong>화법과 언어</strong>,<br/><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과 통계</strong>,<br/><strong>영어Ⅰ</strong>, <strong>영어Ⅱ</strong>, <strong>영어독해와 작문</strong>,<br/><strong>사회와 문화</strong>, <strong>세계사</strong>, 세계시민과 지리,<br/>현대사회와 윤리, 정보, 진로와 직업</td>
+<td>주제탐구독서, <strong>직무의사소통</strong>, <strong>경제수학</strong>,<br/><strong>기하</strong>, <strong>미적분Ⅱ</strong>, <strong>인공지능수학</strong>,<br/><strong>직무수학</strong>, <strong>심화영어</strong>, 심화영어독해와 작문,<br/><strong>영어발표와 토론</strong>, <strong>직무영어</strong>, <strong>경제</strong>,<br/><strong>국제관계의 이해</strong>, <strong>법과사회</strong>, <strong>정치</strong>,<br/>데이터과학, 인공지능기초, 논리와사고,<br/>인간과심리</td>
+<td>독서토론과 글쓰기, 매체의사소통, <strong>수학과제탐구</strong>,<br/><strong>실용통계</strong>, <strong>미디어영어</strong>, 세계문화와 영어,<br/><strong>실생활영어회화</strong>, <strong>금융과 경제생활</strong>, 사회문제탐구,<br/>지식재산일반, 논술, 인간과경제활동</td>
+</tr>
+<tr>
+<td>인문사회</td>
+<td>사회과학</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>사회복지학부, 행정학부, 정치외교학과, 정보사회학과, 언론홍보학과, 평생교육학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>행정학과, 심리학과, 경제정치사회융합학부<br/><br/><strong class="uni-label">인하대</strong><br/><br/>미디어커뮤니케이션학과, 사회복지학과, 소비자학과, 아동심리학과, 정치외교학과, 행정학과</td>
+<td><strong>독서와 작문</strong>, 문학, <strong>화법과 언어</strong>,<br/><strong>대수</strong>, 미적분Ⅰ, <strong>확률과통계</strong>,<br/><strong>영어Ⅰ</strong>, <strong>영어Ⅱ</strong>, <strong>영어독해와 작문</strong>,<br/><strong>사회와 문화</strong>, <strong>세계사</strong>, <strong>세계시민과 지리</strong>,<br/><strong>현대사회와 윤리</strong>, 정보, 진로와 직업,<br/>생태와 환경</td>
+<td>문학과 영상, <strong>주제탐구독서</strong>, 직무의사소통,<br/>경제수학, <strong>심화영어</strong>, <strong>심화영어독해와 작문</strong>,<br/><strong>영어발표와 토론</strong>, 직무영어, <strong>경제</strong>,<br/><strong>국제관계의 이해</strong>, <strong>도시의 미래탐구</strong>, 동아시아역사기행,<br/><strong>법과사회</strong>, <strong>윤리와 사상</strong>, 인문학과 윤리,<br/><strong>정치</strong>, 음악감상과 비평, 미술감상과 비평,<br/>교육의 이해, 논리와 사고, 인간과 심리,<br/>인간과 철학</td>
+<td>독서토론과 글쓰기, <strong>매체의사소통</strong>, <strong>실용통계</strong>,<br/>미디어영어, 실생활영어회화, <strong>기후변화와 지속가능한세계</strong>,<br/><strong>사회문제탐구</strong>, 여행지리, 음악과 미디어,<br/>미술과 매체, 생애설계와 자립, 아동발달과 부모,<br/>논술</td>
+</tr>
+<tr>
+<td>인문사회</td>
+<td>언어ㆍ문학</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>국어국문학과, 영어영문학과, 독어독문학과, 불어불문학과, 중어중문학과, 일어일문학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>국어국문학과, 영어영문학과, 불어불문학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>영미유럽인문융합학부, 일본언어문화학과, 중국학과, 한국어문학과</td>
+<td><strong>독서와작문</strong>, <strong>문학</strong>, <strong>화법과언어</strong>,<br/><strong>영어Ⅰ</strong>, <strong>영어Ⅱ</strong>, <strong>영어독해와 작문</strong>,<br/><strong>사회와 문화</strong>, <strong>세계사</strong>, <strong>세계시민과 지리</strong>,<br/><strong>현대사회와 윤리</strong>, 독일어, 일본어,<br/>중국어, 프랑스어, 한문</td>
+<td><strong>문학과영상</strong>, <strong>주제탐구독서</strong>, 직무의사소통,<br/><strong>심화영어</strong>, <strong>심화영어독해와 작문</strong>, <strong>영미문학읽기</strong>,<br/><strong>영어발표와 토론</strong>, <strong>직무영어</strong>, 경제,<br/><strong>국제관계의 이해</strong>, <strong>동아시아역사기행</strong>, 법과사회,<br/><strong>윤리와사상</strong>, <strong>인문학과 윤리</strong>, 정치,<br/>독일어회화, 심화독일어, 심화일본어,<br/>심화중국어, 심화프랑스어, 일본어회화,<br/>중국어회화, 프랑스어회화, 한문고전읽기,<br/>논리와 사고</td>
+<td><strong>독서토론과 글쓰기</strong>, <strong>매체의사소통</strong>, <strong>언어생활탐구</strong>,<br/>실용통계, <strong>미디어영어</strong>, <strong>세계문화와 영어</strong>,<br/><strong>실생활영어회화</strong>, 금융과 경제생활, 기후변화와 지속가능한세계,<br/><strong>사회문제탐구</strong>, 여행지리, 역사로 탐구하는 현대세계,<br/>윤리문제탐구, 독일어권문화, 일본문화,<br/>중국문화, 프랑스어권문화, 언어생활과한자,<br/>논술</td>
+</tr>
+<tr>
+<td>인문사회</td>
+<td>인문학</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>기독교학과, 철학과, 사학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>사학과, 문화콘텐츠학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>문화콘텐츠문화경영학과, 사학과, 철학과</td>
+<td><strong>독서와 작문</strong>, 문학, <strong>화법과 언어</strong>,<br/><strong>대수</strong>, 미적분Ⅰ, 확률과 통계,<br/><strong>영어Ⅰ</strong>, <strong>영어Ⅱ</strong>, <strong>영어독해와 작문</strong>,<br/><strong>사회와 문화</strong>, <strong>세계사</strong>, <strong>세계시민과 지리</strong>,<br/><strong>현대사회와 윤리</strong>, 독일어, 일본어,<br/>중국어, 한문</td>
+<td><strong>주제탐구독서</strong>, <strong>동아시아역사기행</strong>, 윤리와 사상,<br/>인문학과 윤리, <strong>한국지리탐구</strong>, 한문고전읽기,<br/>논리와 사고, 삶과 종교, 인간과 심리,<br/>인간과 철학</td>
+<td><strong>독서토론과 글쓰기</strong>, 사회문제탐구, 역사로 탐구하는 현대세계,<br/>윤리문제탐구, 언어생활과한자, 논술</td>
+</tr>
+<tr>
+<td>인문사회</td>
+<td>법학</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>법학과, 국제법무학과</td>
+<td><strong>독서와 작문</strong>, <strong>화법과 언어</strong>, 대수,<br/><strong>확률과 통계</strong>, <strong>영어Ⅰ</strong>, <strong>영어Ⅱ</strong>,<br/><strong>영어독해와 작문</strong>, <strong>사회와 문화</strong>, 현대사회와 윤리</td>
+<td>직무의사소통, 직무수학, 심화영어,<br/>심화영어독해와 작문, 영어발표와 토론, 직무영어,<br/>경제, <strong>국제관계의 이해</strong>, <strong>법과사회</strong>,<br/>윤리와 사상, <strong>정치</strong>, 논리와 사고,<br/>인간과 철학</td>
+<td>매체의사소통, 언어생활탐구, 세계문화와 영어,<br/><strong>실생활영어회화</strong>, 사회문제탐구, 지식재산일반,<br/><strong>논술</strong></td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>간호</td>
+<td><strong class="uni-label">아주대</strong><br/><br/>간호학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>간호학과</td>
+<td>미적분Ⅰ, 확률과 통계, 생명과학,<br/>화학</td>
+<td class="center">-</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>의료예과</td>
+<td><strong class="uni-label">아주대</strong><br/><br/>의학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>의예과</td>
+<td>대수, 미적분Ⅰ, 확률과 통계,<br/>물리학, 생명과학, 화학</td>
+<td>미적분Ⅱ, 생물의 유전, 세포와 물질대사</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>약학</td>
+<td><strong class="uni-label">아주대</strong><br/><br/>약학과</td>
+<td>대수, 미적분Ⅰ, 확률과 통계,<br/>생명과학, 화학</td>
+<td>미적분Ⅱ, 물질과 에너지, 생물의 유전,<br/>세포와 물질대사, 화학반응의 세계</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>교육</td>
+<td><strong class="uni-label">인하대</strong><br/><br/>수학교육과</td>
+<td>대수</td>
+<td>미적분Ⅱ</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>생활과학</td>
+<td><strong class="uni-label">인하대</strong><br/><br/>식품영양학과, 의류디자인학과</td>
+<td>대수</td>
+<td>미적분Ⅱ</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>수학ㆍ물리ㆍ천문ㆍ지구</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>수학과, 물리학과, 정보통계· 보험수리학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>수학과, 프런티어과학학부<br/><br/><strong class="uni-label">인하대</strong><br/><br/>수학과, 물리학과, 통계학과, 해양과학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>,<br/><strong>물리학</strong>, <strong>생명과학</strong>, 지구과학,<br/><strong>화학</strong>, 기술·가정</td>
+<td>경제수학, <strong>기하</strong>, <strong>미적분Ⅱ</strong>,<br/>직무수학, <strong>물질과 에너지</strong>, <strong>생물의유전</strong>,<br/><strong>세포와 물질대사</strong>, <strong>역학과 에너지</strong>, <strong>전자기와양자</strong>,<br/><strong>화학반응의 세계</strong>, <strong>지구시스템과학</strong>, 행성우주과학,<br/>생활과학탐구</td>
+<td>수학과 문화, 수학과제탐구, <strong>실용통계</strong>,<br/><strong>과학의 역사와 문화</strong>, 기후변화와 환경생태, <strong>융합과학탐구</strong></td>
+</tr>
+<tr>
+<td>자연과학</td>
+<td>화학ㆍ생명과학ㆍ환경</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>의생명시스템학부, 화학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>프런티어과학학부<br/><br/><strong class="uni-label">인하대</strong><br/><br/>생명과학과, 바이오식품공학과, 첨단바이오의약학과, 화학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과 통계</strong>,<br/>현대사회와 윤리, <strong>물리학</strong>, <strong>생명과학</strong>,<br/>지구과학, <strong>화학</strong>, 기술·가정,<br/>정보</td>
+<td><strong>기하</strong>, 미적분Ⅱ, <strong>물질과 에너지</strong>,<br/><strong>생물의 유전</strong>, <strong>세포와 물질대사</strong>, <strong>역학과 에너지</strong>,<br/><strong>전자기와양자</strong>, 지구시스템과학, 행성우주과학,<br/><strong>화학반응의 세계</strong>, 생활과학탐구, 데이터과학</td>
+<td><strong>과학의 역사와 문화</strong>, <strong>융합과학탐구</strong>, 실용통계,<br/>기후변화와 환경생태</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>건설</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>건축학부 (건축학·건축공학전공), 건축학부 (실내건축전공)<br/><br/><strong class="uni-label">아주대</strong><br/><br/>환경안전공학과, 건축학과, 건설시스템공학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>건축학부, 공간정보공학과, 사회인프라공학과, 환경공학과</td>
+<td>독서와작문, 화법과언어, <strong>대수</strong>,<br/><strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>, 영어Ⅰ,<br/>영어Ⅱ, <strong>물리학</strong>, 생명과학,<br/>지구과학, <strong>화학</strong>, 미술,<br/>기술·가정</td>
+<td>기하, 미적분Ⅱ, 인공지능수학,<br/><strong>역학과 에너지</strong>, 전자기와 양자, 지구시스템과학,<br/>화학반응의 세계, 미술창작, 로봇과 공학세계,<br/>생활과학탐구</td>
+<td>실용통계, 여행지리, 기후변화와 환경생태,<br/>융합과학탐구, 창의공학설계</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>교통ㆍ수송</td>
+<td><strong class="uni-label">아주대</strong><br/><br/>교통시스템공학과</td>
+<td>대수, 확률과통계</td>
+<td class="center">-</td>
+<td class="center">-</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>기계</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>기계공학부<br/><br/><strong class="uni-label">아주대</strong><br/><br/>기계공학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>기계공학과, 스마트모빌리티공학과, 조선해양공학과, 항공우주공학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>,<br/><strong>물리학</strong>, 화학, 기술·가정</td>
+<td>기하, 미적분Ⅱ, 인공지능수학,<br/>물질과 에너지, <strong>역학과 에너지</strong>, 전자기와 양자,<br/>화학반응의 세계, 로봇과 공학세계, 생활과학탐구</td>
+<td><strong>융합과학탐구</strong>, 창의공학설계</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>산업ㆍ안전</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>산업·정보시스템 공학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>산업공학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>산업경영공학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>,<br/><strong>물리학</strong>, 생명과학, 지구과학,<br/><strong>화학</strong>, 기술·가정, 정보</td>
+<td>경제수학, <strong>기하</strong>, 미적분Ⅱ,<br/><strong>인공지능수학</strong>, 직무수학, 경제,<br/>로봇과공학세계, 생활과학탐구, 데이터과학,<br/>인공지능기초</td>
+<td>수학과 문화, <strong>수학과제탐구</strong>, <strong>실용통계</strong>,<br/>과학의 역사와 문화, <strong>융합과학탐구</strong>, 지식재산일반,<br/>창의공학설계, 소프트웨어와 생활, 인간과경제활동</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>재료</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>신소재공학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>첨단신소재공학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>신소재공학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>,<br/><strong>물리학</strong>, <strong>화학</strong></td>
+<td><strong>기하</strong>, <strong>미적분Ⅱ</strong>, <strong>물질과 에너지</strong>,<br/><strong>역학과 에너지</strong>, <strong>전자기와 양자</strong>, <strong>화학반응의 세계</strong></td>
+<td>융합과학탐구, 창의공학설계</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>전기ㆍ전자ㆍ컴퓨터</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>전기공학부, 컴퓨터학부, 전자정보공학부 (전자공학전공), 전자정보공학부 (IT융합전공), 글로벌미디어학부, AI소프트웨어학부, 정보보호학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>전자공학과, 지능형반도체공학과, 소프트웨어학과, 사이버보안학과, 디지털미디어학과, 국방디지털융합학과, 미래모빌리티공학과<br/><br/><strong class="uni-label">인하대</strong><br/><br/>데이터사이언스학과, 반도체시스템공학과, 인공지능공학과, 전기전자공학부, 컴퓨터공학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>,<br/><strong>물리학</strong>, <strong>생명과학</strong>, <strong>화학</strong>,<br/>음악, 미술, 기술·가정,<br/>정보</td>
+<td>문학과영상, <strong>기하</strong>, <strong>미적분Ⅱ</strong>,<br/><strong>인공지능수학</strong>, 직무수학, 직무영어,<br/><strong>물질과에너지</strong>, <strong>역학과에너지</strong>, <strong>전자기와양자</strong>,<br/>행성우주과학, <strong>화학반응의세계</strong>, 미술창작,<br/>로봇과공학세계, 생활과학탐구, 데이터과학,<br/>인공지능기초</td>
+<td>매체의사소통, 수학과제탐구, 실용통계,<br/>미디어영어, 실생활영어회화, <strong>융합과학탐구</strong>,<br/>음악과미디어, 미술과매체, 창의공학설계,<br/>소프트웨어와생활</td>
+</tr>
+<tr>
+<td>공학</td>
+<td>화공ㆍ고분자ㆍ에너지</td>
+<td><strong class="uni-label">숭실대</strong><br/><br/>화학공학과<br/><br/><strong class="uni-label">아주대</strong><br/><br/>화학공학과, 응용화학과, 첨단바이오융합대학<br/><br/><strong class="uni-label">인하대</strong><br/><br/>화학공학과, 고분자공학과, 생명공학과, 에너지자원공학과, 이차전지융합학과</td>
+<td><strong>대수</strong>, <strong>미적분Ⅰ</strong>, <strong>확률과통계</strong>,<br/><strong>물리학</strong>, <strong>생명과학</strong>, <strong>화학</strong>,<br/>기술·가정, 정보</td>
+<td><strong>기하</strong>, <strong>미적분Ⅱ</strong>, 인공지능수학,<br/>직무수학, <strong>물질과에너지</strong>, 생물의유전,<br/>세포와물질대사, <strong>역학과에너지</strong>, 전자기와 양자,<br/><strong>화학반응의세계</strong>, 생활과학탐구</td>
+<td>실용통계, 기후변화와 환경생태, <strong>융합과학탐구</strong>,<br/>창의공학설계</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+  ※ 각 대학별로 차이가 있을 수 있으니 세부적인 모집단위(전공) 안내 등의 내용은 대학별 홈페이지 등을 참고하시기 바랍니다.
+</p>
+</div>
+</details>
+<details class="section uni-cau" id="cau">
+<summary>중앙대학교 자연계열 학문단위별 이수 권장과목 안내</summary>
+<div class="section-body">
+<p>
+              아래 표는 중앙대학교 「2028학년도 대학입학전형 학문단위별 이수 권장과목 안내(자연계열)」의
+              모집단위별 이수 권장과목을 정리한 것입니다.
+            </p>
+<div class="notice-box">
+<strong>중앙대학교 안내 핵심</strong><br/>
+              이수 권장과목은 학생의 과목 선택권과 다양한 진로 탐색의 기회를 보장하기 위해
+              고교-대학 교육과정의 학습 단계가 분명한 자연계열 학문단위에 한해 최소한의 수준으로 제시되었습니다.
+              인문계열 학문단위는 이수 권장과목을 별도로 제시하지 않습니다.
+            </div>
+<div class="table-guide">모바일에서는 표를 좌우로 밀어 확인하세요 →</div>
+<div class="table-wrap">
+<table class="cau-table mid left"><colgroup><col class="first-col"/></colgroup>
+<thead>
+<tr>
+<th rowspan="2">모집단위</th>
+<th colspan="3">이수 권장과목</th>
+</tr>
+<tr>
+<th>수학<br/>진로 선택</th>
+<th>과학<br/>일반 선택</th>
+<th>과학<br/>진로 선택</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>기계공학부<br/>물리학과<br/>사회기반시스템공학부(건설환경플랜트공학)<br/>전자전기공학부<br/>지능형반도체공학과</td><td>미적분Ⅱ, 기하</td><td>물리학, 화학</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>에너지시스템공학부<br/>첨단소재공학과<br/>화학공학과</td><td>미적분Ⅱ, 기하</td><td>화학, 물리학</td><td>물질과 에너지, 화학 반응의 세계</td></tr>
+<tr><td>융합공학부</td><td>미적분Ⅱ, 기하</td><td>화학, 물리학 또는<br/>화학, 생명과학</td><td class="center">-</td></tr>
+<tr><td>건축학부<br/>사회기반시스템공학부(도시시스템공학)<br/>소프트웨어학부</td><td>미적분Ⅱ, 기하</td><td>물리학</td><td>역학과 에너지, 전자기와 양자</td></tr>
+<tr><td>AI학과<br/>산업보안학과(자연)<br/>수학과<br/>예술공학부</td><td>미적분Ⅱ, 기하</td><td class="center">-</td><td class="center">-</td></tr>
+<tr><td>약학부<br/>의학부</td><td>미적분Ⅱ, 기하</td><td>생명과학, 화학</td><td>물질과 에너지, 화학 반응의 세계,<br/>세포와 물질대사, 생물의 유전<br/>中 3과목 이상</td></tr>
+<tr><td>생명과학과</td><td>미적분Ⅱ</td><td>생명과학, 화학</td><td>물질과 에너지, 화학 반응의 세계,<br/>세포와 물질대사, 생물의 유전<br/>中 2과목 이상</td></tr>
+<tr><td>화학과</td><td>미적분Ⅱ</td><td>화학, 물리학 또는<br/>화학, 생명과학</td><td class="center">-</td></tr>
+<tr><td>시스템생명공학과<br/>식품공학부(식품공학, 식품영양)</td><td>미적분Ⅱ 또는 기하</td><td>생명과학, 화학</td><td class="center">-</td></tr>
+<tr><td>간호학과</td><td>미적분Ⅱ</td><td>생명과학</td><td>세포와 물질대사, 생물의 유전</td></tr>
+<tr><td>생명자원공학부(동물생명공학, 식물생명공학)</td><td>미적분Ⅱ</td><td>생명과학, 화학</td><td class="center">-</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small-note">
+              ※ 이수 권장과목 안내는 대입 전형 연구 및 전형 계획 수립 결과 등에 따라 추후 변경될 수 있으며,
+              변경 시 입학처 홈페이지를 통해 별도로 안내할 예정입니다.
+            </p>
+</div>
+</details>
+</main>
+</body>
+</html>
